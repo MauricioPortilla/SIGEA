@@ -11,6 +11,17 @@ CREATE TABLE cuenta (
     contrasenia varchar(255) NOT NULL,
 );
 
+CREATE TABLE organizador (
+    id_organizador int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+    id_cuenta int NOT NULL,
+    FOREIGN KEY (id_cuenta) REFERENCES cuenta(id_cuenta),
+    nombre varchar(50) NOT NULL,
+    paterno varchar(50) NOT NULL,
+    materno varchar(50) NULL,
+    telefono varchar(10) NOT NULL,
+    correo varchar(100) NOT NULL
+);
+
 CREATE TABLE evento (
     id_evento int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_organizador int NOT NULL,
@@ -55,17 +66,12 @@ CREATE TABLE comite_evento (
     PRIMARY KEY (id_comite, id_evento)
 );
 
-CREATE TABLE organizador (
-    id_organizador int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-    id_cuenta int NOT NULL,
-    FOREIGN KEY (id_cuenta) REFERENCES cuenta(id_cuenta),
+CREATE TABLE comite_lider (
     id_comite int NOT NULL,
     FOREIGN KEY (id_comite) REFERENCES comite(id_comite),
-    nombre varchar(50) NOT NULL,
-    paterno varchar(50) NOT NULL,
-    materno varchar(50) NULL,
-    telefono varchar(10) NOT NULL,
-    correo varchar(100) NOT NULL
+    id_organizador int NOT NULL,
+    FOREIGN KEY (id_organizador) REFERENCES organizador(id_organizador),
+    PRIMARY KEY (id_comite, id_organizador)
 );
 
 CREATE TABLE comite_organizador (
