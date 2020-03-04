@@ -1,0 +1,1713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actividad">
+          <Key>
+            <PropertyRef Name="id_actividad" />
+          </Key>
+          <Property Name="id_actividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Adscripcion">
+          <Key>
+            <PropertyRef Name="id_adscripcion" />
+          </Key>
+          <Property Name="id_adscripcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreDependencia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="puesto" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="id_articulo" />
+          </Key>
+          <Property Name="id_articulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_track" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="anio" Type="int" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="resumen" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="keywords" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="archivo" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Asistente">
+          <Key>
+            <PropertyRef Name="id_asistente" />
+          </Key>
+          <Property Name="id_asistente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_adscripcion" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="paterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="materno" Type="varchar" MaxLength="50" />
+          <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AsistenteActividad">
+          <Key>
+            <PropertyRef Name="id_asistente" />
+            <PropertyRef Name="id_actividad" />
+          </Key>
+          <Property Name="id_asistente" Type="int" Nullable="false" />
+          <Property Name="id_actividad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="id_autor" />
+          </Key>
+          <Property Name="id_autor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="paterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="materno" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AutorArticulo">
+          <Key>
+            <PropertyRef Name="id_autor" />
+            <PropertyRef Name="id_articulo" />
+          </Key>
+          <Property Name="id_autor" Type="int" Nullable="false" />
+          <Property Name="id_articulo" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comite">
+          <Key>
+            <PropertyRef Name="id_comite" />
+          </Key>
+          <Property Name="id_comite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="responsabilidades" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ComiteEvento">
+          <Key>
+            <PropertyRef Name="id_comite" />
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_comite" Type="int" Nullable="false" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ComiteLider">
+          <Key>
+            <PropertyRef Name="id_comite" />
+            <PropertyRef Name="id_organizador" />
+          </Key>
+          <Property Name="id_comite" Type="int" Nullable="false" />
+          <Property Name="id_organizador" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ComiteOrganizador">
+          <Key>
+            <PropertyRef Name="id_comite" />
+            <PropertyRef Name="id_organizador" />
+          </Key>
+          <Property Name="id_comite" Type="int" Nullable="false" />
+          <Property Name="id_organizador" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="id_cuenta" />
+          </Key>
+          <Property Name="id_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="contrasenia" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_evento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_organizador" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaInicio" Type="date" Nullable="false" />
+          <Property Name="fechaFin" Type="date" Nullable="false" />
+          <Property Name="cuota" Type="float" Nullable="false" />
+          <Property Name="sede" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gasto">
+          <Key>
+            <PropertyRef Name="id_gasto" />
+          </Key>
+          <Property Name="id_gasto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="float" Nullable="false" />
+          <Property Name="motivo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SIGEA.dbo.GastoMagistral' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="GastoMagistral">
+          <Key>
+            <PropertyRef Name="id_gasto" />
+            <PropertyRef Name="id_magistral" />
+          </Key>
+          <Property Name="id_gasto" Type="int" Nullable="false" />
+          <Property Name="id_magistral" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Magistral">
+          <Key>
+            <PropertyRef Name="id_magistral" />
+          </Key>
+          <Property Name="id_magistral" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_actividad" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="paterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="materno" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="lugarOrigen" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Organizador">
+          <Key>
+            <PropertyRef Name="id_organizador" />
+          </Key>
+          <Property Name="id_organizador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cuenta" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="paterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="materno" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="id_pago" />
+          </Key>
+          <Property Name="id_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cantidad" Type="float" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PagoArticulo">
+          <Key>
+            <PropertyRef Name="id_pago" />
+            <PropertyRef Name="id_articulo" />
+          </Key>
+          <Property Name="id_pago" Type="int" Nullable="false" />
+          <Property Name="id_articulo" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SIGEA.dbo.PagoAsistente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="PagoAsistente">
+          <Key>
+            <PropertyRef Name="id_pago" />
+            <PropertyRef Name="id_asistente" />
+          </Key>
+          <Property Name="id_pago" Type="int" Nullable="false" />
+          <Property Name="id_asistente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Presentacion">
+          <Key>
+            <PropertyRef Name="id_presentacion" />
+          </Key>
+          <Property Name="id_presentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_actividad" Type="int" Nullable="false" />
+          <Property Name="fechaPresentacion" Type="date" Nullable="false" />
+          <Property Name="horaInicio" Type="time" Precision="7" Nullable="false" />
+          <Property Name="horaFin" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="PresentacionArticulo">
+          <Key>
+            <PropertyRef Name="id_presentacion" />
+            <PropertyRef Name="id_articulo" />
+          </Key>
+          <Property Name="id_presentacion" Type="int" Nullable="false" />
+          <Property Name="id_articulo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Revisor">
+          <Key>
+            <PropertyRef Name="id_revisor" />
+          </Key>
+          <Property Name="id_revisor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cuenta" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="paterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="materno" Type="varchar" MaxLength="50" />
+          <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RevisorArticulo">
+          <Key>
+            <PropertyRef Name="id_revisorArticulo" />
+          </Key>
+          <Property Name="id_revisorArticulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_revisor" Type="int" Nullable="false" />
+          <Property Name="id_articulo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarea">
+          <Key>
+            <PropertyRef Name="id_tarea" />
+          </Key>
+          <Property Name="id_tarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_comite" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="asignadoA" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TareaActividad">
+          <Key>
+            <PropertyRef Name="id_tarea" />
+            <PropertyRef Name="id_actividad" />
+          </Key>
+          <Property Name="id_tarea" Type="int" Nullable="false" />
+          <Property Name="id_actividad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="id_track" />
+          </Key>
+          <Property Name="id_track" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Actividad__id_ev__534D60F1">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="Actividad">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Articulo__id_tra__74AE54BC">
+          <End Role="Track" Type="Self.Track" Multiplicity="1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Track">
+              <PropertyRef Name="id_track" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="id_track" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistente__id_ac__693CA210">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="AsistenteActividad" Type="Self.AsistenteActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="AsistenteActividad">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistente__id_ad__656C112C">
+          <End Role="Adscripcion" Type="Self.Adscripcion" Multiplicity="1" />
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adscripcion">
+              <PropertyRef Name="id_adscripcion" />
+            </Principal>
+            <Dependent Role="Asistente">
+              <PropertyRef Name="id_adscripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistente__id_as__68487DD7">
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
+          <End Role="AsistenteActividad" Type="Self.AsistenteActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asistente">
+              <PropertyRef Name="id_asistente" />
+            </Principal>
+            <Dependent Role="AsistenteActividad">
+              <PropertyRef Name="id_asistente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AutorArti__id_ar__02084FDA">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="AutorArticulo" Type="Self.AutorArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="AutorArticulo">
+              <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AutorArti__id_au__01142BA1">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
+          <End Role="AutorArticulo" Type="Self.AutorArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="id_autor" />
+            </Principal>
+            <Dependent Role="AutorArticulo">
+              <PropertyRef Name="id_autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComiteEve__id_co__47DBAE45">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
+          <End Role="ComiteEvento" Type="Self.ComiteEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comite">
+              <PropertyRef Name="id_comite" />
+            </Principal>
+            <Dependent Role="ComiteEvento">
+              <PropertyRef Name="id_comite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComiteEve__id_ev__48CFD27E">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="ComiteEvento" Type="Self.ComiteEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="ComiteEvento">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComiteLid__id_co__4BAC3F29">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
+          <End Role="ComiteLider" Type="Self.ComiteLider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comite">
+              <PropertyRef Name="id_comite" />
+            </Principal>
+            <Dependent Role="ComiteLider">
+              <PropertyRef Name="id_comite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComiteLid__id_or__4CA06362">
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
+          <End Role="ComiteLider" Type="Self.ComiteLider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="id_organizador" />
+            </Principal>
+            <Dependent Role="ComiteLider">
+              <PropertyRef Name="id_organizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComiteOrg__id_co__4F7CD00D">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
+          <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comite">
+              <PropertyRef Name="id_comite" />
+            </Principal>
+            <Dependent Role="ComiteOrganizador">
+              <PropertyRef Name="id_comite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComiteOrg__id_or__5070F446">
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
+          <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="id_organizador" />
+            </Principal>
+            <Dependent Role="ComiteOrganizador">
+              <PropertyRef Name="id_organizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Evento__id_organ__3C69FB99">
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="id_organizador" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="id_organizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gasto__id_evento__403A8C7D">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GastoMagi__id_ga__5FB337D6">
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="1" />
+          <End Role="GastoMagistral" Type="Self.GastoMagistral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gasto">
+              <PropertyRef Name="id_gasto" />
+            </Principal>
+            <Dependent Role="GastoMagistral">
+              <PropertyRef Name="id_gasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GastoMagi__id_ma__60A75C0F">
+          <End Role="Magistral" Type="Self.Magistral" Multiplicity="1" />
+          <End Role="GastoMagistral" Type="Self.GastoMagistral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magistral">
+              <PropertyRef Name="id_magistral" />
+            </Principal>
+            <Dependent Role="GastoMagistral">
+              <PropertyRef Name="id_magistral" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Magistral__id_ac__5CD6CB2B">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Magistral" Type="Self.Magistral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="Magistral">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizad__id_cu__398D8EEE">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="id_cuenta" />
+            </Principal>
+            <Dependent Role="Organizador">
+              <PropertyRef Name="id_cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PagoArtic__id_ar__7C4F7684">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="PagoArticulo" Type="Self.PagoArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="PagoArticulo">
+              <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PagoArtic__id_pa__7B5B524B">
+          <End Role="Pago" Type="Self.Pago" Multiplicity="1" />
+          <End Role="PagoArticulo" Type="Self.PagoArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pago">
+              <PropertyRef Name="id_pago" />
+            </Principal>
+            <Dependent Role="PagoArticulo">
+              <PropertyRef Name="id_pago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PagoAsist__id_as__6EF57B66">
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
+          <End Role="PagoAsistente" Type="Self.PagoAsistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asistente">
+              <PropertyRef Name="id_asistente" />
+            </Principal>
+            <Dependent Role="PagoAsistente">
+              <PropertyRef Name="id_asistente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PagoAsist__id_pa__6E01572D">
+          <End Role="Pago" Type="Self.Pago" Multiplicity="1" />
+          <End Role="PagoAsistente" Type="Self.PagoAsistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pago">
+              <PropertyRef Name="id_pago" />
+            </Principal>
+            <Dependent Role="PagoAsistente">
+              <PropertyRef Name="id_pago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Presentac__id_ac__59FA5E80">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="Presentacion">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Presentac__id_ar__787EE5A0">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="PresentacionArticulo">
+              <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Presentac__id_pr__778AC167">
+          <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="1" />
+          <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presentacion">
+              <PropertyRef Name="id_presentacion" />
+            </Principal>
+            <Dependent Role="PresentacionArticulo">
+              <PropertyRef Name="id_presentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Revisor__id_cuen__04E4BC85">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
+          <End Role="Revisor" Type="Self.Revisor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="id_cuenta" />
+            </Principal>
+            <Dependent Role="Revisor">
+              <PropertyRef Name="id_cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RevisorAr__id_ar__08B54D69">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="RevisorArticulo">
+              <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RevisorAr__id_re__07C12930">
+          <End Role="Revisor" Type="Self.Revisor" Multiplicity="1" />
+          <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Revisor">
+              <PropertyRef Name="id_revisor" />
+            </Principal>
+            <Dependent Role="RevisorArticulo">
+              <PropertyRef Name="id_revisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tarea__id_comite__44FF419A">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comite">
+              <PropertyRef Name="id_comite" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="id_comite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TareaActi__id_ac__571DF1D5">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="TareaActividad" Type="Self.TareaActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="TareaActividad">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TareaActi__id_ta__5629CD9C">
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="1" />
+          <End Role="TareaActividad" Type="Self.TareaActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarea">
+              <PropertyRef Name="id_tarea" />
+            </Principal>
+            <Dependent Role="TareaActividad">
+              <PropertyRef Name="id_tarea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Track__id_evento__71D1E811">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="Track" Type="Self.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="Track">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SIGEAModelStoreContainer">
+          <EntitySet Name="Actividad" EntityType="Self.Actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adscripcion" EntityType="Self.Adscripcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Articulo" EntityType="Self.Articulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asistente" EntityType="Self.Asistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AsistenteActividad" EntityType="Self.AsistenteActividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutorArticulo" EntityType="Self.AutorArticulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comite" EntityType="Self.Comite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComiteEvento" EntityType="Self.ComiteEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComiteLider" EntityType="Self.ComiteLider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComiteOrganizador" EntityType="Self.ComiteOrganizador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gasto" EntityType="Self.Gasto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Magistral" EntityType="Self.Magistral" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organizador" EntityType="Self.Organizador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PagoArticulo" EntityType="Self.PagoArticulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presentacion" EntityType="Self.Presentacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Revisor" EntityType="Self.Revisor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RevisorArticulo" EntityType="Self.RevisorArticulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarea" EntityType="Self.Tarea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TareaActividad" EntityType="Self.TareaActividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GastoMagistral" EntityType="Self.GastoMagistral" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GastoMagistral].[id_gasto] AS [id_gasto], 
+    [GastoMagistral].[id_magistral] AS [id_magistral]
+    FROM [dbo].[GastoMagistral] AS [GastoMagistral]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PagoAsistente" EntityType="Self.PagoAsistente" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PagoAsistente].[id_pago] AS [id_pago], 
+    [PagoAsistente].[id_asistente] AS [id_asistente]
+    FROM [dbo].[PagoAsistente] AS [PagoAsistente]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PresentacionArticulo" EntityType="Self.PresentacionArticulo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PresentacionArticulo].[id_presentacion] AS [id_presentacion], 
+    [PresentacionArticulo].[id_articulo] AS [id_articulo]
+    FROM [dbo].[PresentacionArticulo] AS [PresentacionArticulo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Actividad__id_ev__534D60F1" Association="Self.FK__Actividad__id_ev__534D60F1">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Actividad" EntitySet="Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Articulo__id_tra__74AE54BC" Association="Self.FK__Articulo__id_tra__74AE54BC">
+            <End Role="Track" EntitySet="Track" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistente__id_ac__693CA210" Association="Self.FK__Asistente__id_ac__693CA210">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistente__id_ad__656C112C" Association="Self.FK__Asistente__id_ad__656C112C">
+            <End Role="Adscripcion" EntitySet="Adscripcion" />
+            <End Role="Asistente" EntitySet="Asistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistente__id_as__68487DD7" Association="Self.FK__Asistente__id_as__68487DD7">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AutorArti__id_ar__02084FDA" Association="Self.FK__AutorArti__id_ar__02084FDA">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="AutorArticulo" EntitySet="AutorArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AutorArti__id_au__01142BA1" Association="Self.FK__AutorArti__id_au__01142BA1">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="AutorArticulo" EntitySet="AutorArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComiteEve__id_co__47DBAE45" Association="Self.FK__ComiteEve__id_co__47DBAE45">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="ComiteEvento" EntitySet="ComiteEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComiteEve__id_ev__48CFD27E" Association="Self.FK__ComiteEve__id_ev__48CFD27E">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="ComiteEvento" EntitySet="ComiteEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComiteLid__id_co__4BAC3F29" Association="Self.FK__ComiteLid__id_co__4BAC3F29">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="ComiteLider" EntitySet="ComiteLider" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComiteLid__id_or__4CA06362" Association="Self.FK__ComiteLid__id_or__4CA06362">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="ComiteLider" EntitySet="ComiteLider" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComiteOrg__id_co__4F7CD00D" Association="Self.FK__ComiteOrg__id_co__4F7CD00D">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="ComiteOrganizador" EntitySet="ComiteOrganizador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComiteOrg__id_or__5070F446" Association="Self.FK__ComiteOrg__id_or__5070F446">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="ComiteOrganizador" EntitySet="ComiteOrganizador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Evento__id_organ__3C69FB99" Association="Self.FK__Evento__id_organ__3C69FB99">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gasto__id_evento__403A8C7D" Association="Self.FK__Gasto__id_evento__403A8C7D">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GastoMagi__id_ga__5FB337D6" Association="Self.FK__GastoMagi__id_ga__5FB337D6">
+            <End Role="Gasto" EntitySet="Gasto" />
+            <End Role="GastoMagistral" EntitySet="GastoMagistral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GastoMagi__id_ma__60A75C0F" Association="Self.FK__GastoMagi__id_ma__60A75C0F">
+            <End Role="Magistral" EntitySet="Magistral" />
+            <End Role="GastoMagistral" EntitySet="GastoMagistral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Magistral__id_ac__5CD6CB2B" Association="Self.FK__Magistral__id_ac__5CD6CB2B">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Magistral" EntitySet="Magistral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizad__id_cu__398D8EEE" Association="Self.FK__Organizad__id_cu__398D8EEE">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Organizador" EntitySet="Organizador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PagoArtic__id_ar__7C4F7684" Association="Self.FK__PagoArtic__id_ar__7C4F7684">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="PagoArticulo" EntitySet="PagoArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PagoArtic__id_pa__7B5B524B" Association="Self.FK__PagoArtic__id_pa__7B5B524B">
+            <End Role="Pago" EntitySet="Pago" />
+            <End Role="PagoArticulo" EntitySet="PagoArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PagoAsist__id_as__6EF57B66" Association="Self.FK__PagoAsist__id_as__6EF57B66">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="PagoAsistente" EntitySet="PagoAsistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PagoAsist__id_pa__6E01572D" Association="Self.FK__PagoAsist__id_pa__6E01572D">
+            <End Role="Pago" EntitySet="Pago" />
+            <End Role="PagoAsistente" EntitySet="PagoAsistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Presentac__id_ac__59FA5E80" Association="Self.FK__Presentac__id_ac__59FA5E80">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Presentacion" EntitySet="Presentacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Presentac__id_ar__787EE5A0" Association="Self.FK__Presentac__id_ar__787EE5A0">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Presentac__id_pr__778AC167" Association="Self.FK__Presentac__id_pr__778AC167">
+            <End Role="Presentacion" EntitySet="Presentacion" />
+            <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Revisor__id_cuen__04E4BC85" Association="Self.FK__Revisor__id_cuen__04E4BC85">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Revisor" EntitySet="Revisor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RevisorAr__id_ar__08B54D69" Association="Self.FK__RevisorAr__id_ar__08B54D69">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RevisorAr__id_re__07C12930" Association="Self.FK__RevisorAr__id_re__07C12930">
+            <End Role="Revisor" EntitySet="Revisor" />
+            <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tarea__id_comite__44FF419A" Association="Self.FK__Tarea__id_comite__44FF419A">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TareaActi__id_ac__571DF1D5" Association="Self.FK__TareaActi__id_ac__571DF1D5">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="TareaActividad" EntitySet="TareaActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TareaActi__id_ta__5629CD9C" Association="Self.FK__TareaActi__id_ta__5629CD9C">
+            <End Role="Tarea" EntitySet="Tarea" />
+            <End Role="TareaActividad" EntitySet="TareaActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Track__id_evento__71D1E811" Association="Self.FK__Track__id_evento__71D1E811">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Track" EntitySet="Track" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SIGEAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actividad">
+          <Key>
+            <PropertyRef Name="id_actividad" />
+          </Key>
+          <Property Name="id_actividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_evento" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Actividad__id_ev__534D60F1" FromRole="Actividad" ToRole="Evento" />
+          <NavigationProperty Name="Magistral" Relationship="Self.FK__Magistral__id_ac__5CD6CB2B" FromRole="Actividad" ToRole="Magistral" />
+          <NavigationProperty Name="Presentacion" Relationship="Self.FK__Presentac__id_ac__59FA5E80" FromRole="Actividad" ToRole="Presentacion" />
+          <NavigationProperty Name="Asistente" Relationship="Self.AsistenteActividad" FromRole="Actividad" ToRole="Asistente" />
+          <NavigationProperty Name="Tarea" Relationship="Self.TareaActividad" FromRole="Actividad" ToRole="Tarea" />
+        </EntityType>
+        <EntityType Name="Adscripcion">
+          <Key>
+            <PropertyRef Name="id_adscripcion" />
+          </Key>
+          <Property Name="id_adscripcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreDependencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="puesto" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Asistente" Relationship="Self.FK__Asistente__id_ad__656C112C" FromRole="Adscripcion" ToRole="Asistente" />
+        </EntityType>
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="id_articulo" />
+          </Key>
+          <Property Name="id_articulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_track" Type="Int32" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="anio" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="resumen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="keywords" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="archivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Track" Relationship="Self.FK__Articulo__id_tra__74AE54BC" FromRole="Articulo" ToRole="Track" />
+          <NavigationProperty Name="AutorArticulo" Relationship="Self.FK__AutorArti__id_ar__02084FDA" FromRole="Articulo" ToRole="AutorArticulo" />
+          <NavigationProperty Name="RevisorArticulo" Relationship="Self.FK__RevisorAr__id_ar__08B54D69" FromRole="Articulo" ToRole="RevisorArticulo" />
+          <NavigationProperty Name="Pago" Relationship="Self.PagoArticulo" FromRole="Articulo" ToRole="Pago" />
+          <NavigationProperty Name="Presentacion" Relationship="Self.PresentacionArticulo" FromRole="Articulo" ToRole="Presentacion" />
+        </EntityType>
+        <EntityType Name="Asistente">
+          <Key>
+            <PropertyRef Name="id_asistente" />
+          </Key>
+          <Property Name="id_asistente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_adscripcion" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Adscripcion" Relationship="Self.FK__Asistente__id_ad__656C112C" FromRole="Asistente" ToRole="Adscripcion" />
+          <NavigationProperty Name="Actividad" Relationship="Self.AsistenteActividad" FromRole="Asistente" ToRole="Actividad" />
+          <NavigationProperty Name="Pago" Relationship="Self.PagoAsistente" FromRole="Asistente" ToRole="Pago" />
+        </EntityType>
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="id_autor" />
+          </Key>
+          <Property Name="id_autor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AutorArticulo" Relationship="Self.FK__AutorArti__id_au__01142BA1" FromRole="Autor" ToRole="AutorArticulo" />
+        </EntityType>
+        <EntityType Name="AutorArticulo">
+          <Key>
+            <PropertyRef Name="id_autor" />
+            <PropertyRef Name="id_articulo" />
+          </Key>
+          <Property Name="id_autor" Type="Int32" Nullable="false" />
+          <Property Name="id_articulo" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK__AutorArti__id_ar__02084FDA" FromRole="AutorArticulo" ToRole="Articulo" />
+          <NavigationProperty Name="Autor" Relationship="Self.FK__AutorArti__id_au__01142BA1" FromRole="AutorArticulo" ToRole="Autor" />
+        </EntityType>
+        <EntityType Name="Comite">
+          <Key>
+            <PropertyRef Name="id_comite" />
+          </Key>
+          <Property Name="id_comite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="responsabilidades" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tarea" Relationship="Self.FK__Tarea__id_comite__44FF419A" FromRole="Comite" ToRole="Tarea" />
+          <NavigationProperty Name="Evento" Relationship="Self.ComiteEvento" FromRole="Comite" ToRole="Evento" />
+          <NavigationProperty Name="Organizador" Relationship="Self.ComiteLider" FromRole="Comite" ToRole="Organizador" />
+          <NavigationProperty Name="Organizador1" Relationship="Self.ComiteOrganizador" FromRole="Comite" ToRole="Organizador" />
+        </EntityType>
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="id_cuenta" />
+          </Key>
+          <Property Name="id_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contrasenia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Organizador" Relationship="Self.FK__Organizad__id_cu__398D8EEE" FromRole="Cuenta" ToRole="Organizador" />
+          <NavigationProperty Name="Revisor" Relationship="Self.FK__Revisor__id_cuen__04E4BC85" FromRole="Cuenta" ToRole="Revisor" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_organizador" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cuota" Type="Double" Nullable="false" />
+          <Property Name="sede" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Actividad" Relationship="Self.FK__Actividad__id_ev__534D60F1" FromRole="Evento" ToRole="Actividad" />
+          <NavigationProperty Name="Organizador" Relationship="Self.FK__Evento__id_organ__3C69FB99" FromRole="Evento" ToRole="Organizador" />
+          <NavigationProperty Name="Gasto" Relationship="Self.FK__Gasto__id_evento__403A8C7D" FromRole="Evento" ToRole="Gasto" />
+          <NavigationProperty Name="Track" Relationship="Self.FK__Track__id_evento__71D1E811" FromRole="Evento" ToRole="Track" />
+          <NavigationProperty Name="Comite" Relationship="Self.ComiteEvento" FromRole="Evento" ToRole="Comite" />
+        </EntityType>
+        <EntityType Name="Gasto">
+          <Key>
+            <PropertyRef Name="id_gasto" />
+          </Key>
+          <Property Name="id_gasto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_evento" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Double" Nullable="false" />
+          <Property Name="motivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Gasto__id_evento__403A8C7D" FromRole="Gasto" ToRole="Evento" />
+          <NavigationProperty Name="Magistral" Relationship="Self.GastoMagistral" FromRole="Gasto" ToRole="Magistral" />
+        </EntityType>
+        <EntityType Name="Magistral">
+          <Key>
+            <PropertyRef Name="id_magistral" />
+          </Key>
+          <Property Name="id_magistral" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_actividad" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lugarOrigen" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Actividad" Relationship="Self.FK__Magistral__id_ac__5CD6CB2B" FromRole="Magistral" ToRole="Actividad" />
+          <NavigationProperty Name="Gasto" Relationship="Self.GastoMagistral" FromRole="Magistral" ToRole="Gasto" />
+        </EntityType>
+        <EntityType Name="Organizador">
+          <Key>
+            <PropertyRef Name="id_organizador" />
+          </Key>
+          <Property Name="id_organizador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cuenta" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK__Organizad__id_cu__398D8EEE" FromRole="Organizador" ToRole="Cuenta" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Evento__id_organ__3C69FB99" FromRole="Organizador" ToRole="Evento" />
+          <NavigationProperty Name="Comite" Relationship="Self.ComiteLider" FromRole="Organizador" ToRole="Comite" />
+          <NavigationProperty Name="Comite1" Relationship="Self.ComiteOrganizador" FromRole="Organizador" ToRole="Comite" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="id_pago" />
+          </Key>
+          <Property Name="id_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cantidad" Type="Double" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Articulo" Relationship="Self.PagoArticulo" FromRole="Pago" ToRole="Articulo" />
+          <NavigationProperty Name="Asistente" Relationship="Self.PagoAsistente" FromRole="Pago" ToRole="Asistente" />
+        </EntityType>
+        <EntityType Name="Presentacion">
+          <Key>
+            <PropertyRef Name="id_presentacion" />
+          </Key>
+          <Property Name="id_presentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_actividad" Type="Int32" Nullable="false" />
+          <Property Name="fechaPresentacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="horaInicio" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="horaFin" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Actividad" Relationship="Self.FK__Presentac__id_ac__59FA5E80" FromRole="Presentacion" ToRole="Actividad" />
+          <NavigationProperty Name="Articulo" Relationship="Self.PresentacionArticulo" FromRole="Presentacion" ToRole="Articulo" />
+        </EntityType>
+        <EntityType Name="Revisor">
+          <Key>
+            <PropertyRef Name="id_revisor" />
+          </Key>
+          <Property Name="id_revisor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cuenta" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK__Revisor__id_cuen__04E4BC85" FromRole="Revisor" ToRole="Cuenta" />
+          <NavigationProperty Name="RevisorArticulo" Relationship="Self.FK__RevisorAr__id_re__07C12930" FromRole="Revisor" ToRole="RevisorArticulo" />
+        </EntityType>
+        <EntityType Name="RevisorArticulo">
+          <Key>
+            <PropertyRef Name="id_revisorArticulo" />
+          </Key>
+          <Property Name="id_revisorArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_revisor" Type="Int32" Nullable="false" />
+          <Property Name="id_articulo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK__RevisorAr__id_ar__08B54D69" FromRole="RevisorArticulo" ToRole="Articulo" />
+          <NavigationProperty Name="Revisor" Relationship="Self.FK__RevisorAr__id_re__07C12930" FromRole="RevisorArticulo" ToRole="Revisor" />
+        </EntityType>
+        <EntityType Name="Tarea">
+          <Key>
+            <PropertyRef Name="id_tarea" />
+          </Key>
+          <Property Name="id_tarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_comite" Type="Int32" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="asignadoA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Comite" Relationship="Self.FK__Tarea__id_comite__44FF419A" FromRole="Tarea" ToRole="Comite" />
+          <NavigationProperty Name="Actividad" Relationship="Self.TareaActividad" FromRole="Tarea" ToRole="Actividad" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="id_track" />
+          </Key>
+          <Property Name="id_track" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_evento" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK__Articulo__id_tra__74AE54BC" FromRole="Track" ToRole="Articulo" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Track__id_evento__71D1E811" FromRole="Track" ToRole="Evento" />
+        </EntityType>
+        <Association Name="FK__Actividad__id_ev__534D60F1">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="Actividad">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Magistral__id_ac__5CD6CB2B">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Magistral" Type="Self.Magistral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="Magistral">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Presentac__id_ac__59FA5E80">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="Presentacion">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistente__id_ad__656C112C">
+          <End Role="Adscripcion" Type="Self.Adscripcion" Multiplicity="1" />
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adscripcion">
+              <PropertyRef Name="id_adscripcion" />
+            </Principal>
+            <Dependent Role="Asistente">
+              <PropertyRef Name="id_adscripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Articulo__id_tra__74AE54BC">
+          <End Role="Track" Type="Self.Track" Multiplicity="1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Track">
+              <PropertyRef Name="id_track" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="id_track" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AutorArti__id_ar__02084FDA">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="AutorArticulo" Type="Self.AutorArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="AutorArticulo">
+              <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RevisorAr__id_ar__08B54D69">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="RevisorArticulo">
+              <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AutorArti__id_au__01142BA1">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
+          <End Role="AutorArticulo" Type="Self.AutorArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="id_autor" />
+            </Principal>
+            <Dependent Role="AutorArticulo">
+              <PropertyRef Name="id_autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tarea__id_comite__44FF419A">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comite">
+              <PropertyRef Name="id_comite" />
+            </Principal>
+            <Dependent Role="Tarea">
+              <PropertyRef Name="id_comite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizad__id_cu__398D8EEE">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="id_cuenta" />
+            </Principal>
+            <Dependent Role="Organizador">
+              <PropertyRef Name="id_cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Revisor__id_cuen__04E4BC85">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
+          <End Role="Revisor" Type="Self.Revisor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="id_cuenta" />
+            </Principal>
+            <Dependent Role="Revisor">
+              <PropertyRef Name="id_cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Evento__id_organ__3C69FB99">
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="id_organizador" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="id_organizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gasto__id_evento__403A8C7D">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Track__id_evento__71D1E811">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="Track" Type="Self.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="Track">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RevisorAr__id_re__07C12930">
+          <End Role="Revisor" Type="Self.Revisor" Multiplicity="1" />
+          <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Revisor">
+              <PropertyRef Name="id_revisor" />
+            </Principal>
+            <Dependent Role="RevisorArticulo">
+              <PropertyRef Name="id_revisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AsistenteActividad">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
+        </Association>
+        <Association Name="ComiteEvento">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+        </Association>
+        <Association Name="ComiteLider">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
+        </Association>
+        <Association Name="ComiteOrganizador">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
+        </Association>
+        <Association Name="PagoArticulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+        </Association>
+        <Association Name="TareaActividad">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+        </Association>
+        <Association Name="GastoMagistral">
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
+          <End Role="Magistral" Type="Self.Magistral" Multiplicity="*" />
+        </Association>
+        <Association Name="PagoAsistente">
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+        </Association>
+        <Association Name="PresentacionArticulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SigeaBD" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actividad" EntityType="Self.Actividad" />
+          <EntitySet Name="Adscripcion" EntityType="Self.Adscripcion" />
+          <EntitySet Name="Articulo" EntityType="Self.Articulo" />
+          <EntitySet Name="Asistente" EntityType="Self.Asistente" />
+          <EntitySet Name="Autor" EntityType="Self.Autor" />
+          <EntitySet Name="AutorArticulo" EntityType="Self.AutorArticulo" />
+          <EntitySet Name="Comite" EntityType="Self.Comite" />
+          <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
+          <EntitySet Name="Evento" EntityType="Self.Evento" />
+          <EntitySet Name="Gasto" EntityType="Self.Gasto" />
+          <EntitySet Name="Magistral" EntityType="Self.Magistral" />
+          <EntitySet Name="Organizador" EntityType="Self.Organizador" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" />
+          <EntitySet Name="Presentacion" EntityType="Self.Presentacion" />
+          <EntitySet Name="Revisor" EntityType="Self.Revisor" />
+          <EntitySet Name="RevisorArticulo" EntityType="Self.RevisorArticulo" />
+          <EntitySet Name="Tarea" EntityType="Self.Tarea" />
+          <EntitySet Name="Track" EntityType="Self.Track" />
+          <AssociationSet Name="FK__Actividad__id_ev__534D60F1" Association="Self.FK__Actividad__id_ev__534D60F1">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Actividad" EntitySet="Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Magistral__id_ac__5CD6CB2B" Association="Self.FK__Magistral__id_ac__5CD6CB2B">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Magistral" EntitySet="Magistral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Presentac__id_ac__59FA5E80" Association="Self.FK__Presentac__id_ac__59FA5E80">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Presentacion" EntitySet="Presentacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistente__id_ad__656C112C" Association="Self.FK__Asistente__id_ad__656C112C">
+            <End Role="Adscripcion" EntitySet="Adscripcion" />
+            <End Role="Asistente" EntitySet="Asistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Articulo__id_tra__74AE54BC" Association="Self.FK__Articulo__id_tra__74AE54BC">
+            <End Role="Track" EntitySet="Track" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AutorArti__id_ar__02084FDA" Association="Self.FK__AutorArti__id_ar__02084FDA">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="AutorArticulo" EntitySet="AutorArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RevisorAr__id_ar__08B54D69" Association="Self.FK__RevisorAr__id_ar__08B54D69">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AutorArti__id_au__01142BA1" Association="Self.FK__AutorArti__id_au__01142BA1">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="AutorArticulo" EntitySet="AutorArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tarea__id_comite__44FF419A" Association="Self.FK__Tarea__id_comite__44FF419A">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizad__id_cu__398D8EEE" Association="Self.FK__Organizad__id_cu__398D8EEE">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Organizador" EntitySet="Organizador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Revisor__id_cuen__04E4BC85" Association="Self.FK__Revisor__id_cuen__04E4BC85">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Revisor" EntitySet="Revisor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Evento__id_organ__3C69FB99" Association="Self.FK__Evento__id_organ__3C69FB99">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gasto__id_evento__403A8C7D" Association="Self.FK__Gasto__id_evento__403A8C7D">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Track__id_evento__71D1E811" Association="Self.FK__Track__id_evento__71D1E811">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Track" EntitySet="Track" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RevisorAr__id_re__07C12930" Association="Self.FK__RevisorAr__id_re__07C12930">
+            <End Role="Revisor" EntitySet="Revisor" />
+            <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="AsistenteActividad" Association="Self.AsistenteActividad">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Asistente" EntitySet="Asistente" />
+          </AssociationSet>
+          <AssociationSet Name="ComiteEvento" Association="Self.ComiteEvento">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="ComiteLider" Association="Self.ComiteLider">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="Organizador" EntitySet="Organizador" />
+          </AssociationSet>
+          <AssociationSet Name="ComiteOrganizador" Association="Self.ComiteOrganizador">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="Organizador" EntitySet="Organizador" />
+          </AssociationSet>
+          <AssociationSet Name="PagoArticulo" Association="Self.PagoArticulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="TareaActividad" Association="Self.TareaActividad">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="GastoMagistral" Association="Self.GastoMagistral">
+            <End Role="Gasto" EntitySet="Gasto" />
+            <End Role="Magistral" EntitySet="Magistral" />
+          </AssociationSet>
+          <AssociationSet Name="PagoAsistente" Association="Self.PagoAsistente">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="PresentacionArticulo" Association="Self.PresentacionArticulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="Presentacion" EntitySet="Presentacion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SIGEAModelStoreContainer" CdmEntityContainer="SigeaBD">
+          <EntitySetMapping Name="Actividad">
+            <EntityTypeMapping TypeName="SIGEAModel.Actividad">
+              <MappingFragment StoreEntitySet="Actividad">
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adscripcion">
+            <EntityTypeMapping TypeName="SIGEAModel.Adscripcion">
+              <MappingFragment StoreEntitySet="Adscripcion">
+                <ScalarProperty Name="id_adscripcion" ColumnName="id_adscripcion" />
+                <ScalarProperty Name="nombreDependencia" ColumnName="nombreDependencia" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articulo">
+            <EntityTypeMapping TypeName="SIGEAModel.Articulo">
+              <MappingFragment StoreEntitySet="Articulo">
+                <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
+                <ScalarProperty Name="id_track" ColumnName="id_track" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="anio" ColumnName="anio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="resumen" ColumnName="resumen" />
+                <ScalarProperty Name="keywords" ColumnName="keywords" />
+                <ScalarProperty Name="archivo" ColumnName="archivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asistente">
+            <EntityTypeMapping TypeName="SIGEAModel.Asistente">
+              <MappingFragment StoreEntitySet="Asistente">
+                <ScalarProperty Name="id_asistente" ColumnName="id_asistente" />
+                <ScalarProperty Name="id_adscripcion" ColumnName="id_adscripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="paterno" ColumnName="paterno" />
+                <ScalarProperty Name="materno" ColumnName="materno" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Autor">
+            <EntityTypeMapping TypeName="SIGEAModel.Autor">
+              <MappingFragment StoreEntitySet="Autor">
+                <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="paterno" ColumnName="paterno" />
+                <ScalarProperty Name="materno" ColumnName="materno" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutorArticulo">
+            <EntityTypeMapping TypeName="SIGEAModel.AutorArticulo">
+              <MappingFragment StoreEntitySet="AutorArticulo">
+                <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+                <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comite">
+            <EntityTypeMapping TypeName="SIGEAModel.Comite">
+              <MappingFragment StoreEntitySet="Comite">
+                <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="responsabilidades" ColumnName="responsabilidades" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cuenta">
+            <EntityTypeMapping TypeName="SIGEAModel.Cuenta">
+              <MappingFragment StoreEntitySet="Cuenta">
+                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evento">
+            <EntityTypeMapping TypeName="SIGEAModel.Evento">
+              <MappingFragment StoreEntitySet="Evento">
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="id_organizador" ColumnName="id_organizador" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="cuota" ColumnName="cuota" />
+                <ScalarProperty Name="sede" ColumnName="sede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gasto">
+            <EntityTypeMapping TypeName="SIGEAModel.Gasto">
+              <MappingFragment StoreEntitySet="Gasto">
+                <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Magistral">
+            <EntityTypeMapping TypeName="SIGEAModel.Magistral">
+              <MappingFragment StoreEntitySet="Magistral">
+                <ScalarProperty Name="id_magistral" ColumnName="id_magistral" />
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="paterno" ColumnName="paterno" />
+                <ScalarProperty Name="materno" ColumnName="materno" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="lugarOrigen" ColumnName="lugarOrigen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizador">
+            <EntityTypeMapping TypeName="SIGEAModel.Organizador">
+              <MappingFragment StoreEntitySet="Organizador">
+                <ScalarProperty Name="id_organizador" ColumnName="id_organizador" />
+                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="paterno" ColumnName="paterno" />
+                <ScalarProperty Name="materno" ColumnName="materno" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pago">
+            <EntityTypeMapping TypeName="SIGEAModel.Pago">
+              <MappingFragment StoreEntitySet="Pago">
+                <ScalarProperty Name="id_pago" ColumnName="id_pago" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presentacion">
+            <EntityTypeMapping TypeName="SIGEAModel.Presentacion">
+              <MappingFragment StoreEntitySet="Presentacion">
+                <ScalarProperty Name="id_presentacion" ColumnName="id_presentacion" />
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+                <ScalarProperty Name="fechaPresentacion" ColumnName="fechaPresentacion" />
+                <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
+                <ScalarProperty Name="horaFin" ColumnName="horaFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Revisor">
+            <EntityTypeMapping TypeName="SIGEAModel.Revisor">
+              <MappingFragment StoreEntitySet="Revisor">
+                <ScalarProperty Name="id_revisor" ColumnName="id_revisor" />
+                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="paterno" ColumnName="paterno" />
+                <ScalarProperty Name="materno" ColumnName="materno" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RevisorArticulo">
+            <EntityTypeMapping TypeName="SIGEAModel.RevisorArticulo">
+              <MappingFragment StoreEntitySet="RevisorArticulo">
+                <ScalarProperty Name="id_revisorArticulo" ColumnName="id_revisorArticulo" />
+                <ScalarProperty Name="id_revisor" ColumnName="id_revisor" />
+                <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarea">
+            <EntityTypeMapping TypeName="SIGEAModel.Tarea">
+              <MappingFragment StoreEntitySet="Tarea">
+                <ScalarProperty Name="id_tarea" ColumnName="id_tarea" />
+                <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="asignadoA" ColumnName="asignadoA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Track">
+            <EntityTypeMapping TypeName="SIGEAModel.Track">
+              <MappingFragment StoreEntitySet="Track">
+                <ScalarProperty Name="id_track" ColumnName="id_track" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AsistenteActividad" TypeName="SIGEAModel.AsistenteActividad" StoreEntitySet="AsistenteActividad">
+            <EndProperty Name="Actividad">
+              <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+            </EndProperty>
+            <EndProperty Name="Asistente">
+              <ScalarProperty Name="id_asistente" ColumnName="id_asistente" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ComiteEvento" TypeName="SIGEAModel.ComiteEvento" StoreEntitySet="ComiteEvento">
+            <EndProperty Name="Comite">
+              <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+            </EndProperty>
+            <EndProperty Name="Evento">
+              <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ComiteLider" TypeName="SIGEAModel.ComiteLider" StoreEntitySet="ComiteLider">
+            <EndProperty Name="Comite">
+              <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+            </EndProperty>
+            <EndProperty Name="Organizador">
+              <ScalarProperty Name="id_organizador" ColumnName="id_organizador" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ComiteOrganizador" TypeName="SIGEAModel.ComiteOrganizador" StoreEntitySet="ComiteOrganizador">
+            <EndProperty Name="Comite">
+              <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+            </EndProperty>
+            <EndProperty Name="Organizador">
+              <ScalarProperty Name="id_organizador" ColumnName="id_organizador" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PagoArticulo" TypeName="SIGEAModel.PagoArticulo" StoreEntitySet="PagoArticulo">
+            <EndProperty Name="Articulo">
+              <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
+            </EndProperty>
+            <EndProperty Name="Pago">
+              <ScalarProperty Name="id_pago" ColumnName="id_pago" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TareaActividad" TypeName="SIGEAModel.TareaActividad" StoreEntitySet="TareaActividad">
+            <EndProperty Name="Actividad">
+              <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+            </EndProperty>
+            <EndProperty Name="Tarea">
+              <ScalarProperty Name="id_tarea" ColumnName="id_tarea" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="GastoMagistral" TypeName="SIGEAModel.GastoMagistral" StoreEntitySet="GastoMagistral">
+            <EndProperty Name="Gasto">
+              <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
+            </EndProperty>
+            <EndProperty Name="Magistral">
+              <ScalarProperty Name="id_magistral" ColumnName="id_magistral" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PagoAsistente" TypeName="SIGEAModel.PagoAsistente" StoreEntitySet="PagoAsistente">
+            <EndProperty Name="Asistente">
+              <ScalarProperty Name="id_asistente" ColumnName="id_asistente" />
+            </EndProperty>
+            <EndProperty Name="Pago">
+              <ScalarProperty Name="id_pago" ColumnName="id_pago" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PresentacionArticulo" TypeName="SIGEAModel.PresentacionArticulo" StoreEntitySet="PresentacionArticulo">
+            <EndProperty Name="Articulo">
+              <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
+            </EndProperty>
+            <EndProperty Name="Presentacion">
+              <ScalarProperty Name="id_presentacion" ColumnName="id_presentacion" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

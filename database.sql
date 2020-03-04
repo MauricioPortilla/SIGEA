@@ -1,20 +1,13 @@
-CREATE TABLE rol (
-    id_rol int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-    nombre varchar(20) NOT NULL
-);
-
-CREATE TABLE cuenta (
+CREATE TABLE Cuenta (
     id_cuenta int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-    id_rol int NOT NULL,
-    FOREIGN KEY (id_rol) REFERENCES rol(id_rol),
     usuario varchar(15) NOT NULL,
     contrasenia varchar(255) NOT NULL,
 );
 
-CREATE TABLE organizador (
+CREATE TABLE Organizador (
     id_organizador int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_cuenta int NOT NULL,
-    FOREIGN KEY (id_cuenta) REFERENCES cuenta(id_cuenta),
+    FOREIGN KEY (id_cuenta) REFERENCES Cuenta(id_cuenta),
     nombre varchar(50) NOT NULL,
     paterno varchar(50) NOT NULL,
     materno varchar(50) NULL,
@@ -22,10 +15,10 @@ CREATE TABLE organizador (
     correo varchar(100) NOT NULL
 );
 
-CREATE TABLE evento (
+CREATE TABLE Evento (
     id_evento int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_organizador int NOT NULL,
-    FOREIGN KEY (id_organizador) REFERENCES organizador(id_organizador),
+    FOREIGN KEY (id_organizador) REFERENCES Organizador(id_organizador),
     nombre varchar(50) NOT NULL,
     tipo varchar(50) NOT NULL,
     fechaInicio date NOT NULL,
@@ -34,84 +27,84 @@ CREATE TABLE evento (
     sede varchar(50) NOT NULL
 );
 
-CREATE TABLE gasto (
+CREATE TABLE Gasto (
     id_gasto int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_evento int NOT NULL,
-    FOREIGN KEY (id_evento) REFERENCES evento(id_evento),
+    FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
     cantidad float NOT NULL,
     motivo varchar(100) NOT NULL,
     fecha date NOT NULL
 );
 
-CREATE TABLE comite (
+CREATE TABLE Comite (
     id_comite int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     nombre varchar(50) NOT NULL,
     responsabilidades varchar(100)
 );
 
-CREATE TABLE tarea (
+CREATE TABLE Tarea (
     id_tarea int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_comite int NOT NULL,
-    FOREIGN KEY (id_comite) REFERENCES comite(id_comite),
+    FOREIGN KEY (id_comite) REFERENCES Comite(id_comite),
     titulo varchar(30) NOT NULL,
     descripcion varchar(100) NOT NULL,
     asignadoA varchar(50) NOT NULL
 );
 
-CREATE TABLE comite_evento (
+CREATE TABLE ComiteEvento (
     id_comite int NOT NULL,
-    FOREIGN KEY (id_comite) REFERENCES comite(id_comite),
+    FOREIGN KEY (id_comite) REFERENCES Comite(id_comite),
     id_evento int NOT NULL
-    FOREIGN KEY (id_evento) REFERENCES evento(id_evento),
+    FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
     PRIMARY KEY (id_comite, id_evento)
 );
 
-CREATE TABLE comite_lider (
+CREATE TABLE ComiteLider (
     id_comite int NOT NULL,
-    FOREIGN KEY (id_comite) REFERENCES comite(id_comite),
+    FOREIGN KEY (id_comite) REFERENCES Comite(id_comite),
     id_organizador int NOT NULL,
-    FOREIGN KEY (id_organizador) REFERENCES organizador(id_organizador),
+    FOREIGN KEY (id_organizador) REFERENCES Organizador(id_organizador),
     PRIMARY KEY (id_comite, id_organizador)
 );
 
-CREATE TABLE comite_organizador (
+CREATE TABLE ComiteOrganizador (
     id_comite int NOT NULL,
-    FOREIGN KEY (id_comite) REFERENCES comite(id_comite),
+    FOREIGN KEY (id_comite) REFERENCES Comite(id_comite),
     id_organizador int NOT NULL,
-    FOREIGN KEY (id_organizador) REFERENCES organizador(id_organizador),
+    FOREIGN KEY (id_organizador) REFERENCES Organizador(id_organizador),
     PRIMARY KEY (id_comite, id_organizador)
 );
 
-CREATE TABLE actividad (
+CREATE TABLE Actividad (
     id_actividad int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_evento int NOT NULL,
-    FOREIGN KEY (id_evento) REFERENCES evento(id_evento),
+    FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
     nombre varchar(25) NOT NULL,
     descripcion varchar(255) NOT NULL,
     tipo varchar(20) NOT NULL
 );
 
-CREATE TABLE tarea_actividad (
+CREATE TABLE TareaActividad (
     id_tarea int NOT NULL,
-    FOREIGN KEY (id_tarea) REFERENCES tarea(id_tarea),
+    FOREIGN KEY (id_tarea) REFERENCES Tarea(id_tarea),
     id_actividad int NOT NULL,
-    FOREIGN KEY (id_actividad) REFERENCES actividad(id_actividad),
+    FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad),
     PRIMARY KEY (id_tarea, id_actividad)
 );
 
-CREATE TABLE presentacion (
+CREATE TABLE Presentacion (
     id_presentacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_actividad int NOT NULL,
-    FOREIGN KEY (id_actividad) REFERENCES actividad(id_actividad),
+    FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad),
     fechaPresentacion date NOT NULL,
     horaInicio time NOT NULL,
     horaFin time NOT NULL
 );
 
-CREATE TABLE magistral (
+CREATE TABLE Magistral (
     id_magistral int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_actividad int NOT NULL,
-    FOREIGN KEY (id_actividad) REFERENCES actividad(id_actividad),
+    FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad),
     nombre varchar(50) NOT NULL,
     paterno varchar(50) NOT NULL,
     materno varchar(50) NULL,
@@ -120,14 +113,14 @@ CREATE TABLE magistral (
     lugarOrigen varchar(25) NOT NULL
 );
 
-CREATE TABLE gasto_magistral (
+CREATE TABLE GastoMagistral (
     id_gasto int UNIQUE NOT NULL,
-    FOREIGN KEY (id_gasto) REFERENCES gasto(id_gasto),
+    FOREIGN KEY (id_gasto) REFERENCES Gasto(id_gasto),
     id_magistral int NOT NULL,
-    FOREIGN KEY (id_magistral) REFERENCES magistral(id_magistral)
+    FOREIGN KEY (id_magistral) REFERENCES Magistral(id_magistral)
 );
 
-CREATE TABLE adscripcion (
+CREATE TABLE Adscripcion (
     id_adscripcion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     nombreDependencia varchar(50) NOT NULL,
     direccion varchar(100) NOT NULL,
@@ -135,49 +128,49 @@ CREATE TABLE adscripcion (
     puesto varchar(25) NOT NULL
 );
 
-CREATE TABLE asistente (
+CREATE TABLE Asistente (
     id_asistente int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_adscripcion int NOT NULL,
-    FOREIGN KEY (id_adscripcion) REFERENCES adscripcion(id_adscripcion),
+    FOREIGN KEY (id_adscripcion) REFERENCES Adscripcion(id_adscripcion),
     nombre varchar(50) NOT NULL,
     paterno varchar(50) NOT NULL,
     materno varchar(50) NULL,
     correo varchar(100) NOT NULL
 );
 
-CREATE TABLE asistente_actividad (
+CREATE TABLE AsistenteActividad (
     id_asistente int NOT NULL,
-    FOREIGN KEY (id_asistente) REFERENCES asistente(id_asistente),
+    FOREIGN KEY (id_asistente) REFERENCES Asistente(id_asistente),
     id_actividad int NOT NULL,
-    FOREIGN KEY (id_actividad) REFERENCES actividad(id_actividad),
+    FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad),
     PRIMARY KEY (id_asistente, id_actividad)
 );
 
-CREATE TABLE pago (
+CREATE TABLE Pago (
     id_pago int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     cantidad float NOT NULL,
     fecha date NOT NULL
 );
 
-CREATE TABLE pago_asistente (
+CREATE TABLE PagoAsistente (
     id_pago int UNIQUE NOT NULL,
     FOREIGN KEY (id_pago) REFERENCES pago(id_pago),
     id_asistente int NOT NULL,
-    FOREIGN KEY (id_asistente) REFERENCES asistente(id_asistente)
+    FOREIGN KEY (id_asistente) REFERENCES Asistente(id_asistente)
 );
 
-CREATE TABLE track (
+CREATE TABLE Track (
     id_track int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_evento int NOT NULL,
-    FOREIGN KEY (id_evento) REFERENCES evento(id_evento),
+    FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
     nombre varchar(25) NOT NULL,
     descripcion varchar(100) NOT NULL
 );
 
-CREATE TABLE articulo (
+CREATE TABLE Articulo (
     id_articulo int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_track int NOT NULL,
-    FOREIGN KEY (id_track) REFERENCES track(id_track),
+    FOREIGN KEY (id_track) REFERENCES Track(id_track),
     titulo varchar(100) NOT NULL,
     anio int NOT NULL,
     estado varchar(20) NOT NULL,
@@ -186,22 +179,22 @@ CREATE TABLE articulo (
     archivo varchar(255) NOT NULL
 );
 
-CREATE TABLE presentacion_articulo (
+CREATE TABLE PresentacionArticulo (
     id_presentacion int UNIQUE NOT NULL,
-    FOREIGN KEY (id_presentacion) REFERENCES presentacion(id_presentacion),
+    FOREIGN KEY (id_presentacion) REFERENCES Presentacion(id_presentacion),
     id_articulo int NOT NULL,
-    FOREIGN KEY (id_articulo) REFERENCES articulo(id_articulo)
+    FOREIGN KEY (id_articulo) REFERENCES Articulo(id_articulo)
 );
 
-CREATE TABLE pago_articulo (
+CREATE TABLE PagoArticulo (
     id_pago int NOT NULL,
-    FOREIGN KEY (id_pago) REFERENCES pago(id_pago),
+    FOREIGN KEY (id_pago) REFERENCES Pago(id_pago),
     id_articulo int NOT NULL,
-    FOREIGN KEY (id_articulo) REFERENCES articulo(id_articulo),
+    FOREIGN KEY (id_articulo) REFERENCES Articulo(id_articulo),
     PRIMARY KEY (id_pago, id_articulo)
 );
 
-CREATE TABLE autor (
+CREATE TABLE Autor (
     id_autor int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     nombre varchar(50) NOT NULL,
     paterno varchar(50) NOT NULL,
@@ -210,36 +203,36 @@ CREATE TABLE autor (
     correo varchar(100) NOT NULL
 );
 
-CREATE TABLE autor_articulo (
+CREATE TABLE AutorArticulo (
     id_autor int NOT NULL,
-    FOREIGN KEY (id_autor) REFERENCES autor(id_autor),
+    FOREIGN KEY (id_autor) REFERENCES Autor(id_autor),
     id_articulo int NOT NULL,
-    FOREIGN KEY (id_articulo) REFERENCES articulo(id_articulo),
+    FOREIGN KEY (id_articulo) REFERENCES Articulo(id_articulo),
     fecha date NOT NULL,
     PRIMARY KEY (id_autor, id_articulo)
 );
 
-CREATE TABLE revisor (
+CREATE TABLE Revisor (
     id_revisor int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_cuenta int NOT NULL,
-    FOREIGN KEY (id_cuenta) REFERENCES cuenta(id_cuenta),
+    FOREIGN KEY (id_cuenta) REFERENCES Cuenta(id_cuenta),
     nombre varchar(50) NOT NULL,
     paterno varchar(50) NOT NULL,
     materno varchar(50) NULL,
     correo varchar(100) NOT NULL,
 );
 
-CREATE TABLE revisor_articulo (
+CREATE TABLE RevisorArticulo (
     id_revisorArticulo int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_revisor int NOT NULL,
-    FOREIGN KEY (id_revisor) REFERENCES revisor(id_revisor),
+    FOREIGN KEY (id_revisor) REFERENCES Revisor(id_revisor),
     id_articulo int NOT NULL,
-    FOREIGN KEY (id_articulo) REFERENCES articulo(id_articulo)
+    FOREIGN KEY (id_articulo) REFERENCES Articulo(id_articulo)
 );
 
-CREATE TABLE evaluacion_articulo (
+CREATE TABLE EvaluacionArticulo (
     id_revisorArticulo int PRIMARY KEY NOT NULL,
-    FOREIGN KEY (id_revisorArticulo) REFERENCES revisor_articulo(id_revisorArticulo),
+    FOREIGN KEY (id_revisorArticulo) REFERENCES RevisorArticulo(id_revisorArticulo),
     calificacion int NOT NULL,
     observaciones text NOT NULL,
     fecha date NOT NULL,

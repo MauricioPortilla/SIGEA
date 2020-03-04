@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b01b625c0f444051bff3c36640ee5d37" Name="Diagram1">
+        <EntityTypeShape EntityType="SIGEAModel.Actividad" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Adscripcion" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Articulo" Width="1.5" PointX="7.5" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Asistente" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Autor" Width="1.5" PointX="7.5" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.AutorArticulo" Width="1.5" PointX="9.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Comite" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Cuenta" Width="1.5" PointX="3.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Evento" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Gasto" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Magistral" Width="1.5" PointX="8.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Organizador" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Pago" Width="1.5" PointX="10.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Presentacion" Width="1.5" PointX="10.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Revisor" Width="1.5" PointX="7.5" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.RevisorArticulo" Width="1.5" PointX="9.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Tarea" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGEAModel.Track" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
+        <AssociationConnector Association="SIGEAModel.FK__Actividad__id_ev__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Magistral__id_ac__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Presentac__id_ac__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Asistente__id_ad__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Articulo__id_tra__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__AutorArti__id_ar__02084FDA" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__RevisorAr__id_ar__08B54D69" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__AutorArti__id_au__01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Tarea__id_comite__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Organizad__id_cu__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Revisor__id_cuen__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Evento__id_organ__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Gasto__id_evento__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Track__id_evento__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__RevisorAr__id_re__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.AsistenteActividad" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.ComiteEvento" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.ComiteLider" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.ComiteOrganizador" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.PagoArticulo" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.TareaActividad" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.GastoMagistral" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.PagoAsistente" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.PresentacionArticulo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
