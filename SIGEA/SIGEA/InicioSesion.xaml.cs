@@ -22,5 +22,10 @@ namespace SIGEA {
         public InicioSesion() {
             InitializeComponent();
         }
+
+        private void IniciarSesionButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
