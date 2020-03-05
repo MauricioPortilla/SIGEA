@@ -23,9 +23,24 @@ namespace SIGEA {
             InitializeComponent();
         }
 
-        private void IniciarSesionButton_Click(object sender, RoutedEventArgs e)
-        {
+        private void IniciarSesionButton_Click(object sender, RoutedEventArgs e) {
+            if (!verificarCampos()) {
+                MessageBox.Show("Faltan campos por completar.");
+                return
+            } else if (!verificarDatos()) {
+                MessageBox.Show("Debes ingresar datos válidos.");
+                return;
+            }
 
+        }
+
+        private bool verificarCampos() {
+            return !string.IsNullOrWhiteSpace(usuarioTextBox.Text) &&
+                !string.IsNullOrWhiteSpace(contraseniaTextBox.Text);
+        }
+
+        private bool verificarDatos() {
+            return true;
         }
     }
 }
