@@ -11,7 +11,7 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="195" Margin="0,0,82,35" Stroke="Black" VerticalAlignment="Bottom" Width="275"/>
         <Button x:Name="iniciarSesionButton"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Content="Iniciar sesión" Click="IniciarSesionButton_Click" Height="40" Margin="0,0,160,50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="128"/>
         <TextBox x:Name="usuarioTextBox" HorizontalAlignment="Right" Height="23" Margin="0,0,123,182" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre de usuario" VerticalAlignment="Bottom" Width="199"/>
-        <TextBox x:Name="contraseniaTextBox" HorizontalAlignment="Right" Height="23" Margin="0,0,123,145" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Contraseña" VerticalAlignment="Bottom" Width="199"/>
+        <PasswordBox x:Name="contraseniaTextBox" HorizontalAlignment="Right" Height="23" Margin="0,0,123,145" materialDesign:HintAssist.Hint="Contraseña" VerticalAlignment="Bottom" Width="199"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,0,193,261" TextWrapping="Wrap" Text="SIGEA" VerticalAlignment="Bottom" FontSize="20"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,0,177,232" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="15" Height="27"><Run Text="Iniciar sesión"/><LineBreak/><Run/></TextBlock>
     </Grid>
