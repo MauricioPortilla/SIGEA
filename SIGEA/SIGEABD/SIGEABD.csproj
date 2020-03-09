@@ -81,6 +81,7 @@
     <Compile Include="Evento.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="EventoAcciones.cs" />
     <Compile Include="Gasto.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
@@ -124,6 +125,7 @@
     <Compile Include="Track.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="TrackAcciones.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

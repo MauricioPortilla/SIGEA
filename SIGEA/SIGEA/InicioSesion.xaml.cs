@@ -25,6 +25,7 @@ namespace SIGEA {
         /// </summary>
         public InicioSesion() {
             InitializeComponent();
+            App.CrearDirectorios();
         }
 
         /// <summary>

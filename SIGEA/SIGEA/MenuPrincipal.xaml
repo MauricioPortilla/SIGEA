@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MenuPrincipal" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="registrarArticuloButton" Content="Registrar artículo" HorizontalAlignment="Left" Margin="270,29,0,0" VerticalAlignment="Top" Width="255" Click="registrarArticuloButton_Click"/>
+
     </Grid>
 </Window>

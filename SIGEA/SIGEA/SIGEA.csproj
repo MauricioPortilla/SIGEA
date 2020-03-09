@@ -72,11 +72,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AgregarAutor.xaml.cs">
+      <DependentUpon>AgregarAutor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Herramientas.cs" />
     <Compile Include="MenuPrincipal.xaml.cs">
       <DependentUpon>MenuPrincipal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarArticulo.xaml.cs">
+      <DependentUpon>RegistrarArticulo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sesion.cs" />
+    <Page Include="AgregarAutor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InicioSesion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -90,6 +100,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MenuPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarArticulo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

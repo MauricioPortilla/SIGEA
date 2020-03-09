@@ -27,7 +27,7 @@ namespace SIGEABD {
                     cuentaEncontrada = cuentaBuscada;
                     return true;
                 } catch (EntityException exception) {
-                    Console.WriteLine("EntityException@Cuenta->IniciarSesion -> " + exception.Message);
+                    Console.WriteLine("EntityException@Cuenta->IniciarSesion() -> " + exception.Message);
                     throw;
                 }
             }

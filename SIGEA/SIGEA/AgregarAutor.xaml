@@ -1,0 +1,48 @@
+﻿<Window x:Class="SIGEA.AgregarAutor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Añadir autor" Height="351.562" Width="683.75">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="17,14,0,0" TextWrapping="Wrap" Text="Autores del artículo" VerticalAlignment="Top" FontSize="20"/>
+        <DataGrid
+            x:Name="autoresDataGrid"
+            Margin="0,46,0,52"
+            ItemsSource="{Binding AutoresList}"
+            CanUserSortColumns="True"
+            CanUserAddRows="False"
+            CanUserReorderColumns="False"
+            AutoGenerateColumns="False"
+            materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+            materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn
+                    Binding="{Binding Seleccionado, UpdateSourceTrigger=PropertyChanged}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"/>
+                <DataGridTextColumn
+                    Binding="{Binding Nombre}"
+                    Header="Nombre"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding Paterno}"
+                    Header="Paterno"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding Materno}"
+                    Header="Materno"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding Correo}"
+                    Header="Correo"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Right" Margin="0,0,154,9" VerticalAlignment="Bottom" Width="124" Click="cancelarButton_Click"/>
+        <Button x:Name="añadirButton" Content="Añadir" HorizontalAlignment="Right" Margin="0,0,16,9" VerticalAlignment="Bottom" Width="124" Click="añadirButton_Click"/>
+    </Grid>
+</Window>

@@ -20,5 +20,9 @@ namespace SIGEA {
         public MenuPrincipal() {
             InitializeComponent();
         }
+
+        private void registrarArticuloButton_Click(object sender, RoutedEventArgs e) {
+            new RegistrarArticulo().Show();
+        }
     }
 }
