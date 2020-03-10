@@ -196,6 +196,8 @@ CREATE TABLE PagoArticulo (
 
 CREATE TABLE Autor (
     id_autor int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+    id_adscripcion int NOT NULL,
+    FOREIGN KEY (id_adscripcion) REFERENCES Adscripcion(id_adscripcion),
     nombre varchar(50) NOT NULL,
     paterno varchar(50) NOT NULL,
     materno varchar(50) NULL,
