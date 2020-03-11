@@ -31,6 +31,9 @@ namespace SIGEA {
         private string archivoSeleccionado;
         private string nombreArchivoSeleccionado;
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
         public RegistrarArticulo() {
             DataContext = this;
             InitializeComponent();
@@ -38,10 +41,18 @@ namespace SIGEA {
             CargarEventos();
         }
 
+        /// <summary>
+        /// Actualiza la tabla de autores en cuanto surjan cambios en la colección.
+        /// </summary>
+        /// <param name="sender">Colección</param>
+        /// <param name="e">Evento</param>
         private void AutoresList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
             autoresDataGrid.Items.Refresh();
         }
 
+        /// <summary>
+        /// Carga los eventos registrados en el sistema.
+        /// </summary>
         private void CargarEventos() {
             try {
                 foreach (Evento evento in sigeaBD.Evento.ToList()) {
@@ -53,6 +64,11 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Carga los tracks de acuerdo con el evento seleccionado.
+        /// </summary>
+        /// <param name="sender">Combobox de eventos</param>
+        /// <param name="e">Evento</param>
         private void eventoComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             try {
                 Evento eventoSeleccionado = (Evento) eventoComboBox.SelectedItem;
@@ -71,6 +87,11 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Muestra la ventana para agregar un autor a la tabla.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void añadirAutorButton_Click(object sender, RoutedEventArgs e) {
             AgregarAutor agregarAutorVentana = new AgregarAutor();
             agregarAutorVentana.Closing += (agregarAutorSender, agregarAutorEvent) => {
@@ -83,6 +104,11 @@ namespace SIGEA {
             agregarAutorVentana.Show();
         }
 
+        /// <summary>
+        /// Quita un autor seleccionado de la tabla.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void quitarAutorButton_Click(object sender, RoutedEventArgs e) {
             if (AutoresList.Where(autor => autor.Seleccionado).Count() == 0) {
                 MessageBox.Show("Debes seleccionar un autor de la tabla.");
@@ -99,6 +125,11 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Abre un cuadro de diálogo para seleccionar un archivo PDF y almacena su ruta.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void subirArchivoButton_Click(object sender, RoutedEventArgs e) {
             var seleccionArchivo = new OpenFileDialog();
             seleccionArchivo.Filter = "PDF Files|*.pdf";
@@ -113,6 +144,12 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Verifica que los campos estén completos, que se haya seleccionado
+        /// el archivo del artículo, y registra el artículo en la base de datos.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void registrarButton_Click(object sender, RoutedEventArgs e) {
             if (!VerificarCampos()) {
                 MessageBox.Show("Faltan campos por completar.");
@@ -132,30 +169,36 @@ namespace SIGEA {
             var nombreArchivoEncriptado = Herramientas.EncriptarConSHA512(
                 nombreArchivoSeleccionado + DateTime.Now.ToUniversalTime()
             ) + ".pdf";
-            sigeaBD.Articulo.Add(new Articulo {
-                titulo = tituloTextBox.Text,
-                anio = int.Parse(añoCreacionTextBox.Text),
-                keywords = keywordsTextBox.Text,
-                resumen = resumenTextBox.Text,
-                Track = (Track)trackComboBox.SelectedItem,
-                archivo = nombreArchivoEncriptado,
-                estado = "Pendiente",
-                AutorArticulo = autoresArticulo
-            });
             try {
-                File.Copy(archivoSeleccionado, App.ARTICULOS_DIRECTORIO + "/" + nombreArchivoEncriptado);
-                if (sigeaBD.SaveChanges() != 0) {
+                if (new Articulo {
+                        titulo = tituloTextBox.Text,
+                        anio = int.Parse(añoCreacionTextBox.Text),
+                        keywords = keywordsTextBox.Text,
+                        resumen = resumenTextBox.Text,
+                        Track = (Track) trackComboBox.SelectedItem,
+                        archivo = nombreArchivoEncriptado,
+                        estado = "Pendiente",
+                        AutorArticulo = autoresArticulo
+                    }.Registrar()
+                ) {
+                    File.Copy(archivoSeleccionado, App.ARTICULOS_DIRECTORIO + "/" + nombreArchivoEncriptado);
                     MessageBox.Show("Artículo registrado.");
-                    Close();
+                    return;
                 }
+                MessageBox.Show("Error al registrar el artículo.");
             } catch (DbUpdateException dbUpdateException) {
                 MessageBox.Show("Error al registrar el artículo.");
                 Console.WriteLine("DbUpdateException@RegistrarArticulo->registrarButton_Click() -> " + dbUpdateException.Message);
             } catch (Exception exception) {
+                MessageBox.Show("Error al registrar el artículo.");
                 Console.WriteLine("Exception@RegistrarArticulo->registrarButton_Click() -> " + exception.Message);
             }
         }
 
+        /// <summary>
+        /// Verifica que los campos estén completos.
+        /// </summary>
+        /// <returns>true si están completos; false si no</returns>
         private bool VerificarCampos() {
             return !string.IsNullOrWhiteSpace(tituloTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(añoCreacionTextBox.Text) &&

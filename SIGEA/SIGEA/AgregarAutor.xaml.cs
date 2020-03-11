@@ -23,6 +23,10 @@ namespace SIGEA {
     public partial class AgregarAutor : Window {
         public List<AutorTabla> AutoresSeleccionados = new List<AutorTabla>();
         public ObservableCollection<AutorTabla> AutoresList { get; } = new ObservableCollection<AutorTabla>();
+
+        /// <summary>
+        /// Crea la instancia.
+        /// </summary>
         public AgregarAutor() {
             DataContext = this;
             InitializeComponent();
@@ -30,6 +34,9 @@ namespace SIGEA {
             CargarAutores();
         }
 
+        /// <summary>
+        /// Carga los autores de la base de datos.
+        /// </summary>
         private void CargarAutores() {
             using (SigeaBD sigeaBD = new SigeaBD()) {
                 foreach (Autor autor in sigeaBD.Autor.ToList()) {
@@ -47,15 +54,28 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Actualiza la tabla de autores si alguna de sus propiedades cambió su valor.
+        /// </summary>
+        /// <param name="sender">Tabla</param>
+        /// <param name="e">Evento</param>
         public void AutorTabla_PropertyChanged(object sender, PropertyChangedEventArgs e) {
             autoresDataGrid.Items.Refresh();
         }
 
+        /// <summary>
+        /// Actualiza la tabla de autores si su colección cambió.
+        /// </summary>
+        /// <param name="sender">Tabla</param>
+        /// <param name="e">Evento</param>
         private void AutoresList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
             autoresDataGrid.Items.Refresh();
         }
 
-        public struct AutorTabla: INotifyPropertyChanged {
+        /// <summary>
+        /// Representa un Autor en las tablas de autores.
+        /// </summary>
+        public struct AutorTabla : INotifyPropertyChanged {
             public Autor Autor { get; set; }
             public bool Seleccionado { get; set; }
             public string Nombre { get; set; }
@@ -68,6 +88,12 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Añade los autores seleccionados de la tabla a la lista de autores seleccionados
+        /// y cierra la ventana actual.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void añadirButton_Click(object sender, RoutedEventArgs e) {
             foreach (AutorTabla autorTabla in autoresDataGrid.Items) {
                 if (autorTabla.Seleccionado) {
@@ -77,6 +103,11 @@ namespace SIGEA {
             Close();
         }
 
+        /// <summary>
+        /// Cierra la ventana actual.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void cancelarButton_Click(object sender, RoutedEventArgs e) {
             Close();
         }

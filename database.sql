@@ -20,7 +20,6 @@ CREATE TABLE Evento (
     id_organizador int NOT NULL,
     FOREIGN KEY (id_organizador) REFERENCES Organizador(id_organizador),
     nombre varchar(50) NOT NULL,
-    tipo varchar(50) NOT NULL,
     fechaInicio date NOT NULL,
     fechaFin date NOT NULL,
     cuota float NOT NULL DEFAULT 0,

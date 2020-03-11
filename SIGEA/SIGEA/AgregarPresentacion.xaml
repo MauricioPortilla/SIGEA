@@ -1,0 +1,17 @@
+﻿<Window x:Class="SIGEA.AgregarPresentacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Agregar Presentacion" Height="211.692" Width="551.316">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="194,10,0,0" TextWrapping="Wrap" Text="Añadir presentación" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="fechaTextBox" HorizontalAlignment="Left" Height="37" Margin="22,67,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Fecha" VerticalAlignment="Top" Width="146" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="horaInicioTextBox" HorizontalAlignment="Left" Height="37" Margin="204,67,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Hora de inicio" VerticalAlignment="Top" Width="147" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="horaFinTextBox" HorizontalAlignment="Left" Height="37" Margin="376,67,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Hora de fin" VerticalAlignment="Top" Width="147" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <Button x:Name="añadirButtton" Content="Añadir" HorizontalAlignment="Left" Margin="217,139,0,0" VerticalAlignment="Top" Width="124" Click="AñadirButtton_Click"/>
+    </Grid>
+</Window>

@@ -13,6 +13,11 @@ namespace SIGEA {
     /// </summary>
     public partial class App : Application {
         public static readonly string ARTICULOS_DIRECTORIO = AppDomain.CurrentDomain.BaseDirectory + "/archivos/articulos";
+
+        /// <summary>
+        /// Crea un directorio de artículos en la carpeta de archivos en la raíz del programa
+        /// por si no existe.
+        /// </summary>
         public static void CrearDirectorios() {
             if (!Directory.Exists(ARTICULOS_DIRECTORIO)) {
                 Directory.CreateDirectory(ARTICULOS_DIRECTORIO);

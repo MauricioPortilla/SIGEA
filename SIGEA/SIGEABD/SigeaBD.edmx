@@ -125,7 +125,6 @@
           <Property Name="id_evento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_organizador" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="tipo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fechaInicio" Type="date" Nullable="false" />
           <Property Name="fechaFin" Type="date" Nullable="false" />
           <Property Name="cuota" Type="float" Nullable="false" />
@@ -973,7 +972,6 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <Property Name="id_evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_organizador" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="cuota" Type="Double" Nullable="false" />
@@ -1543,7 +1541,6 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
                 <ScalarProperty Name="id_evento" ColumnName="id_evento" />
                 <ScalarProperty Name="id_organizador" ColumnName="id_organizador" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
                 <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
                 <ScalarProperty Name="cuota" ColumnName="cuota" />
