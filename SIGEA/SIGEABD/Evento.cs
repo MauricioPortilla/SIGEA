@@ -26,7 +26,6 @@ namespace SIGEABD
         public int id_evento { get; set; }
         public int id_organizador { get; set; }
         public string nombre { get; set; }
-        public string tipo { get; set; }
         public System.DateTime fechaInicio { get; set; }
         public System.DateTime fechaFin { get; set; }
         public double cuota { get; set; }

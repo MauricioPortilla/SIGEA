@@ -75,9 +75,15 @@
     <Compile Include="AgregarAutor.xaml.cs">
       <DependentUpon>AgregarAutor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AgregarPresentacion.xaml.cs">
+      <DependentUpon>AgregarPresentacion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Herramientas.cs" />
     <Compile Include="MenuPrincipal.xaml.cs">
       <DependentUpon>MenuPrincipal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarActividad.xaml.cs">
+      <DependentUpon>RegistrarActividad.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegistrarArticulo.xaml.cs">
       <DependentUpon>RegistrarArticulo.xaml</DependentUpon>
@@ -87,6 +93,10 @@
     </Compile>
     <Compile Include="Sesion.cs" />
     <Page Include="AgregarAutor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AgregarPresentacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,6 +113,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MenuPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarActividad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

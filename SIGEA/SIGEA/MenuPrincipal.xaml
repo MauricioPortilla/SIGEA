@@ -8,6 +8,7 @@
         Title="MenuPrincipal" Height="450" Width="800">
     <Grid>
         <Button x:Name="registrarArticuloButton" Content="Registrar artículo" HorizontalAlignment="Left" Margin="270,29,0,0" VerticalAlignment="Top" Width="255" Click="registrarArticuloButton_Click"/>
+        <Button x:Name="registrarAutorButton" Content="Registrar autor" HorizontalAlignment="Left" Margin="270,80,0,0" VerticalAlignment="Top" Width="255" Click="RegistrarAutorButton_Click"/>
 
     </Grid>
 </Window>

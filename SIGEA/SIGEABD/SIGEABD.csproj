@@ -56,12 +56,15 @@
     <Compile Include="Actividad.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="ActividadAcciones.cs" />
     <Compile Include="Adscripcion.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="AdscripcionAcciones.cs" />
     <Compile Include="Articulo.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="ArticuloAcciones.cs" />
     <Compile Include="Asistente.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
