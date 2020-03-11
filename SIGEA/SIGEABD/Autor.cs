@@ -21,6 +21,7 @@ namespace SIGEABD
         }
     
         public int id_autor { get; set; }
+        public int id_adscripcion { get; set; }
         public string nombre { get; set; }
         public string paterno { get; set; }
         public string materno { get; set; }
@@ -29,5 +30,6 @@ namespace SIGEABD
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AutorArticulo> AutorArticulo { get; set; }
+        public virtual Adscripcion Adscripcion { get; set; }
     }
 }

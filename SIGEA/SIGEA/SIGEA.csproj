@@ -82,6 +82,9 @@
     <Compile Include="RegistrarArticulo.xaml.cs">
       <DependentUpon>RegistrarArticulo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarAutor.xaml.cs">
+      <DependentUpon>RegistrarAutor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sesion.cs" />
     <Page Include="AgregarAutor.xaml">
       <SubType>Designer</SubType>
@@ -104,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegistrarArticulo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarAutor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

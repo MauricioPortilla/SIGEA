@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -52,17 +55,38 @@ namespace SIGEA {
                 MessageBox.Show("Debes introducir datos válidos.");
                 return;
             }
-            using (SigeaBD sigeaBD = new SigeaBD()) {
-                sigeaBD.Autor.Add(new Autor {
-                    nombre = nombreTextBox.Text,
-                    paterno = paternoTextBox.Text,
-                    materno = string.IsNullOrWhiteSpace(maternoTextBox.Text) ? DBNull.Value.ToString() : maternoTextBox.Text,
-                    correo = correoTextBox.Text,
-                    telefono = telefonoTextBox.Text
-                });
-                //sigeaBD.Adscripcion.Add(new Adscripcion {
-                    
-                //})
+            try {
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    sigeaBD.Adscripcion.Add(new Adscripcion {
+                        nombreDependencia = adscripcionNombreDependenciaTextBox.Text,
+                        direccion = adscripcionDireccionTextBox.Text,
+                        puesto = adscripcionPuestoTextBox.Text,
+                        telefono = telefonoTextBox.Text,
+                        Autor = new Collection<Autor>() {
+                            new Autor {
+                                nombre = nombreTextBox.Text,
+                                paterno = paternoTextBox.Text,
+                                materno = string.IsNullOrWhiteSpace(maternoTextBox.Text) ? DBNull.Value.ToString() : maternoTextBox.Text,
+                                correo = correoTextBox.Text,
+                                telefono = telefonoTextBox.Text
+                            }
+                        }
+                    });
+                    if (sigeaBD.SaveChanges() != 1) {
+                        MessageBox.Show("Error al registrar el autor.");
+                        return;
+                    }
+                    MessageBox.Show("Autor registrado.");
+                }
+            } catch (DbUpdateException dbUpdateException) {
+                MessageBox.Show("Error al registrar el autor.");
+                Console.WriteLine("DbUpdateException@RegistrarButton_Click -> " + dbUpdateException.Message);
+            } catch (EntityException entityException) {
+                MessageBox.Show("Error al registrar el autor.");
+                Console.WriteLine("EntityException@RegistrarButton_Click -> " + entityException.Message);
+            } catch (Exception exception) {
+                MessageBox.Show("Error al registrar el autor.");
+                Console.WriteLine("Exception@RegistrarButton_Click -> " + exception.Message);
             }
         }
 

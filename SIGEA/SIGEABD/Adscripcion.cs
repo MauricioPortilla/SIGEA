@@ -18,6 +18,7 @@ namespace SIGEABD
         public Adscripcion()
         {
             this.Asistente = new HashSet<Asistente>();
+            this.Autor = new HashSet<Autor>();
         }
     
         public int id_adscripcion { get; set; }
@@ -28,5 +29,7 @@ namespace SIGEABD
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asistente> Asistente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Autor> Autor { get; set; }
     }
 }

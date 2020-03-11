@@ -47,6 +47,7 @@
         <AssociationConnector Association="SIGEAModel.GastoMagistral" ManuallyRouted="false" />
         <AssociationConnector Association="SIGEAModel.PagoAsistente" ManuallyRouted="false" />
         <AssociationConnector Association="SIGEAModel.PresentacionArticulo" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Autor__id_adscri__7F2BE32F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
