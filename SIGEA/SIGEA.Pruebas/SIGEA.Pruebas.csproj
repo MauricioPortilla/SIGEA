@@ -59,6 +59,9 @@
   <ItemGroup>
     <Compile Include="IniciarSesionPruebas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrarArticuloPruebas.cs" />
+    <Compile Include="RegistrarAutorPruebas.cs" />
+    <Compile Include="RegistrarActividadPruebas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
