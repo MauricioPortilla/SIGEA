@@ -43,8 +43,8 @@ namespace SIGEA {
                 string contraseniaCifrada = Herramientas.EncriptarConSHA512(contraseniaTextBox.Password);
                 if (Cuenta.IniciarSesion(usuarioTextBox.Text, contraseniaCifrada, out Cuenta cuentaEncontrada)) {
                     Sesion.Cuenta = cuentaEncontrada;
-                    Hide();
                     new MenuPrincipal().Show();
+                    Close();
                 } else {
                     MessageBox.Show("No existe una cuenta registrada con estos datos.");
                 }

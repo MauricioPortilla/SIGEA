@@ -8,6 +8,23 @@ using System.Threading.Tasks;
 
 namespace SIGEABD {
     public partial class Articulo {
+
+        public static void ObtenerArticulo(int id_articulo, Action<Articulo> callbackExito) {
+            try {
+                Articulo articulo = null;
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    articulo = sigeaBD.Articulo.Find(id_articulo);
+                    callbackExito(articulo);
+                }
+            } catch (EntityException entityException) {
+                Console.WriteLine("EntityException@Articulo->ObtenerArticulo() -> " + entityException.Message);
+                throw;
+            } catch (Exception exception) {
+                Console.WriteLine("Exception@Articulo->ObtenerArticulo() -> " + exception.Message);
+                throw;
+            }
+        }
+
         public bool Registrar() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -21,7 +38,7 @@ namespace SIGEABD {
                 Console.WriteLine("EntityException@Articulo->Registrar() -> " + entityException.Message);
                 throw;
             } catch (Exception exception) {
-                Console.WriteLine("Exception@Adscripcion->Registrar() -> " + exception.Message);
+                Console.WriteLine("Exception@Articulo->Registrar() -> " + exception.Message);
                 throw;
             }
         }

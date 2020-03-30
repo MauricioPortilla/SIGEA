@@ -27,7 +27,6 @@ namespace SIGEA {
     public partial class RegistrarArticulo : Window {
 
         public ObservableCollection<AutorTabla> AutoresList { get; } = new ObservableCollection<AutorTabla>();
-        private SigeaBD sigeaBD = new SigeaBD();
         private string archivoSeleccionado;
         private string nombreArchivoSeleccionado;
 
@@ -55,8 +54,10 @@ namespace SIGEA {
         /// </summary>
         private void CargarEventos() {
             try {
-                foreach (Evento evento in sigeaBD.Evento.ToList()) {
-                    eventoComboBox.Items.Add(evento);
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    foreach (Evento evento in sigeaBD.Evento.ToList()) {
+                        eventoComboBox.Items.Add(evento);
+                    }
                 }
             } catch (EntityException entityException) {
                 MessageBox.Show("Error al cargar los eventos.");
@@ -71,13 +72,15 @@ namespace SIGEA {
         /// <param name="e">Evento</param>
         private void eventoComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             try {
-                Evento eventoSeleccionado = (Evento) eventoComboBox.SelectedItem;
-                var tracks = sigeaBD.Track.Where(trackEvento => trackEvento.Evento.id_evento == eventoSeleccionado.id_evento).ToList();
-                trackComboBox.Items.Clear();
-                foreach (Track track in tracks) {
-                    trackComboBox.Items.Add(track);
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    Evento eventoSeleccionado = (Evento)eventoComboBox.SelectedItem;
+                    var tracks = sigeaBD.Track.Where(trackEvento => trackEvento.Evento.id_evento == eventoSeleccionado.id_evento).ToList();
+                    trackComboBox.Items.Clear();
+                    foreach (Track track in tracks) {
+                        trackComboBox.Items.Add(track);
+                    }
+                    trackComboBox.IsEnabled = true;
                 }
-                trackComboBox.IsEnabled = true;
             } catch (EntityException entityException) {
                 MessageBox.Show("Error al cargar los tracks.");
                 Console.WriteLine("EntityException@RegistrarArticulo->eventoComboBox_SelectionChanged() -> " + entityException.Message);

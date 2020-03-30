@@ -90,6 +90,7 @@ namespace SIGEA {
                     }.Registrar()
                 ) {
                     MessageBox.Show("Autor registrado.");
+                    Close();
                     return;
                 }
                 MessageBox.Show("Error al registrar el autor.");

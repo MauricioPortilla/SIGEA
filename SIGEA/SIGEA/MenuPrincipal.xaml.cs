@@ -28,5 +28,9 @@ namespace SIGEA {
         private void RegistrarAutorButton_Click(object sender, RoutedEventArgs e) {
             new RegistrarAutor().Show();
         }
+
+        private void ActualizarArticuloButton_Click(object sender, RoutedEventArgs e) {
+            new ActualizarArticulo(1).Show();
+        }
     }
 }

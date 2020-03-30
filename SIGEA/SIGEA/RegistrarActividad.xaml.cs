@@ -118,6 +118,7 @@ namespace SIGEA {
                     }.Registrar()
                 ) {
                     MessageBox.Show("Actividad registrada.");
+                    Close();
                     return;
                 }
                 MessageBox.Show("Error al registrar el artículo.");
