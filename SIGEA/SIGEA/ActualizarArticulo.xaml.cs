@@ -25,7 +25,7 @@ namespace SIGEA {
         
         public ObservableCollection<AutorTabla> AutoresList { get; } = new ObservableCollection<AutorTabla>();
         private Articulo articulo;
-        private string rutaArchivo;
+        private string rutaArchivo = string.Empty;
 
         public ActualizarArticulo(int id_articulo) {
             InitializeComponent();
@@ -78,8 +78,12 @@ namespace SIGEA {
         }
 
         private void GuardarCambiosButton_Click(object sender, RoutedEventArgs e) {
+            if (rutaArchivo.Equals(string.Empty)) {
+                MessageBox.Show("Debes seleccionar un archivo a reemplazar.");
+                return;
+            }
             File.Copy(rutaArchivo, App.ARTICULOS_DIRECTORIO + "/" + articulo.archivo, true);
-            MessageBox.Show("Artículo registrado.");
+            MessageBox.Show("Cambios guardados.");
             Close();
         }
     }

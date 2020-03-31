@@ -33,6 +33,7 @@ namespace SIGEABD
         public virtual DbSet<AutorArticulo> AutorArticulo { get; set; }
         public virtual DbSet<Comite> Comite { get; set; }
         public virtual DbSet<Cuenta> Cuenta { get; set; }
+        public virtual DbSet<EvaluacionArticulo> EvaluacionArticulo { get; set; }
         public virtual DbSet<Evento> Evento { get; set; }
         public virtual DbSet<Gasto> Gasto { get; set; }
         public virtual DbSet<Magistral> Magistral { get; set; }

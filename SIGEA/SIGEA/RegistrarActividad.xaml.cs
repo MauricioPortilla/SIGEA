@@ -32,7 +32,7 @@ namespace SIGEA {
         public RegistrarActividad(Evento evento) {
             InitializeComponent();
             this.evento = evento;
-            foreach (string tipoActividad in Sesion.TiposActividad) {
+            foreach (string tipoActividad in Sesion.TIPOS_ACTIVIDAD) {
                 tipoActividadComboBox.Items.Add(tipoActividad);
             }
         }

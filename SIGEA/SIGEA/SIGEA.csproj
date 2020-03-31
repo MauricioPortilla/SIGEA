@@ -81,6 +81,9 @@
     <Compile Include="AgregarPresentacion.xaml.cs">
       <DependentUpon>AgregarPresentacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EvaluarArticulo.xaml.cs">
+      <DependentUpon>EvaluarArticulo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Herramientas.cs" />
     <Compile Include="MenuPrincipal.xaml.cs">
       <DependentUpon>MenuPrincipal.xaml</DependentUpon>
@@ -104,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AgregarPresentacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EvaluarArticulo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

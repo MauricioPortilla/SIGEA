@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actividad">
           <Key>
             <PropertyRef Name="id_actividad" />
@@ -51,11 +51,11 @@
         </EntityType>
         <EntityType Name="AsistenteActividad">
           <Key>
-            <PropertyRef Name="id_asistente" />
-            <PropertyRef Name="id_actividad" />
+            <PropertyRef Name="Actividad_id_actividad" />
+            <PropertyRef Name="Asistente_id_asistente" />
           </Key>
-          <Property Name="id_asistente" Type="int" Nullable="false" />
-          <Property Name="id_actividad" Type="int" Nullable="false" />
+          <Property Name="Actividad_id_actividad" Type="int" Nullable="false" />
+          <Property Name="Asistente_id_asistente" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Autor">
           <Key>
@@ -76,7 +76,7 @@
           </Key>
           <Property Name="id_autor" Type="int" Nullable="false" />
           <Property Name="id_articulo" Type="int" Nullable="false" />
-          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Comite">
           <Key>
@@ -88,27 +88,27 @@
         </EntityType>
         <EntityType Name="ComiteEvento">
           <Key>
-            <PropertyRef Name="id_comite" />
-            <PropertyRef Name="id_evento" />
+            <PropertyRef Name="Comite_id_comite" />
+            <PropertyRef Name="Evento_id_evento" />
           </Key>
-          <Property Name="id_comite" Type="int" Nullable="false" />
-          <Property Name="id_evento" Type="int" Nullable="false" />
+          <Property Name="Comite_id_comite" Type="int" Nullable="false" />
+          <Property Name="Evento_id_evento" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ComiteLider">
           <Key>
-            <PropertyRef Name="id_comite" />
-            <PropertyRef Name="id_organizador" />
+            <PropertyRef Name="Comite_id_comite" />
+            <PropertyRef Name="Organizador_id_organizador" />
           </Key>
-          <Property Name="id_comite" Type="int" Nullable="false" />
-          <Property Name="id_organizador" Type="int" Nullable="false" />
+          <Property Name="Comite_id_comite" Type="int" Nullable="false" />
+          <Property Name="Organizador_id_organizador" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ComiteOrganizador">
           <Key>
-            <PropertyRef Name="id_comite" />
-            <PropertyRef Name="id_organizador" />
+            <PropertyRef Name="Comite1_id_comite" />
+            <PropertyRef Name="Organizador1_id_organizador" />
           </Key>
-          <Property Name="id_comite" Type="int" Nullable="false" />
-          <Property Name="id_organizador" Type="int" Nullable="false" />
+          <Property Name="Comite1_id_comite" Type="int" Nullable="false" />
+          <Property Name="Organizador1_id_organizador" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Cuenta">
           <Key>
@@ -118,6 +118,17 @@
           <Property Name="usuario" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="contrasenia" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="EvaluacionArticulo">
+          <Key>
+            <PropertyRef Name="id_revisorArticulo" />
+          </Key>
+          <Property Name="id_revisorArticulo" Type="int" Nullable="false" />
+          <Property Name="calificacion" Type="int" Nullable="false" />
+          <Property Name="observaciones" Type="text" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="gradoExpertiz" Type="int" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="Evento">
           <Key>
             <PropertyRef Name="id_evento" />
@@ -125,8 +136,8 @@
           <Property Name="id_evento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_organizador" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="fechaInicio" Type="date" Nullable="false" />
-          <Property Name="fechaFin" Type="date" Nullable="false" />
+          <Property Name="fechaInicio" Type="datetime" Nullable="false" />
+          <Property Name="fechaFin" Type="datetime" Nullable="false" />
           <Property Name="cuota" Type="float" Nullable="false" />
           <Property Name="sede" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -138,17 +149,15 @@
           <Property Name="id_evento" Type="int" Nullable="false" />
           <Property Name="cantidad" Type="float" Nullable="false" />
           <Property Name="motivo" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SIGEA.dbo.GastoMagistral' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="GastoMagistral">
           <Key>
-            <PropertyRef Name="id_gasto" />
-            <PropertyRef Name="id_magistral" />
+            <PropertyRef Name="Gasto_id_gasto" />
+            <PropertyRef Name="Magistral_id_magistral" />
           </Key>
-          <Property Name="id_gasto" Type="int" Nullable="false" />
-          <Property Name="id_magistral" Type="int" Nullable="false" />
+          <Property Name="Gasto_id_gasto" Type="int" Nullable="false" />
+          <Property Name="Magistral_id_magistral" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Magistral">
           <Key>
@@ -181,25 +190,23 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.GastoMagistral' no tiene definida 
           </Key>
           <Property Name="id_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cantidad" Type="float" Nullable="false" />
-          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="PagoArticulo">
           <Key>
-            <PropertyRef Name="id_pago" />
-            <PropertyRef Name="id_articulo" />
+            <PropertyRef Name="Articulo_id_articulo" />
+            <PropertyRef Name="Pago_id_pago" />
           </Key>
-          <Property Name="id_pago" Type="int" Nullable="false" />
-          <Property Name="id_articulo" Type="int" Nullable="false" />
+          <Property Name="Articulo_id_articulo" Type="int" Nullable="false" />
+          <Property Name="Pago_id_pago" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SIGEA.dbo.PagoAsistente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="PagoAsistente">
           <Key>
-            <PropertyRef Name="id_pago" />
-            <PropertyRef Name="id_asistente" />
+            <PropertyRef Name="Asistente_id_asistente" />
+            <PropertyRef Name="Pago_id_pago" />
           </Key>
-          <Property Name="id_pago" Type="int" Nullable="false" />
-          <Property Name="id_asistente" Type="int" Nullable="false" />
+          <Property Name="Asistente_id_asistente" Type="int" Nullable="false" />
+          <Property Name="Pago_id_pago" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Presentacion">
           <Key>
@@ -207,19 +214,17 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PagoAsistente' no tiene definida n
           </Key>
           <Property Name="id_presentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_actividad" Type="int" Nullable="false" />
-          <Property Name="fechaPresentacion" Type="date" Nullable="false" />
+          <Property Name="fechaPresentacion" Type="datetime" Nullable="false" />
           <Property Name="horaInicio" Type="time" Precision="7" Nullable="false" />
           <Property Name="horaFin" Type="time" Precision="7" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="PresentacionArticulo">
           <Key>
-            <PropertyRef Name="id_presentacion" />
-            <PropertyRef Name="id_articulo" />
+            <PropertyRef Name="Articulo_id_articulo" />
+            <PropertyRef Name="Presentacion_id_presentacion" />
           </Key>
-          <Property Name="id_presentacion" Type="int" Nullable="false" />
-          <Property Name="id_articulo" Type="int" Nullable="false" />
+          <Property Name="Articulo_id_articulo" Type="int" Nullable="false" />
+          <Property Name="Presentacion_id_presentacion" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Revisor">
           <Key>
@@ -252,11 +257,11 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
         </EntityType>
         <EntityType Name="TareaActividad">
           <Key>
-            <PropertyRef Name="id_tarea" />
-            <PropertyRef Name="id_actividad" />
+            <PropertyRef Name="Actividad_id_actividad" />
+            <PropertyRef Name="Tarea_id_tarea" />
           </Key>
-          <Property Name="id_tarea" Type="int" Nullable="false" />
-          <Property Name="id_actividad" Type="int" Nullable="false" />
+          <Property Name="Actividad_id_actividad" Type="int" Nullable="false" />
+          <Property Name="Tarea_id_tarea" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Track">
           <Key>
@@ -279,7 +284,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Articulo__id_tra__75A278F5">
+        <Association Name="FK__Articulo__id_tra__74AE54BC">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -291,19 +296,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asistente__id_ac__6A30C649">
-          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
-          <End Role="AsistenteActividad" Type="Self.AsistenteActividad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Actividad">
-              <PropertyRef Name="id_actividad" />
-            </Principal>
-            <Dependent Role="AsistenteActividad">
-              <PropertyRef Name="id_actividad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Asistente__id_ad__66603565">
+        <Association Name="FK__Asistente__id_ad__656C112C">
           <End Role="Adscripcion" Type="Self.Adscripcion" Multiplicity="1" />
           <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -315,19 +308,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asistente__id_as__693CA210">
-          <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
-          <End Role="AsistenteActividad" Type="Self.AsistenteActividad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Asistente">
-              <PropertyRef Name="id_asistente" />
-            </Principal>
-            <Dependent Role="AsistenteActividad">
-              <PropertyRef Name="id_asistente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Autor__id_adscri__01142BA1">
+        <Association Name="FK__Autor__id_adscri__7F2BE32F">
           <End Role="Adscripcion" Type="Self.Adscripcion" Multiplicity="1" />
           <End Role="Autor" Type="Self.Autor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -339,7 +320,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AutorArti__id_ar__04E4BC85">
+        <Association Name="FK__AutorArti__id_ar__02084FDA">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
           <End Role="AutorArticulo" Type="Self.AutorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -351,7 +332,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AutorArti__id_au__03F0984C">
+        <Association Name="FK__AutorArti__id_au__01142BA1">
           <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
           <End Role="AutorArticulo" Type="Self.AutorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -363,75 +344,15 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ComiteEve__id_co__47DBAE45">
-          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
-          <End Role="ComiteEvento" Type="Self.ComiteEvento" Multiplicity="*" />
+        <Association Name="FK__Evaluacio__id_re__787EE5A0">
+          <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="1" />
+          <End Role="EvaluacionArticulo" Type="Self.EvaluacionArticulo" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Comite">
-              <PropertyRef Name="id_comite" />
+            <Principal Role="RevisorArticulo">
+              <PropertyRef Name="id_revisorArticulo" />
             </Principal>
-            <Dependent Role="ComiteEvento">
-              <PropertyRef Name="id_comite" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ComiteEve__id_ev__48CFD27E">
-          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
-          <End Role="ComiteEvento" Type="Self.ComiteEvento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Evento">
-              <PropertyRef Name="id_evento" />
-            </Principal>
-            <Dependent Role="ComiteEvento">
-              <PropertyRef Name="id_evento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ComiteLid__id_co__4BAC3F29">
-          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
-          <End Role="ComiteLider" Type="Self.ComiteLider" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Comite">
-              <PropertyRef Name="id_comite" />
-            </Principal>
-            <Dependent Role="ComiteLider">
-              <PropertyRef Name="id_comite" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ComiteLid__id_or__4CA06362">
-          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
-          <End Role="ComiteLider" Type="Self.ComiteLider" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organizador">
-              <PropertyRef Name="id_organizador" />
-            </Principal>
-            <Dependent Role="ComiteLider">
-              <PropertyRef Name="id_organizador" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ComiteOrg__id_co__4F7CD00D">
-          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
-          <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Comite">
-              <PropertyRef Name="id_comite" />
-            </Principal>
-            <Dependent Role="ComiteOrganizador">
-              <PropertyRef Name="id_comite" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ComiteOrg__id_or__5070F446">
-          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
-          <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organizador">
-              <PropertyRef Name="id_organizador" />
-            </Principal>
-            <Dependent Role="ComiteOrganizador">
-              <PropertyRef Name="id_organizador" />
+            <Dependent Role="EvaluacionArticulo">
+              <PropertyRef Name="id_revisorArticulo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -459,30 +380,6 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GastoMagi__id_ga__5FB337D6">
-          <End Role="Gasto" Type="Self.Gasto" Multiplicity="1" />
-          <End Role="GastoMagistral" Type="Self.GastoMagistral" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gasto">
-              <PropertyRef Name="id_gasto" />
-            </Principal>
-            <Dependent Role="GastoMagistral">
-              <PropertyRef Name="id_gasto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__GastoMagi__id_ma__60A75C0F">
-          <End Role="Magistral" Type="Self.Magistral" Multiplicity="1" />
-          <End Role="GastoMagistral" Type="Self.GastoMagistral" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Magistral">
-              <PropertyRef Name="id_magistral" />
-            </Principal>
-            <Dependent Role="GastoMagistral">
-              <PropertyRef Name="id_magistral" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Magistral__id_ac__5CD6CB2B">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
           <End Role="Magistral" Type="Self.Magistral" Multiplicity="*" />
@@ -507,54 +404,6 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PagoArtic__id_ar__7D439ABD">
-          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
-          <End Role="PagoArticulo" Type="Self.PagoArticulo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Articulo">
-              <PropertyRef Name="id_articulo" />
-            </Principal>
-            <Dependent Role="PagoArticulo">
-              <PropertyRef Name="id_articulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PagoArtic__id_pa__7C4F7684">
-          <End Role="Pago" Type="Self.Pago" Multiplicity="1" />
-          <End Role="PagoArticulo" Type="Self.PagoArticulo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pago">
-              <PropertyRef Name="id_pago" />
-            </Principal>
-            <Dependent Role="PagoArticulo">
-              <PropertyRef Name="id_pago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PagoAsist__id_as__6FE99F9F">
-          <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
-          <End Role="PagoAsistente" Type="Self.PagoAsistente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Asistente">
-              <PropertyRef Name="id_asistente" />
-            </Principal>
-            <Dependent Role="PagoAsistente">
-              <PropertyRef Name="id_asistente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PagoAsist__id_pa__6EF57B66">
-          <End Role="Pago" Type="Self.Pago" Multiplicity="1" />
-          <End Role="PagoAsistente" Type="Self.PagoAsistente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pago">
-              <PropertyRef Name="id_pago" />
-            </Principal>
-            <Dependent Role="PagoAsistente">
-              <PropertyRef Name="id_pago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Presentac__id_ac__59FA5E80">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
           <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="*" />
@@ -567,31 +416,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Presentac__id_ar__797309D9">
-          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
-          <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Articulo">
-              <PropertyRef Name="id_articulo" />
-            </Principal>
-            <Dependent Role="PresentacionArticulo">
-              <PropertyRef Name="id_articulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Presentac__id_pr__787EE5A0">
-          <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="1" />
-          <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Presentacion">
-              <PropertyRef Name="id_presentacion" />
-            </Principal>
-            <Dependent Role="PresentacionArticulo">
-              <PropertyRef Name="id_presentacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Revisor__id_cuen__07C12930">
+        <Association Name="FK__Revisor__id_cuen__04E4BC85">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
           <End Role="Revisor" Type="Self.Revisor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -603,7 +428,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RevisorAr__id_ar__0B91BA14">
+        <Association Name="FK__RevisorAr__id_ar__08B54D69">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
           <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -615,7 +440,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RevisorAr__id_re__0A9D95DB">
+        <Association Name="FK__RevisorAr__id_re__07C12930">
           <End Role="Revisor" Type="Self.Revisor" Multiplicity="1" />
           <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -639,31 +464,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TareaActi__id_ac__571DF1D5">
-          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
-          <End Role="TareaActividad" Type="Self.TareaActividad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Actividad">
-              <PropertyRef Name="id_actividad" />
-            </Principal>
-            <Dependent Role="TareaActividad">
-              <PropertyRef Name="id_actividad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TareaActi__id_ta__5629CD9C">
-          <End Role="Tarea" Type="Self.Tarea" Multiplicity="1" />
-          <End Role="TareaActividad" Type="Self.TareaActividad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tarea">
-              <PropertyRef Name="id_tarea" />
-            </Principal>
-            <Dependent Role="TareaActividad">
-              <PropertyRef Name="id_tarea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Track__id_evento__72C60C4A">
+        <Association Name="FK__Track__id_evento__71D1E811">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="Track" Type="Self.Track" Multiplicity="*" />
           <ReferentialConstraint>
@@ -672,6 +473,222 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Principal>
             <Dependent Role="Track">
               <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AsistenteActividad_Actividad">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="AsistenteActividad" Type="Self.AsistenteActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="AsistenteActividad">
+              <PropertyRef Name="Actividad_id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AsistenteActividad_Asistente">
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
+          <End Role="AsistenteActividad" Type="Self.AsistenteActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asistente">
+              <PropertyRef Name="id_asistente" />
+            </Principal>
+            <Dependent Role="AsistenteActividad">
+              <PropertyRef Name="Asistente_id_asistente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComiteEvento_Comite">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
+          <End Role="ComiteEvento" Type="Self.ComiteEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comite">
+              <PropertyRef Name="id_comite" />
+            </Principal>
+            <Dependent Role="ComiteEvento">
+              <PropertyRef Name="Comite_id_comite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComiteEvento_Evento">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="ComiteEvento" Type="Self.ComiteEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="ComiteEvento">
+              <PropertyRef Name="Evento_id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComiteLider_Comite">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
+          <End Role="ComiteLider" Type="Self.ComiteLider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comite">
+              <PropertyRef Name="id_comite" />
+            </Principal>
+            <Dependent Role="ComiteLider">
+              <PropertyRef Name="Comite_id_comite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComiteLider_Organizador">
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
+          <End Role="ComiteLider" Type="Self.ComiteLider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="id_organizador" />
+            </Principal>
+            <Dependent Role="ComiteLider">
+              <PropertyRef Name="Organizador_id_organizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComiteOrganizador_Comite">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
+          <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comite">
+              <PropertyRef Name="id_comite" />
+            </Principal>
+            <Dependent Role="ComiteOrganizador">
+              <PropertyRef Name="Comite1_id_comite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComiteOrganizador_Organizador">
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
+          <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="id_organizador" />
+            </Principal>
+            <Dependent Role="ComiteOrganizador">
+              <PropertyRef Name="Organizador1_id_organizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GastoMagistral_Gasto">
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="1" />
+          <End Role="GastoMagistral" Type="Self.GastoMagistral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gasto">
+              <PropertyRef Name="id_gasto" />
+            </Principal>
+            <Dependent Role="GastoMagistral">
+              <PropertyRef Name="Gasto_id_gasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GastoMagistral_Magistral">
+          <End Role="Magistral" Type="Self.Magistral" Multiplicity="1" />
+          <End Role="GastoMagistral" Type="Self.GastoMagistral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magistral">
+              <PropertyRef Name="id_magistral" />
+            </Principal>
+            <Dependent Role="GastoMagistral">
+              <PropertyRef Name="Magistral_id_magistral" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagoArticulo_Articulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="PagoArticulo" Type="Self.PagoArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="PagoArticulo">
+              <PropertyRef Name="Articulo_id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagoArticulo_Pago">
+          <End Role="Pago" Type="Self.Pago" Multiplicity="1" />
+          <End Role="PagoArticulo" Type="Self.PagoArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pago">
+              <PropertyRef Name="id_pago" />
+            </Principal>
+            <Dependent Role="PagoArticulo">
+              <PropertyRef Name="Pago_id_pago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagoAsistente_Asistente">
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
+          <End Role="PagoAsistente" Type="Self.PagoAsistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asistente">
+              <PropertyRef Name="id_asistente" />
+            </Principal>
+            <Dependent Role="PagoAsistente">
+              <PropertyRef Name="Asistente_id_asistente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagoAsistente_Pago">
+          <End Role="Pago" Type="Self.Pago" Multiplicity="1" />
+          <End Role="PagoAsistente" Type="Self.PagoAsistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pago">
+              <PropertyRef Name="id_pago" />
+            </Principal>
+            <Dependent Role="PagoAsistente">
+              <PropertyRef Name="Pago_id_pago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PresentacionArticulo_Articulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="PresentacionArticulo">
+              <PropertyRef Name="Articulo_id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PresentacionArticulo_Presentacion">
+          <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="1" />
+          <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presentacion">
+              <PropertyRef Name="id_presentacion" />
+            </Principal>
+            <Dependent Role="PresentacionArticulo">
+              <PropertyRef Name="Presentacion_id_presentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TareaActividad_Actividad">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="TareaActividad" Type="Self.TareaActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="TareaActividad">
+              <PropertyRef Name="Actividad_id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TareaActividad_Tarea">
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="1" />
+          <End Role="TareaActividad" Type="Self.TareaActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarea">
+              <PropertyRef Name="id_tarea" />
+            </Principal>
+            <Dependent Role="TareaActividad">
+              <PropertyRef Name="Tarea_id_tarea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -688,91 +705,49 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <EntitySet Name="ComiteLider" EntityType="Self.ComiteLider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComiteOrganizador" EntityType="Self.ComiteOrganizador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EvaluacionArticulo" EntityType="Self.EvaluacionArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gasto" EntityType="Self.Gasto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GastoMagistral" EntityType="Self.GastoMagistral" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Magistral" EntityType="Self.Magistral" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organizador" EntityType="Self.Organizador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PagoArticulo" EntityType="Self.PagoArticulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PagoAsistente" EntityType="Self.PagoAsistente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Presentacion" EntityType="Self.Presentacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PresentacionArticulo" EntityType="Self.PresentacionArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Revisor" EntityType="Self.Revisor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RevisorArticulo" EntityType="Self.RevisorArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tarea" EntityType="Self.Tarea" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TareaActividad" EntityType="Self.TareaActividad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GastoMagistral" EntityType="Self.GastoMagistral" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [GastoMagistral].[id_gasto] AS [id_gasto], 
-    [GastoMagistral].[id_magistral] AS [id_magistral]
-    FROM [dbo].[GastoMagistral] AS [GastoMagistral]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="PagoAsistente" EntityType="Self.PagoAsistente" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [PagoAsistente].[id_pago] AS [id_pago], 
-    [PagoAsistente].[id_asistente] AS [id_asistente]
-    FROM [dbo].[PagoAsistente] AS [PagoAsistente]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="PresentacionArticulo" EntityType="Self.PresentacionArticulo" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [PresentacionArticulo].[id_presentacion] AS [id_presentacion], 
-    [PresentacionArticulo].[id_articulo] AS [id_articulo]
-    FROM [dbo].[PresentacionArticulo] AS [PresentacionArticulo]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__Actividad__id_ev__534D60F1" Association="Self.FK__Actividad__id_ev__534D60F1">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Actividad" EntitySet="Actividad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Articulo__id_tra__75A278F5" Association="Self.FK__Articulo__id_tra__75A278F5">
+          <AssociationSet Name="FK__Articulo__id_tra__74AE54BC" Association="Self.FK__Articulo__id_tra__74AE54BC">
             <End Role="Track" EntitySet="Track" />
             <End Role="Articulo" EntitySet="Articulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asistente__id_ac__6A30C649" Association="Self.FK__Asistente__id_ac__6A30C649">
-            <End Role="Actividad" EntitySet="Actividad" />
-            <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Asistente__id_ad__66603565" Association="Self.FK__Asistente__id_ad__66603565">
+          <AssociationSet Name="FK__Asistente__id_ad__656C112C" Association="Self.FK__Asistente__id_ad__656C112C">
             <End Role="Adscripcion" EntitySet="Adscripcion" />
             <End Role="Asistente" EntitySet="Asistente" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asistente__id_as__693CA210" Association="Self.FK__Asistente__id_as__693CA210">
-            <End Role="Asistente" EntitySet="Asistente" />
-            <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Autor__id_adscri__01142BA1" Association="Self.FK__Autor__id_adscri__01142BA1">
+          <AssociationSet Name="FK__Autor__id_adscri__7F2BE32F" Association="Self.FK__Autor__id_adscri__7F2BE32F">
             <End Role="Adscripcion" EntitySet="Adscripcion" />
             <End Role="Autor" EntitySet="Autor" />
           </AssociationSet>
-          <AssociationSet Name="FK__AutorArti__id_ar__04E4BC85" Association="Self.FK__AutorArti__id_ar__04E4BC85">
+          <AssociationSet Name="FK__AutorArti__id_ar__02084FDA" Association="Self.FK__AutorArti__id_ar__02084FDA">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="AutorArticulo" EntitySet="AutorArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__AutorArti__id_au__03F0984C" Association="Self.FK__AutorArti__id_au__03F0984C">
+          <AssociationSet Name="FK__AutorArti__id_au__01142BA1" Association="Self.FK__AutorArti__id_au__01142BA1">
             <End Role="Autor" EntitySet="Autor" />
             <End Role="AutorArticulo" EntitySet="AutorArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__ComiteEve__id_co__47DBAE45" Association="Self.FK__ComiteEve__id_co__47DBAE45">
-            <End Role="Comite" EntitySet="Comite" />
-            <End Role="ComiteEvento" EntitySet="ComiteEvento" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ComiteEve__id_ev__48CFD27E" Association="Self.FK__ComiteEve__id_ev__48CFD27E">
-            <End Role="Evento" EntitySet="Evento" />
-            <End Role="ComiteEvento" EntitySet="ComiteEvento" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ComiteLid__id_co__4BAC3F29" Association="Self.FK__ComiteLid__id_co__4BAC3F29">
-            <End Role="Comite" EntitySet="Comite" />
-            <End Role="ComiteLider" EntitySet="ComiteLider" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ComiteLid__id_or__4CA06362" Association="Self.FK__ComiteLid__id_or__4CA06362">
-            <End Role="Organizador" EntitySet="Organizador" />
-            <End Role="ComiteLider" EntitySet="ComiteLider" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ComiteOrg__id_co__4F7CD00D" Association="Self.FK__ComiteOrg__id_co__4F7CD00D">
-            <End Role="Comite" EntitySet="Comite" />
-            <End Role="ComiteOrganizador" EntitySet="ComiteOrganizador" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ComiteOrg__id_or__5070F446" Association="Self.FK__ComiteOrg__id_or__5070F446">
-            <End Role="Organizador" EntitySet="Organizador" />
-            <End Role="ComiteOrganizador" EntitySet="ComiteOrganizador" />
+          <AssociationSet Name="FK__Evaluacio__id_re__787EE5A0" Association="Self.FK__Evaluacio__id_re__787EE5A0">
+            <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
+            <End Role="EvaluacionArticulo" EntitySet="EvaluacionArticulo" />
           </AssociationSet>
           <AssociationSet Name="FK__Evento__id_organ__3C69FB99" Association="Self.FK__Evento__id_organ__3C69FB99">
             <End Role="Organizador" EntitySet="Organizador" />
@@ -782,14 +757,6 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Gasto" EntitySet="Gasto" />
           </AssociationSet>
-          <AssociationSet Name="FK__GastoMagi__id_ga__5FB337D6" Association="Self.FK__GastoMagi__id_ga__5FB337D6">
-            <End Role="Gasto" EntitySet="Gasto" />
-            <End Role="GastoMagistral" EntitySet="GastoMagistral" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GastoMagi__id_ma__60A75C0F" Association="Self.FK__GastoMagi__id_ma__60A75C0F">
-            <End Role="Magistral" EntitySet="Magistral" />
-            <End Role="GastoMagistral" EntitySet="GastoMagistral" />
-          </AssociationSet>
           <AssociationSet Name="FK__Magistral__id_ac__5CD6CB2B" Association="Self.FK__Magistral__id_ac__5CD6CB2B">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Magistral" EntitySet="Magistral" />
@@ -798,43 +765,19 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Organizador" EntitySet="Organizador" />
           </AssociationSet>
-          <AssociationSet Name="FK__PagoArtic__id_ar__7D439ABD" Association="Self.FK__PagoArtic__id_ar__7D439ABD">
-            <End Role="Articulo" EntitySet="Articulo" />
-            <End Role="PagoArticulo" EntitySet="PagoArticulo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PagoArtic__id_pa__7C4F7684" Association="Self.FK__PagoArtic__id_pa__7C4F7684">
-            <End Role="Pago" EntitySet="Pago" />
-            <End Role="PagoArticulo" EntitySet="PagoArticulo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PagoAsist__id_as__6FE99F9F" Association="Self.FK__PagoAsist__id_as__6FE99F9F">
-            <End Role="Asistente" EntitySet="Asistente" />
-            <End Role="PagoAsistente" EntitySet="PagoAsistente" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PagoAsist__id_pa__6EF57B66" Association="Self.FK__PagoAsist__id_pa__6EF57B66">
-            <End Role="Pago" EntitySet="Pago" />
-            <End Role="PagoAsistente" EntitySet="PagoAsistente" />
-          </AssociationSet>
           <AssociationSet Name="FK__Presentac__id_ac__59FA5E80" Association="Self.FK__Presentac__id_ac__59FA5E80">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Presentacion" EntitySet="Presentacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Presentac__id_ar__797309D9" Association="Self.FK__Presentac__id_ar__797309D9">
-            <End Role="Articulo" EntitySet="Articulo" />
-            <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Presentac__id_pr__787EE5A0" Association="Self.FK__Presentac__id_pr__787EE5A0">
-            <End Role="Presentacion" EntitySet="Presentacion" />
-            <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Revisor__id_cuen__07C12930" Association="Self.FK__Revisor__id_cuen__07C12930">
+          <AssociationSet Name="FK__Revisor__id_cuen__04E4BC85" Association="Self.FK__Revisor__id_cuen__04E4BC85">
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Revisor" EntitySet="Revisor" />
           </AssociationSet>
-          <AssociationSet Name="FK__RevisorAr__id_ar__0B91BA14" Association="Self.FK__RevisorAr__id_ar__0B91BA14">
+          <AssociationSet Name="FK__RevisorAr__id_ar__08B54D69" Association="Self.FK__RevisorAr__id_ar__08B54D69">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__RevisorAr__id_re__0A9D95DB" Association="Self.FK__RevisorAr__id_re__0A9D95DB">
+          <AssociationSet Name="FK__RevisorAr__id_re__07C12930" Association="Self.FK__RevisorAr__id_re__07C12930">
             <End Role="Revisor" EntitySet="Revisor" />
             <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
           </AssociationSet>
@@ -842,20 +785,85 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             <End Role="Comite" EntitySet="Comite" />
             <End Role="Tarea" EntitySet="Tarea" />
           </AssociationSet>
-          <AssociationSet Name="FK__TareaActi__id_ac__571DF1D5" Association="Self.FK__TareaActi__id_ac__571DF1D5">
-            <End Role="Actividad" EntitySet="Actividad" />
-            <End Role="TareaActividad" EntitySet="TareaActividad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TareaActi__id_ta__5629CD9C" Association="Self.FK__TareaActi__id_ta__5629CD9C">
-            <End Role="Tarea" EntitySet="Tarea" />
-            <End Role="TareaActividad" EntitySet="TareaActividad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Track__id_evento__72C60C4A" Association="Self.FK__Track__id_evento__72C60C4A">
+          <AssociationSet Name="FK__Track__id_evento__71D1E811" Association="Self.FK__Track__id_evento__71D1E811">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Track" EntitySet="Track" />
           </AssociationSet>
+          <AssociationSet Name="FK_AsistenteActividad_Actividad" Association="Self.FK_AsistenteActividad_Actividad">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AsistenteActividad_Asistente" Association="Self.FK_AsistenteActividad_Asistente">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComiteEvento_Comite" Association="Self.FK_ComiteEvento_Comite">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="ComiteEvento" EntitySet="ComiteEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComiteEvento_Evento" Association="Self.FK_ComiteEvento_Evento">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="ComiteEvento" EntitySet="ComiteEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComiteLider_Comite" Association="Self.FK_ComiteLider_Comite">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="ComiteLider" EntitySet="ComiteLider" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComiteLider_Organizador" Association="Self.FK_ComiteLider_Organizador">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="ComiteLider" EntitySet="ComiteLider" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComiteOrganizador_Comite" Association="Self.FK_ComiteOrganizador_Comite">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="ComiteOrganizador" EntitySet="ComiteOrganizador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComiteOrganizador_Organizador" Association="Self.FK_ComiteOrganizador_Organizador">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="ComiteOrganizador" EntitySet="ComiteOrganizador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GastoMagistral_Gasto" Association="Self.FK_GastoMagistral_Gasto">
+            <End Role="Gasto" EntitySet="Gasto" />
+            <End Role="GastoMagistral" EntitySet="GastoMagistral" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GastoMagistral_Magistral" Association="Self.FK_GastoMagistral_Magistral">
+            <End Role="Magistral" EntitySet="Magistral" />
+            <End Role="GastoMagistral" EntitySet="GastoMagistral" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagoArticulo_Articulo" Association="Self.FK_PagoArticulo_Articulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="PagoArticulo" EntitySet="PagoArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagoArticulo_Pago" Association="Self.FK_PagoArticulo_Pago">
+            <End Role="Pago" EntitySet="Pago" />
+            <End Role="PagoArticulo" EntitySet="PagoArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagoAsistente_Asistente" Association="Self.FK_PagoAsistente_Asistente">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="PagoAsistente" EntitySet="PagoAsistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagoAsistente_Pago" Association="Self.FK_PagoAsistente_Pago">
+            <End Role="Pago" EntitySet="Pago" />
+            <End Role="PagoAsistente" EntitySet="PagoAsistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PresentacionArticulo_Articulo" Association="Self.FK_PresentacionArticulo_Articulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PresentacionArticulo_Presentacion" Association="Self.FK_PresentacionArticulo_Presentacion">
+            <End Role="Presentacion" EntitySet="Presentacion" />
+            <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TareaActividad_Actividad" Association="Self.FK_TareaActividad_Actividad">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="TareaActividad" EntitySet="TareaActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TareaActividad_Tarea" Association="Self.FK_TareaActividad_Tarea">
+            <End Role="Tarea" EntitySet="Tarea" />
+            <End Role="TareaActividad" EntitySet="TareaActividad" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIGEAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -884,7 +892,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="puesto" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Asistente" Relationship="Self.FK__Asistente__id_ad__656C112C" FromRole="Adscripcion" ToRole="Asistente" />
-          <NavigationProperty Name="Autor" Relationship="SIGEAModel.FK__Autor__id_adscri__7F2BE32F" FromRole="Adscripcion" ToRole="Autor" />
+          <NavigationProperty Name="Autor" Relationship="Self.FK__Autor__id_adscri__7F2BE32F" FromRole="Adscripcion" ToRole="Autor" />
         </EntityType>
         <EntityType Name="Articulo">
           <Key>
@@ -929,8 +937,8 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Adscripcion" Relationship="Self.FK__Autor__id_adscri__7F2BE32F" FromRole="Autor" ToRole="Adscripcion" />
           <NavigationProperty Name="AutorArticulo" Relationship="Self.FK__AutorArti__id_au__01142BA1" FromRole="Autor" ToRole="AutorArticulo" />
-          <NavigationProperty Name="Adscripcion" Relationship="SIGEAModel.FK__Autor__id_adscri__7F2BE32F" FromRole="Autor" ToRole="Adscripcion" />
         </EntityType>
         <EntityType Name="AutorArticulo">
           <Key>
@@ -939,7 +947,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           </Key>
           <Property Name="id_autor" Type="Int32" Nullable="false" />
           <Property Name="id_articulo" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Articulo" Relationship="Self.FK__AutorArti__id_ar__02084FDA" FromRole="AutorArticulo" ToRole="Articulo" />
           <NavigationProperty Name="Autor" Relationship="Self.FK__AutorArti__id_au__01142BA1" FromRole="AutorArticulo" ToRole="Autor" />
         </EntityType>
@@ -965,6 +973,18 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <NavigationProperty Name="Organizador" Relationship="Self.FK__Organizad__id_cu__398D8EEE" FromRole="Cuenta" ToRole="Organizador" />
           <NavigationProperty Name="Revisor" Relationship="Self.FK__Revisor__id_cuen__04E4BC85" FromRole="Cuenta" ToRole="Revisor" />
         </EntityType>
+        <EntityType Name="EvaluacionArticulo">
+          <Key>
+            <PropertyRef Name="id_revisorArticulo" />
+          </Key>
+          <Property Name="id_revisorArticulo" Type="Int32" Nullable="false" />
+          <Property Name="calificacion" Type="Int32" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="gradoExpertiz" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RevisorArticulo" Relationship="Self.FK__Evaluacio__id_re__787EE5A0" FromRole="EvaluacionArticulo" ToRole="RevisorArticulo" />
+        </EntityType>
         <EntityType Name="Evento">
           <Key>
             <PropertyRef Name="id_evento" />
@@ -972,8 +992,8 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <Property Name="id_evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_organizador" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="cuota" Type="Double" Nullable="false" />
           <Property Name="sede" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Actividad" Relationship="Self.FK__Actividad__id_ev__534D60F1" FromRole="Evento" ToRole="Actividad" />
@@ -990,7 +1010,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <Property Name="id_evento" Type="Int32" Nullable="false" />
           <Property Name="cantidad" Type="Double" Nullable="false" />
           <Property Name="motivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Evento" Relationship="Self.FK__Gasto__id_evento__403A8C7D" FromRole="Gasto" ToRole="Evento" />
           <NavigationProperty Name="Magistral" Relationship="Self.GastoMagistral" FromRole="Gasto" ToRole="Magistral" />
         </EntityType>
@@ -1031,7 +1051,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           </Key>
           <Property Name="id_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cantidad" Type="Double" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Articulo" Relationship="Self.PagoArticulo" FromRole="Pago" ToRole="Articulo" />
           <NavigationProperty Name="Asistente" Relationship="Self.PagoAsistente" FromRole="Pago" ToRole="Asistente" />
         </EntityType>
@@ -1041,7 +1061,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           </Key>
           <Property Name="id_presentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_actividad" Type="Int32" Nullable="false" />
-          <Property Name="fechaPresentacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaPresentacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="horaInicio" Type="Time" Nullable="false" Precision="7" />
           <Property Name="horaFin" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="Actividad" Relationship="Self.FK__Presentac__id_ac__59FA5E80" FromRole="Presentacion" ToRole="Actividad" />
@@ -1068,6 +1088,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <Property Name="id_revisor" Type="Int32" Nullable="false" />
           <Property Name="id_articulo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Articulo" Relationship="Self.FK__RevisorAr__id_ar__08B54D69" FromRole="RevisorArticulo" ToRole="Articulo" />
+          <NavigationProperty Name="EvaluacionArticulo" Relationship="Self.FK__Evaluacio__id_re__787EE5A0" FromRole="RevisorArticulo" ToRole="EvaluacionArticulo" />
           <NavigationProperty Name="Revisor" Relationship="Self.FK__RevisorAr__id_re__07C12930" FromRole="RevisorArticulo" ToRole="Revisor" />
         </EntityType>
         <EntityType Name="Tarea">
@@ -1137,6 +1158,18 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
               <PropertyRef Name="id_adscripcion" />
             </Principal>
             <Dependent Role="Asistente">
+              <PropertyRef Name="id_adscripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Autor__id_adscri__7F2BE32F">
+          <End Role="Adscripcion" Type="Self.Adscripcion" Multiplicity="1" />
+          <End Role="Autor" Type="Self.Autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adscripcion">
+              <PropertyRef Name="id_adscripcion" />
+            </Principal>
+            <Dependent Role="Autor">
               <PropertyRef Name="id_adscripcion" />
             </Dependent>
           </ReferentialConstraint>
@@ -1225,6 +1258,18 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Evaluacio__id_re__787EE5A0">
+          <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="1" />
+          <End Role="EvaluacionArticulo" Type="Self.EvaluacionArticulo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RevisorArticulo">
+              <PropertyRef Name="id_revisorArticulo" />
+            </Principal>
+            <Dependent Role="EvaluacionArticulo">
+              <PropertyRef Name="id_revisorArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Evento__id_organ__3C69FB99">
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
           <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
@@ -1289,17 +1334,13 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
         </Association>
-        <Association Name="PagoArticulo">
-          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
-          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
-        </Association>
-        <Association Name="TareaActividad">
-          <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
-          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
-        </Association>
         <Association Name="GastoMagistral">
           <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
           <End Role="Magistral" Type="Self.Magistral" Multiplicity="*" />
+        </Association>
+        <Association Name="PagoArticulo">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
         </Association>
         <Association Name="PagoAsistente">
           <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
@@ -1308,6 +1349,10 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
         <Association Name="PresentacionArticulo">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
           <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="*" />
+        </Association>
+        <Association Name="TareaActividad">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
         </Association>
         <EntityContainer Name="SigeaBD" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actividad" EntityType="Self.Actividad" />
@@ -1318,6 +1363,7 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <EntitySet Name="AutorArticulo" EntityType="Self.AutorArticulo" />
           <EntitySet Name="Comite" EntityType="Self.Comite" />
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
+          <EntitySet Name="EvaluacionArticulo" EntityType="Self.EvaluacionArticulo" />
           <EntitySet Name="Evento" EntityType="Self.Evento" />
           <EntitySet Name="Gasto" EntityType="Self.Gasto" />
           <EntitySet Name="Magistral" EntityType="Self.Magistral" />
@@ -1343,6 +1389,10 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <AssociationSet Name="FK__Asistente__id_ad__656C112C" Association="Self.FK__Asistente__id_ad__656C112C">
             <End Role="Adscripcion" EntitySet="Adscripcion" />
             <End Role="Asistente" EntitySet="Asistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Autor__id_adscri__7F2BE32F" Association="Self.FK__Autor__id_adscri__7F2BE32F">
+            <End Role="Adscripcion" EntitySet="Adscripcion" />
+            <End Role="Autor" EntitySet="Autor" />
           </AssociationSet>
           <AssociationSet Name="FK__Articulo__id_tra__74AE54BC" Association="Self.FK__Articulo__id_tra__74AE54BC">
             <End Role="Track" EntitySet="Track" />
@@ -1371,6 +1421,10 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <AssociationSet Name="FK__Revisor__id_cuen__04E4BC85" Association="Self.FK__Revisor__id_cuen__04E4BC85">
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Revisor" EntitySet="Revisor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Evaluacio__id_re__787EE5A0" Association="Self.FK__Evaluacio__id_re__787EE5A0">
+            <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
+            <End Role="EvaluacionArticulo" EntitySet="EvaluacionArticulo" />
           </AssociationSet>
           <AssociationSet Name="FK__Evento__id_organ__3C69FB99" Association="Self.FK__Evento__id_organ__3C69FB99">
             <End Role="Organizador" EntitySet="Organizador" />
@@ -1404,17 +1458,13 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             <End Role="Comite" EntitySet="Comite" />
             <End Role="Organizador" EntitySet="Organizador" />
           </AssociationSet>
-          <AssociationSet Name="PagoArticulo" Association="Self.PagoArticulo">
-            <End Role="Articulo" EntitySet="Articulo" />
-            <End Role="Pago" EntitySet="Pago" />
-          </AssociationSet>
-          <AssociationSet Name="TareaActividad" Association="Self.TareaActividad">
-            <End Role="Actividad" EntitySet="Actividad" />
-            <End Role="Tarea" EntitySet="Tarea" />
-          </AssociationSet>
           <AssociationSet Name="GastoMagistral" Association="Self.GastoMagistral">
             <End Role="Gasto" EntitySet="Gasto" />
             <End Role="Magistral" EntitySet="Magistral" />
+          </AssociationSet>
+          <AssociationSet Name="PagoArticulo" Association="Self.PagoArticulo">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
           <AssociationSet Name="PagoAsistente" Association="Self.PagoAsistente">
             <End Role="Asistente" EntitySet="Asistente" />
@@ -1424,23 +1474,11 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="Presentacion" EntitySet="Presentacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Autor__id_adscri__7F2BE32F" Association="SIGEAModel.FK__Autor__id_adscri__7F2BE32F">
-            <End Role="Adscripcion" EntitySet="Adscripcion" />
-            <End Role="Autor" EntitySet="Autor" />
+          <AssociationSet Name="TareaActividad" Association="Self.TareaActividad">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Tarea" EntitySet="Tarea" />
           </AssociationSet>
         </EntityContainer>
-        <Association Name="FK__Autor__id_adscri__7F2BE32F">
-          <End Type="SIGEAModel.Adscripcion" Role="Adscripcion" Multiplicity="1" />
-          <End Type="SIGEAModel.Autor" Role="Autor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adscripcion">
-              <PropertyRef Name="id_adscripcion" />
-            </Principal>
-            <Dependent Role="Autor">
-              <PropertyRef Name="id_adscripcion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1498,8 +1536,8 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           <EntitySetMapping Name="Autor">
             <EntityTypeMapping TypeName="SIGEAModel.Autor">
               <MappingFragment StoreEntitySet="Autor">
-                <ScalarProperty Name="id_adscripcion" ColumnName="id_adscripcion" />
                 <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+                <ScalarProperty Name="id_adscripcion" ColumnName="id_adscripcion" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="paterno" ColumnName="paterno" />
                 <ScalarProperty Name="materno" ColumnName="materno" />
@@ -1532,6 +1570,18 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
                 <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EvaluacionArticulo">
+            <EntityTypeMapping TypeName="SIGEAModel.EvaluacionArticulo">
+              <MappingFragment StoreEntitySet="EvaluacionArticulo">
+                <ScalarProperty Name="id_revisorArticulo" ColumnName="id_revisorArticulo" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="gradoExpertiz" ColumnName="gradoExpertiz" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1650,74 +1700,74 @@ advertencia 6002: La tabla o vista 'SIGEA.dbo.PresentacionArticulo' no tiene def
           </EntitySetMapping>
           <AssociationSetMapping Name="AsistenteActividad" TypeName="SIGEAModel.AsistenteActividad" StoreEntitySet="AsistenteActividad">
             <EndProperty Name="Actividad">
-              <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+              <ScalarProperty Name="id_actividad" ColumnName="Actividad_id_actividad" />
             </EndProperty>
             <EndProperty Name="Asistente">
-              <ScalarProperty Name="id_asistente" ColumnName="id_asistente" />
+              <ScalarProperty Name="id_asistente" ColumnName="Asistente_id_asistente" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="ComiteEvento" TypeName="SIGEAModel.ComiteEvento" StoreEntitySet="ComiteEvento">
             <EndProperty Name="Comite">
-              <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+              <ScalarProperty Name="id_comite" ColumnName="Comite_id_comite" />
             </EndProperty>
             <EndProperty Name="Evento">
-              <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+              <ScalarProperty Name="id_evento" ColumnName="Evento_id_evento" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="ComiteLider" TypeName="SIGEAModel.ComiteLider" StoreEntitySet="ComiteLider">
             <EndProperty Name="Comite">
-              <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+              <ScalarProperty Name="id_comite" ColumnName="Comite_id_comite" />
             </EndProperty>
             <EndProperty Name="Organizador">
-              <ScalarProperty Name="id_organizador" ColumnName="id_organizador" />
+              <ScalarProperty Name="id_organizador" ColumnName="Organizador_id_organizador" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="ComiteOrganizador" TypeName="SIGEAModel.ComiteOrganizador" StoreEntitySet="ComiteOrganizador">
             <EndProperty Name="Comite">
-              <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+              <ScalarProperty Name="id_comite" ColumnName="Comite1_id_comite" />
             </EndProperty>
             <EndProperty Name="Organizador">
-              <ScalarProperty Name="id_organizador" ColumnName="id_organizador" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="PagoArticulo" TypeName="SIGEAModel.PagoArticulo" StoreEntitySet="PagoArticulo">
-            <EndProperty Name="Articulo">
-              <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
-            </EndProperty>
-            <EndProperty Name="Pago">
-              <ScalarProperty Name="id_pago" ColumnName="id_pago" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="TareaActividad" TypeName="SIGEAModel.TareaActividad" StoreEntitySet="TareaActividad">
-            <EndProperty Name="Actividad">
-              <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
-            </EndProperty>
-            <EndProperty Name="Tarea">
-              <ScalarProperty Name="id_tarea" ColumnName="id_tarea" />
+              <ScalarProperty Name="id_organizador" ColumnName="Organizador1_id_organizador" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="GastoMagistral" TypeName="SIGEAModel.GastoMagistral" StoreEntitySet="GastoMagistral">
             <EndProperty Name="Gasto">
-              <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
+              <ScalarProperty Name="id_gasto" ColumnName="Gasto_id_gasto" />
             </EndProperty>
             <EndProperty Name="Magistral">
-              <ScalarProperty Name="id_magistral" ColumnName="id_magistral" />
+              <ScalarProperty Name="id_magistral" ColumnName="Magistral_id_magistral" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PagoArticulo" TypeName="SIGEAModel.PagoArticulo" StoreEntitySet="PagoArticulo">
+            <EndProperty Name="Articulo">
+              <ScalarProperty Name="id_articulo" ColumnName="Articulo_id_articulo" />
+            </EndProperty>
+            <EndProperty Name="Pago">
+              <ScalarProperty Name="id_pago" ColumnName="Pago_id_pago" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="PagoAsistente" TypeName="SIGEAModel.PagoAsistente" StoreEntitySet="PagoAsistente">
             <EndProperty Name="Asistente">
-              <ScalarProperty Name="id_asistente" ColumnName="id_asistente" />
+              <ScalarProperty Name="id_asistente" ColumnName="Asistente_id_asistente" />
             </EndProperty>
             <EndProperty Name="Pago">
-              <ScalarProperty Name="id_pago" ColumnName="id_pago" />
+              <ScalarProperty Name="id_pago" ColumnName="Pago_id_pago" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="PresentacionArticulo" TypeName="SIGEAModel.PresentacionArticulo" StoreEntitySet="PresentacionArticulo">
             <EndProperty Name="Articulo">
-              <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
+              <ScalarProperty Name="id_articulo" ColumnName="Articulo_id_articulo" />
             </EndProperty>
             <EndProperty Name="Presentacion">
-              <ScalarProperty Name="id_presentacion" ColumnName="id_presentacion" />
+              <ScalarProperty Name="id_presentacion" ColumnName="Presentacion_id_presentacion" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TareaActividad" TypeName="SIGEAModel.TareaActividad" StoreEntitySet="TareaActividad">
+            <EndProperty Name="Actividad">
+              <ScalarProperty Name="id_actividad" ColumnName="Actividad_id_actividad" />
+            </EndProperty>
+            <EndProperty Name="Tarea">
+              <ScalarProperty Name="id_tarea" ColumnName="Tarea_id_tarea" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

@@ -10,6 +10,7 @@
         <Button x:Name="registrarArticuloButton" Content="Registrar artículo" HorizontalAlignment="Left" Margin="270,29,0,0" VerticalAlignment="Top" Width="255" Click="registrarArticuloButton_Click"/>
         <Button x:Name="registrarAutorButton" Content="Registrar autor" HorizontalAlignment="Left" Margin="270,80,0,0" VerticalAlignment="Top" Width="255" Click="RegistrarAutorButton_Click"/>
         <Button x:Name="actualizarArticuloButton" Content="Actualizar artículo" HorizontalAlignment="Left" Margin="270,127,0,0" VerticalAlignment="Top" Width="255" Click="ActualizarArticuloButton_Click"/>
+        <Button x:Name="evaluarArticuloButton" Content="Evaluar artículo" HorizontalAlignment="Left" Margin="270,178,0,0" VerticalAlignment="Top" Width="255" Click="EvaluarArticuloButton_Click"/>
 
     </Grid>
 </Window>

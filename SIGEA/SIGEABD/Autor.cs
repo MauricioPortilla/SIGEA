@@ -28,8 +28,8 @@ namespace SIGEABD
         public string telefono { get; set; }
         public string correo { get; set; }
     
+        public virtual Adscripcion Adscripcion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AutorArticulo> AutorArticulo { get; set; }
-        public virtual Adscripcion Adscripcion { get; set; }
     }
 }

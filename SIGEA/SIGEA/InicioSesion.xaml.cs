@@ -25,7 +25,6 @@ namespace SIGEA {
         /// </summary>
         public InicioSesion() {
             InitializeComponent();
-            App.CrearDirectorios();
         }
 
         /// <summary>
@@ -35,19 +34,22 @@ namespace SIGEA {
         /// <param name="sender">Botón Iniciar sesión</param>
         /// <param name="e">Evento del botón</param>
         private void IniciarSesionButton_Click(object sender, RoutedEventArgs e) {
-            if (!verificarCampos()) {
+            if (!VerificarCampos()) {
                 MessageBox.Show("Faltan campos por completar.");
                 return;
             }
             try {
                 string contraseniaCifrada = Herramientas.EncriptarConSHA512(contraseniaTextBox.Password);
-                if (Cuenta.IniciarSesion(usuarioTextBox.Text, contraseniaCifrada, out Cuenta cuentaEncontrada)) {
-                    Sesion.Cuenta = cuentaEncontrada;
-                    new MenuPrincipal().Show();
-                    Close();
-                } else {
-                    MessageBox.Show("No existe una cuenta registrada con estos datos.");
-                }
+                Cuenta.IniciarSesion(usuarioTextBox.Text, contraseniaCifrada, (cuentaEncontrada) => {
+                    if (cuentaEncontrada != null) {
+                        Sesion.Cuenta = cuentaEncontrada;
+                        Sesion.Revisor = cuentaEncontrada.Revisor.ToList().First();
+                        new MenuPrincipal().Show();
+                        Close();
+                    } else {
+                        MessageBox.Show("No existe una cuenta registrada con estos datos.");
+                    }
+                });
             } catch (EntityException) {
                 MessageBox.Show("Error al iniciar sesión.");
             }
@@ -57,7 +59,7 @@ namespace SIGEA {
         /// Verifica que los campos no estén vacíos.
         /// </summary>
         /// <returns>true si los campos están completos; false si no</returns>
-        private bool verificarCampos() {
+        private bool VerificarCampos() {
             return !string.IsNullOrWhiteSpace(usuarioTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(contraseniaTextBox.Password);
         }

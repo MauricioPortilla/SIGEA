@@ -32,5 +32,9 @@ namespace SIGEA {
         private void ActualizarArticuloButton_Click(object sender, RoutedEventArgs e) {
             new ActualizarArticulo(1).Show();
         }
+
+        private void EvaluarArticuloButton_Click(object sender, RoutedEventArgs e) {
+            new EvaluarArticulo(1).Show();
+        }
     }
 }

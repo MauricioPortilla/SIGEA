@@ -8,15 +8,27 @@ using SIGEABD;
 namespace SIGEA {
     class Sesion {
         /// <summary>
-        /// Almacena la información de la cuenta que inició sesión.
+        /// Almacena la información de la Cuenta que inició sesión.
         /// </summary>
         public static Cuenta Cuenta;
 
         /// <summary>
+        /// Almacena la información del Revisor asociado a la Cuenta que inició sesión.
+        /// </summary>
+        public static Revisor Revisor;
+
+        /// <summary>
         /// Tipos que puede tomar una Actividad.
         /// </summary>
-        public static List<string> TiposActividad = new List<string>() {
+        public static readonly List<string> TIPOS_ACTIVIDAD = new List<string>() {
             "Taller", "Magistrados", "Mesa redonda", "Conferencia"
+        };
+
+        /// <summary>
+        /// Grados de expertíz que puede tener un Revisor al evaluar un Artículo.
+        /// </summary>
+        public static readonly Dictionary<int, string> GRADOS_EXPERTIZ = new Dictionary<int, string>() {
+            { 1, "Bajo (1)" }, { 2, "Medio (2)" }, { 3, "Alto (3)" }
         };
     }
 }

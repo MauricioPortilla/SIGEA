@@ -81,6 +81,10 @@
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
     <Compile Include="CuentaAcciones.cs" />
+    <Compile Include="EvaluacionArticulo.cs">
+      <DependentUpon>SigeaBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluacionArticuloAcciones.cs" />
     <Compile Include="Evento.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>

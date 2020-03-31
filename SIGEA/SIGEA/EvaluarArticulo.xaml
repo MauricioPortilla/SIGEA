@@ -1,0 +1,20 @@
+﻿<Window x:Class="SIGEA.EvaluarArticulo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Evaluar Articulo" Height="404.062" Width="696.875">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="276,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Evaluar artículo"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="270" Margin="10,45,0,0" Stroke="Black" VerticalAlignment="Top" Width="666"/>
+        <ComboBox x:Name="gradoExpertizComboBox" HorizontalAlignment="Left" Margin="25,63,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Grado de Expertíz" Width="219" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+        <ComboBox x:Name="calificacionComboBox" HorizontalAlignment="Left" Margin="267,63,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Calificación" Width="219" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+        <TextBox x:Name="observacionesTextBox" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="25,121,28,0" VerticalAlignment="Top" Height="177" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="Observaciones" />
+        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="293,329,0,0" VerticalAlignment="Top" Width="108" Click="CancelarButton_Click"/>
+        <Button x:Name="guardarButton" Content="Guardar" HorizontalAlignment="Left" Margin="408,329,0,0" VerticalAlignment="Top" Width="108" Click="GuardarButton_Click"/>
+        <Button x:Name="emitirEvaluacionButton" Content="Emitir evaluación" HorizontalAlignment="Left" Margin="523,329,0,0" VerticalAlignment="Top" Width="153" Click="EmitirEvaluacionButton_Click"/>
+    </Grid>
+</Window>

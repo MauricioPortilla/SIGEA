@@ -14,18 +14,13 @@ namespace SIGEABD {
         /// <param name="contrasenia">Contraseña de la cuenta</param>
         /// <param name="cuentaEncontrada">Cuenta encontrada en la base de datos</param>
         /// <returns>true si encontró una cuenta; false si no</returns>
-        public static bool IniciarSesion(string usuario, string contrasenia, out Cuenta cuentaEncontrada) {
+        public static void IniciarSesion(string usuario, string contrasenia, Action<Cuenta> callbackExitoso) {
             using (SigeaBD sigeaBD = new SigeaBD()) {
                 try {
                     Cuenta cuentaBuscada = sigeaBD.Cuenta.ToList().Find((cuenta) => {
                         return cuenta.usuario == usuario && cuenta.contrasenia == contrasenia;
                     });
-                    if (cuentaBuscada == null) {
-                        cuentaEncontrada = null;
-                        return false;
-                    }
-                    cuentaEncontrada = cuentaBuscada;
-                    return true;
+                    callbackExitoso(cuentaBuscada);
                 } catch (EntityException exception) {
                     Console.WriteLine("EntityException@Cuenta->IniciarSesion() -> " + exception.Message);
                     throw;

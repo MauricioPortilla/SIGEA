@@ -12,14 +12,15 @@ namespace SIGEABD
     using System;
     using System.Collections.Generic;
     
-    public partial class RevisorArticulo
+    public partial class EvaluacionArticulo
     {
         public int id_revisorArticulo { get; set; }
-        public int id_revisor { get; set; }
-        public int id_articulo { get; set; }
+        public int calificacion { get; set; }
+        public string observaciones { get; set; }
+        public System.DateTime fecha { get; set; }
+        public int gradoExpertiz { get; set; }
+        public string estado { get; set; }
     
-        public virtual Articulo Articulo { get; set; }
-        public virtual EvaluacionArticulo EvaluacionArticulo { get; set; }
-        public virtual Revisor Revisor { get; set; }
+        public virtual RevisorArticulo RevisorArticulo { get; set; }
     }
 }
