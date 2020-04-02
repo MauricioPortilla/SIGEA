@@ -31,24 +31,26 @@ namespace SIGEA {
             if (VerificarCampos() && VerificarDatos()) {
                 try {
                     using (SigeaBD sigeaBD = new SigeaBD()) {
-                        sigeaBD.Adscripcion.Add(new Adscripcion {
-                            nombreDependencia = dependenciaTextBox.Text,
-                            direccion = direccionTextBox.Text,
-                            telefono = telefonoTextBox.Text,
-                            puesto = puestoTextBox.Text,
-                            Asistente = new Collection<Asistente> () {
-                                new Asistente {
-                                    nombre = nombreTextBox.Text,
-                                    paterno = paternoTextBox.Text,
-                                    materno = maternoTextBox.Text,
-                                    correo = correoTextBox.Text,
-                                    Actividad = (ICollection<Actividad>)
+                        if (new Asistente {
+                            nombre = nombreTextBox.Text,
+                            paterno = paternoTextBox.Text,
+                            materno = maternoTextBox.Text,
+                            correo = correoTextBox.Text,
+                            Actividad = (ICollection<Actividad>)
                                         ActividadesObservableCollection.Where(
                                             actividad => actividad.Seleccionado
-                                        ).ToList()
-                                }
+                                        ).ToList(),
+                            Adscripcion = new Adscripcion {
+                                nombreDependencia = dependenciaTextBox.Text,
+                                direccion = direccionTextBox.Text,
+                                telefono = telefonoTextBox.Text,
+                                puesto = puestoTextBox.Text
                             }
-                        });
+                        }.Registrar()) {
+                            MessageBox.Show("Asistente registrado con exito");
+                        } else {
+                            MessageBox.Show("Asistente no pudo registrarse");
+                        }
                     }
                 } catch (DbUpdateException dbUpdateException) {
                     MessageBox.Show("Error al registrar el Asistente.");
