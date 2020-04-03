@@ -36,13 +36,13 @@ namespace SIGEA {
                         }
                     }
                 } catch (DbUpdateException dbUpdateException) {
-                    MessageBox.Show("Error al registrar el Asistente.");
+                    MessageBox.Show("Error al registrar el magistral.");
                     Console.WriteLine("DbUpdateException@RegistrarButton_Click -> " + dbUpdateException.Message);
                 } catch (EntityException entityException) {
-                    MessageBox.Show("Error al registrar el Asistente.");
+                    MessageBox.Show("Error al registrar el magistral.");
                     Console.WriteLine("EntityException@RegistrarButton_Click -> " + entityException.Message);
                 } catch (Exception exception) {
-                    MessageBox.Show("Error al registrar el Asistente.");
+                    MessageBox.Show("Error al registrar el magistral.");
                     Console.WriteLine("Exception@RegistrarButton_Click -> " + exception.Message);
                 }
             }

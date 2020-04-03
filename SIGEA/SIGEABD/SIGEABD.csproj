@@ -68,6 +68,7 @@
     <Compile Include="Asistente.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="AsistenteAcciones.cs" />
     <Compile Include="Autor.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
@@ -91,6 +92,7 @@
     <Compile Include="Magistral.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="MagistralAcciones.cs" />
     <Compile Include="Organizador.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>

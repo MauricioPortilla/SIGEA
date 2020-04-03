@@ -94,6 +94,12 @@
     <Compile Include="RegistrarAutor.xaml.cs">
       <DependentUpon>RegistrarAutor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarEvento.xaml.cs">
+      <DependentUpon>RegistrarEvento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarMagistral.xaml.cs">
+      <DependentUpon>RegistrarMagistral.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sesion.cs" />
     <Page Include="AgregarAutor.xaml">
       <SubType>Designer</SubType>
@@ -132,6 +138,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegistrarAutor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarEvento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarMagistral.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
