@@ -96,7 +96,7 @@ namespace SIGEA {
                     fecha = DateTime.Now,
                     estado = "Finalizada"
                 };
-                if (!evaluacionArticulo.Registrar(Sesion.Cuenta.Revisor.First().id_revisor, id_articulo)) {
+                if (!evaluacionArticulo.Registrar(Sesion.Revisor.id_revisor, id_articulo)) {
                     MessageBox.Show("Ocurrió un error al realizar la evaluación.");
                     return;
                 }
