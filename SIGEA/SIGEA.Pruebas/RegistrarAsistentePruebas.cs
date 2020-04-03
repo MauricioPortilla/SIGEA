@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SIGEABD;
 
 namespace SIGEA.Pruebas {
@@ -21,6 +19,7 @@ namespace SIGEA.Pruebas {
                     puesto = "Estudiante"
                 }
             };
+            Assert.IsTrue(asistente.Registrar());
         }
     }
 }
