@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SIGEA {
     public class Herramientas {
+
         public static readonly string REGEX_SOLO_NUMEROS = "^[0-9]+$";
         public static readonly string REGEX_SOLO_ENTEROS_Y_FLOTANTES = @"(\d+(\.\d+)?)";
         public static readonly string REGEX_SOLO_LETRAS = "^[a-zA-Záéíóú ]+$";

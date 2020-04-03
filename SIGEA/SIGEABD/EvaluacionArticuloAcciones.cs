@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace SIGEABD {
     public partial class EvaluacionArticulo {
-        public static void ObtenerEvaluacionArticulo(int id_articulo, Action<EvaluacionArticulo> callbackExitoso) {
+        public static void ObtenerEvaluacionArticulo(int id_articulo, int id_revisor, Action<EvaluacionArticulo> callbackExitoso) {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-                    RevisorArticulo revisorArticuloEncontrado = sigeaBD.RevisorArticulo.ToList().Find(revisorArticulo => revisorArticulo.id_articulo == id_articulo);
+                    RevisorArticulo revisorArticuloEncontrado = sigeaBD.RevisorArticulo.ToList().Find(
+                        revisorArticulo => revisorArticulo.id_articulo == id_articulo && revisorArticulo.id_revisor == id_revisor
+                    );
                     if (revisorArticuloEncontrado != null) {
                         EvaluacionArticulo evaluacionArticulo = sigeaBD.EvaluacionArticulo.Find(revisorArticuloEncontrado.id_revisorArticulo);
                         if (evaluacionArticulo != null) {

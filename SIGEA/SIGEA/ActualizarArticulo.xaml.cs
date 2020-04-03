@@ -27,12 +27,20 @@ namespace SIGEA {
         private Articulo articulo;
         private string rutaArchivo = string.Empty;
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
+        /// <param name="id_articulo">Identificador de Articulo</param>
         public ActualizarArticulo(int id_articulo) {
             InitializeComponent();
             DataContext = this;
             CargarArticulo(id_articulo);
         }
 
+        /// <summary>
+        /// Carga la información de un Artículo.
+        /// </summary>
+        /// <param name="id_articulo">Identificador del Artículo</param>
         private void CargarArticulo(int id_articulo) {
             try {
                 Articulo.ObtenerArticulo(id_articulo, (articulo) => {
@@ -64,6 +72,12 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Muestra una ventana de explorador de archivos para seleccionar un
+        /// archivo y obtener su ruta.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento del botón</param>
         private void ReemplazarArchivoButton_Click(object sender, RoutedEventArgs e) {
             var seleccionArchivo = new OpenFileDialog();
             seleccionArchivo.Filter = "PDF Files|*.pdf";
@@ -77,6 +91,12 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Verifica si se seleccionó un archivo; si sí, reemplaza el existente del Articulo
+        /// por el nuevo, conservando el nombre del antiguo archivo.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento del botón</param>
         private void GuardarCambiosButton_Click(object sender, RoutedEventArgs e) {
             if (rutaArchivo.Equals(string.Empty)) {
                 MessageBox.Show("Debes seleccionar un archivo a reemplazar.");

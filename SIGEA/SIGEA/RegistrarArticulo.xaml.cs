@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.IO;
@@ -27,6 +28,7 @@ namespace SIGEA {
     public partial class RegistrarArticulo : Window {
 
         public ObservableCollection<AutorTabla> AutoresList { get; } = new ObservableCollection<AutorTabla>();
+        private List<AutorTabla> autoresSeleccionados = new List<AutorTabla>();
         private string archivoSeleccionado;
         private string nombreArchivoSeleccionado;
 
@@ -91,6 +93,24 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Si se selecciona algún Autor, se añade a la lista de autores seleccionados.
+        /// </summary>
+        /// <param name="sender">AutorTabla</param>
+        /// <param name="e">Evento</param>
+        public void AutorTabla_PropertyChanged(object sender, PropertyChangedEventArgs e) {
+            var autorSeleccion = (AutorTabla)sender;
+            if (autorSeleccion.Seleccionado) {
+                if (!autoresSeleccionados.Exists(autorLista => autorLista.Autor == autorSeleccion.Autor)) {
+                    autoresSeleccionados.Add(autorSeleccion);
+                }
+            } else {
+                if (autoresSeleccionados.Exists(autorLista => autorLista.Autor == autorSeleccion.Autor)) {
+                    autoresSeleccionados.RemoveAll(autorLista => autorLista.Autor == autorSeleccion.Autor);
+                }
+            }
+        }
+
+        /// <summary>
         /// Muestra la ventana para agregar un autor a la tabla.
         /// </summary>
         /// <param name="sender">Botón</param>
@@ -100,7 +120,16 @@ namespace SIGEA {
             agregarAutorVentana.Closing += (agregarAutorSender, agregarAutorEvent) => {
                 foreach (AutorTabla autorTabla in agregarAutorVentana.AutoresSeleccionados) {
                     if (!AutoresList.Contains(autorTabla)) {
-                        AutoresList.Add(autorTabla);
+                        var autorNuevo = new AutorTabla {
+                            Seleccionado = false,
+                            Autor = autorTabla.Autor,
+                            Nombre = autorTabla.Nombre,
+                            Paterno = autorTabla.Paterno,
+                            Materno = autorTabla.Materno,
+                            Correo = autorTabla.Correo
+                        };
+                        autorNuevo.PropertyChanged += AutorTabla_PropertyChanged;
+                        AutoresList.Add(autorNuevo);
                     }
                 }
             };
@@ -113,19 +142,14 @@ namespace SIGEA {
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
         private void quitarAutorButton_Click(object sender, RoutedEventArgs e) {
-            if (AutoresList.Where(autor => autor.Seleccionado).Count() == 0) {
+            if (autoresSeleccionados.Where(autor => autor.Seleccionado).Count() == 0) {
                 MessageBox.Show("Debes seleccionar un autor de la tabla.");
                 return;
             }
-            List<AutorTabla> autoresRemovidos = new List<AutorTabla>();
-            foreach (var autor in AutoresList) {
-                if (autor.Seleccionado) {
-                    autoresRemovidos.Add(autor);
-                }
+            foreach (var autorRemovido in autoresSeleccionados) {
+                AutoresList.Remove(AutoresList.First(autor => autor.Autor == autorRemovido.Autor));
             }
-            foreach (var autorRemovido in autoresRemovidos) {
-                AutoresList.Remove(autorRemovido);
-            }
+            autoresSeleccionados.Clear();
         }
 
         /// <summary>
@@ -173,19 +197,20 @@ namespace SIGEA {
                 nombreArchivoSeleccionado + DateTime.Now.ToUniversalTime()
             ) + ".pdf";
             try {
-                if (new Articulo {
-                        titulo = tituloTextBox.Text,
-                        anio = int.Parse(añoCreacionTextBox.Text),
-                        keywords = keywordsTextBox.Text,
-                        resumen = resumenTextBox.Text,
-                        Track = (Track) trackComboBox.SelectedItem,
-                        archivo = nombreArchivoEncriptado,
-                        estado = "Pendiente",
-                        AutorArticulo = autoresArticulo
-                    }.Registrar()
-                ) {
+                Articulo nuevoArticulo = new Articulo {
+                    titulo = tituloTextBox.Text,
+                    anio = int.Parse(añoCreacionTextBox.Text),
+                    keywords = keywordsTextBox.Text,
+                    resumen = resumenTextBox.Text,
+                    Track = (Track)trackComboBox.SelectedItem,
+                    archivo = nombreArchivoEncriptado,
+                    estado = "Pendiente",
+                    AutorArticulo = autoresArticulo
+                };
+                if (nuevoArticulo.Registrar()) {
                     File.Copy(archivoSeleccionado, App.ARTICULOS_DIRECTORIO + "/" + nombreArchivoEncriptado);
                     MessageBox.Show("Artículo registrado.");
+                    Close();
                     return;
                 }
                 MessageBox.Show("Error al registrar el artículo.");

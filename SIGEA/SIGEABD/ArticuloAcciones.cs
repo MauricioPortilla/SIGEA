@@ -28,6 +28,10 @@ namespace SIGEABD {
         public bool Registrar() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
+                    foreach (var autor in AutorArticulo) {
+                        sigeaBD.Autor.Attach(autor.Autor);
+                    }
+                    sigeaBD.Track.Attach(Track);
                     sigeaBD.Articulo.Add(this);
                     return sigeaBD.SaveChanges() != 0;
                 }

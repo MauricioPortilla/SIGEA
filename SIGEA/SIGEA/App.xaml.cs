@@ -14,6 +14,9 @@ namespace SIGEA {
     public partial class App : Application {
         public static readonly string ARTICULOS_DIRECTORIO = AppDomain.CurrentDomain.BaseDirectory + "/archivos/articulos";
 
+        /// <summary>
+        /// Inicializa la aplicación.
+        /// </summary>
         public App() {
             CrearDirectorios();
         }

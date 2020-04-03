@@ -54,18 +54,22 @@
                 <DataGridTextColumn
                     Binding="{Binding Nombre}"
                     Header="Nombre"
+                    IsReadOnly="True"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                 <DataGridTextColumn
                     Binding="{Binding Paterno}"
                     Header="Paterno"
+                    IsReadOnly="True"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                 <DataGridTextColumn
                     Binding="{Binding Materno}"
                     Header="Materno"
+                    IsReadOnly="True"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                 <DataGridTextColumn
                     Binding="{Binding Correo}"
                     Header="Correo"
+                    IsReadOnly="True"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
             </DataGrid.Columns>
         </DataGrid>

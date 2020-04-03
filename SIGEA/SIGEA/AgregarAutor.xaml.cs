@@ -30,7 +30,6 @@ namespace SIGEA {
         public AgregarAutor() {
             DataContext = this;
             InitializeComponent();
-            AutoresList.CollectionChanged += AutoresList_CollectionChanged;
             CargarAutores();
         }
 
@@ -55,21 +54,21 @@ namespace SIGEA {
         }
 
         /// <summary>
-        /// Actualiza la tabla de autores si alguna de sus propiedades cambió su valor.
+        /// Si se selecciona algún Autor, se añade a la lista de autores seleccionados.
         /// </summary>
-        /// <param name="sender">Tabla</param>
+        /// <param name="sender">AutorTabla</param>
         /// <param name="e">Evento</param>
         public void AutorTabla_PropertyChanged(object sender, PropertyChangedEventArgs e) {
-            autoresDataGrid.Items.Refresh();
-        }
-
-        /// <summary>
-        /// Actualiza la tabla de autores si su colección cambió.
-        /// </summary>
-        /// <param name="sender">Tabla</param>
-        /// <param name="e">Evento</param>
-        private void AutoresList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-            autoresDataGrid.Items.Refresh();
+            var autorSeleccion = (AutorTabla) sender;
+            if (autorSeleccion.Seleccionado) {
+                if (!AutoresSeleccionados.Exists(autorLista => autorLista.Autor == autorSeleccion.Autor)) {
+                    AutoresSeleccionados.Add(autorSeleccion);
+                }
+            } else {
+                if (AutoresSeleccionados.Exists(autorLista => autorLista.Autor == autorSeleccion.Autor)) {
+                    AutoresSeleccionados.RemoveAll(autorLista => autorLista.Autor == autorSeleccion.Autor);
+                }
+            }
         }
 
         /// <summary>
@@ -77,7 +76,18 @@ namespace SIGEA {
         /// </summary>
         public struct AutorTabla : INotifyPropertyChanged {
             public Autor Autor { get; set; }
-            public bool Seleccionado { get; set; }
+            private bool seleccionado;
+            public bool Seleccionado {
+                get {
+                    return seleccionado;
+                }
+                set {
+                    if (seleccionado != value) {
+                        seleccionado = value;
+                        NotifyPropertyChanged("Seleccionado");
+                    }
+                }
+            }
             public string Nombre { get; set; }
             public string Paterno { get; set; }
             public string Materno { get; set; }
@@ -95,11 +105,6 @@ namespace SIGEA {
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
         private void añadirButton_Click(object sender, RoutedEventArgs e) {
-            foreach (AutorTabla autorTabla in autoresDataGrid.Items) {
-                if (autorTabla.Seleccionado) {
-                    AutoresSeleccionados.Add(autorTabla);
-                }
-            }
             Close();
         }
 

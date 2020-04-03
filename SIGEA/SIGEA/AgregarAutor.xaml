@@ -21,25 +21,24 @@
             materialDesign:DataGridAssist.ColumnHeaderPadding="8">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn
-                    Binding="{Binding Seleccionado, UpdateSourceTrigger=PropertyChanged}"
-                    ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"/>
+                    Binding="{Binding Seleccionado}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"/>
                 <DataGridTextColumn
                     Binding="{Binding Nombre}"
-                    Header="Nombre"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                    IsReadOnly="True"
+                    Header="Nombre"/>
                 <DataGridTextColumn
                     Binding="{Binding Paterno}"
-                    Header="Paterno"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                    IsReadOnly="True"
+                    Header="Paterno"/>
                 <DataGridTextColumn
                     Binding="{Binding Materno}"
-                    Header="Materno"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                    IsReadOnly="True"
+                    Header="Materno"/>
                 <DataGridTextColumn
                     Binding="{Binding Correo}"
-                    Header="Correo"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                    IsReadOnly="True"
+                    Header="Correo"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Right" Margin="0,0,154,9" VerticalAlignment="Bottom" Width="124" Click="cancelarButton_Click"/>

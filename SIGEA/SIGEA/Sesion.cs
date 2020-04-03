@@ -30,5 +30,8 @@ namespace SIGEA {
         public static readonly Dictionary<int, string> GRADOS_EXPERTIZ = new Dictionary<int, string>() {
             { 1, "Bajo (1)" }, { 2, "Medio (2)" }, { 3, "Alto (3)" }
         };
+
+        public static readonly int MIN_CALIFICACION_EVALUACION_ARTICULO = 1;
+        public static readonly int MAX_CALIFICACION_EVALUACION_ARTICULO = 3;
     }
 }

@@ -22,6 +22,7 @@ namespace SIGEA {
     /// Lógica de interacción para RegistrarActividad.xaml
     /// </summary>
     public partial class RegistrarActividad : Window {
+
         private Evento evento;
         private ObservableCollection<PresentacionTabla> PresentacionesObservableCollection { get; } =
             new ObservableCollection<PresentacionTabla>();
