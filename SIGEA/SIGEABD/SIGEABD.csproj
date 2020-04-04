@@ -78,6 +78,7 @@
     <Compile Include="Comite.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="ComiteAcciones.cs" />
     <Compile Include="Cuenta.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>

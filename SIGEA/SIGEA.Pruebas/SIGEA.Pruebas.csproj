@@ -63,6 +63,7 @@
     <Compile Include="RegistrarAsistentePruebas.cs" />
     <Compile Include="RegistrarAutorPruebas.cs" />
     <Compile Include="RegistrarActividadPruebas.cs" />
+    <Compile Include="RegistrarComitePruebas.cs" />
     <Compile Include="RegistrarEventoPruebas.cs" />
     <Compile Include="RegistrarMagistralPruebas.cs" />
   </ItemGroup>
