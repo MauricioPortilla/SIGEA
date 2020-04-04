@@ -44,6 +44,7 @@ namespace SIGEA {
                     if (cuentaEncontrada != null) {
                         Sesion.Cuenta = cuentaEncontrada;
                         Sesion.Revisor = cuentaEncontrada.Revisor.ToList().First();
+                        Sesion.Organizador = cuentaEncontrada.Organizador.ToList().First();
                         new MenuPrincipal().Show();
                         Close();
                     } else {

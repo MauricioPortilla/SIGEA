@@ -8,12 +8,12 @@ using System.Windows;
 namespace SIGEA {
     public partial class MenuPrincipal : Window {
 
-        public ObservableCollection<EventoTabla>
-            EventosObservableCollection { get; } =
-            new ObservableCollection<EventoTabla>();
+        public ObservableCollection<EventoTabla> EventosObservableCollection { get; } =
+                new ObservableCollection<EventoTabla>();
 
         public MenuPrincipal() {
             InitializeComponent();
+            DataContext = this;
             CargarDataGrid();
         }
 
@@ -48,15 +48,6 @@ namespace SIGEA {
             }
         }
 
-<<<<<<< HEAD
-        private void ActualizarArticuloButton_Click(object sender, RoutedEventArgs e) {
-            new ActualizarArticulo(1).Show();
-        }
-
-        private void EvaluarArticuloButton_Click(object sender, RoutedEventArgs e) {
-            new EvaluarArticulo(1).Show();
-        }
-=======
         public struct EventoTabla {
             public String nombre { get; set; }
             public String sede { get; set; }
@@ -64,6 +55,5 @@ namespace SIGEA {
             public DateTime fechaFin { get; set; }
         }
 
->>>>>>> Juan
     }
 }

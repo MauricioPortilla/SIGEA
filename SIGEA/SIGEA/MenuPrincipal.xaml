@@ -7,17 +7,32 @@
         mc:Ignorable="d"
         Title="Menú Principal" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-<<<<<<< HEAD
-        <Button x:Name="registrarArticuloButton" Content="Registrar artículo" HorizontalAlignment="Left" Margin="270,29,0,0" VerticalAlignment="Top" Width="255" Click="registrarArticuloButton_Click"/>
-        <Button x:Name="registrarAutorButton" Content="Registrar autor" HorizontalAlignment="Left" Margin="270,80,0,0" VerticalAlignment="Top" Width="255" Click="RegistrarAutorButton_Click"/>
-        <Button x:Name="actualizarArticuloButton" Content="Actualizar artículo" HorizontalAlignment="Left" Margin="270,127,0,0" VerticalAlignment="Top" Width="255" Click="ActualizarArticuloButton_Click"/>
-        <Button x:Name="evaluarArticuloButton" Content="Evaluar artículo" HorizontalAlignment="Left" Margin="270,178,0,0" VerticalAlignment="Top" Width="255" Click="EvaluarArticuloButton_Click"/>
-
-=======
         <Label Content="SISTEMA GESTOR DE EVENTOS ACADEMICOS" HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top" FontSize="36"/>
-        <DataGrid x:Name="eventosDataGrid" HorizontalAlignment="Left" Height="283" Margin="28,106,0,0" VerticalAlignment="Top" Width="594" CanUserAddRows="False"/>
+        <DataGrid x:Name="eventosDataGrid" ItemsSource="{Binding EventosObservableCollection}" HorizontalAlignment="Left" Height="283" Margin="28,106,0,0" VerticalAlignment="Top" Width="594" CanUserAddRows="False" AutoGenerateColumns="False" CanUserSortColumns="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding nombre}"
+                    Header="Nombre"
+                    IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding sede}"
+                    Header="Sede"
+                    IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding fechaInicio}"
+                    Header="Fecha de inicio"
+                    IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding fechaFin}"
+                    Header="Fecha de fin"
+                    IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="crearButton" Content="Crear Evento" HorizontalAlignment="Left" Margin="652,290,0,0" VerticalAlignment="Top" Width="130" Click="CrearButton_Click"/>
         <Button x:Name="cerrarButton" Content="Cerrar Sesión" HorizontalAlignment="Left" Margin="652,357,0,0" VerticalAlignment="Top" Width="130" Foreground="#DD000000" BorderBrush="White" Background="White" Click="CerrarButton_Click"/>
->>>>>>> Juan
     </Grid>
 </Window>
