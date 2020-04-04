@@ -94,8 +94,20 @@
     <Compile Include="RegistrarArticulo.xaml.cs">
       <DependentUpon>RegistrarArticulo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarAsistente.xaml.cs">
+      <DependentUpon>RegistrarAsistente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarAutor.xaml.cs">
       <DependentUpon>RegistrarAutor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarComite.xaml.cs">
+      <DependentUpon>RegistrarComite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEvento.xaml.cs">
+      <DependentUpon>RegistrarEvento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarMagistral.xaml.cs">
+      <DependentUpon>RegistrarMagistral.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sesion.cs" />
     <Page Include="ActualizarArticulo.xaml">
@@ -138,7 +150,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RegistrarAsistente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RegistrarAutor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarComite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarEvento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarMagistral.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

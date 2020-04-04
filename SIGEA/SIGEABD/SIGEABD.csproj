@@ -68,6 +68,7 @@
     <Compile Include="Asistente.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="AsistenteAcciones.cs" />
     <Compile Include="Autor.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
@@ -77,6 +78,7 @@
     <Compile Include="Comite.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="ComiteAcciones.cs" />
     <Compile Include="Cuenta.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
@@ -95,6 +97,7 @@
     <Compile Include="Magistral.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="MagistralAcciones.cs" />
     <Compile Include="Organizador.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
@@ -135,6 +138,9 @@
     <Compile Include="TrackAcciones.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
     <EntityDeploy Include="SigeaBD.edmx">

@@ -1,0 +1,25 @@
+﻿<Window x:Class="SIGEA.RegistrarEvento"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:SIGEA"
+        mc:Ignorable="d"
+        Title="Registrar Evento" Height="383.333" Width="609.091" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Registro Evento" HorizontalAlignment="Left" Margin="210,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="286" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="315"/>
+        <Label Content="Datos del Evento" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="37" Margin="23,104,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="sedeTextBox" HorizontalAlignment="Left" Height="37" Margin="23,184,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Lugar de sede" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="cuotaTextBox" HorizontalAlignment="Left" Height="37" Margin="23,257,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Cuota del evento" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="199" Margin="340,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="243"/>
+        <Label Content="Fecha de Inicio:" HorizontalAlignment="Left" Margin="355,75,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fecha de Fin:" HorizontalAlignment="Left" Margin="355,157,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="inicioDataPicker" HorizontalAlignment="Left" Margin="355,104,0,0" VerticalAlignment="Top" FontSize="14" Width="214" FirstDayOfWeek="Monday" Height="37"/>
+        <DatePicker x:Name="finDataPicker" HorizontalAlignment="Left" Margin="355,186,0,0" VerticalAlignment="Top" FontSize="14" Width="214" FirstDayOfWeek="Monday" Height="37"/>
+        <Button x:Name="registrarButton" Content="Registrar" HorizontalAlignment="Left" Margin="488,304,0,0" VerticalAlignment="Top" Width="95" Click="RegistrarButton_Click"/>
+        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="355,304,0,0" VerticalAlignment="Top" Width="95" Foreground="#DD000000" BorderBrush="White" Background="White" Click="CancelarButton_Click"/>
+    </Grid>
+</Window>

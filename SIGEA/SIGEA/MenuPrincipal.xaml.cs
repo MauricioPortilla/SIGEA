@@ -1,34 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SIGEABD;
+using System;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIGEA {
-    /// <summary>
-    /// Lógica de interacción para MenuPrincipal.xaml
-    /// </summary>
     public partial class MenuPrincipal : Window {
+
+        public ObservableCollection<EventoTabla>
+            EventosObservableCollection { get; } =
+            new ObservableCollection<EventoTabla>();
+
         public MenuPrincipal() {
             InitializeComponent();
+            CargarDataGrid();
         }
 
-        private void registrarArticuloButton_Click(object sender, RoutedEventArgs e) {
-            new RegistrarArticulo().Show();
+        private void CerrarButton_Click (object sender, RoutedEventArgs e) {
+            InicioSesion inicioSesion = new InicioSesion();
+            inicioSesion.Show();
+            this.Close();
         }
 
-        private void RegistrarAutorButton_Click(object sender, RoutedEventArgs e) {
-            new RegistrarAutor().Show();
+        private void CrearButton_Click (object sender, RoutedEventArgs e) {
+            RegistrarEvento registroEvento = new RegistrarEvento();
+            registroEvento.Show();
+            this.Close();
         }
 
+        public void CargarDataGrid () {
+            using (SigeaBD sigeaBD = new SigeaBD()) {
+                try {
+                    foreach (Evento evento in sigeaBD.Evento.ToList()) {
+                        EventosObservableCollection.Add(new EventoTabla {
+                            nombre = evento.nombre,
+                            sede = evento.sede,
+                            fechaInicio = evento.fechaInicio,
+                            fechaFin = evento.fechaFin
+                        });
+                    }
+                } catch (EntityException) {
+                    MessageBox.Show("Error al cargar los proveedores.");
+                } catch (Exception) {
+                    MessageBox.Show("Error al cargar los proveedores.");
+                }
+            }
+        }
+
+<<<<<<< HEAD
         private void ActualizarArticuloButton_Click(object sender, RoutedEventArgs e) {
             new ActualizarArticulo(1).Show();
         }
@@ -36,5 +56,14 @@ namespace SIGEA {
         private void EvaluarArticuloButton_Click(object sender, RoutedEventArgs e) {
             new EvaluarArticulo(1).Show();
         }
+=======
+        public struct EventoTabla {
+            public String nombre { get; set; }
+            public String sede { get; set; }
+            public DateTime fechaInicio { get; set; }
+            public DateTime fechaFin { get; set; }
+        }
+
+>>>>>>> Juan
     }
 }
