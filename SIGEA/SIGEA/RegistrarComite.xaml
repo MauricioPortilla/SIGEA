@@ -16,10 +16,10 @@
         <Label Content="Responsabilidades" HorizontalAlignment="Left" Margin="20,192,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="109" Margin="361,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="407"/>
         <TextBlock HorizontalAlignment="Left" Margin="369,64,0,0" TextWrapping="Wrap" Text="Evento" VerticalAlignment="Top" FontSize="20"/>
-        <ComboBox x:Name="eventoComboBox" HorizontalAlignment="Left" Margin="369,113,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Evento" Width="389" SelectionChanged="EventoComboBox_SelectionChanged"/>
+        <ComboBox x:Name="eventoComboBox" HorizontalAlignment="Left" Margin="369,113,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Evento" Width="389"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="109" Margin="361,176,0,0" Stroke="Black" VerticalAlignment="Top" Width="407"/>
         <TextBlock HorizontalAlignment="Left" Margin="371,190,0,0" TextWrapping="Wrap" Text="Lider del Comité" VerticalAlignment="Top" FontSize="20" Width="170"/>
-        <ComboBox x:Name="organizadorComboBox" HorizontalAlignment="Left" Margin="369,230,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Organizador" Width="389" SelectionChanged="EventoComboBox_SelectionChanged"/>
+        <ComboBox x:Name="organizadorComboBox" HorizontalAlignment="Left" Margin="369,230,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Organizador" Width="389"/>
         <Button x:Name="registrarButton" Content="Registrar Comité" HorizontalAlignment="Left" Margin="617,335,0,0" VerticalAlignment="Top" Width="151" Click="RegistrarButton_Click"/>
         <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="390,335,0,0" VerticalAlignment="Top" Width="151" Background="White" Foreground="#DD000000" BorderBrush="White" Click="CancelarButton_Click"/>
     </Grid>

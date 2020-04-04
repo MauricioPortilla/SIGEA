@@ -48,22 +48,11 @@ namespace SIGEA {
             }
         }
 
-<<<<<<< HEAD
-        private void ActualizarArticuloButton_Click(object sender, RoutedEventArgs e) {
-            new ActualizarArticulo(1).Show();
-        }
-
-        private void EvaluarArticuloButton_Click(object sender, RoutedEventArgs e) {
-            new EvaluarArticulo(1).Show();
-        }
-=======
         public struct EventoTabla {
             public String nombre { get; set; }
             public String sede { get; set; }
             public DateTime fechaInicio { get; set; }
             public DateTime fechaFin { get; set; }
         }
-
->>>>>>> Juan
     }
 }
