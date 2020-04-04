@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -20,6 +21,7 @@ namespace SIGEA {
 
         public RegistrarComite () {
             InitializeComponent();
+            CargarComboBox();
         }
 
         private void CancelarButton_Click (object sender, RoutedEventArgs e) {
@@ -46,6 +48,27 @@ namespace SIGEA {
                 } catch (Exception exception) {
                     MessageBox.Show("Error al registrar el evento.");
                     Console.WriteLine("Exception@RegistrarButton_Click -> " + exception.Message);
+                }
+            }
+        }
+
+        private void CargarComboBox () {
+            using (SigeaBD sigeaBD = new SigeaBD()) {
+                try {
+                    foreach (Evento evento in sigeaBD.Evento.ToList()) {
+                        eventoComboBox.Items.Add(evento);
+                    }
+                } catch (EntityException entityException) {
+                    MessageBox.Show("Error al cargar los eventos.");
+                    Console.WriteLine("EntityException@RegistrarArticulo->CargarEventos() -> " + entityException.Message);
+                }
+                try {
+                    foreach (Organizador organizador in sigeaBD.Organizador.ToList()) {
+                        organizadorComboBox.Items.Add(organizador);
+                    }
+                } catch (EntityException entityException) {
+                    MessageBox.Show("Error al cargar los eventos.");
+                    Console.WriteLine("EntityException@RegistrarArticulo->CargarEventos() -> " + entityException.Message);
                 }
             }
         }
