@@ -11,6 +11,7 @@ namespace SIGEABD {
         public bool Registrar() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
+                    sigeaBD.Evento.Attach(Evento);
                     sigeaBD.Actividad.Add(this);
                     return sigeaBD.SaveChanges() != 0;
                 }
