@@ -18,9 +18,9 @@ namespace SIGEABD
         public Evento()
         {
             this.Actividad = new HashSet<Actividad>();
+            this.Comite = new HashSet<Comite>();
             this.Gasto = new HashSet<Gasto>();
             this.Track = new HashSet<Track>();
-            this.Comite = new HashSet<Comite>();
         }
     
         public int id_evento { get; set; }
@@ -33,12 +33,12 @@ namespace SIGEABD
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Actividad> Actividad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comite> Comite { get; set; }
         public virtual Organizador Organizador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Gasto> Gasto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Track> Track { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comite> Comite { get; set; }
     }
 }

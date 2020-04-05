@@ -37,6 +37,10 @@ CREATE TABLE Gasto (
 
 CREATE TABLE Comite (
     id_comite int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+    id_evento int NOT NULL,
+    FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
+    id_organizador int NOT NULL,
+    FOREIGN KEY (id_organizador) REFERENCES Organizador(id_organizador),
     nombre varchar(50) NOT NULL,
     responsabilidades varchar(100)
 );
@@ -48,22 +52,6 @@ CREATE TABLE Tarea (
     titulo varchar(30) NOT NULL,
     descripcion varchar(100) NOT NULL,
     asignadoA varchar(50) NOT NULL
-);
-
-CREATE TABLE ComiteEvento (
-    id_comite int NOT NULL,
-    FOREIGN KEY (id_comite) REFERENCES Comite(id_comite),
-    id_evento int NOT NULL
-    FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
-    PRIMARY KEY (id_comite, id_evento)
-);
-
-CREATE TABLE ComiteLider (
-    id_comite int NOT NULL,
-    FOREIGN KEY (id_comite) REFERENCES Comite(id_comite),
-    id_organizador int NOT NULL,
-    FOREIGN KEY (id_organizador) REFERENCES Organizador(id_organizador),
-    PRIMARY KEY (id_comite, id_organizador)
 );
 
 CREATE TABLE ComiteOrganizador (

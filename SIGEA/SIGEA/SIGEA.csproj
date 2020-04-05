@@ -81,6 +81,9 @@
     <Compile Include="AgregarPresentacion.xaml.cs">
       <DependentUpon>AgregarPresentacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AsignarOrganizadorComite.xaml.cs">
+      <DependentUpon>AsignarOrganizadorComite.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EvaluarArticulo.xaml.cs">
       <DependentUpon>EvaluarArticulo.xaml</DependentUpon>
     </Compile>
@@ -122,11 +125,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AsignarOrganizadorComite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EvaluarArticulo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InicioSesion.xaml">
+    <Page Include="IniciarSesion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -134,8 +141,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InicioSesion.xaml.cs">
-      <DependentUpon>InicioSesion.xaml</DependentUpon>
+    <Compile Include="IniciarSesion.xaml.cs">
+      <DependentUpon>IniciarSesion.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MenuPrincipal.xaml">

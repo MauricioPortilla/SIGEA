@@ -18,22 +18,20 @@ namespace SIGEABD
         public Comite()
         {
             this.Tarea = new HashSet<Tarea>();
-            this.Evento = new HashSet<Evento>();
-            this.Organizador = new HashSet<Organizador>();
-            this.Organizador1 = new HashSet<Organizador>();
+            this.Organizadores = new HashSet<Organizador>();
         }
     
         public int id_comite { get; set; }
+        public int id_evento { get; set; }
+        public int id_organizador { get; set; }
         public string nombre { get; set; }
         public string responsabilidades { get; set; }
     
+        public virtual Evento Evento { get; set; }
+        public virtual Organizador Organizador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tarea> Tarea { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Evento> Evento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organizador> Organizador { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organizador> Organizador1 { get; set; }
+        public virtual ICollection<Organizador> Organizadores { get; set; }
     }
 }

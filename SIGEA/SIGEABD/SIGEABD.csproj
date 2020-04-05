@@ -101,6 +101,7 @@
     <Compile Include="Organizador.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrganizadorAcciones.cs" />
     <Compile Include="Pago.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>

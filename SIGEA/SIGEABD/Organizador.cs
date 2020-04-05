@@ -17,9 +17,9 @@ namespace SIGEABD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Organizador()
         {
-            this.Evento = new HashSet<Evento>();
             this.Comite = new HashSet<Comite>();
-            this.Comite1 = new HashSet<Comite>();
+            this.Evento = new HashSet<Evento>();
+            this.Comites = new HashSet<Comite>();
         }
     
         public int id_organizador { get; set; }
@@ -30,12 +30,12 @@ namespace SIGEABD
         public string telefono { get; set; }
         public string correo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comite> Comite { get; set; }
         public virtual Cuenta Cuenta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Evento> Evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comite> Comite { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comite> Comite1 { get; set; }
+        public virtual ICollection<Comite> Comites { get; set; }
     }
 }

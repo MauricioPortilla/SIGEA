@@ -17,13 +17,6 @@ namespace SIGEA.Pruebas {
 
         [TestMethod]
         public void RegistrarComitePrueba () {
-            EventosObservableCollection.Add(new Evento {
-                nombre = "Escuela de Verano IS",
-                sede = "Facultad de estadistica e Informatica",
-                cuota = 900.00,
-                fechaInicio = new DateTime(25 / 6 / 2018),
-                fechaFin = new DateTime(2 / 7 / 2018)
-            });
             OrganizadoresObservableCollection.Add(new Organizador {
                 nombre = "",
                 paterno = "",
@@ -34,8 +27,14 @@ namespace SIGEA.Pruebas {
             Comite comite = new Comite {
                 nombre = "Comite de Ventas",
                 responsabilidades = "Llevar las ventas de la tienda de recuerdos del evento",
-                Evento = EventosObservableCollection,
-                Organizador = OrganizadoresObservableCollection
+                Evento = new Evento {
+                    nombre = "Escuela de Verano IS",
+                    sede = "Facultad de estadistica e Informatica",
+                    cuota = 900.00,
+                    fechaInicio = new DateTime(25 / 6 / 2018),
+                    fechaFin = new DateTime(2 / 7 / 2018)
+                },
+                Organizadores = OrganizadoresObservableCollection
             };
             Assert.IsTrue(comite.Registrar());
         }

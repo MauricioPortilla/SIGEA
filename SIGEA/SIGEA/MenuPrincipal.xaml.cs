@@ -18,7 +18,7 @@ namespace SIGEA {
         }
 
         private void CerrarButton_Click (object sender, RoutedEventArgs e) {
-            InicioSesion inicioSesion = new InicioSesion();
+            IniciarSesion inicioSesion = new IniciarSesion();
             inicioSesion.Show();
             this.Close();
         }

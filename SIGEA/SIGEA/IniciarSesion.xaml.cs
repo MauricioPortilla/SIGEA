@@ -19,11 +19,11 @@ namespace SIGEA {
     /// <summary>
     /// Lógica de interacción para InicioSesion.xaml
     /// </summary>
-    public partial class InicioSesion : Window {
+    public partial class IniciarSesion : Window {
         /// <summary>
         /// Crea una instancia.
         /// </summary>
-        public InicioSesion() {
+        public IniciarSesion() {
             InitializeComponent();
         }
 
