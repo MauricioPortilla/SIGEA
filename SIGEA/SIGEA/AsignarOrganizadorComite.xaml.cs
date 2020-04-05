@@ -19,13 +19,11 @@ namespace SIGEA {
     /// Lógica de interacción para AsignarOrganizadorComite.xaml
     /// </summary>
     public partial class AsignarOrganizadorComite : Window {
-        private readonly int id_evento;
         /// <summary>
         /// Crea una instancia.
         /// </summary>
-        public AsignarOrganizadorComite(int id_evento) {
+        public AsignarOrganizadorComite() {
             InitializeComponent();
-            this.id_evento = id_evento;
             CargarComites();
         }
 
@@ -57,10 +55,11 @@ namespace SIGEA {
         /// </summary>
         private void CargarOrganizadores() {
             organizadoresComboBox.Items.Clear();
+            Comite comiteSeleccionado = comitesComboBox.SelectedItem as Comite;
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
                     var organizadores = sigeaBD.Organizador.Where(
-                        organizador => organizador.Comites.FirstOrDefault(comite => comite.id_evento == id_evento) == null &&
+                        organizador => organizador.Comites.FirstOrDefault(comite => comite.id_evento == comiteSeleccionado.id_evento) == null &&
                         organizador.id_organizador != Sesion.Organizador.id_organizador
                     );
                     foreach (Organizador organizador in organizadores) {
