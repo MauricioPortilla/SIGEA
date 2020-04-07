@@ -43,7 +43,7 @@ namespace SIGEA {
                 Cuenta.IniciarSesion(usuarioTextBox.Text, contraseniaCifrada, (cuentaEncontrada) => {
                     if (cuentaEncontrada != null) {
                         Sesion.Cuenta = cuentaEncontrada;
-                        Sesion.Revisor = cuentaEncontrada.Revisor.ToList().First();
+                        Sesion.Revisor = cuentaEncontrada.Revisor.Count > 0 ? cuentaEncontrada.Revisor.First() : null;
                         Sesion.Organizador = cuentaEncontrada.Organizador.ToList().First();
                         new MenuPrincipal().Show();
                         Close();
