@@ -11,12 +11,7 @@ namespace SIGEA {
 
     public partial class RegistrarComite : Window {
 
-        public ObservableCollection<Evento>
-            EventosObservableCollection { get; } =
-            new ObservableCollection<Evento>();
-
-        public ObservableCollection<Organizador>
-            OrganizadoresObservableCollection { get; } =
+        public ObservableCollection<Organizador> OrganizadoresObservableCollection { get; } = 
             new ObservableCollection<Organizador>();
 
         public RegistrarComite () {
@@ -31,14 +26,13 @@ namespace SIGEA {
         private void RegistrarButton_Click (object sender, RoutedEventArgs e) {
             if (VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
                 try {
-                    EventosObservableCollection.Add((Evento) eventoComboBox.SelectedItem);
                     OrganizadoresObservableCollection.Add((Organizador) organizadorComboBox.SelectedItem);
                     using (SigeaBD sigeaBD = new SigeaBD()) {
                         if (new Comite {
                             nombre = nombreTextBox.Text,
                             responsabilidades = responsabilidadesTextBlock.Text,
-                            Evento = (ICollection<Evento>) EventosObservableCollection,
-                            Organizador = (ICollection<Organizador>) OrganizadoresObservableCollection 
+                            Evento = (Evento) eventoComboBox.SelectedItem,
+                            Organizadores = OrganizadoresObservableCollection 
                         }.Registrar()) {
                             MessageBox.Show("El Evento se registro correctamente");
                         } else {

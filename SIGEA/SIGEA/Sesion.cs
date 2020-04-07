@@ -18,6 +18,11 @@ namespace SIGEA {
         public static Revisor Revisor;
 
         /// <summary>
+        /// Almacena la información del Organizador asociado a la Cuenta que inició sesión.
+        /// </summary>
+        public static Organizador Organizador;
+
+        /// <summary>
         /// Tipos que puede tomar una Actividad.
         /// </summary>
         public static readonly List<string> TIPOS_ACTIVIDAD = new List<string>() {

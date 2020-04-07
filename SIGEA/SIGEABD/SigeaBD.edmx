@@ -83,32 +83,18 @@
             <PropertyRef Name="id_comite" />
           </Key>
           <Property Name="id_comite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
+          <Property Name="id_organizador" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="responsabilidades" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="ComiteEvento">
-          <Key>
-            <PropertyRef Name="Comite_id_comite" />
-            <PropertyRef Name="Evento_id_evento" />
-          </Key>
-          <Property Name="Comite_id_comite" Type="int" Nullable="false" />
-          <Property Name="Evento_id_evento" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ComiteLider">
-          <Key>
-            <PropertyRef Name="Comite_id_comite" />
-            <PropertyRef Name="Organizador_id_organizador" />
-          </Key>
-          <Property Name="Comite_id_comite" Type="int" Nullable="false" />
-          <Property Name="Organizador_id_organizador" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="ComiteOrganizador">
           <Key>
-            <PropertyRef Name="Comite1_id_comite" />
-            <PropertyRef Name="Organizador1_id_organizador" />
+            <PropertyRef Name="id_comite" />
+            <PropertyRef Name="id_organizador" />
           </Key>
-          <Property Name="Comite1_id_comite" Type="int" Nullable="false" />
-          <Property Name="Organizador1_id_organizador" Type="int" Nullable="false" />
+          <Property Name="id_comite" Type="int" Nullable="false" />
+          <Property Name="id_organizador" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Cuenta">
           <Key>
@@ -344,6 +330,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Comite__id_event__0F624AF8">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="Comite">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comite__id_organ__02084FDA">
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
+          <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="id_organizador" />
+            </Principal>
+            <Dependent Role="Comite">
+              <PropertyRef Name="id_organizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Evaluacio__id_re__787EE5A0">
           <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="1" />
           <End Role="EvaluacionArticulo" Type="Self.EvaluacionArticulo" Multiplicity="0..1" />
@@ -500,54 +510,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ComiteEvento_Comite">
-          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
-          <End Role="ComiteEvento" Type="Self.ComiteEvento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Comite">
-              <PropertyRef Name="id_comite" />
-            </Principal>
-            <Dependent Role="ComiteEvento">
-              <PropertyRef Name="Comite_id_comite" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComiteEvento_Evento">
-          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
-          <End Role="ComiteEvento" Type="Self.ComiteEvento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Evento">
-              <PropertyRef Name="id_evento" />
-            </Principal>
-            <Dependent Role="ComiteEvento">
-              <PropertyRef Name="Evento_id_evento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComiteLider_Comite">
-          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
-          <End Role="ComiteLider" Type="Self.ComiteLider" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Comite">
-              <PropertyRef Name="id_comite" />
-            </Principal>
-            <Dependent Role="ComiteLider">
-              <PropertyRef Name="Comite_id_comite" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComiteLider_Organizador">
-          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
-          <End Role="ComiteLider" Type="Self.ComiteLider" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organizador">
-              <PropertyRef Name="id_organizador" />
-            </Principal>
-            <Dependent Role="ComiteLider">
-              <PropertyRef Name="Organizador_id_organizador" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ComiteOrganizador_Comite">
           <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
           <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
@@ -556,7 +518,7 @@
               <PropertyRef Name="id_comite" />
             </Principal>
             <Dependent Role="ComiteOrganizador">
-              <PropertyRef Name="Comite1_id_comite" />
+              <PropertyRef Name="id_comite" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -568,7 +530,7 @@
               <PropertyRef Name="id_organizador" />
             </Principal>
             <Dependent Role="ComiteOrganizador">
-              <PropertyRef Name="Organizador1_id_organizador" />
+              <PropertyRef Name="id_organizador" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -701,8 +663,6 @@
           <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AutorArticulo" EntityType="Self.AutorArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comite" EntityType="Self.Comite" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ComiteEvento" EntityType="Self.ComiteEvento" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ComiteLider" EntityType="Self.ComiteLider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComiteOrganizador" EntityType="Self.ComiteOrganizador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EvaluacionArticulo" EntityType="Self.EvaluacionArticulo" Schema="dbo" store:Type="Tables" />
@@ -744,6 +704,14 @@
           <AssociationSet Name="FK__AutorArti__id_au__01142BA1" Association="Self.FK__AutorArti__id_au__01142BA1">
             <End Role="Autor" EntitySet="Autor" />
             <End Role="AutorArticulo" EntitySet="AutorArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comite__id_event__0F624AF8" Association="Self.FK__Comite__id_event__0F624AF8">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Comite" EntitySet="Comite" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comite__id_organ__02084FDA" Association="Self.FK__Comite__id_organ__02084FDA">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="Comite" EntitySet="Comite" />
           </AssociationSet>
           <AssociationSet Name="FK__Evaluacio__id_re__787EE5A0" Association="Self.FK__Evaluacio__id_re__787EE5A0">
             <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
@@ -796,22 +764,6 @@
           <AssociationSet Name="FK_AsistenteActividad_Asistente" Association="Self.FK_AsistenteActividad_Asistente">
             <End Role="Asistente" EntitySet="Asistente" />
             <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComiteEvento_Comite" Association="Self.FK_ComiteEvento_Comite">
-            <End Role="Comite" EntitySet="Comite" />
-            <End Role="ComiteEvento" EntitySet="ComiteEvento" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComiteEvento_Evento" Association="Self.FK_ComiteEvento_Evento">
-            <End Role="Evento" EntitySet="Evento" />
-            <End Role="ComiteEvento" EntitySet="ComiteEvento" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComiteLider_Comite" Association="Self.FK_ComiteLider_Comite">
-            <End Role="Comite" EntitySet="Comite" />
-            <End Role="ComiteLider" EntitySet="ComiteLider" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComiteLider_Organizador" Association="Self.FK_ComiteLider_Organizador">
-            <End Role="Organizador" EntitySet="Organizador" />
-            <End Role="ComiteLider" EntitySet="ComiteLider" />
           </AssociationSet>
           <AssociationSet Name="FK_ComiteOrganizador_Comite" Association="Self.FK_ComiteOrganizador_Comite">
             <End Role="Comite" EntitySet="Comite" />
@@ -956,12 +908,14 @@
             <PropertyRef Name="id_comite" />
           </Key>
           <Property Name="id_comite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_evento" Type="Int32" Nullable="false" />
+          <Property Name="id_organizador" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="responsabilidades" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Comite__id_event__0F624AF8" FromRole="Comite" ToRole="Evento" />
+          <NavigationProperty Name="Organizador" Relationship="Self.FK__Comite__id_organ__02084FDA" FromRole="Comite" ToRole="Organizador" />
           <NavigationProperty Name="Tarea" Relationship="Self.FK__Tarea__id_comite__44FF419A" FromRole="Comite" ToRole="Tarea" />
-          <NavigationProperty Name="Evento" Relationship="Self.ComiteEvento" FromRole="Comite" ToRole="Evento" />
-          <NavigationProperty Name="Organizador" Relationship="Self.ComiteLider" FromRole="Comite" ToRole="Organizador" />
-          <NavigationProperty Name="Organizador1" Relationship="Self.ComiteOrganizador" FromRole="Comite" ToRole="Organizador" />
+          <NavigationProperty Name="Organizadores" Relationship="Self.ComiteOrganizador" FromRole="Comite" ToRole="Organizador" />
         </EntityType>
         <EntityType Name="Cuenta">
           <Key>
@@ -997,10 +951,10 @@
           <Property Name="cuota" Type="Double" Nullable="false" />
           <Property Name="sede" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Actividad" Relationship="Self.FK__Actividad__id_ev__534D60F1" FromRole="Evento" ToRole="Actividad" />
+          <NavigationProperty Name="Comite" Relationship="Self.FK__Comite__id_event__0F624AF8" FromRole="Evento" ToRole="Comite" />
           <NavigationProperty Name="Organizador" Relationship="Self.FK__Evento__id_organ__3C69FB99" FromRole="Evento" ToRole="Organizador" />
           <NavigationProperty Name="Gasto" Relationship="Self.FK__Gasto__id_evento__403A8C7D" FromRole="Evento" ToRole="Gasto" />
           <NavigationProperty Name="Track" Relationship="Self.FK__Track__id_evento__71D1E811" FromRole="Evento" ToRole="Track" />
-          <NavigationProperty Name="Comite" Relationship="Self.ComiteEvento" FromRole="Evento" ToRole="Comite" />
         </EntityType>
         <EntityType Name="Gasto">
           <Key>
@@ -1040,10 +994,10 @@
           <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Comite" Relationship="Self.FK__Comite__id_organ__02084FDA" FromRole="Organizador" ToRole="Comite" />
           <NavigationProperty Name="Cuenta" Relationship="Self.FK__Organizad__id_cu__398D8EEE" FromRole="Organizador" ToRole="Cuenta" />
           <NavigationProperty Name="Evento" Relationship="Self.FK__Evento__id_organ__3C69FB99" FromRole="Organizador" ToRole="Evento" />
-          <NavigationProperty Name="Comite" Relationship="Self.ComiteLider" FromRole="Organizador" ToRole="Comite" />
-          <NavigationProperty Name="Comite1" Relationship="Self.ComiteOrganizador" FromRole="Organizador" ToRole="Comite" />
+          <NavigationProperty Name="Comites" Relationship="Self.ComiteOrganizador" FromRole="Organizador" ToRole="Comite" />
         </EntityType>
         <EntityType Name="Pago">
           <Key>
@@ -1222,6 +1176,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Comite__id_event__0F624AF8">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="Comite">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comite__id_organ__02084FDA">
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
+          <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="id_organizador" />
+            </Principal>
+            <Dependent Role="Comite">
+              <PropertyRef Name="id_organizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Tarea__id_comite__44FF419A">
           <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
           <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
@@ -1322,14 +1300,6 @@
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
           <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
         </Association>
-        <Association Name="ComiteEvento">
-          <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
-          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
-        </Association>
-        <Association Name="ComiteLider">
-          <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
-          <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
-        </Association>
         <Association Name="ComiteOrganizador">
           <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
@@ -1410,6 +1380,14 @@
             <End Role="Autor" EntitySet="Autor" />
             <End Role="AutorArticulo" EntitySet="AutorArticulo" />
           </AssociationSet>
+          <AssociationSet Name="FK__Comite__id_event__0F624AF8" Association="Self.FK__Comite__id_event__0F624AF8">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Comite" EntitySet="Comite" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comite__id_organ__02084FDA" Association="Self.FK__Comite__id_organ__02084FDA">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="Comite" EntitySet="Comite" />
+          </AssociationSet>
           <AssociationSet Name="FK__Tarea__id_comite__44FF419A" Association="Self.FK__Tarea__id_comite__44FF419A">
             <End Role="Comite" EntitySet="Comite" />
             <End Role="Tarea" EntitySet="Tarea" />
@@ -1445,14 +1423,6 @@
           <AssociationSet Name="AsistenteActividad" Association="Self.AsistenteActividad">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Asistente" EntitySet="Asistente" />
-          </AssociationSet>
-          <AssociationSet Name="ComiteEvento" Association="Self.ComiteEvento">
-            <End Role="Comite" EntitySet="Comite" />
-            <End Role="Evento" EntitySet="Evento" />
-          </AssociationSet>
-          <AssociationSet Name="ComiteLider" Association="Self.ComiteLider">
-            <End Role="Comite" EntitySet="Comite" />
-            <End Role="Organizador" EntitySet="Organizador" />
           </AssociationSet>
           <AssociationSet Name="ComiteOrganizador" Association="Self.ComiteOrganizador">
             <End Role="Comite" EntitySet="Comite" />
@@ -1559,6 +1529,8 @@
             <EntityTypeMapping TypeName="SIGEAModel.Comite">
               <MappingFragment StoreEntitySet="Comite">
                 <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="id_organizador" ColumnName="id_organizador" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="responsabilidades" ColumnName="responsabilidades" />
               </MappingFragment>
@@ -1706,28 +1678,12 @@
               <ScalarProperty Name="id_asistente" ColumnName="Asistente_id_asistente" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="ComiteEvento" TypeName="SIGEAModel.ComiteEvento" StoreEntitySet="ComiteEvento">
-            <EndProperty Name="Comite">
-              <ScalarProperty Name="id_comite" ColumnName="Comite_id_comite" />
-            </EndProperty>
-            <EndProperty Name="Evento">
-              <ScalarProperty Name="id_evento" ColumnName="Evento_id_evento" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="ComiteLider" TypeName="SIGEAModel.ComiteLider" StoreEntitySet="ComiteLider">
-            <EndProperty Name="Comite">
-              <ScalarProperty Name="id_comite" ColumnName="Comite_id_comite" />
-            </EndProperty>
-            <EndProperty Name="Organizador">
-              <ScalarProperty Name="id_organizador" ColumnName="Organizador_id_organizador" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="ComiteOrganizador" TypeName="SIGEAModel.ComiteOrganizador" StoreEntitySet="ComiteOrganizador">
             <EndProperty Name="Comite">
-              <ScalarProperty Name="id_comite" ColumnName="Comite1_id_comite" />
+              <ScalarProperty Name="id_comite" ColumnName="id_comite" />
             </EndProperty>
             <EndProperty Name="Organizador">
-              <ScalarProperty Name="id_organizador" ColumnName="Organizador1_id_organizador" />
+              <ScalarProperty Name="id_organizador" ColumnName="id_organizador" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="GastoMagistral" TypeName="SIGEAModel.GastoMagistral" StoreEntitySet="GastoMagistral">

@@ -8,17 +8,17 @@ using System.Windows;
 namespace SIGEA {
     public partial class MenuPrincipal : Window {
 
-        public ObservableCollection<EventoTabla>
-            EventosObservableCollection { get; } =
-            new ObservableCollection<EventoTabla>();
+        public ObservableCollection<EventoTabla> EventosObservableCollection { get; } =
+                new ObservableCollection<EventoTabla>();
 
         public MenuPrincipal() {
             InitializeComponent();
+            DataContext = this;
             CargarDataGrid();
         }
 
         private void CerrarButton_Click (object sender, RoutedEventArgs e) {
-            InicioSesion inicioSesion = new InicioSesion();
+            IniciarSesion inicioSesion = new IniciarSesion();
             inicioSesion.Show();
             this.Close();
         }

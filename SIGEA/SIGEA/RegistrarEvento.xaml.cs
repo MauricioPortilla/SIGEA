@@ -35,7 +35,8 @@ namespace SIGEA {
                             sede = sedeTextBox.Text,
                             cuota = Double.Parse(cuotaTextBox.Text),
                             fechaInicio = (DateTime) inicioDataPicker.SelectedDate,
-                            fechaFin = (DateTime) finDataPicker.SelectedDate
+                            fechaFin = (DateTime) finDataPicker.SelectedDate,
+                            id_organizador = Sesion.Organizador.id_organizador
                         }.Registrar()) {
                             MessageBox.Show("El Evento se registro correctamente");
                         } else {

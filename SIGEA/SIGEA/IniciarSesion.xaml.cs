@@ -19,11 +19,11 @@ namespace SIGEA {
     /// <summary>
     /// Lógica de interacción para InicioSesion.xaml
     /// </summary>
-    public partial class InicioSesion : Window {
+    public partial class IniciarSesion : Window {
         /// <summary>
         /// Crea una instancia.
         /// </summary>
-        public InicioSesion() {
+        public IniciarSesion() {
             InitializeComponent();
         }
 
@@ -44,6 +44,7 @@ namespace SIGEA {
                     if (cuentaEncontrada != null) {
                         Sesion.Cuenta = cuentaEncontrada;
                         Sesion.Revisor = cuentaEncontrada.Revisor.ToList().First();
+                        Sesion.Organizador = cuentaEncontrada.Organizador.ToList().First();
                         new MenuPrincipal().Show();
                         Close();
                     } else {
