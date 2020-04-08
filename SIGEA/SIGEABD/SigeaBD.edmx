@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actividad">
           <Key>
             <PropertyRef Name="id_actividad" />
@@ -14,6 +14,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="tipo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="costo" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Adscripcion">
           <Key>
@@ -56,6 +57,14 @@
           </Key>
           <Property Name="Actividad_id_actividad" Type="int" Nullable="false" />
           <Property Name="Asistente_id_asistente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AsistenteEvento">
+          <Key>
+            <PropertyRef Name="id_asistente" />
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_asistente" Type="int" Nullable="false" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Autor">
           <Key>
@@ -291,6 +300,30 @@
             </Principal>
             <Dependent Role="Asistente">
               <PropertyRef Name="id_adscripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistente__id_as__29221CFB">
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
+          <End Role="AsistenteEvento" Type="Self.AsistenteEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asistente">
+              <PropertyRef Name="id_asistente" />
+            </Principal>
+            <Dependent Role="AsistenteEvento">
+              <PropertyRef Name="id_asistente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistente__id_ev__2A164134">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="AsistenteEvento" Type="Self.AsistenteEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="AsistenteEvento">
+              <PropertyRef Name="id_evento" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -660,6 +693,7 @@
           <EntitySet Name="Articulo" EntityType="Self.Articulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Asistente" EntityType="Self.Asistente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AsistenteActividad" EntityType="Self.AsistenteActividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AsistenteEvento" EntityType="Self.AsistenteEvento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AutorArticulo" EntityType="Self.AutorArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comite" EntityType="Self.Comite" Schema="dbo" store:Type="Tables" />
@@ -692,6 +726,14 @@
           <AssociationSet Name="FK__Asistente__id_ad__656C112C" Association="Self.FK__Asistente__id_ad__656C112C">
             <End Role="Adscripcion" EntitySet="Adscripcion" />
             <End Role="Asistente" EntitySet="Asistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistente__id_as__29221CFB" Association="Self.FK__Asistente__id_as__29221CFB">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="AsistenteEvento" EntitySet="AsistenteEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistente__id_ev__2A164134" Association="Self.FK__Asistente__id_ev__2A164134">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="AsistenteEvento" EntitySet="AsistenteEvento" />
           </AssociationSet>
           <AssociationSet Name="FK__Autor__id_adscri__7F2BE32F" Association="Self.FK__Autor__id_adscri__7F2BE32F">
             <End Role="Adscripcion" EntitySet="Adscripcion" />
@@ -814,8 +856,7 @@
             <End Role="TareaActividad" EntitySet="TareaActividad" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIGEAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -833,6 +874,7 @@
           <NavigationProperty Name="Presentacion" Relationship="Self.FK__Presentac__id_ac__59FA5E80" FromRole="Actividad" ToRole="Presentacion" />
           <NavigationProperty Name="Asistente" Relationship="Self.AsistenteActividad" FromRole="Actividad" ToRole="Asistente" />
           <NavigationProperty Name="Tarea" Relationship="Self.TareaActividad" FromRole="Actividad" ToRole="Tarea" />
+          <Property Name="costo" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="Adscripcion">
           <Key>
@@ -877,6 +919,7 @@
           <NavigationProperty Name="Adscripcion" Relationship="Self.FK__Asistente__id_ad__656C112C" FromRole="Asistente" ToRole="Adscripcion" />
           <NavigationProperty Name="Actividad" Relationship="Self.AsistenteActividad" FromRole="Asistente" ToRole="Actividad" />
           <NavigationProperty Name="Pago" Relationship="Self.PagoAsistente" FromRole="Asistente" ToRole="Pago" />
+          <NavigationProperty Name="Evento" Relationship="SIGEAModel.AsistenteEvento" FromRole="Asistente" ToRole="Evento" />
         </EntityType>
         <EntityType Name="Autor">
           <Key>
@@ -955,6 +998,7 @@
           <NavigationProperty Name="Organizador" Relationship="Self.FK__Evento__id_organ__3C69FB99" FromRole="Evento" ToRole="Organizador" />
           <NavigationProperty Name="Gasto" Relationship="Self.FK__Gasto__id_evento__403A8C7D" FromRole="Evento" ToRole="Gasto" />
           <NavigationProperty Name="Track" Relationship="Self.FK__Track__id_evento__71D1E811" FromRole="Evento" ToRole="Track" />
+          <NavigationProperty Name="Asistente" Relationship="SIGEAModel.AsistenteEvento" FromRole="Evento" ToRole="Asistente" />
         </EntityType>
         <EntityType Name="Gasto">
           <Key>
@@ -1448,7 +1492,15 @@
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Tarea" EntitySet="Tarea" />
           </AssociationSet>
+          <AssociationSet Name="AsistenteEvento" Association="SIGEAModel.AsistenteEvento">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="AsistenteEvento">
+          <End Type="SIGEAModel.Asistente" Role="Asistente" Multiplicity="*" />
+          <End Type="SIGEAModel.Evento" Role="Evento" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1458,6 +1510,7 @@
           <EntitySetMapping Name="Actividad">
             <EntityTypeMapping TypeName="SIGEAModel.Actividad">
               <MappingFragment StoreEntitySet="Actividad">
+                <ScalarProperty Name="costo" ColumnName="costo" />
                 <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
                 <ScalarProperty Name="id_evento" ColumnName="id_evento" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1724,6 +1777,14 @@
             </EndProperty>
             <EndProperty Name="Tarea">
               <ScalarProperty Name="id_tarea" ColumnName="Tarea_id_tarea" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="AsistenteEvento" TypeName="SIGEAModel.AsistenteEvento" StoreEntitySet="AsistenteEvento">
+            <EndProperty Name="Evento">
+              <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+            </EndProperty>
+            <EndProperty Name="Asistente">
+              <ScalarProperty Name="id_asistente" ColumnName="id_asistente" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

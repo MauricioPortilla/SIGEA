@@ -68,7 +68,8 @@ CREATE TABLE Actividad (
     FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
     nombre varchar(25) NOT NULL,
     descripcion varchar(255) NOT NULL,
-    tipo varchar(20) NOT NULL
+    tipo varchar(20) NOT NULL,
+    costo float NOT NULL
 );
 
 CREATE TABLE TareaActividad (
@@ -131,6 +132,14 @@ CREATE TABLE AsistenteActividad (
     id_actividad int NOT NULL,
     FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad),
     PRIMARY KEY (id_asistente, id_actividad)
+);
+
+CREATE TABLE AsistenteEvento (
+    id_asistente int NOT NULL,
+    FOREIGN KEY (id_asistente) REFERENCES Asistente(id_asistente),
+    id_evento int NOT NULL,
+    FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
+    PRIMARY KEY (id_asistente, id_evento)
 );
 
 CREATE TABLE Pago (

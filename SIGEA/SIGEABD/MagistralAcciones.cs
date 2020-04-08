@@ -11,13 +11,13 @@ namespace SIGEABD {
                     return sigeaBD.SaveChanges() != 0;
                 }
             } catch (DbUpdateException dbUpdateException) {
-                Console.WriteLine("DbUpdateException@Articulo->Registrar() -> " + dbUpdateException.Message);
+                Console.WriteLine("DbUpdateException@Magistral->Registrar() -> " + dbUpdateException.Message);
                 throw;
             } catch (EntityException entityException) {
-                Console.WriteLine("EntityException@Articulo->Registrar() -> " + entityException.Message);
+                Console.WriteLine("EntityException@Magistral->Registrar() -> " + entityException.Message);
                 throw;
             } catch (Exception exception) {
-                Console.WriteLine("Exception@Adscripcion->Registrar() -> " + exception.Message);
+                Console.WriteLine("Exception@Magistral->Registrar() -> " + exception.Message);
                 throw;
             }
         }

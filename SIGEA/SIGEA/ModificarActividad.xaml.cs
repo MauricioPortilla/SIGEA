@@ -1,9 +1,8 @@
-﻿using System;
+﻿using SIGEABD;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity.Core;
-using System.Data.Entity.Infrastructure;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -17,28 +16,62 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using SIGEABD;
+using static SIGEA.RegistrarActividad;
 
 namespace SIGEA {
     /// <summary>
-    /// Lógica de interacción para RegistrarActividad.xaml
+    /// Lógica de interacción para ModificarActividad.xaml
     /// </summary>
-    public partial class RegistrarActividad : Window {
+    public partial class ModificarActividad : Window {
 
-        private Evento evento;
+        private Actividad actividad;
         public ObservableCollection<PresentacionTabla> PresentacionesObservableCollection { get; } =
             new ObservableCollection<PresentacionTabla>();
         private List<PresentacionTabla> presentacionesSeleccionadas = new List<PresentacionTabla>();
 
         /// <summary>
-        /// Crea la instancia.
+        /// Crea una instancia.
         /// </summary>
-        public RegistrarActividad(Evento evento) {
+        /// <param name="id_actividad">Identificador de la Actividad</param>
+        public ModificarActividad(int id_actividad) {
             InitializeComponent();
             DataContext = this;
-            this.evento = evento;
             foreach (string tipoActividad in Sesion.TIPOS_ACTIVIDAD) {
                 tipoActividadComboBox.Items.Add(tipoActividad);
+            }
+            CargarActividad(id_actividad);
+        }
+
+        /// <summary>
+        /// Carga la Actividad y sus Presentaciones de la base de datos y muestra sus datos.
+        /// </summary>
+        /// <param name="id_actividad">Identificador de la Actividad</param>
+        private void CargarActividad(int id_actividad) {
+            try {
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    this.actividad = sigeaBD.Actividad.Find(id_actividad);
+                    if (actividad == null) {
+                        MessageBox.Show("Error al cargar la actividad.");
+                        return;
+                    }
+                    nombreTextBox.Text = actividad.nombre;
+                    costoTextBox.Text = float.Parse(actividad.costo.ToString()).ToString();
+                    tipoActividadComboBox.SelectedItem = actividad.tipo;
+                    descripcionTextBox.Text = actividad.descripcion;
+                    foreach (Presentacion presentacion in actividad.Presentacion) {
+                        var presentacionExistente = new PresentacionTabla {
+                            Presentacion = presentacion,
+                            Seleccionado = false,
+                            Fecha = presentacion.fechaPresentacion.ToString(),
+                            HoraInicio = presentacion.horaInicio,
+                            HoraFin = presentacion.horaFin,
+                        };
+                        presentacionExistente.PropertyChanged += PresentacionTabla_PropertyChanged;
+                        PresentacionesObservableCollection.Add(presentacionExistente);
+                    }
+                }
+            } catch (Exception) {
+                MessageBox.Show("Error al cargar la actividad.");
             }
         }
 
@@ -64,7 +97,7 @@ namespace SIGEA {
         /// Verifica que los campos estén completos.
         /// </summary>
         /// <returns>true si están completos; false si no</returns>
-        private bool VerificarCampos() {
+        private bool VerificarCamposCompletos() {
             return !string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(costoTextBox.Text) &&
                 tipoActividadComboBox.SelectedIndex != -1 &&
@@ -76,7 +109,7 @@ namespace SIGEA {
         /// Verifica que los campos tengan datos válidos.
         /// </summary>
         /// <returns>true si tienen datos válidos; false si no</returns>
-        private bool VerificarDatos() {
+        private bool VerificarDatosValidos() {
             return Regex.IsMatch(costoTextBox.Text, Herramientas.REGEX_SOLO_ENTEROS_Y_FLOTANTES);
         }
 
@@ -90,6 +123,7 @@ namespace SIGEA {
             agregarPresentacionVentana.Closing += (windowSender, windowEvent) => {
                 if (agregarPresentacionVentana.Presentacion != null) {
                     var presentacion = new PresentacionTabla {
+                        Presentacion = null,
                         Seleccionado = false,
                         Fecha = agregarPresentacionVentana.Presentacion.fechaPresentacion.ToString(),
                         HoraInicio = agregarPresentacionVentana.Presentacion.horaInicio,
@@ -104,15 +138,51 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Muestra una ventana para modificar una presentación seleccionada de la tabla.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
+        private void ModificarPresentacionButton_Click(object sender, RoutedEventArgs e) {
+            if (presentacionesSeleccionadas.Count == 0) {
+                MessageBox.Show("Debes seleccionar una presentación.");
+                return;
+            }
+            var presentacionSeleccionada = presentacionesSeleccionadas.First();
+            ModificarPresentacion modificarPresentacionVentana = new ModificarPresentacion(
+                presentacionSeleccionada
+            );
+            modificarPresentacionVentana.Closing += (windowSender, windowEvent) => {
+                var indexPresentacionLista = PresentacionesObservableCollection.ToList().FindIndex(
+                    presentacion => presentacion.Fecha == presentacionSeleccionada.Fecha &&
+                    presentacion.HoraInicio == presentacionSeleccionada.HoraInicio &&
+                    presentacion.HoraFin == presentacionSeleccionada.HoraFin
+                );
+                var indexPresentacionSeleccionada = presentacionesSeleccionadas.ToList().FindIndex(
+                    presentacion => presentacion.Fecha == presentacionSeleccionada.Fecha &&
+                    presentacion.HoraInicio == presentacionSeleccionada.HoraInicio &&
+                    presentacion.HoraFin == presentacionSeleccionada.HoraFin
+                );
+                PresentacionesObservableCollection[indexPresentacionLista] = modificarPresentacionVentana.PresentacionTabla;
+                presentacionesSeleccionadas[indexPresentacionSeleccionada] = modificarPresentacionVentana.PresentacionTabla;
+                presentacionesDataGrid.Items.Refresh();
+            };
+            modificarPresentacionVentana.Show();
+        }
+
+        /// <summary>
         /// Quita las presentaciones seleccionadas de la tabla.
         /// </summary>
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
         private void QuitarPresentacionButton_Click(object sender, RoutedEventArgs e) {
+            if (presentacionesSeleccionadas.Count == 0) {
+                MessageBox.Show("Debes seleccionar una presentación.");
+                return;
+            }
             foreach (PresentacionTabla presentacionTabla in presentacionesSeleccionadas) {
                 PresentacionesObservableCollection.Remove(
                     PresentacionesObservableCollection.First(
-                        presentacion => presentacion.Fecha == presentacionTabla.Fecha && 
+                        presentacion => presentacion.Fecha == presentacionTabla.Fecha &&
                         presentacion.HoraInicio == presentacionTabla.HoraInicio &&
                         presentacion.HoraFin == presentacionTabla.HoraFin
                     )
@@ -122,83 +192,46 @@ namespace SIGEA {
         }
 
         /// <summary>
-        /// Verifica que los campos estén completos, que tengan datos válidos y
-        /// registra la actividad en la base de datos.
+        /// Verifica que los campos estén completos, que tengan datos válidos y guarda
+        /// los cambios realizados en la base de datos.
         /// </summary>
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
-        private void RegistrarButton_Click(object sender, RoutedEventArgs e) {
-            if (!VerificarCampos()) {
+        private void GuardarCambiosButton_Click(object sender, RoutedEventArgs e) {
+            if (!VerificarCamposCompletos()) {
                 MessageBox.Show("Faltan campos por completar.");
                 return;
-            } else if (!VerificarDatos()) {
+            } else if (!VerificarDatosValidos()) {
                 MessageBox.Show("Debes introducir datos válidos.");
                 return;
             }
             try {
+                actividad.nombre = nombreTextBox.Text;
+                actividad.costo = double.Parse(costoTextBox.Text);
+                actividad.descripcion = descripcionTextBox.Text;
+                actividad.tipo = tipoActividadComboBox.Text;
                 Collection<Presentacion> presentaciones = new Collection<Presentacion>();
                 foreach (PresentacionTabla presentacionTabla in PresentacionesObservableCollection) {
+                    if (presentacionTabla.Presentacion != null) {
+                        presentaciones.Add(presentacionTabla.Presentacion);
+                        continue;
+                    }
                     presentaciones.Add(new Presentacion {
                         fechaPresentacion = Convert.ToDateTime(presentacionTabla.Fecha, new CultureInfo("es-MX")),
                         horaInicio = presentacionTabla.HoraInicio,
-                        horaFin = presentacionTabla.HoraFin
+                        horaFin = presentacionTabla.HoraFin,
+                        id_actividad = actividad.id_actividad
                     });
                 }
-                if (new Actividad {
-                        nombre = nombreTextBox.Text,
-                        descripcion = descripcionTextBox.Text,
-                        tipo = tipoActividadComboBox.Text,
-                        costo = double.Parse(costoTextBox.Text),
-                        Evento = evento,
-                        Presentacion = presentaciones
-                    }.Registrar()
-                ) {
-                    MessageBox.Show("Actividad registrada.");
+                actividad.Presentacion = presentaciones;
+                if (actividad.Actualizar()) {
+                    MessageBox.Show("Se han guardado los cambios.");
                     Close();
                     return;
                 }
                 MessageBox.Show("Error al registrar la actividad.");
-            } catch (DbUpdateException dbUpdateException) {
+            } catch (Exception) {
                 MessageBox.Show("Error al registrar la actividad.");
-                Console.WriteLine("DbUpdateException@RegistrarActividad->RegistrarButton_Click() -> " + dbUpdateException.Message);
-            } catch (EntityException entityException) {
-                MessageBox.Show("Error al registrar la actividad.");
-                Console.WriteLine("EntityException@RegistrarActividad->RegistrarButton_Click() -> " + entityException.Message);
-            } catch (Exception exception) {
-                MessageBox.Show("Error al registrar la actividad.");
-                Console.WriteLine("Exception@RegistrarActividad->RegistrarButton_Click() -> " + exception.Message);
-            }
-        }
-
-        /// <summary>
-        /// Representa una Presentación en una tabla.
-        /// </summary>
-        public struct PresentacionTabla {
-            public Presentacion Presentacion;
-            private bool seleccionado;
-            public bool Seleccionado {
-                get {
-                    return seleccionado;
-                }
-                set {
-                    seleccionado = value;
-                    NotifyPropertyChanged("Seleccionado");
-                }
-            }
-            private DateTime fecha;
-            public string Fecha {
-                get {
-                    return fecha.ToString("dd/MM/yyyy");
-                }
-                set {
-                    fecha = Convert.ToDateTime(value, new CultureInfo("es-MX"));
-                }
-            }
-            public TimeSpan HoraInicio { get; set; }
-            public TimeSpan HoraFin { get; set; }
-            public event PropertyChangedEventHandler PropertyChanged;
-            public void NotifyPropertyChanged(string obj) {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(obj));
             }
         }
     }

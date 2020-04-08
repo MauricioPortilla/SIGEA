@@ -19,6 +19,7 @@ namespace SIGEABD
         {
             this.Actividad = new HashSet<Actividad>();
             this.Pago = new HashSet<Pago>();
+            this.Evento = new HashSet<Evento>();
         }
     
         public int id_asistente { get; set; }
@@ -33,5 +34,7 @@ namespace SIGEABD
         public virtual ICollection<Actividad> Actividad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pago> Pago { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Evento> Evento { get; set; }
     }
 }

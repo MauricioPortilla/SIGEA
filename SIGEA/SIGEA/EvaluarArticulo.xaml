@@ -16,5 +16,6 @@
         <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="293,329,0,0" VerticalAlignment="Top" Width="108" Click="CancelarButton_Click"/>
         <Button x:Name="guardarButton" Content="Guardar" HorizontalAlignment="Left" Margin="408,329,0,0" VerticalAlignment="Top" Width="108" Click="GuardarButton_Click"/>
         <Button x:Name="emitirEvaluacionButton" Content="Emitir evaluación" HorizontalAlignment="Left" Margin="523,329,0,0" VerticalAlignment="Top" Width="153" Click="EmitirEvaluacionButton_Click"/>
+        <Button x:Name="visualizarArticuloButton" Content="Visualizar artículo" HorizontalAlignment="Left" Margin="523,10,0,0" VerticalAlignment="Top" Width="153" Click="VisualizarArticuloButton_Click"/>
     </Grid>
 </Window>
