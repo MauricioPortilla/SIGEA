@@ -1,0 +1,65 @@
+﻿<Window x:Class="SIGEA.ModificarActividad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:SIGEA"
+        mc:Ignorable="d"
+        Title="Modificar Actividad" Height="634.094" Width="695">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="270,10,0,0" TextWrapping="Wrap" Text="Modificar actividad" VerticalAlignment="Top" FontSize="20"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="225" Margin="10,45,0,0" Stroke="Black" VerticalAlignment="Top" Width="666"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"><Run Text="Datos de"/><Run Text=" la actividad"/></TextBlock>
+        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="37" Margin="23,85,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="costoTextBox" HorizontalAlignment="Left" Height="37" Margin="329,85,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Costo" VerticalAlignment="Top" Width="121" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <ComboBox x:Name="tipoActividadComboBox" HorizontalAlignment="Left" Margin="23,127,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Tipo de actividad" Width="284"/>
+        <TextBox x:Name="descripcionTextBox" HorizontalAlignment="Left" Height="97" Margin="23,160,0,0" TextWrapping="WrapWithOverflow" materialDesign:HintAssist.Hint="Descripción" VerticalAlignment="Top" Width="637" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,292,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Presentaciones"/>
+        <DataGrid
+            x:Name="presentacionesDataGrid"
+            Margin="10,324,11,55"
+            ItemsSource="{Binding PresentacionesObservableCollection}"
+            CanUserSortColumns="True"
+            CanUserAddRows="False"
+            CanUserReorderColumns="False"
+            AutoGenerateColumns="False"
+            materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+            materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn
+                    Binding="{Binding Seleccionado, UpdateSourceTrigger=PropertyChanged}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                    <DataGridCheckBoxColumn.Header>
+                        <Border
+                            Background="Transparent"
+                            Padding="6 0 6 0"
+                            HorizontalAlignment="Center">
+                            <CheckBox
+                                HorizontalAlignment="Center"
+                                DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                IsChecked="{Binding Seleccionado, UpdateSourceTrigger=PropertyChanged}" />
+                        </Border>
+                    </DataGridCheckBoxColumn.Header>
+                </DataGridCheckBoxColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Fecha}"
+                    Header="Fecha"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding HoraInicio}"
+                    Header="Hora de inicio"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding HoraFin}"
+                    Header="Hora de fin"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="añadirPresentacionButton" Content="Añadir" HorizontalAlignment="Left" Margin="294,287,0,0" VerticalAlignment="Top" Width="124" Click="AñadirPresentacionButton_Click"/>
+        <Button x:Name="modificarPresentacionButton" Content="Modificar" HorizontalAlignment="Left" Margin="423,287,0,0" VerticalAlignment="Top" Width="124" Click="ModificarPresentacionButton_Click"/>
+        <Button x:Name="quitarPresentacionButton" Content="Quitar" HorizontalAlignment="Left" Margin="552,287,0,0" VerticalAlignment="Top" Width="124" Click="QuitarPresentacionButton_Click"/>
+        <Button x:Name="guardarCambiosButton" Content="Guardar cambios" HorizontalAlignment="Left" Margin="530,561,0,0" VerticalAlignment="Top" Width="146" Click="GuardarCambiosButton_Click"/>
+    </Grid>
+</Window>

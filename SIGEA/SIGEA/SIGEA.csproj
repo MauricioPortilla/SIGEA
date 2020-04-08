@@ -91,6 +91,12 @@
     <Compile Include="MenuPrincipal.xaml.cs">
       <DependentUpon>MenuPrincipal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModificarActividad.xaml.cs">
+      <DependentUpon>ModificarActividad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarPresentacion.xaml.cs">
+      <DependentUpon>ModificarPresentacion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarActividad.xaml.cs">
       <DependentUpon>RegistrarActividad.xaml</DependentUpon>
     </Compile>
@@ -146,6 +152,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MenuPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModificarActividad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModificarPresentacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

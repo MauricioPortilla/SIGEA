@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actividad">
           <Key>
             <PropertyRef Name="id_actividad" />
@@ -14,6 +14,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="tipo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="costo" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Adscripcion">
           <Key>
@@ -814,8 +815,7 @@
             <End Role="TareaActividad" EntitySet="TareaActividad" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIGEAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -833,6 +833,7 @@
           <NavigationProperty Name="Presentacion" Relationship="Self.FK__Presentac__id_ac__59FA5E80" FromRole="Actividad" ToRole="Presentacion" />
           <NavigationProperty Name="Asistente" Relationship="Self.AsistenteActividad" FromRole="Actividad" ToRole="Asistente" />
           <NavigationProperty Name="Tarea" Relationship="Self.TareaActividad" FromRole="Actividad" ToRole="Tarea" />
+          <Property Name="costo" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="Adscripcion">
           <Key>
@@ -1458,6 +1459,7 @@
           <EntitySetMapping Name="Actividad">
             <EntityTypeMapping TypeName="SIGEAModel.Actividad">
               <MappingFragment StoreEntitySet="Actividad">
+                <ScalarProperty Name="costo" ColumnName="costo" />
                 <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
                 <ScalarProperty Name="id_evento" ColumnName="id_evento" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />

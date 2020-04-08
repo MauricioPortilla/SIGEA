@@ -68,7 +68,8 @@ CREATE TABLE Actividad (
     FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
     nombre varchar(25) NOT NULL,
     descripcion varchar(255) NOT NULL,
-    tipo varchar(20) NOT NULL
+    tipo varchar(20) NOT NULL,
+    costo float NOT NULL
 );
 
 CREATE TABLE TareaActividad (
