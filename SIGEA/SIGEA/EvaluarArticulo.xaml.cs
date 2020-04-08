@@ -21,6 +21,7 @@ namespace SIGEA {
 
         private EvaluacionArticulo evaluacionArticulo;
         private int id_articulo;
+        private Articulo articulo;
 
         /// <summary>
         /// Crea una instancia.
@@ -29,6 +30,15 @@ namespace SIGEA {
         public EvaluarArticulo(int id_articulo) {
             InitializeComponent();
             this.id_articulo = id_articulo;
+            try {
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    articulo = sigeaBD.Articulo.Find(id_articulo);
+                }
+            } catch (Exception) {
+                MessageBox.Show("Ocurrió un error al cargar el artículo.");
+                Close();
+                return;
+            }
             foreach (var gradoExpertiz in Sesion.GRADOS_EXPERTIZ) {
                 gradoExpertizComboBox.Items.Add(gradoExpertiz.Value);
             }
@@ -157,6 +167,10 @@ namespace SIGEA {
             }
             MessageBox.Show("Se ha realizado la evaluación.");
             Close();
+        }
+
+        private void VisualizarArticuloButton_Click(object sender, RoutedEventArgs e) {
+            System.Diagnostics.Process.Start(App.ARTICULOS_DIRECTORIO + "/" + articulo.archivo);
         }
     }
 }

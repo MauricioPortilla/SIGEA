@@ -134,6 +134,14 @@ CREATE TABLE AsistenteActividad (
     PRIMARY KEY (id_asistente, id_actividad)
 );
 
+CREATE TABLE AsistenteEvento (
+    id_asistente int NOT NULL,
+    FOREIGN KEY (id_asistente) REFERENCES Asistente(id_asistente),
+    id_evento int NOT NULL,
+    FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
+    PRIMARY KEY (id_asistente, id_evento)
+);
+
 CREATE TABLE Pago (
     id_pago int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     cantidad float NOT NULL,

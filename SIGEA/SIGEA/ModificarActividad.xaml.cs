@@ -29,6 +29,10 @@ namespace SIGEA {
             new ObservableCollection<PresentacionTabla>();
         private List<PresentacionTabla> presentacionesSeleccionadas = new List<PresentacionTabla>();
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
+        /// <param name="id_actividad">Identificador de la Actividad</param>
         public ModificarActividad(int id_actividad) {
             InitializeComponent();
             DataContext = this;
@@ -38,6 +42,10 @@ namespace SIGEA {
             CargarActividad(id_actividad);
         }
 
+        /// <summary>
+        /// Carga la Actividad y sus Presentaciones de la base de datos y muestra sus datos.
+        /// </summary>
+        /// <param name="id_actividad">Identificador de la Actividad</param>
         private void CargarActividad(int id_actividad) {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -183,6 +191,12 @@ namespace SIGEA {
             presentacionesSeleccionadas.Clear();
         }
 
+        /// <summary>
+        /// Verifica que los campos estén completos, que tengan datos válidos y guarda
+        /// los cambios realizados en la base de datos.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void GuardarCambiosButton_Click(object sender, RoutedEventArgs e) {
             if (!VerificarCamposCompletos()) {
                 MessageBox.Show("Faltan campos por completar.");

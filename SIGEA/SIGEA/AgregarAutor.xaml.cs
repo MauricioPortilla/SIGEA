@@ -37,19 +37,23 @@ namespace SIGEA {
         /// Carga los autores de la base de datos.
         /// </summary>
         private void CargarAutores() {
-            using (SigeaBD sigeaBD = new SigeaBD()) {
-                foreach (Autor autor in sigeaBD.Autor.ToList()) {
-                    var autorTabla = new AutorTabla {
-                        Autor = autor,
-                        Seleccionado = false,
-                        Nombre = autor.nombre,
-                        Paterno = autor.paterno,
-                        Materno = autor.materno,
-                        Correo = autor.correo
-                    };
-                    autorTabla.PropertyChanged += AutorTabla_PropertyChanged;
-                    AutoresList.Add(autorTabla);
+            try {
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    foreach (Autor autor in sigeaBD.Autor.ToList()) {
+                        var autorTabla = new AutorTabla {
+                            Autor = autor,
+                            Seleccionado = false,
+                            Nombre = autor.nombre,
+                            Paterno = autor.paterno,
+                            Materno = autor.materno,
+                            Correo = autor.correo
+                        };
+                        autorTabla.PropertyChanged += AutorTabla_PropertyChanged;
+                        AutoresList.Add(autorTabla);
+                    }
                 }
+            } catch (Exception) {
+                MessageBox.Show("Error al cargar los autores");
             }
         }
 

@@ -46,14 +46,17 @@
                 <DataGridTextColumn
                     Binding="{Binding Fecha}"
                     Header="Fecha"
+                    IsReadOnly="True"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                 <DataGridTextColumn
                     Binding="{Binding HoraInicio}"
                     Header="Hora de inicio"
+                    IsReadOnly="True"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                 <DataGridTextColumn
                     Binding="{Binding HoraFin}"
                     Header="Hora de fin"
+                    IsReadOnly="True"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
             </DataGrid.Columns>
         </DataGrid>

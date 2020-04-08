@@ -1,0 +1,30 @@
+﻿<Window x:Class="SIGEA.GenerarConstanciasEvento"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        mc:Ignorable="d"
+        Title="Generar constancias de evento" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="266,10,0,0" TextWrapping="Wrap" Text="Generar constancias de evento" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="21,68,0,0" TextWrapping="Wrap" Text="Asistentes del evento" VerticalAlignment="Top" FontSize="20"/>
+        <ListView x:Name="asistentesListView" ItemsSource="{Binding AsistentesLista}" Margin="0,100,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Nombre}"
+                        Header="Nombre" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Paterno}"
+                        Header="Apellido paterno" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Materno}"
+                        Header="Materno" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="generarSeleccionadoButton" Content="Generar seleccionado" HorizontalAlignment="Left" Margin="477,63,0,0" VerticalAlignment="Top" Width="176" Click="GenerarSeleccionadoButton_Click"/>
+        <Button x:Name="generarTodasButton" Content="Generar todas" HorizontalAlignment="Left" Margin="658,63,0,0" VerticalAlignment="Top" Width="124" Click="GenerarTodasButton_Click"/>
+    </Grid>
+</Window>

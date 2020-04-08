@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 
 namespace SIGEA {
     /// <summary>
-    /// Lógica de interacción para InicioSesion.xaml
+    /// Lógica de interacción para IniciarSesion.xaml
     /// </summary>
     public partial class IniciarSesion : Window {
         /// <summary>
@@ -45,7 +45,7 @@ namespace SIGEA {
                         Sesion.Cuenta = cuentaEncontrada;
                         Sesion.Revisor = cuentaEncontrada.Revisor.Count > 0 ? cuentaEncontrada.Revisor.First() : null;
                         Sesion.Organizador = cuentaEncontrada.Organizador.ToList().First();
-                        new ModificarActividad(1).Show();
+                        new MenuPrincipal().Show();
                         Close();
                     } else {
                         MessageBox.Show("No existe una cuenta registrada con estos datos.");
