@@ -1,31 +1,33 @@
 ﻿using SIGEABD;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIGEA {
+
     public partial class RegistrarEvento : Window {
+
         public RegistrarEvento () {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Metodo de acción que regresa a la ventana menu principal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelarButton_Click (object sender, RoutedEventArgs e) {
             MenuPrincipal menuPrincipal = new MenuPrincipal();
             menuPrincipal.Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Metodo de acción que registra el evento en la base de datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RegistrarButton_Click (object sender, RoutedEventArgs e) {
             if (VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
                 try {
@@ -39,6 +41,8 @@ namespace SIGEA {
                             id_organizador = Sesion.Organizador.id_organizador
                         }.Registrar()) {
                             MessageBox.Show("El Evento se registro correctamente");
+                            new MenuPrincipal().Show();
+                            this.Close();
                         } else {
                             MessageBox.Show("El Evento no se pudo registrar");
                         }
@@ -50,6 +54,10 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Metodo que verifica que ningun campo este vacío
+        /// </summary>
+        /// <returns>true si ningun campo esta vacio, false si al menos uno esta vacio</returns>
         public Boolean VerificarCampos () {
             if (!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(sedeTextBox.Text) &&
@@ -66,6 +74,10 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Metodo que Verficia que no existan caracteres raros
+        /// </summary>
+        /// <returns>true si todoe s correcto, false si llevan caracteres erroneos</returns>
         private bool VerificarDatos () {
             if (Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(sedeTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
@@ -77,6 +89,10 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Verficia que el evento no exista en el sistema
+        /// </summary>
+        /// <returns></returns>
         public Boolean VerificarExistencia () {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {

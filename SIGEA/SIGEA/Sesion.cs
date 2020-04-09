@@ -23,6 +23,11 @@ namespace SIGEA {
         public static Organizador Organizador;
 
         /// <summary>
+        /// Almacena la información del Evento que se esta utilizando
+        /// </summary>
+        public static Evento Evento;
+
+        /// <summary>
         /// Tipos que puede tomar una Actividad.
         /// </summary>
         public static readonly List<string> TIPOS_ACTIVIDAD = new List<string>() {

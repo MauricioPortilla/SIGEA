@@ -7,8 +7,6 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-
 
 namespace SIGEA {
 
@@ -20,13 +18,14 @@ namespace SIGEA {
 
         public RegistrarAsistente () {
             InitializeComponent();
-            CargarComboBox();
+            CargarTabla();
         }
 
-        private void EventoComboBox_SelectionChanged (object sender, SelectionChangedEventArgs e) {
-            CargarTabla((Evento) eventoComboBox.SelectedItem);
-        }
-
+        /// <summary>
+        /// Metodo que registra al asistente al evento con las distintas actividades
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RegistrarButton_Click (object sender, RoutedEventArgs e) {
             if (VerificarCampos() && VerificarDatos()) {
                 try {
@@ -65,30 +64,26 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Metodo que cierra la ventana
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelarButton_Click (object sender, RoutedEventArgs e) {
             MenuPrincipal ventanaMenu = new MenuPrincipal();
             ventanaMenu.Show();
             this.Close();
         }
 
-        private void CargarComboBox () {
+        /// <summary>
+        /// Metodo que carga la tabla de las actividades registradas para ese evento
+        /// </summary>
+        private void CargarTabla () {
             using (SigeaBD sigeaBD = new SigeaBD()) {
                 try {
-                    foreach (Evento evento in sigeaBD.Evento.ToList()) {
-                        eventoComboBox.Items.Add(evento);
-                    }
-                } catch (EntityException entityException) {
-                    MessageBox.Show("Error al cargar los eventos.");
-                    Console.WriteLine("EntityException@RegistrarArticulo->CargarEventos() -> " + entityException.Message);
-                }
-            }
-        }
-
-        private void CargarTabla (Evento eventoSeleccionado) {
-            using (SigeaBD sigeaBD = new SigeaBD()) {
-                try {
-                    foreach (Actividad actividad in sigeaBD.Evento.Find(
-                        eventoSeleccionado.id_evento).Actividad) {
+                    var eventoObtenido = sigeaBD.Evento.ToList().Find(
+                        evento => evento.id_evento == Sesion.Evento.id_evento);
+                    foreach (Actividad actividad in eventoObtenido.Actividad) {
                         ActividadesObservableCollection.Add(new ActividadTabla {
                             Seleccionado = false,
                             Nombre = actividad.nombre,
@@ -103,12 +98,19 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Struct para el llenado de las actividades
+        /// </summary>
         public struct ActividadTabla {
             public bool Seleccionado { get; set; }
             public string Nombre { get; set; }
             public string Descripcion { get; set; }
         }
 
+        /// <summary>
+        /// Metodo que verifica que ningun campo este vacio
+        /// </summary>
+        /// <returns></returns>
         public Boolean VerificarCampos () {
             if (!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(paternoTextBox.Text) &&
@@ -130,6 +132,10 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Metodo que busca caracteres raros en los datos introducidos
+        /// </summary>
+        /// <returns></returns>
         private bool VerificarDatos () {
             if (Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(paternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&

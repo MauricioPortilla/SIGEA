@@ -8,16 +8,36 @@ using System.Windows;
 namespace SIGEA {
 
     public partial class RegistrarMagistral : Window {
-        public RegistrarMagistral () {
+
+        private Actividad actividad;
+
+        /// <summary>
+        /// Se modifivo el constructor de la pantalla debido
+        /// a que se requiere una actividad para registrar
+        /// al magistral
+        /// </summary>
+        /// <param name="actividadSeleccionada"></param>
+        public RegistrarMagistral (Actividad actividadSeleccionada) {
+            this.actividad = actividadSeleccionada;
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Metodo que cierra la ventana
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelarButton_Click (object sender, RoutedEventArgs e) {
             MenuPrincipal menu = new MenuPrincipal();
             menu.Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Metodo que registra al magistral
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RegistrarButton_Click (object sender, RoutedEventArgs e) {
             if (VerificarCampos() && VerificarDatos()) {
                 try {
@@ -28,7 +48,8 @@ namespace SIGEA {
                             materno = maternoTextBox.Text,
                             correo = correoTextBox.Text,
                             telefono = telefonoTextBox.Text,
-                            lugarOrigen = lugarTextBox.Text
+                            lugarOrigen = lugarTextBox.Text,
+                            Actividad = this.actividad
                         }.Registrar()) {
                             MessageBox.Show("El MAgistral se registro correctamente");
                         } else {
@@ -48,6 +69,10 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Metodo que verifica que ningun campo este vacio
+        /// </summary>
+        /// <returns></returns>
         public Boolean VerificarCampos () {
             if (!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(paternoTextBox.Text) &&
@@ -62,6 +87,10 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Metodo que busca caracteres raros en los datos introducidos
+        /// </summary>
+        /// <returns></returns>
         private bool VerificarDatos () {
             if (Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(paternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&

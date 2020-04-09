@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIGEA"
         mc:Ignorable="d"
-        Title="Menú Principal" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Menú Principal" Height="450" Width="950" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Content="SISTEMA GESTOR DE EVENTOS ACADEMICOS" HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top" FontSize="36"/>
-        <DataGrid x:Name="eventosDataGrid" ItemsSource="{Binding EventosObservableCollection}" HorizontalAlignment="Left" Height="283" Margin="28,106,0,0" VerticalAlignment="Top" Width="594" CanUserAddRows="False" AutoGenerateColumns="False" CanUserSortColumns="True">
+        <Label Content="SISTEMA GESTOR DE EVENTOS ACADEMICOS" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" FontSize="36"/>
+        <DataGrid x:Name="eventosDataGrid" ItemsSource="{Binding EventosObservableCollection}" HorizontalAlignment="Left" Height="283" Margin="28,106,0,0" VerticalAlignment="Top" Width="744" CanUserAddRows="False" AutoGenerateColumns="False" CanUserSortColumns="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Binding="{Binding nombre}"
@@ -32,7 +32,8 @@
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="crearButton" Content="Crear Evento" HorizontalAlignment="Left" Margin="652,290,0,0" VerticalAlignment="Top" Width="130" Click="CrearButton_Click"/>
-        <Button x:Name="cerrarButton" Content="Cerrar Sesión" HorizontalAlignment="Left" Margin="652,357,0,0" VerticalAlignment="Top" Width="130" Foreground="#DD000000" BorderBrush="White" Background="White" Click="CerrarButton_Click"/>
+        <Button x:Name="crearButton" Content="Crear Evento" HorizontalAlignment="Left" Margin="792,290,0,0" VerticalAlignment="Top" Width="130" Click="CrearButton_Click"/>
+        <Button x:Name="cerrarButton" Content="Cerrar Sesión" HorizontalAlignment="Left" Margin="792,357,0,0" VerticalAlignment="Top" Width="130" Foreground="#DD000000" BorderBrush="White" Background="White" Click="CerrarButton_Click"/>
+        <Button x:Name="pruebaButton" Content="Botón Prueba" HorizontalAlignment="Left" Margin="792,227,0,0" VerticalAlignment="Top" Width="130" Click="PruebaButton_Click"/>
     </Grid>
 </Window>
