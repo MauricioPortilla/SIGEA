@@ -66,6 +66,10 @@
     <Compile Include="RegistrarComitePruebas.cs" />
     <Compile Include="RegistrarEventoPruebas.cs" />
     <Compile Include="RegistrarMagistralPruebas.cs" />
+    <Compile Include="ActualizarArticuloPruebas.cs" />
+    <Compile Include="EvaluarArticuloPruebas.cs" />
+    <Compile Include="AsignarOrganizadorComitePruebas.cs" />
+    <Compile Include="ModificarActtividadPruebas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
