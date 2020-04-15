@@ -24,7 +24,7 @@ namespace SIGEA {
     public partial class GenerarConstanciasEvento : Window {
         
         public List<AsistenteTabla> AsistentesLista { get; } = new List<AsistenteTabla>();
-        private string directorioSeleccionado = string.Empty;
+        public string DirectorioSeleccionado = string.Empty;
         private Evento evento;
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace SIGEA {
         private bool SeleccionarDirectorio() {
             Forms.FolderBrowserDialog exploradorArchivos = new Forms.FolderBrowserDialog();
             if (exploradorArchivos.ShowDialog() == Forms.DialogResult.OK) {
-                directorioSeleccionado = exploradorArchivos.SelectedPath;
+                DirectorioSeleccionado = exploradorArchivos.SelectedPath;
                 return true;
             }
             return false;
@@ -117,7 +117,7 @@ namespace SIGEA {
         /// del asistente en formato PNG.
         /// </summary>
         /// <param name="asistenteTabla">Asistente en tabla</param>
-        private void GenerarConstancia(AsistenteTabla asistenteTabla) {
+        public void GenerarConstancia(AsistenteTabla asistenteTabla) {
             var nombreAsistente = asistenteTabla.Paterno + " " + (asistenteTabla.Materno ?? "") + " " + asistenteTabla.Nombre;
             Bitmap constancia = new Bitmap(842, 595);
             Graphics g = Graphics.FromImage(constancia);
@@ -155,7 +155,7 @@ namespace SIGEA {
                 "Del " + evento.fechaInicio.ToShortDateString() + " al " + evento.fechaFin.ToShortDateString(), 
                 fontSubtitulos, sb, spaceX, spaceY
             );
-            constancia.Save(directorioSeleccionado + "/" + nombreAsistente + ".png", ImageFormat.Png);
+            constancia.Save(DirectorioSeleccionado + "/" + nombreAsistente + ".png", ImageFormat.Png);
         }
 
         /// <summary>
