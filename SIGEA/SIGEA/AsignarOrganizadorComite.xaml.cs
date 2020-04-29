@@ -43,10 +43,10 @@ namespace SIGEA {
                 }
             } catch (EntityException entityException) {
                 Console.WriteLine("EntityException@AsignarOrganizadorComite->CargarComites() -> " + entityException.Message);
-                MessageBox.Show("Error al cargar los comités.");
+                MessageBox.Show("Error al establecer una conexión.");
             } catch (Exception exception) {
                 Console.WriteLine("Exception@AsignarOrganizadorComite->CargarComites() -> " + exception.Message);
-                MessageBox.Show("Error al cargar los comités.");
+                MessageBox.Show("Error al establecer una conexión.");
             }
         }
 
@@ -72,10 +72,10 @@ namespace SIGEA {
                 organizadoresComboBox.IsEnabled = true;
             } catch (EntityException entityException) {
                 Console.WriteLine("EntityException@AsignarOrganizadorComite->CargarOrganizadores() -> " + entityException.Message);
-                MessageBox.Show("Error al cargar los organizadores.");
+                MessageBox.Show("Error al establecer una conexión.");
             } catch (Exception exception) {
                 Console.WriteLine("Exception@AsignarOrganizadorComite->CargarOrganizadores() -> " + exception.Message);
-                MessageBox.Show("Error al cargar los organizadores.");
+                MessageBox.Show("Error al establecer una conexión.");
             }
         }
 
@@ -114,9 +114,9 @@ namespace SIGEA {
                     Close();
                     return;
                 }
-                MessageBox.Show("Error al guardar la asignación.");
+                MessageBox.Show("Error al establecer una conexión.");
             } catch (Exception) {
-                MessageBox.Show("Error al guardar la asignación.");
+                MessageBox.Show("Error al establecer una conexión.");
             }
         }
 

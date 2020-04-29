@@ -62,7 +62,7 @@ namespace SIGEA {
                     }
                 }
             } catch (EntityException entityException) {
-                MessageBox.Show("Error al cargar los eventos.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Console.WriteLine("EntityException@RegistrarArticulo->CargarEventos() -> " + entityException.Message);
             }
         }
@@ -84,10 +84,10 @@ namespace SIGEA {
                     trackComboBox.IsEnabled = true;
                 }
             } catch (EntityException entityException) {
-                MessageBox.Show("Error al cargar los tracks.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Console.WriteLine("EntityException@RegistrarArticulo->eventoComboBox_SelectionChanged() -> " + entityException.Message);
             } catch (Exception exception) {
-                MessageBox.Show("Error al cargar los tracks.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Console.WriteLine("Exception@RegistrarArticulo->eventoComboBox_SelectionChanged() -> " + exception.Message);
             }
         }
@@ -213,12 +213,12 @@ namespace SIGEA {
                     Close();
                     return;
                 }
-                MessageBox.Show("Error al registrar el artículo.");
+                MessageBox.Show("Error al establecer una conexión.");
             } catch (DbUpdateException dbUpdateException) {
-                MessageBox.Show("Error al registrar el artículo.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Console.WriteLine("DbUpdateException@RegistrarArticulo->registrarButton_Click() -> " + dbUpdateException.Message);
             } catch (Exception exception) {
-                MessageBox.Show("Error al registrar el artículo.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Console.WriteLine("Exception@RegistrarArticulo->registrarButton_Click() -> " + exception.Message);
             }
         }

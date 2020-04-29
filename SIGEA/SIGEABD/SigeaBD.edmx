@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actividad">
           <Key>
             <PropertyRef Name="id_actividad" />
@@ -184,24 +184,12 @@
             <PropertyRef Name="id_pago" />
           </Key>
           <Property Name="id_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_actividad" Type="int" />
+          <Property Name="id_asistente" Type="int" />
+          <Property Name="id_evento" Type="int" />
+          <Property Name="id_articulo" Type="int" />
           <Property Name="cantidad" Type="float" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PagoArticulo">
-          <Key>
-            <PropertyRef Name="Articulo_id_articulo" />
-            <PropertyRef Name="Pago_id_pago" />
-          </Key>
-          <Property Name="Articulo_id_articulo" Type="int" Nullable="false" />
-          <Property Name="Pago_id_pago" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PagoAsistente">
-          <Key>
-            <PropertyRef Name="Asistente_id_asistente" />
-            <PropertyRef Name="Pago_id_pago" />
-          </Key>
-          <Property Name="Asistente_id_asistente" Type="int" Nullable="false" />
-          <Property Name="Pago_id_pago" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Presentacion">
           <Key>
@@ -447,6 +435,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Pago__id_activid__3C34F16F">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pago__id_articul__3F115E1A">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pago__id_asisten__3D2915A8">
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asistente">
+              <PropertyRef Name="id_asistente" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="id_asistente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pago__id_evento__3E1D39E1">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Presentac__id_ac__59FA5E80">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
           <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="*" />
@@ -591,54 +627,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PagoArticulo_Articulo">
-          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
-          <End Role="PagoArticulo" Type="Self.PagoArticulo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Articulo">
-              <PropertyRef Name="id_articulo" />
-            </Principal>
-            <Dependent Role="PagoArticulo">
-              <PropertyRef Name="Articulo_id_articulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PagoArticulo_Pago">
-          <End Role="Pago" Type="Self.Pago" Multiplicity="1" />
-          <End Role="PagoArticulo" Type="Self.PagoArticulo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pago">
-              <PropertyRef Name="id_pago" />
-            </Principal>
-            <Dependent Role="PagoArticulo">
-              <PropertyRef Name="Pago_id_pago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PagoAsistente_Asistente">
-          <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
-          <End Role="PagoAsistente" Type="Self.PagoAsistente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Asistente">
-              <PropertyRef Name="id_asistente" />
-            </Principal>
-            <Dependent Role="PagoAsistente">
-              <PropertyRef Name="Asistente_id_asistente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PagoAsistente_Pago">
-          <End Role="Pago" Type="Self.Pago" Multiplicity="1" />
-          <End Role="PagoAsistente" Type="Self.PagoAsistente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pago">
-              <PropertyRef Name="id_pago" />
-            </Principal>
-            <Dependent Role="PagoAsistente">
-              <PropertyRef Name="Pago_id_pago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PresentacionArticulo_Articulo">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
           <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
@@ -706,8 +694,6 @@
           <EntitySet Name="Magistral" EntityType="Self.Magistral" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organizador" EntityType="Self.Organizador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PagoArticulo" EntityType="Self.PagoArticulo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PagoAsistente" EntityType="Self.PagoAsistente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Presentacion" EntityType="Self.Presentacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PresentacionArticulo" EntityType="Self.PresentacionArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Revisor" EntityType="Self.Revisor" Schema="dbo" store:Type="Tables" />
@@ -775,6 +761,22 @@
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Organizador" EntitySet="Organizador" />
           </AssociationSet>
+          <AssociationSet Name="FK__Pago__id_activid__3C34F16F" Association="Self.FK__Pago__id_activid__3C34F16F">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pago__id_articul__3F115E1A" Association="Self.FK__Pago__id_articul__3F115E1A">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pago__id_asisten__3D2915A8" Association="Self.FK__Pago__id_asisten__3D2915A8">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pago__id_evento__3E1D39E1" Association="Self.FK__Pago__id_evento__3E1D39E1">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
           <AssociationSet Name="FK__Presentac__id_ac__59FA5E80" Association="Self.FK__Presentac__id_ac__59FA5E80">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Presentacion" EntitySet="Presentacion" />
@@ -823,22 +825,6 @@
             <End Role="Magistral" EntitySet="Magistral" />
             <End Role="GastoMagistral" EntitySet="GastoMagistral" />
           </AssociationSet>
-          <AssociationSet Name="FK_PagoArticulo_Articulo" Association="Self.FK_PagoArticulo_Articulo">
-            <End Role="Articulo" EntitySet="Articulo" />
-            <End Role="PagoArticulo" EntitySet="PagoArticulo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PagoArticulo_Pago" Association="Self.FK_PagoArticulo_Pago">
-            <End Role="Pago" EntitySet="Pago" />
-            <End Role="PagoArticulo" EntitySet="PagoArticulo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PagoAsistente_Asistente" Association="Self.FK_PagoAsistente_Asistente">
-            <End Role="Asistente" EntitySet="Asistente" />
-            <End Role="PagoAsistente" EntitySet="PagoAsistente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PagoAsistente_Pago" Association="Self.FK_PagoAsistente_Pago">
-            <End Role="Pago" EntitySet="Pago" />
-            <End Role="PagoAsistente" EntitySet="PagoAsistente" />
-          </AssociationSet>
           <AssociationSet Name="FK_PresentacionArticulo_Articulo" Association="Self.FK_PresentacionArticulo_Articulo">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
@@ -856,7 +842,8 @@
             <End Role="TareaActividad" EntitySet="TareaActividad" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIGEAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -869,12 +856,13 @@
           <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="costo" Type="Double" Nullable="false" />
           <NavigationProperty Name="Evento" Relationship="Self.FK__Actividad__id_ev__534D60F1" FromRole="Actividad" ToRole="Evento" />
           <NavigationProperty Name="Magistral" Relationship="Self.FK__Magistral__id_ac__5CD6CB2B" FromRole="Actividad" ToRole="Magistral" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_activid__3C34F16F" FromRole="Actividad" ToRole="Pago" />
           <NavigationProperty Name="Presentacion" Relationship="Self.FK__Presentac__id_ac__59FA5E80" FromRole="Actividad" ToRole="Presentacion" />
           <NavigationProperty Name="Asistente" Relationship="Self.AsistenteActividad" FromRole="Actividad" ToRole="Asistente" />
           <NavigationProperty Name="Tarea" Relationship="Self.TareaActividad" FromRole="Actividad" ToRole="Tarea" />
-          <Property Name="costo" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="Adscripcion">
           <Key>
@@ -902,8 +890,8 @@
           <Property Name="archivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Track" Relationship="Self.FK__Articulo__id_tra__74AE54BC" FromRole="Articulo" ToRole="Track" />
           <NavigationProperty Name="AutorArticulo" Relationship="Self.FK__AutorArti__id_ar__02084FDA" FromRole="Articulo" ToRole="AutorArticulo" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_articul__3F115E1A" FromRole="Articulo" ToRole="Pago" />
           <NavigationProperty Name="RevisorArticulo" Relationship="Self.FK__RevisorAr__id_ar__08B54D69" FromRole="Articulo" ToRole="RevisorArticulo" />
-          <NavigationProperty Name="Pago" Relationship="Self.PagoArticulo" FromRole="Articulo" ToRole="Pago" />
           <NavigationProperty Name="Presentacion" Relationship="Self.PresentacionArticulo" FromRole="Articulo" ToRole="Presentacion" />
         </EntityType>
         <EntityType Name="Asistente">
@@ -917,9 +905,9 @@
           <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Adscripcion" Relationship="Self.FK__Asistente__id_ad__656C112C" FromRole="Asistente" ToRole="Adscripcion" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_asisten__3D2915A8" FromRole="Asistente" ToRole="Pago" />
           <NavigationProperty Name="Actividad" Relationship="Self.AsistenteActividad" FromRole="Asistente" ToRole="Actividad" />
-          <NavigationProperty Name="Pago" Relationship="Self.PagoAsistente" FromRole="Asistente" ToRole="Pago" />
-          <NavigationProperty Name="Evento" Relationship="SIGEAModel.AsistenteEvento" FromRole="Asistente" ToRole="Evento" />
+          <NavigationProperty Name="Evento" Relationship="Self.AsistenteEvento" FromRole="Asistente" ToRole="Evento" />
         </EntityType>
         <EntityType Name="Autor">
           <Key>
@@ -997,8 +985,9 @@
           <NavigationProperty Name="Comite" Relationship="Self.FK__Comite__id_event__0F624AF8" FromRole="Evento" ToRole="Comite" />
           <NavigationProperty Name="Organizador" Relationship="Self.FK__Evento__id_organ__3C69FB99" FromRole="Evento" ToRole="Organizador" />
           <NavigationProperty Name="Gasto" Relationship="Self.FK__Gasto__id_evento__403A8C7D" FromRole="Evento" ToRole="Gasto" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_evento__3E1D39E1" FromRole="Evento" ToRole="Pago" />
           <NavigationProperty Name="Track" Relationship="Self.FK__Track__id_evento__71D1E811" FromRole="Evento" ToRole="Track" />
-          <NavigationProperty Name="Asistente" Relationship="SIGEAModel.AsistenteEvento" FromRole="Evento" ToRole="Asistente" />
+          <NavigationProperty Name="Asistente" Relationship="Self.AsistenteEvento" FromRole="Evento" ToRole="Asistente" />
         </EntityType>
         <EntityType Name="Gasto">
           <Key>
@@ -1048,10 +1037,16 @@
             <PropertyRef Name="id_pago" />
           </Key>
           <Property Name="id_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_actividad" Type="Int32" />
+          <Property Name="id_asistente" Type="Int32" />
+          <Property Name="id_evento" Type="Int32" />
+          <Property Name="id_articulo" Type="Int32" />
           <Property Name="cantidad" Type="Double" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Articulo" Relationship="Self.PagoArticulo" FromRole="Pago" ToRole="Articulo" />
-          <NavigationProperty Name="Asistente" Relationship="Self.PagoAsistente" FromRole="Pago" ToRole="Asistente" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Actividad" Relationship="Self.FK__Pago__id_activid__3C34F16F" FromRole="Pago" ToRole="Actividad" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK__Pago__id_articul__3F115E1A" FromRole="Pago" ToRole="Articulo" />
+          <NavigationProperty Name="Asistente" Relationship="Self.FK__Pago__id_asisten__3D2915A8" FromRole="Pago" ToRole="Asistente" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Pago__id_evento__3E1D39E1" FromRole="Pago" ToRole="Evento" />
         </EntityType>
         <EntityType Name="Presentacion">
           <Key>
@@ -1136,6 +1131,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Pago__id_activid__3C34F16F">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Presentac__id_ac__59FA5E80">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
           <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="*" />
@@ -1196,6 +1203,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Pago__id_articul__3F115E1A">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__RevisorAr__id_ar__08B54D69">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
           <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
@@ -1205,6 +1224,18 @@
             </Principal>
             <Dependent Role="RevisorArticulo">
               <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pago__id_asisten__3D2915A8">
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asistente">
+              <PropertyRef Name="id_asistente" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="id_asistente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1316,6 +1347,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Pago__id_evento__3E1D39E1">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Track__id_evento__71D1E811">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="Track" Type="Self.Track" Multiplicity="*" />
@@ -1344,6 +1387,10 @@
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
           <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
         </Association>
+        <Association Name="AsistenteEvento">
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+        </Association>
         <Association Name="ComiteOrganizador">
           <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
@@ -1351,14 +1398,6 @@
         <Association Name="GastoMagistral">
           <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
           <End Role="Magistral" Type="Self.Magistral" Multiplicity="*" />
-        </Association>
-        <Association Name="PagoArticulo">
-          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
-          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
-        </Association>
-        <Association Name="PagoAsistente">
-          <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
-          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
         </Association>
         <Association Name="PresentacionArticulo">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
@@ -1396,6 +1435,10 @@
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Magistral" EntitySet="Magistral" />
           </AssociationSet>
+          <AssociationSet Name="FK__Pago__id_activid__3C34F16F" Association="Self.FK__Pago__id_activid__3C34F16F">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
           <AssociationSet Name="FK__Presentac__id_ac__59FA5E80" Association="Self.FK__Presentac__id_ac__59FA5E80">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Presentacion" EntitySet="Presentacion" />
@@ -1416,9 +1459,17 @@
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="AutorArticulo" EntitySet="AutorArticulo" />
           </AssociationSet>
+          <AssociationSet Name="FK__Pago__id_articul__3F115E1A" Association="Self.FK__Pago__id_articul__3F115E1A">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
           <AssociationSet Name="FK__RevisorAr__id_ar__08B54D69" Association="Self.FK__RevisorAr__id_ar__08B54D69">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pago__id_asisten__3D2915A8" Association="Self.FK__Pago__id_asisten__3D2915A8">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
           <AssociationSet Name="FK__AutorArti__id_au__01142BA1" Association="Self.FK__AutorArti__id_au__01142BA1">
             <End Role="Autor" EntitySet="Autor" />
@@ -1456,6 +1507,10 @@
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Gasto" EntitySet="Gasto" />
           </AssociationSet>
+          <AssociationSet Name="FK__Pago__id_evento__3E1D39E1" Association="Self.FK__Pago__id_evento__3E1D39E1">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
           <AssociationSet Name="FK__Track__id_evento__71D1E811" Association="Self.FK__Track__id_evento__71D1E811">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Track" EntitySet="Track" />
@@ -1468,6 +1523,10 @@
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Asistente" EntitySet="Asistente" />
           </AssociationSet>
+          <AssociationSet Name="AsistenteEvento" Association="Self.AsistenteEvento">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
           <AssociationSet Name="ComiteOrganizador" Association="Self.ComiteOrganizador">
             <End Role="Comite" EntitySet="Comite" />
             <End Role="Organizador" EntitySet="Organizador" />
@@ -1475,14 +1534,6 @@
           <AssociationSet Name="GastoMagistral" Association="Self.GastoMagistral">
             <End Role="Gasto" EntitySet="Gasto" />
             <End Role="Magistral" EntitySet="Magistral" />
-          </AssociationSet>
-          <AssociationSet Name="PagoArticulo" Association="Self.PagoArticulo">
-            <End Role="Articulo" EntitySet="Articulo" />
-            <End Role="Pago" EntitySet="Pago" />
-          </AssociationSet>
-          <AssociationSet Name="PagoAsistente" Association="Self.PagoAsistente">
-            <End Role="Asistente" EntitySet="Asistente" />
-            <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
           <AssociationSet Name="PresentacionArticulo" Association="Self.PresentacionArticulo">
             <End Role="Articulo" EntitySet="Articulo" />
@@ -1492,15 +1543,7 @@
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Tarea" EntitySet="Tarea" />
           </AssociationSet>
-          <AssociationSet Name="AsistenteEvento" Association="SIGEAModel.AsistenteEvento">
-            <End Role="Asistente" EntitySet="Asistente" />
-            <End Role="Evento" EntitySet="Evento" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="AsistenteEvento">
-          <End Type="SIGEAModel.Asistente" Role="Asistente" Multiplicity="*" />
-          <End Type="SIGEAModel.Evento" Role="Evento" Multiplicity="*" />
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1510,12 +1553,12 @@
           <EntitySetMapping Name="Actividad">
             <EntityTypeMapping TypeName="SIGEAModel.Actividad">
               <MappingFragment StoreEntitySet="Actividad">
-                <ScalarProperty Name="costo" ColumnName="costo" />
                 <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
                 <ScalarProperty Name="id_evento" ColumnName="id_evento" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1665,6 +1708,10 @@
             <EntityTypeMapping TypeName="SIGEAModel.Pago">
               <MappingFragment StoreEntitySet="Pago">
                 <ScalarProperty Name="id_pago" ColumnName="id_pago" />
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+                <ScalarProperty Name="id_asistente" ColumnName="id_asistente" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
               </MappingFragment>
@@ -1731,6 +1778,14 @@
               <ScalarProperty Name="id_asistente" ColumnName="Asistente_id_asistente" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="AsistenteEvento" TypeName="SIGEAModel.AsistenteEvento" StoreEntitySet="AsistenteEvento">
+            <EndProperty Name="Asistente">
+              <ScalarProperty Name="id_asistente" ColumnName="id_asistente" />
+            </EndProperty>
+            <EndProperty Name="Evento">
+              <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="ComiteOrganizador" TypeName="SIGEAModel.ComiteOrganizador" StoreEntitySet="ComiteOrganizador">
             <EndProperty Name="Comite">
               <ScalarProperty Name="id_comite" ColumnName="id_comite" />
@@ -1747,22 +1802,6 @@
               <ScalarProperty Name="id_magistral" ColumnName="Magistral_id_magistral" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="PagoArticulo" TypeName="SIGEAModel.PagoArticulo" StoreEntitySet="PagoArticulo">
-            <EndProperty Name="Articulo">
-              <ScalarProperty Name="id_articulo" ColumnName="Articulo_id_articulo" />
-            </EndProperty>
-            <EndProperty Name="Pago">
-              <ScalarProperty Name="id_pago" ColumnName="Pago_id_pago" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="PagoAsistente" TypeName="SIGEAModel.PagoAsistente" StoreEntitySet="PagoAsistente">
-            <EndProperty Name="Asistente">
-              <ScalarProperty Name="id_asistente" ColumnName="Asistente_id_asistente" />
-            </EndProperty>
-            <EndProperty Name="Pago">
-              <ScalarProperty Name="id_pago" ColumnName="Pago_id_pago" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="PresentacionArticulo" TypeName="SIGEAModel.PresentacionArticulo" StoreEntitySet="PresentacionArticulo">
             <EndProperty Name="Articulo">
               <ScalarProperty Name="id_articulo" ColumnName="Articulo_id_articulo" />
@@ -1777,14 +1816,6 @@
             </EndProperty>
             <EndProperty Name="Tarea">
               <ScalarProperty Name="id_tarea" ColumnName="Tarea_id_tarea" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="AsistenteEvento" TypeName="SIGEAModel.AsistenteEvento" StoreEntitySet="AsistenteEvento">
-            <EndProperty Name="Evento">
-              <ScalarProperty Name="id_evento" ColumnName="id_evento" />
-            </EndProperty>
-            <EndProperty Name="Asistente">
-              <ScalarProperty Name="id_asistente" ColumnName="id_asistente" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

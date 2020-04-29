@@ -51,7 +51,7 @@ namespace SIGEA {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
                     this.actividad = sigeaBD.Actividad.Find(id_actividad);
                     if (actividad == null) {
-                        MessageBox.Show("Error al cargar la actividad.");
+                        MessageBox.Show("Error al establecer una conexión.");
                         return;
                     }
                     nombreTextBox.Text = actividad.nombre;
@@ -71,7 +71,7 @@ namespace SIGEA {
                     }
                 }
             } catch (Exception) {
-                MessageBox.Show("Error al cargar la actividad.");
+                MessageBox.Show("Error al establecer una conexión.");
             }
         }
 
@@ -229,9 +229,9 @@ namespace SIGEA {
                     Close();
                     return;
                 }
-                MessageBox.Show("Error al registrar la actividad.");
+                MessageBox.Show("Error al establecer una conexión.");
             } catch (Exception) {
-                MessageBox.Show("Error al registrar la actividad.");
+                MessageBox.Show("Error al establecer una conexión.");
             }
         }
     }

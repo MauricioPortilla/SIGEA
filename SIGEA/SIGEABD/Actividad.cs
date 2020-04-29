@@ -18,6 +18,7 @@ namespace SIGEABD
         public Actividad()
         {
             this.Magistral = new HashSet<Magistral>();
+            this.Pago = new HashSet<Pago>();
             this.Presentacion = new HashSet<Presentacion>();
             this.Asistente = new HashSet<Asistente>();
             this.Tarea = new HashSet<Tarea>();
@@ -33,6 +34,8 @@ namespace SIGEABD
         public virtual Evento Evento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Magistral> Magistral { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pago> Pago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Presentacion> Presentacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

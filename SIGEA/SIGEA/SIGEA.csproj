@@ -101,6 +101,13 @@
     <Compile Include="GenerarConstanciasEvento.xaml.cs">
       <DependentUpon>GenerarConstanciasEvento.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GenerarProgramaEvento.xaml.cs">
+      <DependentUpon>GenerarProgramaEvento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarReporteIngresosActividad.xaml.cs">
+      <DependentUpon>GenerarReporteIngresosActividad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HerramientasGraficas.cs" />
     <Compile Include="Herramientas.cs" />
     <Compile Include="MenuPrincipal.xaml.cs">
       <DependentUpon>MenuPrincipal.xaml</DependentUpon>
@@ -154,6 +161,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GenerarConstanciasEvento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GenerarProgramaEvento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GenerarReporteIngresosActividad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

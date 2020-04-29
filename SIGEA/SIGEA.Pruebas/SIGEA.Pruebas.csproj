@@ -74,6 +74,8 @@
     <Compile Include="AsignarOrganizadorComitePruebas.cs" />
     <Compile Include="ModificarActtividadPruebas.cs" />
     <Compile Include="GenerarConstanciasEventoPruebas.cs" />
+    <Compile Include="GenerarProgramaEventoPruebas.cs" />
+    <Compile Include="GenerarReporteIngresosActividadPruebas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

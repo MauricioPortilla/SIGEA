@@ -1,0 +1,34 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        x:Class="SIGEA.GenerarProgramaEvento"
+        mc:Ignorable="d"
+        Title="Generar programa del evento" Height="425.626" Width="688.438">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="213,10,0,0" TextWrapping="Wrap" Text="Generar programa del evento" VerticalAlignment="Top" FontSize="20"/>
+        <Rectangle Fill="#FFF4F4F5" Margin="10,45,10,50" Stroke="Black"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"><Run Text="Presentación de activida"/><Run Text="d"/><Run Text="es"/></TextBlock>
+        <ListView x:Name="actividadPresentacionListView" ItemsSource="{Binding ActividadPresentacionList}" Margin="23,85,25,97">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Nombre}"
+                        Header="Nombre" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Fecha}"
+                        Header="Fecha" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding HoraInicio}"
+                        Header="Hora de Inicio" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding HoraFin}"
+                        Header="Hora de Fin" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="generarProgramaButton" Content="Generar programa" Margin="0,0,10,10" Click="GenerarProgramaButton_Click" Height="32" HorizontalAlignment="Right" Width="165" VerticalAlignment="Bottom"/>
+    </Grid>
+</Window>
