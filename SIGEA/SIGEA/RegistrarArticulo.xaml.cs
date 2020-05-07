@@ -8,6 +8,7 @@ using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -73,9 +74,13 @@ namespace SIGEA {
         /// <param name="sender">Combobox de eventos</param>
         /// <param name="e">Evento</param>
         private void eventoComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            CargarTracks();
+        }
+
+        private void CargarTracks() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-                    Evento eventoSeleccionado = (Evento)eventoComboBox.SelectedItem;
+                    Evento eventoSeleccionado = (Evento) eventoComboBox.SelectedItem;
                     var tracks = sigeaBD.Track.Where(trackEvento => trackEvento.Evento.id_evento == eventoSeleccionado.id_evento).ToList();
                     trackComboBox.Items.Clear();
                     foreach (Track track in tracks) {
@@ -182,6 +187,10 @@ namespace SIGEA {
                 MessageBox.Show("Faltan campos por completar.");
                 return;
             }
+            if (!ValidarDatos()) {
+                MessageBox.Show("Debes introducir datos válidos.");
+                return;
+            }
             if (string.IsNullOrWhiteSpace(archivoSeleccionado)) {
                 MessageBox.Show("Debes seleccionar el archivo que incluye tu artículo.");
                 return;
@@ -235,6 +244,14 @@ namespace SIGEA {
                 eventoComboBox.SelectedIndex != -1 &&
                 trackComboBox.SelectedIndex != -1 &&
                 AutoresList.Count > 0;
+        }
+
+        /// <summary>
+        /// Verifica que los campos contengan datos válidos.
+        /// </summary>
+        /// <returns>true si son válidos; false si no</returns>
+        private bool ValidarDatos() {
+            return Regex.IsMatch(añoCreacionTextBox.Text, @"^\d+$");
         }
     }
 }
