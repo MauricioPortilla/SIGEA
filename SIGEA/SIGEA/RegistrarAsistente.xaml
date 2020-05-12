@@ -6,24 +6,28 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Registrar Asistente" Height="520" Width="790" WindowStartupLocation="CenterScreen">
+        Title="Registrar Asistente" Height="608.5" Width="833.5" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Registrar Asistente" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.191,-3.963" FontSize="20"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="436" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="310"/>
-        <Label Content="Datos del Asistente" HorizontalAlignment="Left" Margin="23,64,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="37" Margin="23,104,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="paternoTextBox" HorizontalAlignment="Left" Height="37" Margin="23,146,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Apellido Paterno" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="maternoTextBox" HorizontalAlignment="Left" Height="37" Margin="23,188,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Apellido Materno" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="correoTextBox" HorizontalAlignment="Left" Height="37" Margin="23,230,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Correo Electrónico" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <Label Content="Datos de la Adscripción" HorizontalAlignment="Left" Margin="23,272,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="dependenciaTextBox" HorizontalAlignment="Left" Height="37" Margin="23,312,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="direccionTextBox" HorizontalAlignment="Left" Height="37" Margin="23,354,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Dirección" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="telefonoTextBox" HorizontalAlignment="Left" Height="37" Margin="23,396,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Número de Teléfono" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="puestoTextBox" HorizontalAlignment="Left" Height="37" Margin="23,438,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Puesto" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="380" Margin="335,53,0,0" Stroke="Black" VerticalAlignment="Top" Width="437"/>
-        <Label Content="Actividades " HorizontalAlignment="Left" Margin="346,64,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <DataGrid x:Name="actividadDataGrid" HorizontalAlignment="Left" Height="312" Margin="351,104,0,0" VerticalAlignment="Top" Width="407" CanUserAddRows="False"/>
-        <Button x:Name="registrarButton" Content="Registrar" HorizontalAlignment="Left" Margin="667,449,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.494,0.466" Click="RegistrarButton_Click"/>
-        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="523,449,0,0" VerticalAlignment="Top" Width="101" Background="White" Foreground="#DD000000" BorderBrush="White" Click="CancelarButton_Click"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="222" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="310"/>
+        <Label Content="Datos del Asistente" HorizontalAlignment="Left" Margin="19,56,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="37" Margin="21,94,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="paternoTextBox" HorizontalAlignment="Left" Height="37" Margin="19,136,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Apellido Paterno" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="maternoTextBox" HorizontalAlignment="Left" Height="37" Margin="19,178,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Apellido Materno" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="correoTextBox" HorizontalAlignment="Left" Height="37" Margin="19,220,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Correo Electrónico" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="231" Margin="10,291,0,0" Stroke="Black" VerticalAlignment="Top" Width="310"/>
+        <Label Content="Datos de la Adscripción" HorizontalAlignment="Left" Margin="19,301,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="dependenciaTextBox" HorizontalAlignment="Left" Height="37" Margin="19,341,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="direccionTextBox" HorizontalAlignment="Left" Height="37" Margin="19,387,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Dirección" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="telefonoTextBox" HorizontalAlignment="Left" Height="37" Margin="19,429,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Número de Teléfono" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="puestoTextBox" HorizontalAlignment="Left" Height="38" Margin="21,471,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Puesto" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="222" Margin="335,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="475"/>
+        <Label Content="Actividades " HorizontalAlignment="Left" Margin="351,56,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <DataGrid x:Name="actividadDataGrid" HorizontalAlignment="Left" Height="161" Margin="351,96,0,0" VerticalAlignment="Top" Width="446" CanUserAddRows="False"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="231" Margin="335,291,0,0" Stroke="Black" VerticalAlignment="Top" Width="475"/>
+        <Button x:Name="registrarButton" Content="Registrar" HorizontalAlignment="Left" Margin="709,532,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.494,0.466" Click="RegistrarButton_Click"/>
+        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="548,532,0,0" VerticalAlignment="Top" Width="102" Background="White" Foreground="#DD000000" BorderBrush="White" Click="CancelarButton_Click"/>
+        <Label Content="Actividades Seleccionadas" HorizontalAlignment="Left" Margin="351,301,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <DataGrid x:Name="actividadSeleccionadaDataGrid" HorizontalAlignment="Left" Height="161" Margin="351,348,0,0" VerticalAlignment="Top" Width="446" CanUserAddRows="False"/>
     </Grid>
 </Window>
