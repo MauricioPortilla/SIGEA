@@ -20,6 +20,7 @@ namespace SIGEABD
             this.Actividad = new HashSet<Actividad>();
             this.Comite = new HashSet<Comite>();
             this.Gasto = new HashSet<Gasto>();
+            this.Pago = new HashSet<Pago>();
             this.Track = new HashSet<Track>();
             this.Asistente = new HashSet<Asistente>();
         }
@@ -39,6 +40,8 @@ namespace SIGEABD
         public virtual Organizador Organizador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Gasto> Gasto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pago> Pago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Track> Track { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

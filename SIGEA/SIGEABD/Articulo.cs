@@ -18,8 +18,8 @@ namespace SIGEABD
         public Articulo()
         {
             this.AutorArticulo = new HashSet<AutorArticulo>();
-            this.RevisorArticulo = new HashSet<RevisorArticulo>();
             this.Pago = new HashSet<Pago>();
+            this.RevisorArticulo = new HashSet<RevisorArticulo>();
             this.Presentacion = new HashSet<Presentacion>();
         }
     
@@ -36,9 +36,9 @@ namespace SIGEABD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AutorArticulo> AutorArticulo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RevisorArticulo> RevisorArticulo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pago> Pago { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RevisorArticulo> RevisorArticulo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Presentacion> Presentacion { get; set; }
     }

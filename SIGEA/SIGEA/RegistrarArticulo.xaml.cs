@@ -8,6 +8,7 @@ using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -62,7 +63,7 @@ namespace SIGEA {
                     }
                 }
             } catch (EntityException entityException) {
-                MessageBox.Show("Error al cargar los eventos.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Console.WriteLine("EntityException@RegistrarArticulo->CargarEventos() -> " + entityException.Message);
             }
         }
@@ -73,9 +74,13 @@ namespace SIGEA {
         /// <param name="sender">Combobox de eventos</param>
         /// <param name="e">Evento</param>
         private void eventoComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            CargarTracks();
+        }
+
+        private void CargarTracks() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-                    Evento eventoSeleccionado = (Evento)eventoComboBox.SelectedItem;
+                    Evento eventoSeleccionado = (Evento) eventoComboBox.SelectedItem;
                     var tracks = sigeaBD.Track.Where(trackEvento => trackEvento.Evento.id_evento == eventoSeleccionado.id_evento).ToList();
                     trackComboBox.Items.Clear();
                     foreach (Track track in tracks) {
@@ -84,10 +89,10 @@ namespace SIGEA {
                     trackComboBox.IsEnabled = true;
                 }
             } catch (EntityException entityException) {
-                MessageBox.Show("Error al cargar los tracks.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Console.WriteLine("EntityException@RegistrarArticulo->eventoComboBox_SelectionChanged() -> " + entityException.Message);
             } catch (Exception exception) {
-                MessageBox.Show("Error al cargar los tracks.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Console.WriteLine("Exception@RegistrarArticulo->eventoComboBox_SelectionChanged() -> " + exception.Message);
             }
         }
@@ -182,6 +187,10 @@ namespace SIGEA {
                 MessageBox.Show("Faltan campos por completar.");
                 return;
             }
+            if (!ValidarDatos()) {
+                MessageBox.Show("Debes introducir datos válidos.");
+                return;
+            }
             if (string.IsNullOrWhiteSpace(archivoSeleccionado)) {
                 MessageBox.Show("Debes seleccionar el archivo que incluye tu artículo.");
                 return;
@@ -213,12 +222,12 @@ namespace SIGEA {
                     Close();
                     return;
                 }
-                MessageBox.Show("Error al registrar el artículo.");
+                MessageBox.Show("Error al establecer una conexión.");
             } catch (DbUpdateException dbUpdateException) {
-                MessageBox.Show("Error al registrar el artículo.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Console.WriteLine("DbUpdateException@RegistrarArticulo->registrarButton_Click() -> " + dbUpdateException.Message);
             } catch (Exception exception) {
-                MessageBox.Show("Error al registrar el artículo.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Console.WriteLine("Exception@RegistrarArticulo->registrarButton_Click() -> " + exception.Message);
             }
         }
@@ -235,6 +244,14 @@ namespace SIGEA {
                 eventoComboBox.SelectedIndex != -1 &&
                 trackComboBox.SelectedIndex != -1 &&
                 AutoresList.Count > 0;
+        }
+
+        /// <summary>
+        /// Verifica que los campos contengan datos válidos.
+        /// </summary>
+        /// <returns>true si son válidos; false si no</returns>
+        private bool ValidarDatos() {
+            return Regex.IsMatch(añoCreacionTextBox.Text, @"^\d+$");
         }
     }
 }

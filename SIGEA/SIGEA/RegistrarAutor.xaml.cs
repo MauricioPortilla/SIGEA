@@ -48,7 +48,7 @@ namespace SIGEA {
         /// Verifica que los campos tengan datos válidos.
         /// </summary>
         /// <returns>true si tienen datos válidos; false si no</returns>
-        private bool VerificarDatos() {
+        private bool ValidarDatos() {
             return Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(paternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(maternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
@@ -68,7 +68,7 @@ namespace SIGEA {
             if (!VerificarCampos()) {
                 MessageBox.Show("Faltan campos por completar.");
                 return;
-            } else if (!VerificarDatos()) {
+            } else if (!ValidarDatos()) {
                 MessageBox.Show("Debes introducir datos válidos.");
                 return;
             }

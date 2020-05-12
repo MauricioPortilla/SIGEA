@@ -35,7 +35,7 @@ namespace SIGEA {
                     articulo = sigeaBD.Articulo.Find(id_articulo);
                 }
             } catch (Exception) {
-                MessageBox.Show("Ocurrió un error al cargar el artículo.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Close();
                 return;
             }
@@ -72,7 +72,7 @@ namespace SIGEA {
                     observacionesTextBox.Text = evaluacionArticulo.observaciones;
                 });
             } catch (Exception) {
-                MessageBox.Show("Ocurrió un error al cargar la evaluación.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Close();
             }
         }
@@ -103,7 +103,7 @@ namespace SIGEA {
                     estado = "En proceso"
                 };
                 if (!evaluacionArticulo.Registrar(Sesion.Revisor.id_revisor, id_articulo)) {
-                    MessageBox.Show("Ocurrió un error al realizar la evaluación.");
+                    MessageBox.Show("Error al establecer una conexión.");
                     return;
                 }
             } else {
@@ -112,7 +112,7 @@ namespace SIGEA {
                 evaluacionArticulo.observaciones = observacionesTextBox.Text;
                 evaluacionArticulo.fecha = DateTime.Now;
                 if (!evaluacionArticulo.Actualizar()) {
-                    MessageBox.Show("Ocurrió un error al realizar la evaluación.");
+                    MessageBox.Show("Error al establecer una conexión.");
                     return;
                 }
             }
@@ -151,7 +151,7 @@ namespace SIGEA {
                     estado = "Finalizada"
                 };
                 if (!evaluacionArticulo.Registrar(Sesion.Revisor.id_revisor, id_articulo)) {
-                    MessageBox.Show("Ocurrió un error al realizar la evaluación.");
+                    MessageBox.Show("Error al establecer una conexión.");
                     return;
                 }
             } else {
@@ -161,7 +161,7 @@ namespace SIGEA {
                 evaluacionArticulo.fecha = DateTime.Now;
                 evaluacionArticulo.estado = "Finalizada";
                 if (!evaluacionArticulo.Actualizar()) {
-                    MessageBox.Show("Ocurrió un error al realizar la evaluación.");
+                    MessageBox.Show("Error al establecer una conexión.");
                     return;
                 }
             }
