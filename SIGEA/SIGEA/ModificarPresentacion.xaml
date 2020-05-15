@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Modificar Presentacion" Height="211.692" Width="551.316">
+        Title="Modificar Presentacion" Height="211.692" Width="551.316" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="180,10,0,0" TextWrapping="Wrap" Text="Modificar presentación" VerticalAlignment="Top" FontSize="20"/>
         <TextBox x:Name="fechaTextBox" HorizontalAlignment="Left" Height="37" Margin="22,67,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Fecha" VerticalAlignment="Top" Width="146" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>

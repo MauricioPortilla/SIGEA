@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SIGEA.AsignarOrganizadorComite"
         mc:Ignorable="d"
-        Title="Asignar organizador a comité" Height="244.083" Width="558.126">
+        Title="Asignar organizador a comité" Height="244.083" Width="558.126" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="149,6,0,0" TextWrapping="Wrap" Text="Asignar organizador a comité" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="105" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="528"/>

@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SIGEA.ActualizarArticulo"
         mc:Ignorable="d"
-        Title="Actualizar Articulo" Height="698" Width="694">
+        Title="Actualizar Articulo" Height="698" Width="694" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="269,10,0,0" TextWrapping="Wrap" Text="Actualizar artículo" VerticalAlignment="Top" FontSize="20"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="225" Margin="10,45,0,0" Stroke="Black" VerticalAlignment="Top" Width="666"/>
+        <Rectangle Fill="#FFF4F4F5" Margin="10,45,10,397" Stroke="Black"/>
         <TextBlock HorizontalAlignment="Left" Margin="23,53,0,0" TextWrapping="Wrap" Text="Datos del artículo" VerticalAlignment="Top" FontSize="20"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="263" Margin="10,280,0,0" Stroke="Black" VerticalAlignment="Top" Width="666"/>
+        <Rectangle Fill="#FFF4F4F5" Margin="10,280,10,124" Stroke="Black"/>
         <TextBlock HorizontalAlignment="Left" Margin="23,85,0,0" TextWrapping="Wrap" Text="Título" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBlock x:Name="tituloTextBlock" HorizontalAlignment="Left" Margin="23,101,0,0" TextWrapping="Wrap" Text="TITLE" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="276,85,0,0" TextWrapping="Wrap" Text="Año de creación" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -56,8 +56,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock HorizontalAlignment="Left" Margin="20,559,0,0" TextWrapping="Wrap" Text="Actualiza tu artículo" VerticalAlignment="Top" FontSize="14"/>
-        <Button x:Name="reemplazarArchivoButton" Content="Reemplazar archivo" HorizontalAlignment="Left" Margin="20,583,0,0" VerticalAlignment="Top" Width="158" Click="ReemplazarArchivoButton_Click"/>
+        <Button x:Name="reemplazarArchivoButton" Content="Reemplazar archivo" HorizontalAlignment="Left" Margin="20,0,0,52" VerticalAlignment="Bottom" Width="158" Click="ReemplazarArchivoButton_Click"/>
         <TextBlock x:Name="archivoSeleccionadoTextBlock" HorizontalAlignment="Left" Margin="183,589,0,0" TextWrapping="Wrap" Text="FILE_NAME" VerticalAlignment="Top" FontSize="14" Visibility="Hidden"/>
-        <Button x:Name="guardarCambiosButton" Content="Guardar cambios" HorizontalAlignment="Left" Margin="524,621,0,0" VerticalAlignment="Top" Width="152" Click="GuardarCambiosButton_Click"/>
+        <Button x:Name="guardarCambiosButton" Content="Guardar cambios" HorizontalAlignment="Right" Margin="0,0,10,14" VerticalAlignment="Bottom" Width="152" Click="GuardarCambiosButton_Click"/>
     </Grid>
 </Window>

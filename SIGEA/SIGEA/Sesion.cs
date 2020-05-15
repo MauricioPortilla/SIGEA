@@ -41,7 +41,14 @@ namespace SIGEA {
             { 1, "Bajo (1)" }, { 2, "Medio (2)" }, { 3, "Alto (3)" }
         };
 
+        /// <summary>
+        /// Calificación mínima en una evaluación artículo.
+        /// </summary>
         public static readonly int MIN_CALIFICACION_EVALUACION_ARTICULO = 1;
+
+        /// <summary>
+        /// Calificación máxima en una evaluación artículo.
+        /// </summary>
         public static readonly int MAX_CALIFICACION_EVALUACION_ARTICULO = 3;
     }
 }

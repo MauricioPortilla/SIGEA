@@ -24,12 +24,18 @@ namespace SIGEA {
             get => articulosList;
         }
 
+        /// <summary>
+        /// Crea una nueva instancia.
+        /// </summary>
         public ConsultarEvaluacionesArticulos() {
             InitializeComponent();
             DataContext = this;
             CargarArticulos();
         }
 
+        /// <summary>
+        /// Carga los artículos y los coloca en la tabla.
+        /// </summary>
         private void CargarArticulos() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -49,10 +55,19 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Muestra una ventana de consultar evaluaciones artículo de acuerdo con
+        /// el artículo seleccionado de la tabla.
+        /// </summary>
+        /// <param name="sender">Tabla</param>
+        /// <param name="e">Evento</param>
         private void ArticulosListView_SelectionChanged(object sender, RoutedEventArgs e) {
             new ConsultarEvaluacionesArticulo(((ArticuloTabla) articulosListView.SelectedItem).Articulo).Show();
         }
 
+        /// <summary>
+        /// Representa un artículo en una tabla.
+        /// </summary>
         public struct ArticuloTabla {
             public Articulo Articulo;
             public string Titulo { get; set; }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Registrar Comité" Height="350" Width="700" WindowStartupLocation="CenterScreen">
+        Title="Registrar Comité" Height="350" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Label Content="Registro Comité" HorizontalAlignment="Left" Margin="260,8,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="265" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="336"/>

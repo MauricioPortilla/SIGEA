@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SIGEA.RegistrarAutor"
         mc:Ignorable="d"
-        Title="Registrar Autor" Height="465.226" Width="696.805">
+        Title="Registrar Autor" Height="465.226" Width="696.805" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="276,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"><Run Text="Registrar "/><Run Text="autor"/></TextBlock>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="186" Margin="10,45,0,0" Stroke="Black" VerticalAlignment="Top" Width="666"/>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Añadir autor" Height="351.562" Width="683.75">
+        Title="Añadir autor" Height="351.562" Width="683.75" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="17,14,0,0" TextWrapping="Wrap" Text="Autores del artículo" VerticalAlignment="Top" FontSize="20"/>
         <DataGrid

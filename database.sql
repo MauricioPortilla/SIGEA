@@ -142,20 +142,6 @@ CREATE TABLE AsistenteEvento (
     PRIMARY KEY (id_asistente, id_evento)
 );
 
-CREATE TABLE Pago (
-    id_pago int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-    id_actividad int NULL,
-    FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad),
-    id_asistente int NULL,
-    FOREIGN KEY (id_asistente) REFERENCES Asistente(id_asistente),
-    id_evento int NULL,
-    FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
-    id_articulo int NULL,
-    FOREIGN KEY (id_articulo) REFERENCES Articulo(id_articulo),
-    cantidad float NOT NULL,
-    fecha date NOT NULL
-);
-
 CREATE TABLE Track (
     id_track int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     id_evento int NOT NULL,
@@ -174,6 +160,20 @@ CREATE TABLE Articulo (
     resumen varchar(255) NOT NULL,
     keywords varchar(100) NOT NULL,
     archivo varchar(255) NOT NULL
+);
+
+CREATE TABLE Pago (
+    id_pago int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+    id_actividad int NULL,
+    FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad),
+    id_asistente int NULL,
+    FOREIGN KEY (id_asistente) REFERENCES Asistente(id_asistente),
+    id_evento int NULL,
+    FOREIGN KEY (id_evento) REFERENCES Evento(id_evento),
+    id_articulo int NULL,
+    FOREIGN KEY (id_articulo) REFERENCES Articulo(id_articulo),
+    cantidad float NOT NULL,
+    fecha date NOT NULL
 );
 
 CREATE TABLE PresentacionArticulo (

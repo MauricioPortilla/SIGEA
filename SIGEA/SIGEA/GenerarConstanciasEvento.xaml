@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIGEA"
         mc:Ignorable="d"
-        Title="Generar constancias de evento" Height="450" Width="800">
+        Title="Generar constancias de evento" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="266,10,0,0" TextWrapping="Wrap" Text="Generar constancias de evento" VerticalAlignment="Top" FontSize="20"/>
         <TextBlock HorizontalAlignment="Left" Margin="21,68,0,0" TextWrapping="Wrap" Text="Asistentes del evento" VerticalAlignment="Top" FontSize="20"/>

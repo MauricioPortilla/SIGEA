@@ -40,7 +40,7 @@ namespace SIGEA {
             DataContext = this;
             InitializeComponent();
             AutoresList.CollectionChanged += AutoresList_CollectionChanged;
-            CargarEventos();
+            CargarTracks();
         }
 
         /// <summary>
@@ -52,36 +52,10 @@ namespace SIGEA {
             autoresDataGrid.Items.Refresh();
         }
 
-        /// <summary>
-        /// Carga los eventos registrados en el sistema.
-        /// </summary>
-        private void CargarEventos() {
-            try {
-                using (SigeaBD sigeaBD = new SigeaBD()) {
-                    foreach (Evento evento in sigeaBD.Evento.ToList()) {
-                        eventoComboBox.Items.Add(evento);
-                    }
-                }
-            } catch (EntityException entityException) {
-                MessageBox.Show("Error al establecer una conexión.");
-                Console.WriteLine("EntityException@RegistrarArticulo->CargarEventos() -> " + entityException.Message);
-            }
-        }
-
-        /// <summary>
-        /// Carga los tracks de acuerdo con el evento seleccionado.
-        /// </summary>
-        /// <param name="sender">Combobox de eventos</param>
-        /// <param name="e">Evento</param>
-        private void eventoComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            CargarTracks();
-        }
-
         private void CargarTracks() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-                    Evento eventoSeleccionado = (Evento) eventoComboBox.SelectedItem;
-                    var tracks = sigeaBD.Track.Where(trackEvento => trackEvento.Evento.id_evento == eventoSeleccionado.id_evento).ToList();
+                    var tracks = sigeaBD.Track.Where(trackEvento => trackEvento.Evento.id_evento == Sesion.Evento.id_evento).ToList();
                     trackComboBox.Items.Clear();
                     foreach (Track track in tracks) {
                         trackComboBox.Items.Add(track);
@@ -241,7 +215,6 @@ namespace SIGEA {
                 !string.IsNullOrWhiteSpace(añoCreacionTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(keywordsTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(resumenTextBox.Text) &&
-                eventoComboBox.SelectedIndex != -1 &&
                 trackComboBox.SelectedIndex != -1 &&
                 AutoresList.Count > 0;
         }
