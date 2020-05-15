@@ -170,7 +170,7 @@ CREATE TABLE Articulo (
     FOREIGN KEY (id_track) REFERENCES Track(id_track),
     titulo varchar(100) NOT NULL,
     anio int NOT NULL,
-    estado varchar(20) NOT NULL,
+    estado varchar(30) NOT NULL,
     resumen varchar(255) NOT NULL,
     keywords varchar(100) NOT NULL,
     archivo varchar(255) NOT NULL
