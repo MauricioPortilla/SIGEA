@@ -46,5 +46,24 @@ namespace SIGEABD {
                 throw;
             }
         }
+
+        public bool Actualizar() {
+            try {
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    var articulo = sigeaBD.Articulo.Find(id_articulo);
+                    articulo.estado = estado;
+                    return sigeaBD.SaveChanges() != 0;
+                }
+            } catch (DbUpdateException dbUpdateException) {
+                Console.WriteLine("DbUpdateException@Articulo->Actualizar() -> " + dbUpdateException.Message);
+                throw;
+            } catch (EntityException entityException) {
+                Console.WriteLine("EntityException@Articulo->Actualizar() -> " + entityException.Message);
+                throw;
+            } catch (Exception exception) {
+                Console.WriteLine("Exception@Articulo->Actualizar() -> " + exception.Message);
+                throw;
+            }
+        }
     }
 }

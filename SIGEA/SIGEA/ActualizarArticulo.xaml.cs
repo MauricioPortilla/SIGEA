@@ -46,7 +46,7 @@ namespace SIGEA {
                 Articulo.ObtenerArticulo(id_articulo, (articulo) => {
                     this.articulo = articulo;
                     if (articulo == null) {
-                        MessageBox.Show("Error al cargar el artículo.");
+                        MessageBox.Show("Error al establecer una conexión.");
                         Close();
                         return;
                     }
@@ -67,7 +67,7 @@ namespace SIGEA {
                     autoresDataGrid.Items.Refresh();
                 });
             } catch (Exception) {
-                MessageBox.Show("Error al cargar el artículo.");
+                MessageBox.Show("Error al establecer una conexión.");
                 Close();
             }
         }
@@ -102,9 +102,18 @@ namespace SIGEA {
                 MessageBox.Show("Debes seleccionar un archivo a reemplazar.");
                 return;
             }
-            File.Copy(rutaArchivo, App.ARTICULOS_DIRECTORIO + "/" + articulo.archivo, true);
-            MessageBox.Show("Cambios guardados.");
-            Close();
+            articulo.estado = "Aceptado";
+            try {
+                if (!articulo.Actualizar()) {
+                    MessageBox.Show("Error al establecer una conexión.");
+                    return;
+                }
+                File.Copy(rutaArchivo, App.ARTICULOS_DIRECTORIO + "/" + articulo.archivo, true);
+                MessageBox.Show("Cambios guardados.");
+                Close();
+            } catch (Exception) {
+                MessageBox.Show("Error al establecer una conexión.");
+            }
         }
     }
 }

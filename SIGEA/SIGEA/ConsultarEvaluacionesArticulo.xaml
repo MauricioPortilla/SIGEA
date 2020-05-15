@@ -1,0 +1,37 @@
+﻿<Window x:Class="SIGEA.ConsultarEvaluacionesArticulo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        mc:Ignorable="d"
+        Title="Consultar evaluaciones de artículo" Height="399.375" Width="722.188">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="314,10,0,0" TextWrapping="Wrap" Text="Evaluaciones" VerticalAlignment="Top" FontSize="20"/>
+        <Rectangle Fill="#FFF4F4F5" Margin="10,45,10,53" Stroke="Black"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Evaluaciones"/>
+        <ListView x:Name="evaluacionesListView" ItemsSource="{Binding EvaluacionesList}" Margin="23,85,22,66">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Fecha}"
+                        Header="Fecha" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Revisor}"
+                        Header="Revisor" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Calificacion}"
+                        Header="Calificación" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding GradoExpertiz}"
+                        Header="Grado expertiz" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Estado}"
+                        Header="Estado" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="aceptarArticuloButton" Content="Aceptar artículo" HorizontalAlignment="Right" Margin="0,0,201,10" VerticalAlignment="Bottom" Width="186" IsEnabled="False" Click="AceptarArticuloButton_Click"/>
+        <Button x:Name="requerirActualizacionButton" Content="Requerir actualización" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="186" IsEnabled="False" Click="RequerirActualizacionButton_Click"/>
+    </Grid>
+</Window>

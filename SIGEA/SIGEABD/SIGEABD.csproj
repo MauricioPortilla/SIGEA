@@ -112,6 +112,7 @@
     <Compile Include="Revisor.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="RevisorAcciones.cs" />
     <Compile Include="RevisorArticulo.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>

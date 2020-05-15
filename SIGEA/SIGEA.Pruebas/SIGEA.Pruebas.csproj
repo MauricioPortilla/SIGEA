@@ -76,6 +76,7 @@
     <Compile Include="GenerarConstanciasEventoPruebas.cs" />
     <Compile Include="GenerarProgramaEventoPruebas.cs" />
     <Compile Include="GenerarReporteIngresosActividadPruebas.cs" />
+    <Compile Include="ConsultarEvaluacionesArticuloPruebas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

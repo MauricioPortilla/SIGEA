@@ -884,7 +884,7 @@
           <Property Name="id_track" Type="Int32" Nullable="false" />
           <Property Name="titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="anio" Type="Int32" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="resumen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="keywords" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="archivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />

@@ -95,6 +95,12 @@
     <Compile Include="AsignarOrganizadorComite.xaml.cs">
       <DependentUpon>AsignarOrganizadorComite.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConsultarEvaluacionesArticulo.xaml.cs">
+      <DependentUpon>ConsultarEvaluacionesArticulo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarEvaluacionesArticulos.xaml.cs">
+      <DependentUpon>ConsultarEvaluacionesArticulos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EvaluarArticulo.xaml.cs">
       <DependentUpon>EvaluarArticulo.xaml</DependentUpon>
     </Compile>
@@ -153,6 +159,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AsignarOrganizadorComite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsultarEvaluacionesArticulo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsultarEvaluacionesArticulos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
