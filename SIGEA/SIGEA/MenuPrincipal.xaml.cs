@@ -1,4 +1,5 @@
 ﻿using SIGEABD;
+using System;
 using System.Data;
 using System.Linq;
 using System.Windows;
@@ -70,6 +71,23 @@ namespace SIGEA {
 
                     tablaEventos.Rows.Add(fila);
                 }
+
+                var listaEventos2 = sigeaBD.Evento.Where(evento =>
+                evento.Comite.Where(comite =>
+                comite.id_organizador == Sesion.Organizador.id_organizador).Count() != 0);
+
+                foreach (Evento evento in listaEventos2) {
+
+                    DataRow fila = tablaEventos.NewRow();
+
+                    fila [0] = evento.nombre;
+                    fila [1] = evento.sede;
+                    fila [2] = evento.fechaInicio.ToShortDateString();
+                    fila [3] = evento.fechaFin.Date.ToShortDateString();
+
+                    tablaEventos.Rows.Add(fila);
+                }
+
             }
 
             eventosDataGrid.ItemsSource = tablaEventos.DefaultView;
@@ -77,23 +95,28 @@ namespace SIGEA {
 
 
         private void PruebaButton_Click (object sender, RoutedEventArgs e) {
-            /*if (eventosDataGrid.SelectedItem != null) {
-                var eventoSeleccionado = (EventoTabla) eventosDataGrid.SelectedItem;
-                try {
-                    using (SigeaBD sigeaBD = new SigeaBD()) {
-                        var eventoOptenido = sigeaBD.Evento.ToList().Find(
-                            evento => evento.nombre ==
-                            eventoSeleccionado.nombre);
-                        Sesion.Evento = eventoOptenido;
-                        new RegistrarComite().Show();
-                        this.Close();
-                    }
-                } catch (Exception excepcion) {
 
+            var eventoSeleccioando = (DataRowView) eventosDataGrid.SelectedItem;
+
+            if (eventoSeleccioando != null) {
+
+                try {
+
+                    using (SigeaBD sigeaBD = new SigeaBD()) {
+
+                        Sesion.Evento = sigeaBD.Evento.ToList().Find(
+                            evento => evento.nombre == eventoSeleccioando[0].ToString());
+                    }
+
+                } catch (Exception ex) {
+
+                    Console.WriteLine(ex);
                 }
-            } else {
-                MessageBox.Show("Por favor seleccione un evento primero");
-            }*/
+
+                new Actividades().Show();
+                this.Close();
+            }
+
         }
     }
 }
