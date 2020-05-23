@@ -1,6 +1,4 @@
 ﻿using SIGEABD;
-using System;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Windows;
@@ -8,13 +6,10 @@ using System.Windows;
 namespace SIGEA {
     public partial class MenuPrincipal : Window {
 
-        public ObservableCollection<EventoTabla> EventosObservableCollection { get; } =
-                new ObservableCollection<EventoTabla>();
-
         public MenuPrincipal () {
+
             InitializeComponent();
-            DataContext = this;
-            CargarDataGrid();
+            CargarTabla();
         }
 
         /// <summary>
@@ -23,6 +18,7 @@ namespace SIGEA {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CerrarButton_Click (object sender, RoutedEventArgs e) {
+
             IniciarSesion inicioSesion = new IniciarSesion();
             inicioSesion.Show();
             this.Close();
@@ -34,6 +30,7 @@ namespace SIGEA {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CrearButton_Click (object sender, RoutedEventArgs e) {
+
             RegistrarEvento registroEvento = new RegistrarEvento();
             registroEvento.Show();
             this.Close();
@@ -42,53 +39,45 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que optiene los Eventos a los que esta registrado el organizador
         /// </summary>
-        public void CargarDataGrid () {
+        public void CargarTabla () {
+
+            DataTable tablaEventos = new DataTable();
+
+            DataColumn nombre = new DataColumn("Nombre");
+            DataColumn sede = new DataColumn("Sede");
+            DataColumn fechaInicio = new DataColumn("Fecha de Inicio");
+            DataColumn fechaFin = new DataColumn("Fecha de FIn");
+
+            tablaEventos.Columns.Add(nombre);
+            tablaEventos.Columns.Add(sede);
+            tablaEventos.Columns.Add(fechaInicio);
+            tablaEventos.Columns.Add(fechaFin);
+
             using (SigeaBD sigeaBD = new SigeaBD()) {
-                try {
-                    var eventosObtenidos = (from evento in sigeaBD.Evento
-                                            where evento.Organizador.id_organizador ==
-                                            Sesion.Organizador.id_organizador
-                                            select evento).ToList();
-                    foreach (Evento evento in eventosObtenidos) {
-                        EventosObservableCollection.Add(new EventoTabla {
-                            nombre = evento.nombre,
-                            sede = evento.sede,
-                            fechaInicio = evento.fechaInicio.Date,
-                            fechaFin = evento.fechaFin.Date
-                        });
-                    }
-                    var eventosObtenidos2 = (from comite in sigeaBD.Comite
-                                             where comite.Organizador.id_organizador ==
-                                             Sesion.Organizador.id_organizador
-                                             select comite.Evento).ToList();
-                    foreach (Evento evento in eventosObtenidos2) {
-                        EventosObservableCollection.Add(new EventoTabla {
-                            nombre = evento.nombre,
-                            sede = evento.sede,
-                            fechaInicio = evento.fechaInicio.Date,
-                            fechaFin = evento.fechaFin.Date
-                        });
-                    }
-                } catch (EntityException) {
-                    MessageBox.Show("Error al cargar los proveedores.");
-                } catch (Exception) {
-                    MessageBox.Show("Error al cargar los proveedores.");
+
+                var listaEventos = (from evento in sigeaBD.Evento
+                                    where evento.id_organizador == Sesion.Organizador.id_organizador
+                                    select evento).ToList();
+
+                foreach (Evento evento in listaEventos) {
+
+                    DataRow fila = tablaEventos.NewRow();
+
+                    fila [0] = evento.nombre;
+                    fila [1] = evento.sede;
+                    fila [2] = evento.fechaInicio.ToShortDateString();
+                    fila [3] = evento.fechaFin.Date.ToShortDateString();
+
+                    tablaEventos.Rows.Add(fila);
                 }
             }
+
+            eventosDataGrid.ItemsSource = tablaEventos.DefaultView;
         }
 
-        /// <summary>
-        /// Estruct para llenar de información la tabla de eventos
-        /// </summary>
-        public struct EventoTabla {
-            public String nombre { get; set; }
-            public String sede { get; set; }
-            public DateTime fechaInicio { get; set; }
-            public DateTime fechaFin { get; set; }
-        }
 
         private void PruebaButton_Click (object sender, RoutedEventArgs e) {
-            if (eventosDataGrid.SelectedItem != null) {
+            /*if (eventosDataGrid.SelectedItem != null) {
                 var eventoSeleccionado = (EventoTabla) eventosDataGrid.SelectedItem;
                 try {
                     using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -104,7 +93,7 @@ namespace SIGEA {
                 }
             } else {
                 MessageBox.Show("Por favor seleccione un evento primero");
-            }
+            }*/
         }
     }
 }
