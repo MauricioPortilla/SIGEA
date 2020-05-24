@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIGEA"
         mc:Ignorable="d"
-        Title="Actividades" Height="450" Width="841.618">
+        Title="Actividades" Height="450" Width="841.618" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Actividades" HorizontalAlignment="Left" Margin="329,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="359" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="650"/>
@@ -15,6 +15,7 @@
             </DataGrid.Background>
         </DataGrid>
         <Button x:Name="cancelarButton" Content="Regresar" HorizontalAlignment="Left" Margin="665,364,0,0" VerticalAlignment="Top" Width="159" Click="CancelarButton_Click"/>
-        <Button x:Name="magistralButton" Content="Registro Magistral" HorizontalAlignment="Left" Margin="665,307,0,0" VerticalAlignment="Top" Width="159" Foreground="#DD000000" BorderBrush="White" Background="White" Click="magistralButton_Click"/>
+        <Button x:Name="magistralButton" Content="Registrar Magistral" HorizontalAlignment="Left" Margin="665,307,0,0" VerticalAlignment="Top" Width="159" Foreground="#DD000000" BorderBrush="White" Background="White" Click="MagistralButton_Click"/>
+        <Button x:Name="asistenteButton" Content="Registrar Asistente" HorizontalAlignment="Left" Margin="665,248,0,0" VerticalAlignment="Top" Width="159" Click="AsistenteButton_Click"/>
     </Grid>
 </Window>

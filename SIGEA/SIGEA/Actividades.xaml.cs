@@ -57,7 +57,7 @@ namespace SIGEA {
             actividadesDataGrid.ItemsSource = tablaActividades.DefaultView;
         }
 
-        private void magistralButton_Click (object sender, RoutedEventArgs e) {
+        private void MagistralButton_Click (object sender, RoutedEventArgs e) {
             var actividad = (DataRowView) actividadesDataGrid.SelectedItem;
 
             if (actividad != null) {
@@ -71,6 +71,12 @@ namespace SIGEA {
 
                 MessageBox.Show("Seleccione una actividad");
             }
+        }
+
+        private void AsistenteButton_Click (object sender, RoutedEventArgs e) {
+
+            new RegistrarAsistente().Show();
+            this.Close();
         }
     }
 }
