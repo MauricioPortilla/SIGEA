@@ -28,6 +28,16 @@ namespace SIGEA {
         public static Evento Evento;
 
         /// <summary>
+        /// Almacena la información del Comite que se esta utilizando
+        /// </summary>
+        public static Comite Comite;
+
+        /// <summary>
+        /// Almacena la información de la Tarea a modificar
+        /// </summary>
+        public static Tarea Tarea;
+
+        /// <summary>
         /// Tipos que puede tomar una Actividad.
         /// </summary>
         public static readonly List<string> TIPOS_ACTIVIDAD = new List<string>() {

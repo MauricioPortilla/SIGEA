@@ -127,6 +127,9 @@
     <Compile Include="ModificarPresentacion.xaml.cs">
       <DependentUpon>ModificarPresentacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModificarTarea.xaml.cs">
+      <DependentUpon>ModificarTarea.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarActividad.xaml.cs">
       <DependentUpon>RegistrarActividad.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,9 @@
       <DependentUpon>RegistrarMagistral.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sesion.cs" />
+    <Compile Include="Tareas.xaml.cs">
+      <DependentUpon>Tareas.xaml</DependentUpon>
+    </Compile>
     <Page Include="Actividades.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,6 +223,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ModificarTarea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RegistrarActividad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -242,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegistrarMagistral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tareas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

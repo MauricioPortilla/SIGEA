@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Registrar Asistente" Height="608.5" Width="1034.5" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Registrar Asistente" Height="608.5" Width="1042" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Label Content="Registrar Asistente" HorizontalAlignment="Left" Margin="438,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.191,-3.963" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="222" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="310"/>
