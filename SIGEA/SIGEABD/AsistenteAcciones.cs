@@ -7,6 +7,12 @@ namespace SIGEABD {
         public bool Registrar () {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
+                    foreach (var actividad in Actividad) {
+                        sigeaBD.Actividad.Attach(actividad);
+                    }
+                    foreach (var evento in Evento) {
+                        sigeaBD.Evento.Attach(evento);
+                    }
                     sigeaBD.Asistente.Add(this);
                     return sigeaBD.SaveChanges() != 0;
                 }

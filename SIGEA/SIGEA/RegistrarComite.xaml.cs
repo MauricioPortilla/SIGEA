@@ -1,5 +1,7 @@
 ﻿using SIGEABD;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -8,10 +10,71 @@ using System.Windows;
 namespace SIGEA {
 
     public partial class RegistrarComite : Window {
+        private List<Organizador> organizadores = new List<Organizador>();
+        public ObservableCollection<OrganizadorTabla> OrganizadoresLista { get; } = new ObservableCollection<OrganizadorTabla>();
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
         public RegistrarComite () {
             InitializeComponent();
+            DataContext = this;
+            CargarOrganizadores();
             CargarComboBox();
+        }
+
+        /// <summary>
+        /// Representa un Organizador en una tabla.
+        /// </summary>
+        public struct OrganizadorTabla {
+            public Organizador Organizador;
+            public string Nombre { get; set; }
+            public string Paterno { get; set; }
+            public string Materno { get; set; }
+        }
+
+        /// <summary>
+        /// Carga los organizadores de la base de datos y los coloca en una lista.
+        /// </summary>
+        private void CargarOrganizadores() {
+            try {
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    organizadores = sigeaBD.Organizador.ToList();
+                }
+            } catch (EntityException entityException) {
+                MessageBox.Show("Error al cargar los eventos.");
+                Console.WriteLine("EntityException@RegistrarComite->CargarOrganizadores() -> " + entityException.Message);
+            }
+        }
+
+        /// <summary>
+        /// Metodo que carga el combo con los organizadores
+        /// </summary>
+        private void CargarComboBox() {
+            foreach (Organizador organizador in organizadores) {
+                organizadorComboBox.Items.Add(organizador);
+            }
+        }
+
+        /// <summary>
+        /// Limpia la lista de organizadores de la tabla y la vuelve a llenar exceptuando
+        /// el organizador seleccionado en el combo box.
+        /// </summary>
+        /// <param name="sender">ComboBox</param>
+        /// <param name="e">Evento</param>
+        private void organizadorComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
+            OrganizadoresLista.Clear();
+            foreach (var organizador in organizadores) {
+                if (organizador.id_organizador == (organizadorComboBox.SelectedItem as Organizador).id_organizador) {
+                    continue;
+                }
+                OrganizadoresLista.Add(new OrganizadorTabla {
+                    Organizador = organizador,
+                    Nombre = organizador.nombre,
+                    Paterno = organizador.paterno,
+                    Materno = organizador.materno
+                });
+            }
         }
 
         /// <summary>
@@ -31,6 +94,10 @@ namespace SIGEA {
         /// <param name="e"></param>
         private void RegistrarButton_Click (object sender, RoutedEventArgs e) {
             if (VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
+                Collection<Organizador> organizadoresSeleccionados = new Collection<Organizador>();
+                foreach (OrganizadorTabla organizadorTabla in organizadoresListView.SelectedItems) {
+                    organizadoresSeleccionados.Add(organizadorTabla.Organizador);
+                }
                 try {
                     var organizador = (Organizador) organizadorComboBox.SelectedItem;
                     using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -38,7 +105,8 @@ namespace SIGEA {
                             nombre = nombreTextBox.Text,
                             responsabilidades = responsabilidadesTextBox.Text,
                             id_evento = Sesion.Evento.id_evento,
-                            id_organizador = organizador.id_organizador
+                            id_organizador = organizador.id_organizador,
+                            Organizadores = organizadoresSeleccionados
                         }.Registrar()) {
                             MessageBox.Show("El Comite se registro correctamente");
                         } else {
@@ -48,23 +116,6 @@ namespace SIGEA {
                 } catch (Exception exception) {
                     MessageBox.Show("Error al registrar el comite.");
                     Console.WriteLine("Exception@RegistrarButton_Click -> " + exception.Message);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Metodo que carga el combo con los organizadores
-        /// </summary>
-        private void CargarComboBox () {
-            using (SigeaBD sigeaBD = new SigeaBD()) {
-                try {
-                    foreach (Organizador organizador in sigeaBD.Organizador.ToList()) {
-                        organizadorComboBox.Items.Add(organizador);
-                    }
-
-                } catch (EntityException entityException) {
-                    MessageBox.Show("Error al cargar los eventos.");
-                    Console.WriteLine("EntityException@RegistrarArticulo->CargarEventos() -> " + entityException.Message);
                 }
             }
         }
@@ -110,11 +161,13 @@ namespace SIGEA {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
                     var comiteOptenido = sigeaBD.Comite.ToList().Find(
-                        comite => comite.nombre == nombreTextBox.Text);
+                        comite => comite.nombre == nombreTextBox.Text &&
+                        comite.Evento.id_evento == Sesion.Evento.id_evento
+                    );
                     if (comiteOptenido == null) {
                         return true;
                     } else {
-                        MessageBox.Show("Ya esta registrado el comté");
+                        MessageBox.Show("Ya está registrado el comité");
                         return false;
                     }
                 }

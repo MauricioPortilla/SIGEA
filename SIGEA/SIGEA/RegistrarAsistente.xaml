@@ -23,19 +23,39 @@
         <TextBox x:Name="puestoTextBox" HorizontalAlignment="Left" Height="38" Margin="21,471,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Puesto" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="222" Margin="335,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="683"/>
         <Label Content="Actividades " HorizontalAlignment="Left" Margin="351,56,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <DataGrid x:Name="actividadDataGrid" HorizontalAlignment="Left" Height="161" Margin="351,96,0,0" VerticalAlignment="Top" Width="655" CanUserAddRows="False" MouseDoubleClick="actividadDataGrid_MouseDoubleClick">
-            <DataGrid.Background>
-                <ImageBrush/>
-            </DataGrid.Background>
-        </DataGrid>
+        <ListView x:Name="actividadesListView" ItemsSource="{Binding ActividadesLista}" Margin="351,100,22,322" MouseDoubleClick="actividadListView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Nombre}"
+                        Header="Nombre" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Descripcion}"
+                        Header="Descripción" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Tipo}"
+                        Header="Tipo" />
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="231" Margin="335,291,0,0" Stroke="Black" VerticalAlignment="Top" Width="683"/>
         <Label Content="Actividades Seleccionadas" HorizontalAlignment="Left" Margin="351,301,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <DataGrid x:Name="actividadSeleccionadaDataGrid" HorizontalAlignment="Left" Height="161" Margin="351,348,0,0" VerticalAlignment="Top" Width="655" CanUserAddRows="False" MouseDoubleClick="actividadSeleccionadaDataGrid_MouseDoubleClick">
-            <DataGrid.Background>
-                <ImageBrush/>
-            </DataGrid.Background>
-        </DataGrid>
         <Button x:Name="registrarButton" Content="Registrar" HorizontalAlignment="Left" Margin="905,531,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.494,0.466" Click="RegistrarButton_Click"/>
         <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="754,531,0,0" VerticalAlignment="Top" Width="102" Background="White" Foreground="#DD000000" BorderBrush="White" Click="CancelarButton_Click"/>
+        <ListView x:Name="actividadesSeleccionadasListView" ItemsSource="{Binding ActividadesSeleccionadasLista}" Margin="351,341,22,81" MouseDoubleClick="actividadSeleccionadaListView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Nombre}"
+                        Header="Nombre" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Descripcion}"
+                        Header="Descripción" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Tipo}"
+                        Header="Tipo" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

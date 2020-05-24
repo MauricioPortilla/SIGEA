@@ -13,14 +13,42 @@ namespace SIGEA {
 
     public partial class RegistrarAsistente : Window {
 
-        public DataTable tablaActividades = new DataTable();
-        public DataTable tablaActividadesSeleccionadas = new DataTable();
+        public ObservableCollection<ActividadTabla> ActividadesLista { get; } = new ObservableCollection<ActividadTabla>();
+        public ObservableCollection<ActividadTabla> ActividadesSeleccionadasLista { get; } = new ObservableCollection<ActividadTabla>();
 
         public RegistrarAsistente () {
-
             InitializeComponent();
             DataContext = this;
             CargarTabla();
+        }
+
+        /// <summary>
+        /// Representa una actividad en una tabla.
+        /// </summary>
+        public struct ActividadTabla {
+            public Actividad Actividad;
+            public string Nombre { get; set; }
+            public string Tipo { get; set; }
+            public string Descripcion { get; set; }
+        }
+
+        /// <summary>
+        /// Metodo que carga la tabla de las actividades registradas para ese evento
+        /// </summary>
+        private void CargarTabla() {
+            using (SigeaBD sigeaBD = new SigeaBD()) {
+                var listaActividades = (from actividad in sigeaBD.Actividad
+                                        where actividad.id_evento == Sesion.Evento.id_evento
+                                        select actividad).ToList();
+                foreach (Actividad actividad in listaActividades) {
+                    ActividadesLista.Add(new ActividadTabla {
+                        Actividad = actividad,
+                        Nombre = actividad.nombre,
+                        Descripcion = actividad.descripcion,
+                        Tipo = actividad.tipo
+                    });
+                }
+            }
         }
 
         /// <summary>
@@ -29,20 +57,27 @@ namespace SIGEA {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void RegistrarButton_Click (object sender, RoutedEventArgs e) {
-            if (VerificarCampos() && VerificarDatos()) {
+            if (VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
                 try {
+                    Collection<Actividad> actividadesSeleccionadas = new Collection<Actividad>();
+                    foreach (var actividadSeleccionada in ActividadesSeleccionadasLista) {
+                        actividadesSeleccionadas.Add(actividadSeleccionada.Actividad);
+                    }
                     using (SigeaBD sigeaBD = new SigeaBD()) {
                         if (new Asistente {
                             nombre = nombreTextBox.Text,
                             paterno = paternoTextBox.Text,
                             materno = maternoTextBox.Text,
                             correo = correoTextBox.Text,
-                            Actividad = 
+                            Actividad = actividadesSeleccionadas,
                             Adscripcion = new Adscripcion {
                                 nombreDependencia = dependenciaTextBox.Text,
                                 direccion = direccionTextBox.Text,
                                 telefono = telefonoTextBox.Text,
                                 puesto = puestoTextBox.Text
+                            },
+                            Evento = new Collection<Evento>() {
+                                Sesion.Evento
                             }
                         }.Registrar()) {
                             MessageBox.Show("Asistente registrado con exito");
@@ -63,52 +98,8 @@ namespace SIGEA {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CancelarButton_Click (object sender, RoutedEventArgs e) {
-
             new Actividades().Show();
             this.Close();
-        }
-
-        /// <summary>
-        /// Metodo que carga la tabla de las actividades registradas para ese evento
-        /// </summary>
-        private void CargarTabla () {
-
-            DataColumn nombre = new DataColumn("Nombre");
-            DataColumn tipo = new DataColumn("Tipo");
-            DataColumn descripcion = new DataColumn("Descripción");
-
-            tablaActividades.Columns.Add(nombre);
-            tablaActividades.Columns.Add(tipo);
-            tablaActividades.Columns.Add(descripcion);
-
-            DataColumn nombre2 = new DataColumn("Nombre");
-            DataColumn tipo2 = new DataColumn("Tipo");
-            DataColumn descripcion2 = new DataColumn("Descripción");
-
-            tablaActividadesSeleccionadas.Columns.Add(nombre2);
-            tablaActividadesSeleccionadas.Columns.Add(tipo2);
-            tablaActividadesSeleccionadas.Columns.Add(descripcion2);
-
-            using (SigeaBD sigeaBD = new SigeaBD()) {
-
-                var listaActividades = (from actividad in sigeaBD.Actividad
-                                        where actividad.id_evento == Sesion.Evento.id_evento
-                                        select actividad).ToList();
-
-                foreach (Actividad actividad in listaActividades) {
-
-                    DataRow fila = tablaActividades.NewRow();
-
-                    fila [0] = actividad.nombre;
-                    fila [1] = actividad.tipo;
-                    fila [2] = actividad.descripcion;
-
-                    tablaActividades.Rows.Add(fila);
-                }
-
-            }
-
-            actividadDataGrid.ItemsSource = tablaActividades.DefaultView;
         }
 
         /// <summary>
@@ -116,7 +107,6 @@ namespace SIGEA {
         /// </summary>
         /// <returns></returns>
         public Boolean VerificarCampos () {
-
             if (!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(paternoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(maternoTextBox.Text) &&
@@ -125,19 +115,13 @@ namespace SIGEA {
                 !string.IsNullOrWhiteSpace(direccionTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(telefonoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(puestoTextBox.Text)) {
-
-                if (actividadDataGrid.SelectedIndex != -1) {
-
+                if (ActividadesSeleccionadasLista.Count > 0) {
                     return true;
-
                 } else {
-
                     MessageBox.Show("Debe seleccionar al menos una actividad.");
                     return false;
                 }
-
             } else {
-
                 MessageBox.Show("Debe llenar todos los campos.");
                 return false;
             }
@@ -148,7 +132,6 @@ namespace SIGEA {
         /// </summary>
         /// <returns></returns>
         private bool VerificarDatos () {
-
             if (Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(paternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(maternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
@@ -156,11 +139,8 @@ namespace SIGEA {
                 Regex.IsMatch(dependenciaTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(telefonoTextBox.Text, Herramientas.REGEX_SOLO_NUMEROS) &&
                 Regex.IsMatch(puestoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
-
                 return true;
-
             } else {
-
                 MessageBox.Show("Por favor revise los datos ingresados");
                 return false;
             }
@@ -171,30 +151,21 @@ namespace SIGEA {
         /// </summary>
         /// <returns></returns>
         public bool VerificarExistencia () {
-
-            try{
-
+            try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-
-                    var asistentes = sigeaBD.Asistente.Where(
+                    var existenciaAsistente = sigeaBD.Asistente.Where(
                         asistente => asistente.Evento.FirstOrDefault(
                             eventoLista => eventoLista.id_evento == Sesion.Evento.id_evento
-                        ) != null
+                        ) != null && asistente.correo == correoTextBox.Text
                     );
-
-                    if (asistentes != null) {
-
+                    if (existenciaAsistente.Count() == 0) {
                         return true;
-
                     } else {
-
                         MessageBox.Show("El asistente ya esta registrado");
                         return false;
                     }
                 }
-
-            } catch (Exception e){
-
+            } catch (Exception){
                 MessageBox.Show("Lo sentimos intentelo mas tarde");
                 return false;
             }
@@ -205,24 +176,12 @@ namespace SIGEA {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void actividadDataGrid_MouseDoubleClick (object sender, System.Windows.Input.MouseButtonEventArgs e) {
-
-            var actividadSeleccionada = (DataRowView) actividadDataGrid.SelectedItem;
-
-            if (actividadSeleccionada != null) {
-
-                DataRow fila = tablaActividadesSeleccionadas.NewRow();
-
-                fila [0] = actividadSeleccionada [0].ToString();
-                fila [1] = actividadSeleccionada [1].ToString();
-                fila [2] = actividadSeleccionada [2].ToString();
-
-                tablaActividadesSeleccionadas.Rows.Add(fila);
-
-                actividadSeleccionadaDataGrid.ItemsSource = tablaActividadesSeleccionadas.DefaultView;
-
+        private void actividadListView_MouseDoubleClick (object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            if (actividadesListView.SelectedItem != null) {
+                var actividadSeleccionada = (ActividadTabla) actividadesListView.SelectedItem;
+                ActividadesSeleccionadasLista.Add(actividadSeleccionada);
+                ActividadesLista.Remove(actividadSeleccionada);
             } else {
-
                 MessageBox.Show("Seleccione una actividad");
             }
         }
@@ -232,24 +191,12 @@ namespace SIGEA {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void actividadSeleccionadaDataGrid_MouseDoubleClick (object sender, System.Windows.Input.MouseButtonEventArgs e) {
-
-            var actividadSeleccionada = (DataRowView) actividadSeleccionadaDataGrid.SelectedItem;
-
-            if (actividadSeleccionada != null) {
-
-                DataRow fila = tablaActividades.NewRow();
-
-                fila [0] = actividadSeleccionada [0].ToString();
-                fila [1] = actividadSeleccionada [1].ToString();
-                fila [2] = actividadSeleccionada [2].ToString();
-
-                tablaActividades.Rows.Add(fila);
-
-                actividadDataGrid.ItemsSource = tablaActividades.DefaultView;
-
+        private void actividadSeleccionadaListView_MouseDoubleClick (object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            if (actividadesSeleccionadasListView.SelectedItem != null) {
+                var actividadSeleccionada = (ActividadTabla) actividadesSeleccionadasListView.SelectedItem;
+                ActividadesLista.Add(actividadSeleccionada);
+                ActividadesSeleccionadasLista.Remove(actividadSeleccionada);
             } else {
-
                 MessageBox.Show("Seleccione una actividad");
             }
         }
