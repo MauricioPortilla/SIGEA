@@ -1,5 +1,6 @@
 ﻿using SIGEABD;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows;
@@ -11,9 +12,12 @@ namespace SIGEA {
     /// </summary>
     public partial class Actividades : Window {
         public Actividades () {
-
             InitializeComponent();
             CargarTabla();
+        }
+
+        protected override void OnClosing(CancelEventArgs e) {
+            new MenuPrincipal().Show();
         }
 
         private void CancelarButton_Click (object sender, RoutedEventArgs e) {
@@ -77,6 +81,19 @@ namespace SIGEA {
 
             new RegistrarAsistente().Show();
             this.Close();
+        }
+
+        private void RegistrarComiteButton_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void RegistrarArticuloButton_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void RegistrarActividadButton_Click(object sender, RoutedEventArgs e) {
+            new RegistrarActividad().Show();
+            Close();
         }
     }
 }

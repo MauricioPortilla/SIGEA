@@ -17,5 +17,8 @@
         <Button x:Name="cancelarButton" Content="Regresar" HorizontalAlignment="Left" Margin="665,364,0,0" VerticalAlignment="Top" Width="159" Click="CancelarButton_Click"/>
         <Button x:Name="magistralButton" Content="Registrar Magistral" HorizontalAlignment="Left" Margin="665,307,0,0" VerticalAlignment="Top" Width="159" Foreground="#DD000000" BorderBrush="White" Background="White" Click="MagistralButton_Click"/>
         <Button x:Name="asistenteButton" Content="Registrar Asistente" HorizontalAlignment="Left" Margin="665,248,0,0" VerticalAlignment="Top" Width="159" Click="AsistenteButton_Click"/>
+        <Button x:Name="registrarComiteButton" Content="Registrar comité" HorizontalAlignment="Left" Margin="665,193,0,0" VerticalAlignment="Top" Width="159" Click="RegistrarComiteButton_Click"/>
+        <Button x:Name="registrarArticuloButton" Content="Registrar artículo" HorizontalAlignment="Left" Margin="665,142,0,0" VerticalAlignment="Top" Width="159" Click="RegistrarArticuloButton_Click"/>
+        <Button x:Name="registrarActividadButton" Content="Registrar actividad" HorizontalAlignment="Left" Margin="665,90,0,0" VerticalAlignment="Top" Width="159" Click="RegistrarActividadButton_Click"/>
     </Grid>
 </Window>

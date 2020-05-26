@@ -8,13 +8,26 @@
         Title="Menú Principal" Height="450" Width="950" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Label Content="SISTEMA GESTOR DE EVENTOS ACADEMICOS" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" FontSize="36"/>
-        <DataGrid x:Name="eventosDataGrid" HorizontalAlignment="Left" Height="283" Margin="28,106,0,0" VerticalAlignment="Top" Width="744" CanUserAddRows="False">
-            <DataGrid.Background>
-                <ImageBrush/>
-            </DataGrid.Background>
-        </DataGrid>
         <Button x:Name="crearButton" Content="Crear Evento" HorizontalAlignment="Left" Margin="792,290,0,0" VerticalAlignment="Top" Width="130" Click="CrearButton_Click"/>
-        <Button x:Name="cerrarButton" Content="Cerrar Sesión" HorizontalAlignment="Left" Margin="792,357,0,0" VerticalAlignment="Top" Width="130" Foreground="#DD000000" BorderBrush="White" Background="White" Click="CerrarButton_Click"/>
-        <Button x:Name="pruebaButton" Content="Botón Prueba" HorizontalAlignment="Left" Margin="792,227,0,0" VerticalAlignment="Top" Width="130" Click="PruebaButton_Click"/>
+        <Button x:Name="cerrarSesionButton" Content="Cerrar Sesión" HorizontalAlignment="Left" Margin="792,357,0,0" VerticalAlignment="Top" Width="130" Foreground="#DD000000" BorderBrush="White" Background="White" Click="CerrarButton_Click"/>
+        <Button x:Name="administrarButton" Content="Administrar" HorizontalAlignment="Left" Margin="792,227,0,0" VerticalAlignment="Top" Width="130" Click="AdministrarButton_Click"/>
+        <ListView x:Name="eventosListView" ItemsSource="{Binding EventosLista}" Margin="10,90,175,10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Nombre}"
+                        Header="Nombre" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Sede}"
+                        Header="Sede" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding FechaInicio}"
+                        Header="Fecha de Inicio" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding FechaFin}"
+                        Header="Fecha de Fin" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

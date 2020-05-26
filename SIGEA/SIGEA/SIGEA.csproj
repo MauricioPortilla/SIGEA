@@ -151,6 +151,9 @@
     <Compile Include="RegistrarMagistral.xaml.cs">
       <DependentUpon>RegistrarMagistral.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarTrack.xaml.cs">
+      <DependentUpon>RegistrarTrack.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sesion.cs" />
     <Compile Include="Tareas.xaml.cs">
       <DependentUpon>Tareas.xaml</DependentUpon>
@@ -252,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegistrarMagistral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarTrack.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

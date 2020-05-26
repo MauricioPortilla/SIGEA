@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 
@@ -7,12 +8,16 @@ namespace SIGEABD {
         public bool Registrar () {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
+                    Collection<Actividad> actividades = new Collection<Actividad>();
                     foreach (var actividad in Actividad) {
-                        sigeaBD.Actividad.Attach(actividad);
+                        actividades.Add(sigeaBD.Actividad.Find(actividad.id_actividad));
                     }
+                    Actividad = actividades;
+                    Collection<Evento> eventos = new Collection<Evento>();
                     foreach (var evento in Evento) {
-                        sigeaBD.Evento.Attach(evento);
+                        eventos.Add(sigeaBD.Evento.Find(evento.id_evento));
                     }
+                    Evento = eventos;
                     sigeaBD.Asistente.Add(this);
                     return sigeaBD.SaveChanges() != 0;
                 }

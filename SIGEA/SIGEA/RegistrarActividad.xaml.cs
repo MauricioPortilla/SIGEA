@@ -33,13 +33,17 @@ namespace SIGEA {
         /// <summary>
         /// Crea la instancia.
         /// </summary>
-        public RegistrarActividad(Evento evento) {
+        public RegistrarActividad() {
             InitializeComponent();
             DataContext = this;
-            this.evento = evento;
+            this.evento = Sesion.Evento;
             foreach (string tipoActividad in Sesion.TIPOS_ACTIVIDAD) {
                 tipoActividadComboBox.Items.Add(tipoActividad);
             }
+        }
+
+        protected override void OnClosing(CancelEventArgs e) {
+            new Actividades().Show();
         }
 
         /// <summary>

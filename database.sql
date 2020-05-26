@@ -1,3 +1,12 @@
+CREATE DATABASE SIGEA;
+GO
+
+USE SIGEA;
+
+CREATE LOGIN sigea_owner WITH PASSWORD = 'A5WVZ5ev';
+CREATE USER sigea_owner FOR LOGIN sigea_owner;
+EXEC sp_addrolemember 'db_owner', 'sigea_owner';
+
 CREATE TABLE Cuenta (
     id_cuenta int PRIMARY KEY NOT NULL IDENTITY(1, 1),
     usuario varchar(15) NOT NULL,

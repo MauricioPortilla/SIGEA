@@ -34,7 +34,7 @@
           <Property Name="id_track" Type="int" Nullable="false" />
           <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="anio" Type="int" Nullable="false" />
-          <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="resumen" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="keywords" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="archivo" Type="varchar" MaxLength="255" Nullable="false" />
@@ -52,11 +52,11 @@
         </EntityType>
         <EntityType Name="AsistenteActividad">
           <Key>
-            <PropertyRef Name="Actividad_id_actividad" />
-            <PropertyRef Name="Asistente_id_asistente" />
+            <PropertyRef Name="id_asistente" />
+            <PropertyRef Name="id_actividad" />
           </Key>
-          <Property Name="Actividad_id_actividad" Type="int" Nullable="false" />
-          <Property Name="Asistente_id_asistente" Type="int" Nullable="false" />
+          <Property Name="id_asistente" Type="int" Nullable="false" />
+          <Property Name="id_actividad" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AsistenteEvento">
           <Key>
@@ -85,7 +85,7 @@
           </Key>
           <Property Name="id_autor" Type="int" Nullable="false" />
           <Property Name="id_articulo" Type="int" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Comite">
           <Key>
@@ -131,8 +131,8 @@
           <Property Name="id_evento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_organizador" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="fechaInicio" Type="datetime" Nullable="false" />
-          <Property Name="fechaFin" Type="datetime" Nullable="false" />
+          <Property Name="fechaInicio" Type="date" Nullable="false" />
+          <Property Name="fechaFin" Type="date" Nullable="false" />
           <Property Name="cuota" Type="float" Nullable="false" />
           <Property Name="sede" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -144,15 +144,17 @@
           <Property Name="id_evento" Type="int" Nullable="false" />
           <Property Name="cantidad" Type="float" Nullable="false" />
           <Property Name="motivo" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SIGEA2.dbo.GastoMagistral' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="GastoMagistral">
           <Key>
-            <PropertyRef Name="Gasto_id_gasto" />
-            <PropertyRef Name="Magistral_id_magistral" />
+            <PropertyRef Name="id_gasto" />
+            <PropertyRef Name="id_magistral" />
           </Key>
-          <Property Name="Gasto_id_gasto" Type="int" Nullable="false" />
-          <Property Name="Magistral_id_magistral" Type="int" Nullable="false" />
+          <Property Name="id_gasto" Type="int" Nullable="false" />
+          <Property Name="id_magistral" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Magistral">
           <Key>
@@ -197,17 +199,19 @@
           </Key>
           <Property Name="id_presentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_actividad" Type="int" Nullable="false" />
-          <Property Name="fechaPresentacion" Type="datetime" Nullable="false" />
+          <Property Name="fechaPresentacion" Type="date" Nullable="false" />
           <Property Name="horaInicio" Type="time" Precision="7" Nullable="false" />
           <Property Name="horaFin" Type="time" Precision="7" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SIGEA2.dbo.PresentacionArticulo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="PresentacionArticulo">
           <Key>
-            <PropertyRef Name="Articulo_id_articulo" />
-            <PropertyRef Name="Presentacion_id_presentacion" />
+            <PropertyRef Name="id_presentacion" />
+            <PropertyRef Name="id_articulo" />
           </Key>
-          <Property Name="Articulo_id_articulo" Type="int" Nullable="false" />
-          <Property Name="Presentacion_id_presentacion" Type="int" Nullable="false" />
+          <Property Name="id_presentacion" Type="int" Nullable="false" />
+          <Property Name="id_articulo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Revisor">
           <Key>
@@ -240,11 +244,11 @@
         </EntityType>
         <EntityType Name="TareaActividad">
           <Key>
-            <PropertyRef Name="Actividad_id_actividad" />
-            <PropertyRef Name="Tarea_id_tarea" />
+            <PropertyRef Name="id_tarea" />
+            <PropertyRef Name="id_actividad" />
           </Key>
-          <Property Name="Actividad_id_actividad" Type="int" Nullable="false" />
-          <Property Name="Tarea_id_tarea" Type="int" Nullable="false" />
+          <Property Name="id_tarea" Type="int" Nullable="false" />
+          <Property Name="id_actividad" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Track">
           <Key>
@@ -255,7 +259,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Actividad__id_ev__534D60F1">
+        <Association Name="FK__Actividad__id_ev__3A81B327">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
           <ReferentialConstraint>
@@ -267,7 +271,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Articulo__id_tra__74AE54BC">
+        <Association Name="FK__Articulo__id_tra__59FA5E80">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -279,7 +283,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asistente__id_ad__656C112C">
+        <Association Name="FK__Asistente__id_ac__5070F446">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="AsistenteActividad" Type="Self.AsistenteActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="AsistenteActividad">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistente__id_ad__4CA06362">
           <End Role="Adscripcion" Type="Self.Adscripcion" Multiplicity="1" />
           <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -291,7 +307,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asistente__id_as__29221CFB">
+        <Association Name="FK__Asistente__id_as__4F7CD00D">
+          <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
+          <End Role="AsistenteActividad" Type="Self.AsistenteActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asistente">
+              <PropertyRef Name="id_asistente" />
+            </Principal>
+            <Dependent Role="AsistenteActividad">
+              <PropertyRef Name="id_asistente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistente__id_as__534D60F1">
           <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
           <End Role="AsistenteEvento" Type="Self.AsistenteEvento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -303,7 +331,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asistente__id_ev__2A164134">
+        <Association Name="FK__Asistente__id_ev__5441852A">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="AsistenteEvento" Type="Self.AsistenteEvento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -315,7 +343,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Autor__id_adscri__7F2BE32F">
+        <Association Name="FK__Autor__id_adscri__66603565">
           <End Role="Adscripcion" Type="Self.Adscripcion" Multiplicity="1" />
           <End Role="Autor" Type="Self.Autor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -327,7 +355,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AutorArti__id_ar__02084FDA">
+        <Association Name="FK__AutorArti__id_ar__6A30C649">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
           <End Role="AutorArticulo" Type="Self.AutorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -339,7 +367,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AutorArti__id_au__01142BA1">
+        <Association Name="FK__AutorArti__id_au__693CA210">
           <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
           <End Role="AutorArticulo" Type="Self.AutorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -351,7 +379,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Comite__id_event__0F624AF8">
+        <Association Name="FK__Comite__id_event__300424B4">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
           <ReferentialConstraint>
@@ -363,7 +391,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Comite__id_organ__02084FDA">
+        <Association Name="FK__Comite__id_organ__30F848ED">
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
           <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
           <ReferentialConstraint>
@@ -375,7 +403,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Evaluacio__id_re__787EE5A0">
+        <Association Name="FK__ComiteOrg__id_co__36B12243">
+          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
+          <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comite">
+              <PropertyRef Name="id_comite" />
+            </Principal>
+            <Dependent Role="ComiteOrganizador">
+              <PropertyRef Name="id_comite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComiteOrg__id_or__37A5467C">
+          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
+          <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="id_organizador" />
+            </Principal>
+            <Dependent Role="ComiteOrganizador">
+              <PropertyRef Name="id_organizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Evaluacio__id_re__73BA3083">
           <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="1" />
           <End Role="EvaluacionArticulo" Type="Self.EvaluacionArticulo" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -387,7 +439,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Evento__id_organ__3C69FB99">
+        <Association Name="FK__Evento__id_organ__29572725">
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
           <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -399,7 +451,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Gasto__id_evento__403A8C7D">
+        <Association Name="FK__Gasto__id_evento__2D27B809">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -411,7 +463,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Magistral__id_ac__5CD6CB2B">
+        <Association Name="FK__GastoMagi__id_ga__46E78A0C">
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="1" />
+          <End Role="GastoMagistral" Type="Self.GastoMagistral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gasto">
+              <PropertyRef Name="id_gasto" />
+            </Principal>
+            <Dependent Role="GastoMagistral">
+              <PropertyRef Name="id_gasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GastoMagi__id_ma__47DBAE45">
+          <End Role="Magistral" Type="Self.Magistral" Multiplicity="1" />
+          <End Role="GastoMagistral" Type="Self.GastoMagistral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magistral">
+              <PropertyRef Name="id_magistral" />
+            </Principal>
+            <Dependent Role="GastoMagistral">
+              <PropertyRef Name="id_magistral" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Magistral__id_ac__440B1D61">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
           <End Role="Magistral" Type="Self.Magistral" Multiplicity="*" />
           <ReferentialConstraint>
@@ -423,7 +499,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Organizad__id_cu__398D8EEE">
+        <Association Name="FK__Organizad__id_cu__267ABA7A">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
           <ReferentialConstraint>
@@ -435,7 +511,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pago__id_activid__3C34F16F">
+        <Association Name="FK__Pago__id_activid__5CD6CB2B">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="0..1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -447,7 +523,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pago__id_articul__3F115E1A">
+        <Association Name="FK__Pago__id_articul__5FB337D6">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -459,7 +535,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pago__id_asisten__3D2915A8">
+        <Association Name="FK__Pago__id_asisten__5DCAEF64">
           <End Role="Asistente" Type="Self.Asistente" Multiplicity="0..1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -471,7 +547,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pago__id_evento__3E1D39E1">
+        <Association Name="FK__Pago__id_evento__5EBF139D">
           <End Role="Evento" Type="Self.Evento" Multiplicity="0..1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -483,7 +559,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Presentac__id_ac__59FA5E80">
+        <Association Name="FK__Presentac__id_ac__412EB0B6">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
           <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -495,7 +571,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Revisor__id_cuen__04E4BC85">
+        <Association Name="FK__Presentac__id_ar__6383C8BA">
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulo">
+              <PropertyRef Name="id_articulo" />
+            </Principal>
+            <Dependent Role="PresentacionArticulo">
+              <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Presentac__id_pr__628FA481">
+          <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="1" />
+          <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presentacion">
+              <PropertyRef Name="id_presentacion" />
+            </Principal>
+            <Dependent Role="PresentacionArticulo">
+              <PropertyRef Name="id_presentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Revisor__id_cuen__6D0D32F4">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
           <End Role="Revisor" Type="Self.Revisor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -507,7 +607,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RevisorAr__id_ar__08B54D69">
+        <Association Name="FK__RevisorAr__id_ar__70DDC3D8">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
           <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -519,7 +619,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RevisorAr__id_re__07C12930">
+        <Association Name="FK__RevisorAr__id_re__6FE99F9F">
           <End Role="Revisor" Type="Self.Revisor" Multiplicity="1" />
           <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -531,7 +631,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tarea__id_comite__44FF419A">
+        <Association Name="FK__Tarea__id_comite__33D4B598">
           <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
           <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
           <ReferentialConstraint>
@@ -543,7 +643,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Track__id_evento__71D1E811">
+        <Association Name="FK__TareaActi__id_ac__3E52440B">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="TareaActividad" Type="Self.TareaActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id_actividad" />
+            </Principal>
+            <Dependent Role="TareaActividad">
+              <PropertyRef Name="id_actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TareaActi__id_ta__3D5E1FD2">
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="1" />
+          <End Role="TareaActividad" Type="Self.TareaActividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarea">
+              <PropertyRef Name="id_tarea" />
+            </Principal>
+            <Dependent Role="TareaActividad">
+              <PropertyRef Name="id_tarea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Track__id_evento__571DF1D5">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="Track" Type="Self.Track" Multiplicity="*" />
           <ReferentialConstraint>
@@ -552,126 +676,6 @@
             </Principal>
             <Dependent Role="Track">
               <PropertyRef Name="id_evento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AsistenteActividad_Actividad">
-          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
-          <End Role="AsistenteActividad" Type="Self.AsistenteActividad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Actividad">
-              <PropertyRef Name="id_actividad" />
-            </Principal>
-            <Dependent Role="AsistenteActividad">
-              <PropertyRef Name="Actividad_id_actividad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AsistenteActividad_Asistente">
-          <End Role="Asistente" Type="Self.Asistente" Multiplicity="1" />
-          <End Role="AsistenteActividad" Type="Self.AsistenteActividad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Asistente">
-              <PropertyRef Name="id_asistente" />
-            </Principal>
-            <Dependent Role="AsistenteActividad">
-              <PropertyRef Name="Asistente_id_asistente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComiteOrganizador_Comite">
-          <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
-          <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Comite">
-              <PropertyRef Name="id_comite" />
-            </Principal>
-            <Dependent Role="ComiteOrganizador">
-              <PropertyRef Name="id_comite" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComiteOrganizador_Organizador">
-          <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
-          <End Role="ComiteOrganizador" Type="Self.ComiteOrganizador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organizador">
-              <PropertyRef Name="id_organizador" />
-            </Principal>
-            <Dependent Role="ComiteOrganizador">
-              <PropertyRef Name="id_organizador" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GastoMagistral_Gasto">
-          <End Role="Gasto" Type="Self.Gasto" Multiplicity="1" />
-          <End Role="GastoMagistral" Type="Self.GastoMagistral" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gasto">
-              <PropertyRef Name="id_gasto" />
-            </Principal>
-            <Dependent Role="GastoMagistral">
-              <PropertyRef Name="Gasto_id_gasto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GastoMagistral_Magistral">
-          <End Role="Magistral" Type="Self.Magistral" Multiplicity="1" />
-          <End Role="GastoMagistral" Type="Self.GastoMagistral" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Magistral">
-              <PropertyRef Name="id_magistral" />
-            </Principal>
-            <Dependent Role="GastoMagistral">
-              <PropertyRef Name="Magistral_id_magistral" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PresentacionArticulo_Articulo">
-          <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
-          <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Articulo">
-              <PropertyRef Name="id_articulo" />
-            </Principal>
-            <Dependent Role="PresentacionArticulo">
-              <PropertyRef Name="Articulo_id_articulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PresentacionArticulo_Presentacion">
-          <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="1" />
-          <End Role="PresentacionArticulo" Type="Self.PresentacionArticulo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Presentacion">
-              <PropertyRef Name="id_presentacion" />
-            </Principal>
-            <Dependent Role="PresentacionArticulo">
-              <PropertyRef Name="Presentacion_id_presentacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TareaActividad_Actividad">
-          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
-          <End Role="TareaActividad" Type="Self.TareaActividad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Actividad">
-              <PropertyRef Name="id_actividad" />
-            </Principal>
-            <Dependent Role="TareaActividad">
-              <PropertyRef Name="Actividad_id_actividad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TareaActividad_Tarea">
-          <End Role="Tarea" Type="Self.Tarea" Multiplicity="1" />
-          <End Role="TareaActividad" Type="Self.TareaActividad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tarea">
-              <PropertyRef Name="id_tarea" />
-            </Principal>
-            <Dependent Role="TareaActividad">
-              <PropertyRef Name="Tarea_id_tarea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -690,156 +694,166 @@
           <EntitySet Name="EvaluacionArticulo" EntityType="Self.EvaluacionArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gasto" EntityType="Self.Gasto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GastoMagistral" EntityType="Self.GastoMagistral" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Magistral" EntityType="Self.Magistral" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organizador" EntityType="Self.Organizador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Presentacion" EntityType="Self.Presentacion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PresentacionArticulo" EntityType="Self.PresentacionArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Revisor" EntityType="Self.Revisor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RevisorArticulo" EntityType="Self.RevisorArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tarea" EntityType="Self.Tarea" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TareaActividad" EntityType="Self.TareaActividad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Actividad__id_ev__534D60F1" Association="Self.FK__Actividad__id_ev__534D60F1">
+          <EntitySet Name="GastoMagistral" EntityType="Self.GastoMagistral" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GastoMagistral].[id_gasto] AS [id_gasto], 
+    [GastoMagistral].[id_magistral] AS [id_magistral]
+    FROM [dbo].[GastoMagistral] AS [GastoMagistral]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PresentacionArticulo" EntityType="Self.PresentacionArticulo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PresentacionArticulo].[id_presentacion] AS [id_presentacion], 
+    [PresentacionArticulo].[id_articulo] AS [id_articulo]
+    FROM [dbo].[PresentacionArticulo] AS [PresentacionArticulo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Actividad__id_ev__3A81B327" Association="Self.FK__Actividad__id_ev__3A81B327">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Actividad" EntitySet="Actividad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Articulo__id_tra__74AE54BC" Association="Self.FK__Articulo__id_tra__74AE54BC">
+          <AssociationSet Name="FK__Articulo__id_tra__59FA5E80" Association="Self.FK__Articulo__id_tra__59FA5E80">
             <End Role="Track" EntitySet="Track" />
             <End Role="Articulo" EntitySet="Articulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asistente__id_ad__656C112C" Association="Self.FK__Asistente__id_ad__656C112C">
+          <AssociationSet Name="FK__Asistente__id_ac__5070F446" Association="Self.FK__Asistente__id_ac__5070F446">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistente__id_ad__4CA06362" Association="Self.FK__Asistente__id_ad__4CA06362">
             <End Role="Adscripcion" EntitySet="Adscripcion" />
             <End Role="Asistente" EntitySet="Asistente" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asistente__id_as__29221CFB" Association="Self.FK__Asistente__id_as__29221CFB">
+          <AssociationSet Name="FK__Asistente__id_as__4F7CD00D" Association="Self.FK__Asistente__id_as__4F7CD00D">
+            <End Role="Asistente" EntitySet="Asistente" />
+            <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistente__id_as__534D60F1" Association="Self.FK__Asistente__id_as__534D60F1">
             <End Role="Asistente" EntitySet="Asistente" />
             <End Role="AsistenteEvento" EntitySet="AsistenteEvento" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asistente__id_ev__2A164134" Association="Self.FK__Asistente__id_ev__2A164134">
+          <AssociationSet Name="FK__Asistente__id_ev__5441852A" Association="Self.FK__Asistente__id_ev__5441852A">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="AsistenteEvento" EntitySet="AsistenteEvento" />
           </AssociationSet>
-          <AssociationSet Name="FK__Autor__id_adscri__7F2BE32F" Association="Self.FK__Autor__id_adscri__7F2BE32F">
+          <AssociationSet Name="FK__Autor__id_adscri__66603565" Association="Self.FK__Autor__id_adscri__66603565">
             <End Role="Adscripcion" EntitySet="Adscripcion" />
             <End Role="Autor" EntitySet="Autor" />
           </AssociationSet>
-          <AssociationSet Name="FK__AutorArti__id_ar__02084FDA" Association="Self.FK__AutorArti__id_ar__02084FDA">
+          <AssociationSet Name="FK__AutorArti__id_ar__6A30C649" Association="Self.FK__AutorArti__id_ar__6A30C649">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="AutorArticulo" EntitySet="AutorArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__AutorArti__id_au__01142BA1" Association="Self.FK__AutorArti__id_au__01142BA1">
+          <AssociationSet Name="FK__AutorArti__id_au__693CA210" Association="Self.FK__AutorArti__id_au__693CA210">
             <End Role="Autor" EntitySet="Autor" />
             <End Role="AutorArticulo" EntitySet="AutorArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Comite__id_event__0F624AF8" Association="Self.FK__Comite__id_event__0F624AF8">
+          <AssociationSet Name="FK__Comite__id_event__300424B4" Association="Self.FK__Comite__id_event__300424B4">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Comite" EntitySet="Comite" />
           </AssociationSet>
-          <AssociationSet Name="FK__Comite__id_organ__02084FDA" Association="Self.FK__Comite__id_organ__02084FDA">
+          <AssociationSet Name="FK__Comite__id_organ__30F848ED" Association="Self.FK__Comite__id_organ__30F848ED">
             <End Role="Organizador" EntitySet="Organizador" />
             <End Role="Comite" EntitySet="Comite" />
           </AssociationSet>
-          <AssociationSet Name="FK__Evaluacio__id_re__787EE5A0" Association="Self.FK__Evaluacio__id_re__787EE5A0">
+          <AssociationSet Name="FK__ComiteOrg__id_co__36B12243" Association="Self.FK__ComiteOrg__id_co__36B12243">
+            <End Role="Comite" EntitySet="Comite" />
+            <End Role="ComiteOrganizador" EntitySet="ComiteOrganizador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComiteOrg__id_or__37A5467C" Association="Self.FK__ComiteOrg__id_or__37A5467C">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="ComiteOrganizador" EntitySet="ComiteOrganizador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Evaluacio__id_re__73BA3083" Association="Self.FK__Evaluacio__id_re__73BA3083">
             <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
             <End Role="EvaluacionArticulo" EntitySet="EvaluacionArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Evento__id_organ__3C69FB99" Association="Self.FK__Evento__id_organ__3C69FB99">
+          <AssociationSet Name="FK__Evento__id_organ__29572725" Association="Self.FK__Evento__id_organ__29572725">
             <End Role="Organizador" EntitySet="Organizador" />
             <End Role="Evento" EntitySet="Evento" />
           </AssociationSet>
-          <AssociationSet Name="FK__Gasto__id_evento__403A8C7D" Association="Self.FK__Gasto__id_evento__403A8C7D">
+          <AssociationSet Name="FK__Gasto__id_evento__2D27B809" Association="Self.FK__Gasto__id_evento__2D27B809">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Gasto" EntitySet="Gasto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Magistral__id_ac__5CD6CB2B" Association="Self.FK__Magistral__id_ac__5CD6CB2B">
+          <AssociationSet Name="FK__GastoMagi__id_ga__46E78A0C" Association="Self.FK__GastoMagi__id_ga__46E78A0C">
+            <End Role="Gasto" EntitySet="Gasto" />
+            <End Role="GastoMagistral" EntitySet="GastoMagistral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GastoMagi__id_ma__47DBAE45" Association="Self.FK__GastoMagi__id_ma__47DBAE45">
+            <End Role="Magistral" EntitySet="Magistral" />
+            <End Role="GastoMagistral" EntitySet="GastoMagistral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Magistral__id_ac__440B1D61" Association="Self.FK__Magistral__id_ac__440B1D61">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Magistral" EntitySet="Magistral" />
           </AssociationSet>
-          <AssociationSet Name="FK__Organizad__id_cu__398D8EEE" Association="Self.FK__Organizad__id_cu__398D8EEE">
+          <AssociationSet Name="FK__Organizad__id_cu__267ABA7A" Association="Self.FK__Organizad__id_cu__267ABA7A">
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Organizador" EntitySet="Organizador" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pago__id_activid__3C34F16F" Association="Self.FK__Pago__id_activid__3C34F16F">
+          <AssociationSet Name="FK__Pago__id_activid__5CD6CB2B" Association="Self.FK__Pago__id_activid__5CD6CB2B">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pago__id_articul__3F115E1A" Association="Self.FK__Pago__id_articul__3F115E1A">
+          <AssociationSet Name="FK__Pago__id_articul__5FB337D6" Association="Self.FK__Pago__id_articul__5FB337D6">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pago__id_asisten__3D2915A8" Association="Self.FK__Pago__id_asisten__3D2915A8">
+          <AssociationSet Name="FK__Pago__id_asisten__5DCAEF64" Association="Self.FK__Pago__id_asisten__5DCAEF64">
             <End Role="Asistente" EntitySet="Asistente" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pago__id_evento__3E1D39E1" Association="Self.FK__Pago__id_evento__3E1D39E1">
+          <AssociationSet Name="FK__Pago__id_evento__5EBF139D" Association="Self.FK__Pago__id_evento__5EBF139D">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Presentac__id_ac__59FA5E80" Association="Self.FK__Presentac__id_ac__59FA5E80">
+          <AssociationSet Name="FK__Presentac__id_ac__412EB0B6" Association="Self.FK__Presentac__id_ac__412EB0B6">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Presentacion" EntitySet="Presentacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Revisor__id_cuen__04E4BC85" Association="Self.FK__Revisor__id_cuen__04E4BC85">
+          <AssociationSet Name="FK__Presentac__id_ar__6383C8BA" Association="Self.FK__Presentac__id_ar__6383C8BA">
+            <End Role="Articulo" EntitySet="Articulo" />
+            <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Presentac__id_pr__628FA481" Association="Self.FK__Presentac__id_pr__628FA481">
+            <End Role="Presentacion" EntitySet="Presentacion" />
+            <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Revisor__id_cuen__6D0D32F4" Association="Self.FK__Revisor__id_cuen__6D0D32F4">
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Revisor" EntitySet="Revisor" />
           </AssociationSet>
-          <AssociationSet Name="FK__RevisorAr__id_ar__08B54D69" Association="Self.FK__RevisorAr__id_ar__08B54D69">
+          <AssociationSet Name="FK__RevisorAr__id_ar__70DDC3D8" Association="Self.FK__RevisorAr__id_ar__70DDC3D8">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__RevisorAr__id_re__07C12930" Association="Self.FK__RevisorAr__id_re__07C12930">
+          <AssociationSet Name="FK__RevisorAr__id_re__6FE99F9F" Association="Self.FK__RevisorAr__id_re__6FE99F9F">
             <End Role="Revisor" EntitySet="Revisor" />
             <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tarea__id_comite__44FF419A" Association="Self.FK__Tarea__id_comite__44FF419A">
+          <AssociationSet Name="FK__Tarea__id_comite__33D4B598" Association="Self.FK__Tarea__id_comite__33D4B598">
             <End Role="Comite" EntitySet="Comite" />
             <End Role="Tarea" EntitySet="Tarea" />
           </AssociationSet>
-          <AssociationSet Name="FK__Track__id_evento__71D1E811" Association="Self.FK__Track__id_evento__71D1E811">
+          <AssociationSet Name="FK__TareaActi__id_ac__3E52440B" Association="Self.FK__TareaActi__id_ac__3E52440B">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="TareaActividad" EntitySet="TareaActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TareaActi__id_ta__3D5E1FD2" Association="Self.FK__TareaActi__id_ta__3D5E1FD2">
+            <End Role="Tarea" EntitySet="Tarea" />
+            <End Role="TareaActividad" EntitySet="TareaActividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Track__id_evento__571DF1D5" Association="Self.FK__Track__id_evento__571DF1D5">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Track" EntitySet="Track" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AsistenteActividad_Actividad" Association="Self.FK_AsistenteActividad_Actividad">
-            <End Role="Actividad" EntitySet="Actividad" />
-            <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AsistenteActividad_Asistente" Association="Self.FK_AsistenteActividad_Asistente">
-            <End Role="Asistente" EntitySet="Asistente" />
-            <End Role="AsistenteActividad" EntitySet="AsistenteActividad" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComiteOrganizador_Comite" Association="Self.FK_ComiteOrganizador_Comite">
-            <End Role="Comite" EntitySet="Comite" />
-            <End Role="ComiteOrganizador" EntitySet="ComiteOrganizador" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComiteOrganizador_Organizador" Association="Self.FK_ComiteOrganizador_Organizador">
-            <End Role="Organizador" EntitySet="Organizador" />
-            <End Role="ComiteOrganizador" EntitySet="ComiteOrganizador" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GastoMagistral_Gasto" Association="Self.FK_GastoMagistral_Gasto">
-            <End Role="Gasto" EntitySet="Gasto" />
-            <End Role="GastoMagistral" EntitySet="GastoMagistral" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GastoMagistral_Magistral" Association="Self.FK_GastoMagistral_Magistral">
-            <End Role="Magistral" EntitySet="Magistral" />
-            <End Role="GastoMagistral" EntitySet="GastoMagistral" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PresentacionArticulo_Articulo" Association="Self.FK_PresentacionArticulo_Articulo">
-            <End Role="Articulo" EntitySet="Articulo" />
-            <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PresentacionArticulo_Presentacion" Association="Self.FK_PresentacionArticulo_Presentacion">
-            <End Role="Presentacion" EntitySet="Presentacion" />
-            <End Role="PresentacionArticulo" EntitySet="PresentacionArticulo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TareaActividad_Actividad" Association="Self.FK_TareaActividad_Actividad">
-            <End Role="Actividad" EntitySet="Actividad" />
-            <End Role="TareaActividad" EntitySet="TareaActividad" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TareaActividad_Tarea" Association="Self.FK_TareaActividad_Tarea">
-            <End Role="Tarea" EntitySet="Tarea" />
-            <End Role="TareaActividad" EntitySet="TareaActividad" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -857,10 +871,10 @@
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="costo" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Evento" Relationship="Self.FK__Actividad__id_ev__534D60F1" FromRole="Actividad" ToRole="Evento" />
-          <NavigationProperty Name="Magistral" Relationship="Self.FK__Magistral__id_ac__5CD6CB2B" FromRole="Actividad" ToRole="Magistral" />
-          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_activid__3C34F16F" FromRole="Actividad" ToRole="Pago" />
-          <NavigationProperty Name="Presentacion" Relationship="Self.FK__Presentac__id_ac__59FA5E80" FromRole="Actividad" ToRole="Presentacion" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Actividad__id_ev__3A81B327" FromRole="Actividad" ToRole="Evento" />
+          <NavigationProperty Name="Magistral" Relationship="Self.FK__Magistral__id_ac__440B1D61" FromRole="Actividad" ToRole="Magistral" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_activid__5CD6CB2B" FromRole="Actividad" ToRole="Pago" />
+          <NavigationProperty Name="Presentacion" Relationship="Self.FK__Presentac__id_ac__412EB0B6" FromRole="Actividad" ToRole="Presentacion" />
           <NavigationProperty Name="Asistente" Relationship="Self.AsistenteActividad" FromRole="Actividad" ToRole="Asistente" />
           <NavigationProperty Name="Tarea" Relationship="Self.TareaActividad" FromRole="Actividad" ToRole="Tarea" />
         </EntityType>
@@ -873,8 +887,8 @@
           <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="puesto" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Asistente" Relationship="Self.FK__Asistente__id_ad__656C112C" FromRole="Adscripcion" ToRole="Asistente" />
-          <NavigationProperty Name="Autor" Relationship="Self.FK__Autor__id_adscri__7F2BE32F" FromRole="Adscripcion" ToRole="Autor" />
+          <NavigationProperty Name="Asistente" Relationship="Self.FK__Asistente__id_ad__4CA06362" FromRole="Adscripcion" ToRole="Asistente" />
+          <NavigationProperty Name="Autor" Relationship="Self.FK__Autor__id_adscri__66603565" FromRole="Adscripcion" ToRole="Autor" />
         </EntityType>
         <EntityType Name="Articulo">
           <Key>
@@ -888,10 +902,10 @@
           <Property Name="resumen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="keywords" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="archivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Track" Relationship="Self.FK__Articulo__id_tra__74AE54BC" FromRole="Articulo" ToRole="Track" />
-          <NavigationProperty Name="AutorArticulo" Relationship="Self.FK__AutorArti__id_ar__02084FDA" FromRole="Articulo" ToRole="AutorArticulo" />
-          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_articul__3F115E1A" FromRole="Articulo" ToRole="Pago" />
-          <NavigationProperty Name="RevisorArticulo" Relationship="Self.FK__RevisorAr__id_ar__08B54D69" FromRole="Articulo" ToRole="RevisorArticulo" />
+          <NavigationProperty Name="Track" Relationship="Self.FK__Articulo__id_tra__59FA5E80" FromRole="Articulo" ToRole="Track" />
+          <NavigationProperty Name="AutorArticulo" Relationship="Self.FK__AutorArti__id_ar__6A30C649" FromRole="Articulo" ToRole="AutorArticulo" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_articul__5FB337D6" FromRole="Articulo" ToRole="Pago" />
+          <NavigationProperty Name="RevisorArticulo" Relationship="Self.FK__RevisorAr__id_ar__70DDC3D8" FromRole="Articulo" ToRole="RevisorArticulo" />
           <NavigationProperty Name="Presentacion" Relationship="Self.PresentacionArticulo" FromRole="Articulo" ToRole="Presentacion" />
         </EntityType>
         <EntityType Name="Asistente">
@@ -904,8 +918,8 @@
           <Property Name="paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Adscripcion" Relationship="Self.FK__Asistente__id_ad__656C112C" FromRole="Asistente" ToRole="Adscripcion" />
-          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_asisten__3D2915A8" FromRole="Asistente" ToRole="Pago" />
+          <NavigationProperty Name="Adscripcion" Relationship="Self.FK__Asistente__id_ad__4CA06362" FromRole="Asistente" ToRole="Adscripcion" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_asisten__5DCAEF64" FromRole="Asistente" ToRole="Pago" />
           <NavigationProperty Name="Actividad" Relationship="Self.AsistenteActividad" FromRole="Asistente" ToRole="Actividad" />
           <NavigationProperty Name="Evento" Relationship="Self.AsistenteEvento" FromRole="Asistente" ToRole="Evento" />
         </EntityType>
@@ -920,8 +934,8 @@
           <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Adscripcion" Relationship="Self.FK__Autor__id_adscri__7F2BE32F" FromRole="Autor" ToRole="Adscripcion" />
-          <NavigationProperty Name="AutorArticulo" Relationship="Self.FK__AutorArti__id_au__01142BA1" FromRole="Autor" ToRole="AutorArticulo" />
+          <NavigationProperty Name="Adscripcion" Relationship="Self.FK__Autor__id_adscri__66603565" FromRole="Autor" ToRole="Adscripcion" />
+          <NavigationProperty Name="AutorArticulo" Relationship="Self.FK__AutorArti__id_au__693CA210" FromRole="Autor" ToRole="AutorArticulo" />
         </EntityType>
         <EntityType Name="AutorArticulo">
           <Key>
@@ -930,9 +944,9 @@
           </Key>
           <Property Name="id_autor" Type="Int32" Nullable="false" />
           <Property Name="id_articulo" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Articulo" Relationship="Self.FK__AutorArti__id_ar__02084FDA" FromRole="AutorArticulo" ToRole="Articulo" />
-          <NavigationProperty Name="Autor" Relationship="Self.FK__AutorArti__id_au__01142BA1" FromRole="AutorArticulo" ToRole="Autor" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK__AutorArti__id_ar__6A30C649" FromRole="AutorArticulo" ToRole="Articulo" />
+          <NavigationProperty Name="Autor" Relationship="Self.FK__AutorArti__id_au__693CA210" FromRole="AutorArticulo" ToRole="Autor" />
         </EntityType>
         <EntityType Name="Comite">
           <Key>
@@ -943,9 +957,9 @@
           <Property Name="id_organizador" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="responsabilidades" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Evento" Relationship="Self.FK__Comite__id_event__0F624AF8" FromRole="Comite" ToRole="Evento" />
-          <NavigationProperty Name="Organizador" Relationship="Self.FK__Comite__id_organ__02084FDA" FromRole="Comite" ToRole="Organizador" />
-          <NavigationProperty Name="Tarea" Relationship="Self.FK__Tarea__id_comite__44FF419A" FromRole="Comite" ToRole="Tarea" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Comite__id_event__300424B4" FromRole="Comite" ToRole="Evento" />
+          <NavigationProperty Name="Organizador" Relationship="Self.FK__Comite__id_organ__30F848ED" FromRole="Comite" ToRole="Organizador" />
+          <NavigationProperty Name="Tarea" Relationship="Self.FK__Tarea__id_comite__33D4B598" FromRole="Comite" ToRole="Tarea" />
           <NavigationProperty Name="Organizadores" Relationship="Self.ComiteOrganizador" FromRole="Comite" ToRole="Organizador" />
         </EntityType>
         <EntityType Name="Cuenta">
@@ -955,8 +969,8 @@
           <Property Name="id_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="contrasenia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Organizador" Relationship="Self.FK__Organizad__id_cu__398D8EEE" FromRole="Cuenta" ToRole="Organizador" />
-          <NavigationProperty Name="Revisor" Relationship="Self.FK__Revisor__id_cuen__04E4BC85" FromRole="Cuenta" ToRole="Revisor" />
+          <NavigationProperty Name="Organizador" Relationship="Self.FK__Organizad__id_cu__267ABA7A" FromRole="Cuenta" ToRole="Organizador" />
+          <NavigationProperty Name="Revisor" Relationship="Self.FK__Revisor__id_cuen__6D0D32F4" FromRole="Cuenta" ToRole="Revisor" />
         </EntityType>
         <EntityType Name="EvaluacionArticulo">
           <Key>
@@ -968,7 +982,7 @@
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="gradoExpertiz" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="RevisorArticulo" Relationship="Self.FK__Evaluacio__id_re__787EE5A0" FromRole="EvaluacionArticulo" ToRole="RevisorArticulo" />
+          <NavigationProperty Name="RevisorArticulo" Relationship="Self.FK__Evaluacio__id_re__73BA3083" FromRole="EvaluacionArticulo" ToRole="RevisorArticulo" />
         </EntityType>
         <EntityType Name="Evento">
           <Key>
@@ -977,16 +991,16 @@
           <Property Name="id_evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_organizador" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="cuota" Type="Double" Nullable="false" />
           <Property Name="sede" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Actividad" Relationship="Self.FK__Actividad__id_ev__534D60F1" FromRole="Evento" ToRole="Actividad" />
-          <NavigationProperty Name="Comite" Relationship="Self.FK__Comite__id_event__0F624AF8" FromRole="Evento" ToRole="Comite" />
-          <NavigationProperty Name="Organizador" Relationship="Self.FK__Evento__id_organ__3C69FB99" FromRole="Evento" ToRole="Organizador" />
-          <NavigationProperty Name="Gasto" Relationship="Self.FK__Gasto__id_evento__403A8C7D" FromRole="Evento" ToRole="Gasto" />
-          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_evento__3E1D39E1" FromRole="Evento" ToRole="Pago" />
-          <NavigationProperty Name="Track" Relationship="Self.FK__Track__id_evento__71D1E811" FromRole="Evento" ToRole="Track" />
+          <NavigationProperty Name="Actividad" Relationship="Self.FK__Actividad__id_ev__3A81B327" FromRole="Evento" ToRole="Actividad" />
+          <NavigationProperty Name="Comite" Relationship="Self.FK__Comite__id_event__300424B4" FromRole="Evento" ToRole="Comite" />
+          <NavigationProperty Name="Organizador" Relationship="Self.FK__Evento__id_organ__29572725" FromRole="Evento" ToRole="Organizador" />
+          <NavigationProperty Name="Gasto" Relationship="Self.FK__Gasto__id_evento__2D27B809" FromRole="Evento" ToRole="Gasto" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__id_evento__5EBF139D" FromRole="Evento" ToRole="Pago" />
+          <NavigationProperty Name="Track" Relationship="Self.FK__Track__id_evento__571DF1D5" FromRole="Evento" ToRole="Track" />
           <NavigationProperty Name="Asistente" Relationship="Self.AsistenteEvento" FromRole="Evento" ToRole="Asistente" />
         </EntityType>
         <EntityType Name="Gasto">
@@ -997,8 +1011,8 @@
           <Property Name="id_evento" Type="Int32" Nullable="false" />
           <Property Name="cantidad" Type="Double" Nullable="false" />
           <Property Name="motivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Evento" Relationship="Self.FK__Gasto__id_evento__403A8C7D" FromRole="Gasto" ToRole="Evento" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Gasto__id_evento__2D27B809" FromRole="Gasto" ToRole="Evento" />
           <NavigationProperty Name="Magistral" Relationship="Self.GastoMagistral" FromRole="Gasto" ToRole="Magistral" />
         </EntityType>
         <EntityType Name="Magistral">
@@ -1013,7 +1027,7 @@
           <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lugarOrigen" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Actividad" Relationship="Self.FK__Magistral__id_ac__5CD6CB2B" FromRole="Magistral" ToRole="Actividad" />
+          <NavigationProperty Name="Actividad" Relationship="Self.FK__Magistral__id_ac__440B1D61" FromRole="Magistral" ToRole="Actividad" />
           <NavigationProperty Name="Gasto" Relationship="Self.GastoMagistral" FromRole="Magistral" ToRole="Gasto" />
         </EntityType>
         <EntityType Name="Organizador">
@@ -1027,9 +1041,9 @@
           <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Comite" Relationship="Self.FK__Comite__id_organ__02084FDA" FromRole="Organizador" ToRole="Comite" />
-          <NavigationProperty Name="Cuenta" Relationship="Self.FK__Organizad__id_cu__398D8EEE" FromRole="Organizador" ToRole="Cuenta" />
-          <NavigationProperty Name="Evento" Relationship="Self.FK__Evento__id_organ__3C69FB99" FromRole="Organizador" ToRole="Evento" />
+          <NavigationProperty Name="Comite" Relationship="Self.FK__Comite__id_organ__30F848ED" FromRole="Organizador" ToRole="Comite" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK__Organizad__id_cu__267ABA7A" FromRole="Organizador" ToRole="Cuenta" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Evento__id_organ__29572725" FromRole="Organizador" ToRole="Evento" />
           <NavigationProperty Name="Comites" Relationship="Self.ComiteOrganizador" FromRole="Organizador" ToRole="Comite" />
         </EntityType>
         <EntityType Name="Pago">
@@ -1043,10 +1057,10 @@
           <Property Name="id_articulo" Type="Int32" />
           <Property Name="cantidad" Type="Double" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Actividad" Relationship="Self.FK__Pago__id_activid__3C34F16F" FromRole="Pago" ToRole="Actividad" />
-          <NavigationProperty Name="Articulo" Relationship="Self.FK__Pago__id_articul__3F115E1A" FromRole="Pago" ToRole="Articulo" />
-          <NavigationProperty Name="Asistente" Relationship="Self.FK__Pago__id_asisten__3D2915A8" FromRole="Pago" ToRole="Asistente" />
-          <NavigationProperty Name="Evento" Relationship="Self.FK__Pago__id_evento__3E1D39E1" FromRole="Pago" ToRole="Evento" />
+          <NavigationProperty Name="Actividad" Relationship="Self.FK__Pago__id_activid__5CD6CB2B" FromRole="Pago" ToRole="Actividad" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK__Pago__id_articul__5FB337D6" FromRole="Pago" ToRole="Articulo" />
+          <NavigationProperty Name="Asistente" Relationship="Self.FK__Pago__id_asisten__5DCAEF64" FromRole="Pago" ToRole="Asistente" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Pago__id_evento__5EBF139D" FromRole="Pago" ToRole="Evento" />
         </EntityType>
         <EntityType Name="Presentacion">
           <Key>
@@ -1054,10 +1068,10 @@
           </Key>
           <Property Name="id_presentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_actividad" Type="Int32" Nullable="false" />
-          <Property Name="fechaPresentacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaPresentacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="horaInicio" Type="Time" Nullable="false" Precision="7" />
           <Property Name="horaFin" Type="Time" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Actividad" Relationship="Self.FK__Presentac__id_ac__59FA5E80" FromRole="Presentacion" ToRole="Actividad" />
+          <NavigationProperty Name="Actividad" Relationship="Self.FK__Presentac__id_ac__412EB0B6" FromRole="Presentacion" ToRole="Actividad" />
           <NavigationProperty Name="Articulo" Relationship="Self.PresentacionArticulo" FromRole="Presentacion" ToRole="Articulo" />
         </EntityType>
         <EntityType Name="Revisor">
@@ -1070,8 +1084,8 @@
           <Property Name="paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Cuenta" Relationship="Self.FK__Revisor__id_cuen__04E4BC85" FromRole="Revisor" ToRole="Cuenta" />
-          <NavigationProperty Name="RevisorArticulo" Relationship="Self.FK__RevisorAr__id_re__07C12930" FromRole="Revisor" ToRole="RevisorArticulo" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK__Revisor__id_cuen__6D0D32F4" FromRole="Revisor" ToRole="Cuenta" />
+          <NavigationProperty Name="RevisorArticulo" Relationship="Self.FK__RevisorAr__id_re__6FE99F9F" FromRole="Revisor" ToRole="RevisorArticulo" />
         </EntityType>
         <EntityType Name="RevisorArticulo">
           <Key>
@@ -1080,9 +1094,9 @@
           <Property Name="id_revisorArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_revisor" Type="Int32" Nullable="false" />
           <Property Name="id_articulo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Articulo" Relationship="Self.FK__RevisorAr__id_ar__08B54D69" FromRole="RevisorArticulo" ToRole="Articulo" />
-          <NavigationProperty Name="EvaluacionArticulo" Relationship="Self.FK__Evaluacio__id_re__787EE5A0" FromRole="RevisorArticulo" ToRole="EvaluacionArticulo" />
-          <NavigationProperty Name="Revisor" Relationship="Self.FK__RevisorAr__id_re__07C12930" FromRole="RevisorArticulo" ToRole="Revisor" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK__RevisorAr__id_ar__70DDC3D8" FromRole="RevisorArticulo" ToRole="Articulo" />
+          <NavigationProperty Name="EvaluacionArticulo" Relationship="Self.FK__Evaluacio__id_re__73BA3083" FromRole="RevisorArticulo" ToRole="EvaluacionArticulo" />
+          <NavigationProperty Name="Revisor" Relationship="Self.FK__RevisorAr__id_re__6FE99F9F" FromRole="RevisorArticulo" ToRole="Revisor" />
         </EntityType>
         <EntityType Name="Tarea">
           <Key>
@@ -1093,7 +1107,7 @@
           <Property Name="titulo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="asignadoA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Comite" Relationship="Self.FK__Tarea__id_comite__44FF419A" FromRole="Tarea" ToRole="Comite" />
+          <NavigationProperty Name="Comite" Relationship="Self.FK__Tarea__id_comite__33D4B598" FromRole="Tarea" ToRole="Comite" />
           <NavigationProperty Name="Actividad" Relationship="Self.TareaActividad" FromRole="Tarea" ToRole="Actividad" />
         </EntityType>
         <EntityType Name="Track">
@@ -1104,10 +1118,10 @@
           <Property Name="id_evento" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Articulo" Relationship="Self.FK__Articulo__id_tra__74AE54BC" FromRole="Track" ToRole="Articulo" />
-          <NavigationProperty Name="Evento" Relationship="Self.FK__Track__id_evento__71D1E811" FromRole="Track" ToRole="Evento" />
+          <NavigationProperty Name="Articulo" Relationship="Self.FK__Articulo__id_tra__59FA5E80" FromRole="Track" ToRole="Articulo" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK__Track__id_evento__571DF1D5" FromRole="Track" ToRole="Evento" />
         </EntityType>
-        <Association Name="FK__Actividad__id_ev__534D60F1">
+        <Association Name="FK__Actividad__id_ev__3A81B327">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1119,7 +1133,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Magistral__id_ac__5CD6CB2B">
+        <Association Name="FK__Magistral__id_ac__440B1D61">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
           <End Role="Magistral" Type="Self.Magistral" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1131,7 +1145,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pago__id_activid__3C34F16F">
+        <Association Name="FK__Pago__id_activid__5CD6CB2B">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="0..1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1143,7 +1157,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Presentac__id_ac__59FA5E80">
+        <Association Name="FK__Presentac__id_ac__412EB0B6">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
           <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1155,7 +1169,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asistente__id_ad__656C112C">
+        <Association Name="FK__Asistente__id_ad__4CA06362">
           <End Role="Adscripcion" Type="Self.Adscripcion" Multiplicity="1" />
           <End Role="Asistente" Type="Self.Asistente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1167,7 +1181,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Autor__id_adscri__7F2BE32F">
+        <Association Name="FK__Autor__id_adscri__66603565">
           <End Role="Adscripcion" Type="Self.Adscripcion" Multiplicity="1" />
           <End Role="Autor" Type="Self.Autor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1179,7 +1193,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Articulo__id_tra__74AE54BC">
+        <Association Name="FK__Articulo__id_tra__59FA5E80">
           <End Role="Track" Type="Self.Track" Multiplicity="1" />
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1191,7 +1205,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AutorArti__id_ar__02084FDA">
+        <Association Name="FK__AutorArti__id_ar__6A30C649">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
           <End Role="AutorArticulo" Type="Self.AutorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1203,7 +1217,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pago__id_articul__3F115E1A">
+        <Association Name="FK__Pago__id_articul__5FB337D6">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="0..1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1215,7 +1229,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RevisorAr__id_ar__08B54D69">
+        <Association Name="FK__RevisorAr__id_ar__70DDC3D8">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="1" />
           <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1227,7 +1241,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pago__id_asisten__3D2915A8">
+        <Association Name="FK__Pago__id_asisten__5DCAEF64">
           <End Role="Asistente" Type="Self.Asistente" Multiplicity="0..1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1239,7 +1253,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AutorArti__id_au__01142BA1">
+        <Association Name="FK__AutorArti__id_au__693CA210">
           <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
           <End Role="AutorArticulo" Type="Self.AutorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1251,7 +1265,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Comite__id_event__0F624AF8">
+        <Association Name="FK__Comite__id_event__300424B4">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1263,7 +1277,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Comite__id_organ__02084FDA">
+        <Association Name="FK__Comite__id_organ__30F848ED">
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
           <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1275,7 +1289,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tarea__id_comite__44FF419A">
+        <Association Name="FK__Tarea__id_comite__33D4B598">
           <End Role="Comite" Type="Self.Comite" Multiplicity="1" />
           <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1287,7 +1301,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Organizad__id_cu__398D8EEE">
+        <Association Name="FK__Organizad__id_cu__267ABA7A">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1299,7 +1313,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Revisor__id_cuen__04E4BC85">
+        <Association Name="FK__Revisor__id_cuen__6D0D32F4">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
           <End Role="Revisor" Type="Self.Revisor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1311,7 +1325,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Evaluacio__id_re__787EE5A0">
+        <Association Name="FK__Evaluacio__id_re__73BA3083">
           <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="1" />
           <End Role="EvaluacionArticulo" Type="Self.EvaluacionArticulo" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -1323,7 +1337,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Evento__id_organ__3C69FB99">
+        <Association Name="FK__Evento__id_organ__29572725">
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="1" />
           <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1335,7 +1349,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Gasto__id_evento__403A8C7D">
+        <Association Name="FK__Gasto__id_evento__2D27B809">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1347,7 +1361,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pago__id_evento__3E1D39E1">
+        <Association Name="FK__Pago__id_evento__5EBF139D">
           <End Role="Evento" Type="Self.Evento" Multiplicity="0..1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1359,7 +1373,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Track__id_evento__71D1E811">
+        <Association Name="FK__Track__id_evento__571DF1D5">
           <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
           <End Role="Track" Type="Self.Track" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1371,7 +1385,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RevisorAr__id_re__07C12930">
+        <Association Name="FK__RevisorAr__id_re__6FE99F9F">
           <End Role="Revisor" Type="Self.Revisor" Multiplicity="1" />
           <End Role="RevisorArticulo" Type="Self.RevisorArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1395,6 +1409,10 @@
           <End Role="Comite" Type="Self.Comite" Multiplicity="*" />
           <End Role="Organizador" Type="Self.Organizador" Multiplicity="*" />
         </Association>
+        <Association Name="TareaActividad">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
+          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
+        </Association>
         <Association Name="GastoMagistral">
           <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
           <End Role="Magistral" Type="Self.Magistral" Multiplicity="*" />
@@ -1402,10 +1420,6 @@
         <Association Name="PresentacionArticulo">
           <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
           <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="*" />
-        </Association>
-        <Association Name="TareaActividad">
-          <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
-          <End Role="Tarea" Type="Self.Tarea" Multiplicity="*" />
         </Association>
         <EntityContainer Name="SigeaBD" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actividad" EntityType="Self.Actividad" />
@@ -1427,95 +1441,95 @@
           <EntitySet Name="RevisorArticulo" EntityType="Self.RevisorArticulo" />
           <EntitySet Name="Tarea" EntityType="Self.Tarea" />
           <EntitySet Name="Track" EntityType="Self.Track" />
-          <AssociationSet Name="FK__Actividad__id_ev__534D60F1" Association="Self.FK__Actividad__id_ev__534D60F1">
+          <AssociationSet Name="FK__Actividad__id_ev__3A81B327" Association="Self.FK__Actividad__id_ev__3A81B327">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Actividad" EntitySet="Actividad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Magistral__id_ac__5CD6CB2B" Association="Self.FK__Magistral__id_ac__5CD6CB2B">
+          <AssociationSet Name="FK__Magistral__id_ac__440B1D61" Association="Self.FK__Magistral__id_ac__440B1D61">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Magistral" EntitySet="Magistral" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pago__id_activid__3C34F16F" Association="Self.FK__Pago__id_activid__3C34F16F">
+          <AssociationSet Name="FK__Pago__id_activid__5CD6CB2B" Association="Self.FK__Pago__id_activid__5CD6CB2B">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Presentac__id_ac__59FA5E80" Association="Self.FK__Presentac__id_ac__59FA5E80">
+          <AssociationSet Name="FK__Presentac__id_ac__412EB0B6" Association="Self.FK__Presentac__id_ac__412EB0B6">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Presentacion" EntitySet="Presentacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asistente__id_ad__656C112C" Association="Self.FK__Asistente__id_ad__656C112C">
+          <AssociationSet Name="FK__Asistente__id_ad__4CA06362" Association="Self.FK__Asistente__id_ad__4CA06362">
             <End Role="Adscripcion" EntitySet="Adscripcion" />
             <End Role="Asistente" EntitySet="Asistente" />
           </AssociationSet>
-          <AssociationSet Name="FK__Autor__id_adscri__7F2BE32F" Association="Self.FK__Autor__id_adscri__7F2BE32F">
+          <AssociationSet Name="FK__Autor__id_adscri__66603565" Association="Self.FK__Autor__id_adscri__66603565">
             <End Role="Adscripcion" EntitySet="Adscripcion" />
             <End Role="Autor" EntitySet="Autor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Articulo__id_tra__74AE54BC" Association="Self.FK__Articulo__id_tra__74AE54BC">
+          <AssociationSet Name="FK__Articulo__id_tra__59FA5E80" Association="Self.FK__Articulo__id_tra__59FA5E80">
             <End Role="Track" EntitySet="Track" />
             <End Role="Articulo" EntitySet="Articulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__AutorArti__id_ar__02084FDA" Association="Self.FK__AutorArti__id_ar__02084FDA">
+          <AssociationSet Name="FK__AutorArti__id_ar__6A30C649" Association="Self.FK__AutorArti__id_ar__6A30C649">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="AutorArticulo" EntitySet="AutorArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pago__id_articul__3F115E1A" Association="Self.FK__Pago__id_articul__3F115E1A">
+          <AssociationSet Name="FK__Pago__id_articul__5FB337D6" Association="Self.FK__Pago__id_articul__5FB337D6">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__RevisorAr__id_ar__08B54D69" Association="Self.FK__RevisorAr__id_ar__08B54D69">
+          <AssociationSet Name="FK__RevisorAr__id_ar__70DDC3D8" Association="Self.FK__RevisorAr__id_ar__70DDC3D8">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pago__id_asisten__3D2915A8" Association="Self.FK__Pago__id_asisten__3D2915A8">
+          <AssociationSet Name="FK__Pago__id_asisten__5DCAEF64" Association="Self.FK__Pago__id_asisten__5DCAEF64">
             <End Role="Asistente" EntitySet="Asistente" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__AutorArti__id_au__01142BA1" Association="Self.FK__AutorArti__id_au__01142BA1">
+          <AssociationSet Name="FK__AutorArti__id_au__693CA210" Association="Self.FK__AutorArti__id_au__693CA210">
             <End Role="Autor" EntitySet="Autor" />
             <End Role="AutorArticulo" EntitySet="AutorArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Comite__id_event__0F624AF8" Association="Self.FK__Comite__id_event__0F624AF8">
+          <AssociationSet Name="FK__Comite__id_event__300424B4" Association="Self.FK__Comite__id_event__300424B4">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Comite" EntitySet="Comite" />
           </AssociationSet>
-          <AssociationSet Name="FK__Comite__id_organ__02084FDA" Association="Self.FK__Comite__id_organ__02084FDA">
+          <AssociationSet Name="FK__Comite__id_organ__30F848ED" Association="Self.FK__Comite__id_organ__30F848ED">
             <End Role="Organizador" EntitySet="Organizador" />
             <End Role="Comite" EntitySet="Comite" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tarea__id_comite__44FF419A" Association="Self.FK__Tarea__id_comite__44FF419A">
+          <AssociationSet Name="FK__Tarea__id_comite__33D4B598" Association="Self.FK__Tarea__id_comite__33D4B598">
             <End Role="Comite" EntitySet="Comite" />
             <End Role="Tarea" EntitySet="Tarea" />
           </AssociationSet>
-          <AssociationSet Name="FK__Organizad__id_cu__398D8EEE" Association="Self.FK__Organizad__id_cu__398D8EEE">
+          <AssociationSet Name="FK__Organizad__id_cu__267ABA7A" Association="Self.FK__Organizad__id_cu__267ABA7A">
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Organizador" EntitySet="Organizador" />
           </AssociationSet>
-          <AssociationSet Name="FK__Revisor__id_cuen__04E4BC85" Association="Self.FK__Revisor__id_cuen__04E4BC85">
+          <AssociationSet Name="FK__Revisor__id_cuen__6D0D32F4" Association="Self.FK__Revisor__id_cuen__6D0D32F4">
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Revisor" EntitySet="Revisor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Evaluacio__id_re__787EE5A0" Association="Self.FK__Evaluacio__id_re__787EE5A0">
+          <AssociationSet Name="FK__Evaluacio__id_re__73BA3083" Association="Self.FK__Evaluacio__id_re__73BA3083">
             <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
             <End Role="EvaluacionArticulo" EntitySet="EvaluacionArticulo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Evento__id_organ__3C69FB99" Association="Self.FK__Evento__id_organ__3C69FB99">
+          <AssociationSet Name="FK__Evento__id_organ__29572725" Association="Self.FK__Evento__id_organ__29572725">
             <End Role="Organizador" EntitySet="Organizador" />
             <End Role="Evento" EntitySet="Evento" />
           </AssociationSet>
-          <AssociationSet Name="FK__Gasto__id_evento__403A8C7D" Association="Self.FK__Gasto__id_evento__403A8C7D">
+          <AssociationSet Name="FK__Gasto__id_evento__2D27B809" Association="Self.FK__Gasto__id_evento__2D27B809">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Gasto" EntitySet="Gasto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pago__id_evento__3E1D39E1" Association="Self.FK__Pago__id_evento__3E1D39E1">
+          <AssociationSet Name="FK__Pago__id_evento__5EBF139D" Association="Self.FK__Pago__id_evento__5EBF139D">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Track__id_evento__71D1E811" Association="Self.FK__Track__id_evento__71D1E811">
+          <AssociationSet Name="FK__Track__id_evento__571DF1D5" Association="Self.FK__Track__id_evento__571DF1D5">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Track" EntitySet="Track" />
           </AssociationSet>
-          <AssociationSet Name="FK__RevisorAr__id_re__07C12930" Association="Self.FK__RevisorAr__id_re__07C12930">
+          <AssociationSet Name="FK__RevisorAr__id_re__6FE99F9F" Association="Self.FK__RevisorAr__id_re__6FE99F9F">
             <End Role="Revisor" EntitySet="Revisor" />
             <End Role="RevisorArticulo" EntitySet="RevisorArticulo" />
           </AssociationSet>
@@ -1531,6 +1545,10 @@
             <End Role="Comite" EntitySet="Comite" />
             <End Role="Organizador" EntitySet="Organizador" />
           </AssociationSet>
+          <AssociationSet Name="TareaActividad" Association="Self.TareaActividad">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Tarea" EntitySet="Tarea" />
+          </AssociationSet>
           <AssociationSet Name="GastoMagistral" Association="Self.GastoMagistral">
             <End Role="Gasto" EntitySet="Gasto" />
             <End Role="Magistral" EntitySet="Magistral" />
@@ -1538,10 +1556,6 @@
           <AssociationSet Name="PresentacionArticulo" Association="Self.PresentacionArticulo">
             <End Role="Articulo" EntitySet="Articulo" />
             <End Role="Presentacion" EntitySet="Presentacion" />
-          </AssociationSet>
-          <AssociationSet Name="TareaActividad" Association="Self.TareaActividad">
-            <End Role="Actividad" EntitySet="Actividad" />
-            <End Role="Tarea" EntitySet="Tarea" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1772,10 +1786,10 @@
           </EntitySetMapping>
           <AssociationSetMapping Name="AsistenteActividad" TypeName="SIGEAModel.AsistenteActividad" StoreEntitySet="AsistenteActividad">
             <EndProperty Name="Actividad">
-              <ScalarProperty Name="id_actividad" ColumnName="Actividad_id_actividad" />
+              <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
             </EndProperty>
             <EndProperty Name="Asistente">
-              <ScalarProperty Name="id_asistente" ColumnName="Asistente_id_asistente" />
+              <ScalarProperty Name="id_asistente" ColumnName="id_asistente" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="AsistenteEvento" TypeName="SIGEAModel.AsistenteEvento" StoreEntitySet="AsistenteEvento">
@@ -1794,28 +1808,28 @@
               <ScalarProperty Name="id_organizador" ColumnName="id_organizador" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="TareaActividad" TypeName="SIGEAModel.TareaActividad" StoreEntitySet="TareaActividad">
+            <EndProperty Name="Actividad">
+              <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+            </EndProperty>
+            <EndProperty Name="Tarea">
+              <ScalarProperty Name="id_tarea" ColumnName="id_tarea" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="GastoMagistral" TypeName="SIGEAModel.GastoMagistral" StoreEntitySet="GastoMagistral">
             <EndProperty Name="Gasto">
-              <ScalarProperty Name="id_gasto" ColumnName="Gasto_id_gasto" />
+              <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
             </EndProperty>
             <EndProperty Name="Magistral">
-              <ScalarProperty Name="id_magistral" ColumnName="Magistral_id_magistral" />
+              <ScalarProperty Name="id_magistral" ColumnName="id_magistral" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="PresentacionArticulo" TypeName="SIGEAModel.PresentacionArticulo" StoreEntitySet="PresentacionArticulo">
             <EndProperty Name="Articulo">
-              <ScalarProperty Name="id_articulo" ColumnName="Articulo_id_articulo" />
+              <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
             </EndProperty>
             <EndProperty Name="Presentacion">
-              <ScalarProperty Name="id_presentacion" ColumnName="Presentacion_id_presentacion" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="TareaActividad" TypeName="SIGEAModel.TareaActividad" StoreEntitySet="TareaActividad">
-            <EndProperty Name="Actividad">
-              <ScalarProperty Name="id_actividad" ColumnName="Actividad_id_actividad" />
-            </EndProperty>
-            <EndProperty Name="Tarea">
-              <ScalarProperty Name="id_tarea" ColumnName="Tarea_id_tarea" />
+              <ScalarProperty Name="id_presentacion" ColumnName="id_presentacion" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

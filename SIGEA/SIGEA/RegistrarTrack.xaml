@@ -1,0 +1,19 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SIGEA.RegistrarTrack"
+        mc:Ignorable="d"
+        Title="Registrar Track" Height="294.374" Width="351.875">
+    <Grid>
+
+        <Label Content="Registro Track" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="162" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="324"/>
+        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="37" Margin="25,70,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="295" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="descripcionTextBox" HorizontalAlignment="Left" Height="83" Margin="25,112,0,0" TextWrapping="WrapWithOverflow"  materialDesign:HintAssist.Hint="Descripción" VerticalAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="295"/>
+        <Button x:Name="registrarButton" Content="Registrar" HorizontalAlignment="Left" Margin="236,221,0,0" VerticalAlignment="Top" Width="98" Click="RegistrarButton_Click"/>
+        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="133,221,0,0" VerticalAlignment="Top" Width="98" Click="CancelarButton_Click"/>
+    </Grid>
+</Window>

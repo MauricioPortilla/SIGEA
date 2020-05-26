@@ -13,6 +13,9 @@ namespace SIGEA {
         public ObservableCollection<ActividadTabla> ActividadesLista { get; } = new ObservableCollection<ActividadTabla>();
         public ObservableCollection<ActividadTabla> ActividadesSeleccionadasLista { get; } = new ObservableCollection<ActividadTabla>();
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
         public RegistrarAsistente () {
             InitializeComponent();
             DataContext = this;
@@ -34,9 +37,12 @@ namespace SIGEA {
         /// </summary>
         private void CargarTabla() {
             using (SigeaBD sigeaBD = new SigeaBD()) {
-                var listaActividades = (from actividad in sigeaBD.Actividad
-                                        where actividad.id_evento == Sesion.Evento.id_evento
-                                        select actividad).ToList();
+                var listaActividades = sigeaBD.Actividad.AsNoTracking().Where(
+                    actividad => actividad.id_evento == Sesion.Evento.id_evento
+                );
+                //var listaActividades = (from actividad in sigeaBD.Actividad.AsNoTracking()
+                //                        where actividad.id_evento == Sesion.Evento.id_evento
+                //                        select actividad).ToList();
                 foreach (Actividad actividad in listaActividades) {
                     ActividadesLista.Add(new ActividadTabla {
                         Actividad = actividad,
@@ -51,10 +57,10 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que registra al asistente al evento con las distintas actividades
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegistrarButton_Click (object sender, RoutedEventArgs e) {
-            if (VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
+            if (VerificarCampos() && VerificarDatos() && !VerificarExistencia()) {
                 try {
                     Collection<Actividad> actividadesSeleccionadas = new Collection<Actividad>();
                     foreach (var actividadSeleccionada in ActividadesSeleccionadasLista) {
@@ -78,6 +84,7 @@ namespace SIGEA {
                             }
                         }.Registrar()) {
                             MessageBox.Show("Asistente registrado con exito");
+                            Close();
                         } else {
                             MessageBox.Show("Asistente no pudo registrarse");
                         }
@@ -92,8 +99,8 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que cierra la ventana
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void CancelarButton_Click (object sender, RoutedEventArgs e) {
             new Actividades().Show();
             this.Close();
@@ -102,8 +109,8 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que verifica que ningun campo este vacio
         /// </summary>
-        /// <returns></returns>
-        public Boolean VerificarCampos () {
+        /// <returns>true si no están vacíos; false si lo están</returns>
+        public bool VerificarCampos () {
             if (!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(paternoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(maternoTextBox.Text) &&
@@ -127,7 +134,7 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que busca caracteres raros en los datos introducidos
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true si los datos son válidos; false si no</returns>
         private bool VerificarDatos () {
             if (Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(paternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
@@ -146,20 +153,20 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que verifica la existencia del asistente
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true si existe; false si no</returns>
         public bool VerificarExistencia () {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-                    var existenciaAsistente = sigeaBD.Asistente.Where(
+                    var existenciaAsistente = sigeaBD.Asistente.AsNoTracking().Where(
                         asistente => asistente.Evento.FirstOrDefault(
                             eventoLista => eventoLista.id_evento == Sesion.Evento.id_evento
                         ) != null && asistente.correo == correoTextBox.Text
                     );
                     if (existenciaAsistente.Count() == 0) {
-                        return true;
+                        return false;
                     } else {
                         MessageBox.Show("El asistente ya esta registrado");
-                        return false;
+                        return true;
                     }
                 }
             } catch (Exception){
@@ -171,8 +178,8 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que selecciona las actividades
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">ListView</param>
+        /// <param name="e">Evento</param>
         private void actividadListView_MouseDoubleClick (object sender, System.Windows.Input.MouseButtonEventArgs e) {
             if (actividadesListView.SelectedItem != null) {
                 var actividadSeleccionada = (ActividadTabla) actividadesListView.SelectedItem;
@@ -186,8 +193,8 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que deselecciona las actividades
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">ListView</param>
+        /// <param name="e">Evento</param>
         private void actividadSeleccionadaListView_MouseDoubleClick (object sender, System.Windows.Input.MouseButtonEventArgs e) {
             if (actividadesSeleccionadasListView.SelectedItem != null) {
                 var actividadSeleccionada = (ActividadTabla) actividadesSeleccionadasListView.SelectedItem;

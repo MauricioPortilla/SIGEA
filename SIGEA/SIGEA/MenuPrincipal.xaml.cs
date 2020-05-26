@@ -1,5 +1,6 @@
 ﻿using SIGEABD;
 using System;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Windows;
@@ -7,19 +8,31 @@ using System.Windows;
 namespace SIGEA {
     public partial class MenuPrincipal : Window {
 
-        public MenuPrincipal () {
+        public ObservableCollection<EventoTabla> EventosLista { get; } = new ObservableCollection<EventoTabla>();
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
+        public MenuPrincipal() {
             InitializeComponent();
+            DataContext = this;
             CargarTabla();
+        }
+
+        public struct EventoTabla {
+            public Evento Evento;
+            public string Nombre { get; set; }
+            public string Sede { get; set; }
+            public string FechaInicio { get; set; }
+            public string FechaFin { get; set; }
         }
 
         /// <summary>
         /// Metodo de acción para cerrar la ventana y regresar añ inicio de sesión
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CerrarButton_Click (object sender, RoutedEventArgs e) {
-
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
+        private void CerrarButton_Click(object sender, RoutedEventArgs e) {
             IniciarSesion inicioSesion = new IniciarSesion();
             inicioSesion.Show();
             this.Close();
@@ -28,10 +41,9 @@ namespace SIGEA {
         /// <summary>
         /// Metodo de acción que muestra la ventana de registro del evento
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CrearButton_Click (object sender, RoutedEventArgs e) {
-
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
+        private void CrearButton_Click(object sender, RoutedEventArgs e) {
             RegistrarEvento registroEvento = new RegistrarEvento();
             registroEvento.Show();
             this.Close();
@@ -40,83 +52,63 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que optiene los Eventos a los que esta registrado el organizador
         /// </summary>
-        public void CargarTabla () {
-
-            DataTable tablaEventos = new DataTable();
-
-            DataColumn nombre = new DataColumn("Nombre");
-            DataColumn sede = new DataColumn("Sede");
-            DataColumn fechaInicio = new DataColumn("Fecha de Inicio");
-            DataColumn fechaFin = new DataColumn("Fecha de FIn");
-
-            tablaEventos.Columns.Add(nombre);
-            tablaEventos.Columns.Add(sede);
-            tablaEventos.Columns.Add(fechaInicio);
-            tablaEventos.Columns.Add(fechaFin);
-
+        public void CargarTabla() {
             using (SigeaBD sigeaBD = new SigeaBD()) {
-
-                var listaEventos = (from evento in sigeaBD.Evento
-                                    where evento.id_organizador == Sesion.Organizador.id_organizador
-                                    select evento).ToList();
+                var listaEventos = sigeaBD.Evento.AsNoTracking().Where(
+                    evento => evento.id_organizador == Sesion.Organizador.id_organizador
+                );
 
                 foreach (Evento evento in listaEventos) {
-
-                    DataRow fila = tablaEventos.NewRow();
-
-                    fila [0] = evento.nombre;
-                    fila [1] = evento.sede;
-                    fila [2] = evento.fechaInicio.ToShortDateString();
-                    fila [3] = evento.fechaFin.Date.ToShortDateString();
-
-                    tablaEventos.Rows.Add(fila);
+                    EventosLista.Add(new EventoTabla {
+                        Evento = evento,
+                        Nombre = evento.nombre,
+                        Sede = evento.sede,
+                        FechaInicio = evento.fechaInicio.ToShortDateString(),
+                        FechaFin = evento.fechaFin.Date.ToShortDateString()
+                    });
                 }
 
-                var listaEventos2 = sigeaBD.Evento.Where(evento =>
-                evento.Comite.Where(comite =>
-                comite.id_organizador == Sesion.Organizador.id_organizador).Count() != 0);
+                var listaEventos2 = sigeaBD.Evento.AsNoTracking().Where(evento =>
+                    evento.Comite.Where(comite =>
+                        comite.id_organizador == Sesion.Organizador.id_organizador
+                    ).Count() != 0
+                );
 
                 foreach (Evento evento in listaEventos2) {
-
-                    DataRow fila = tablaEventos.NewRow();
-
-                    fila [0] = evento.nombre;
-                    fila [1] = evento.sede;
-                    fila [2] = evento.fechaInicio.ToShortDateString();
-                    fila [3] = evento.fechaFin.Date.ToShortDateString();
-
-                    tablaEventos.Rows.Add(fila);
+                    EventosLista.Add(new EventoTabla {
+                        Evento = evento,
+                        Nombre = evento.nombre,
+                        Sede = evento.sede,
+                        FechaInicio = evento.fechaInicio.ToShortDateString(),
+                        FechaFin = evento.fechaFin.Date.ToShortDateString()
+                    });
                 }
-
             }
-
-            eventosDataGrid.ItemsSource = tablaEventos.DefaultView;
         }
 
-
-        private void PruebaButton_Click (object sender, RoutedEventArgs e) {
-
-            var eventoSeleccioando = (DataRowView) eventosDataGrid.SelectedItem;
-
-            if (eventoSeleccioando != null) {
-
+        private void AdministrarButton_Click(object sender, RoutedEventArgs e) {
+            if (eventosListView.SelectedItem != null) {
+                var eventoSeleccionado = (EventoTabla) eventosListView.SelectedItem;
                 try {
-
                     using (SigeaBD sigeaBD = new SigeaBD()) {
-
-                        Sesion.Evento = sigeaBD.Evento.ToList().Find(
-                            evento => evento.nombre == eventoSeleccioando[0].ToString());
+                        var eventoEncontrado = sigeaBD.Evento.AsNoTracking().Where(
+                            evento => evento.id_evento == eventoSeleccionado.Evento.id_evento
+                        ).First();
+                        if (eventoEncontrado != null) {
+                            Sesion.Evento = eventoEncontrado;
+                        } else {
+                            throw new Exception();
+                        }
                     }
-
+                    new Actividades().Show();
+                    this.Close();
                 } catch (Exception ex) {
-
                     Console.WriteLine(ex);
+                    MessageBox.Show("Error al seleccionar el evento.");
                 }
-
-                new Actividades().Show();
-                this.Close();
+            } else {
+                MessageBox.Show("Selecciona un evento de la tabla.");
             }
-
         }
     }
 }

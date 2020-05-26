@@ -125,7 +125,7 @@ namespace SIGEA {
 
                 using (SigeaBD sigeaBD = new SigeaBD()) {
 
-                    var eventoOptenido = sigeaBD.Evento.ToList().Find(
+                    var eventoOptenido = sigeaBD.Evento.AsNoTracking().ToList().Find(
                         evento => evento.nombre == nombreTextBox.Text &&
                         evento.fechaInicio == inicioDataPicker.SelectedDate &&
                         evento.fechaFin == finDataPicker.SelectedDate);

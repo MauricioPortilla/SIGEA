@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e44109b0956a48b5b8ab3dd296f1048f" Name="Diagram1" ZoomLevel="95">
+      <Diagram DiagramId="21adde86050e4032bcd19f41ac95691c" Name="Diagram1">
         <EntityTypeShape EntityType="SIGEAModel.Actividad" Width="1.5" PointX="7.5" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGEAModel.Adscripcion" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGEAModel.Articulo" Width="1.5" PointX="9.75" PointY="23.375" IsExpanded="true" />
@@ -24,35 +24,35 @@
         <EntityTypeShape EntityType="SIGEAModel.RevisorArticulo" Width="1.5" PointX="12" PointY="25" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGEAModel.Tarea" Width="1.5" PointX="9.75" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGEAModel.Track" Width="1.5" PointX="7.5" PointY="24" IsExpanded="true" />
-        <AssociationConnector Association="SIGEAModel.FK__Actividad__id_ev__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Magistral__id_ac__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Pago__id_activid__3C34F16F" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Presentac__id_ac__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Asistente__id_ad__656C112C" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Autor__id_adscri__7F2BE32F" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Articulo__id_tra__74AE54BC" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__AutorArti__id_ar__02084FDA" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Pago__id_articul__3F115E1A" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__RevisorAr__id_ar__08B54D69" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Pago__id_asisten__3D2915A8" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__AutorArti__id_au__01142BA1" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Comite__id_event__0F624AF8" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Comite__id_organ__02084FDA" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Tarea__id_comite__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Organizad__id_cu__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Revisor__id_cuen__04E4BC85" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Evaluacio__id_re__787EE5A0" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Evento__id_organ__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Gasto__id_evento__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Pago__id_evento__3E1D39E1" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__Track__id_evento__71D1E811" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.FK__RevisorAr__id_re__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Actividad__id_ev__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Magistral__id_ac__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Pago__id_activid__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Presentac__id_ac__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Asistente__id_ad__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Autor__id_adscri__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Articulo__id_tra__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__AutorArti__id_ar__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Pago__id_articul__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__RevisorAr__id_ar__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Pago__id_asisten__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__AutorArti__id_au__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Comite__id_event__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Comite__id_organ__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Tarea__id_comite__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Organizad__id_cu__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Revisor__id_cuen__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Evaluacio__id_re__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Evento__id_organ__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Gasto__id_evento__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Pago__id_evento__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__Track__id_evento__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.FK__RevisorAr__id_re__6FE99F9F" ManuallyRouted="false" />
         <AssociationConnector Association="SIGEAModel.AsistenteActividad" ManuallyRouted="false" />
         <AssociationConnector Association="SIGEAModel.AsistenteEvento" ManuallyRouted="false" />
         <AssociationConnector Association="SIGEAModel.ComiteOrganizador" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGEAModel.TareaActividad" ManuallyRouted="false" />
         <AssociationConnector Association="SIGEAModel.GastoMagistral" ManuallyRouted="false" />
         <AssociationConnector Association="SIGEAModel.PresentacionArticulo" ManuallyRouted="false" />
-        <AssociationConnector Association="SIGEAModel.TareaActividad" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
