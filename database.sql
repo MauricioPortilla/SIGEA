@@ -239,3 +239,29 @@ CREATE TABLE EvaluacionArticulo (
     gradoExpertiz int NOT NULL,
     estado varchar(20) NOT NULL
 );
+
+INSERT INTO Cuenta VALUES ('juan', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2');
+INSERT INTO Organizador VALUES (1,'Juan Carlos', 'Suarez', 'Hernández', '2283085074', 'juancasu_900@hotmail.com');
+
+INSERT INTO Cuenta VALUES ('mauricio', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2');
+INSERT INTO Organizador VALUES (2,'Mauricio', 'Cruz', '', '2281909000', 'mauricioportilla189@hotmail.com');
+
+INSERT INTO Cuenta VALUES ('raul', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2');
+INSERT INTO Organizador VALUES (3,'Raul', 'Condado', '', '2283085074', 'raul.condado@hotmail.com');
+
+INSERT INTO Evento VALUES (1, 'Escuela de Verano IS', '2020-05-22', '2020-05-29', 900, 'Facultad de Estadistica e Informatica');
+
+INSERT INTO Evento VALUES (2, 'Foro de Estadistica', '2020-05-22', '2020-05-29', 900, 'Facultad de Estadistica e Informatica');
+
+INSERT INTO Evento VALUES (3, 'Hackathon de tecnologias Computacionales', '2020-05-22', '2020-05-29', 900, 'Facultad de Estadistica e Informatica');
+
+INSERT INTO Actividad VALUES (1, 'Taller de Redes', 'Taller de conceptos basicos de la materia de Redes y Servicios', 'Taller', 900.00);
+INSERT INTO Actividad VALUES (1, 'Taller de Diseño', 'Taller de conceptos basicos de la materia de Diseño de Software', 'Taller', 900.00);
+
+INSERT INTO Actividad VALUES (2, 'Taller de Redes', 'Taller de conceptos basicos de la materia de Redes y Servicios', 'Taller', 900.00);
+INSERT INTO Actividad VALUES (2, 'Taller de Diseño', 'Taller de conceptos basicos de la materia de Diseño de Software', 'Taller', 900.00);
+
+INSERT INTO Actividad VALUES (3, 'Taller de Redes', 'Taller de conceptos basicos de la materia de Redes y Servicios', 'Taller', 900.00);
+INSERT INTO Actividad VALUES (3, 'Taller de Diseño', 'Taller de conceptos basicos de la materia de Diseño de Software', 'Taller', 900.00);
+
+INSERT INTO Magistral VALUES (1, 'Juan Carlos', 'Suarez', 'Hernández', '2283085074', 'juancasu_900@hotmail.com', 'Coatepec Veracruz');

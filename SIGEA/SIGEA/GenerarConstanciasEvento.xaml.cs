@@ -38,6 +38,14 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            new PanelLiderEvento().Show();
+        }
+
+        /// <summary>
         /// Carga todos los asistentes del evento y los muestra en
         /// la tabla.
         /// </summary>
@@ -178,6 +186,7 @@ namespace SIGEA {
         /// Representa un Asistente en una tabla.
         /// </summary>
         public struct AsistenteTabla {
+            public Asistente Asistente;
             public string Nombre { get; set; }
             public string Paterno { get; set; }
             public string Materno { get; set; }

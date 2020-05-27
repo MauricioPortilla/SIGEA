@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIGEA"
         mc:Ignorable="d"
-        Title="Consultar evaluaciones artículos" Height="398.438" Width="704.375">
+        Title="Consultar evaluaciones artículos" Height="398.438" Width="704.375" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="199,10,0,0" TextWrapping="Wrap" Text="Consultar evaluaciones de artículos" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" Margin="10,45,10,10" Stroke="Black"/>

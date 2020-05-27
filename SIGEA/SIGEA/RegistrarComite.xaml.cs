@@ -24,6 +24,14 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            new PanelLiderEvento().Show();
+        }
+
+        /// <summary>
         /// Representa un Organizador en una tabla.
         /// </summary>
         public struct OrganizadorTabla {
@@ -39,10 +47,12 @@ namespace SIGEA {
         private void CargarOrganizadores() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-                    organizadores = sigeaBD.Organizador.ToList();
+                    organizadores = sigeaBD.Organizador.AsNoTracking().Where(
+                        organizador => organizador.id_organizador != Sesion.Organizador.id_organizador
+                    ).ToList();
                 }
             } catch (EntityException entityException) {
-                MessageBox.Show("Error al cargar los eventos.");
+                MessageBox.Show("Error al registrar el comité.");
                 Console.WriteLine("EntityException@RegistrarComite->CargarOrganizadores() -> " + entityException.Message);
             }
         }
@@ -109,6 +119,7 @@ namespace SIGEA {
                             Organizadores = organizadoresSeleccionados
                         }.Registrar()) {
                             MessageBox.Show("El Comite se registro correctamente");
+                            Close();
                         } else {
                             MessageBox.Show("El Comite no se pudo registrar");
                         }

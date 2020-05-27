@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         x:Class="SIGEA.GenerarReporteIngresosActividad"
         mc:Ignorable="d"
-        Title="Generar reporte de ingresos de actividad" Height="418.124" Width="698.75">
+        Title="Generar reporte de ingresos de actividad" Height="418.124" Width="698.75" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="184,10,0,0" TextWrapping="Wrap" Text="Generar reporte de ingresos de actvidad" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" Margin="10,45,15,51" Stroke="Black"/>

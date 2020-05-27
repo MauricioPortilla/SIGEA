@@ -19,6 +19,9 @@ namespace SIGEA {
             CargarTabla();
         }
 
+        /// <summary>
+        /// Representa un evento en una tabla.
+        /// </summary>
         public struct EventoTabla {
             public Evento Evento;
             public string Nombre { get; set; }
@@ -86,6 +89,11 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Accede al panel de administración, dependiendo del rol de la cuenta que inició sesión.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void AdministrarButton_Click(object sender, RoutedEventArgs e) {
             if (eventosListView.SelectedItem != null) {
                 var eventoSeleccionado = (EventoTabla) eventosListView.SelectedItem;
@@ -96,12 +104,20 @@ namespace SIGEA {
                         ).First();
                         if (eventoEncontrado != null) {
                             Sesion.Evento = eventoEncontrado;
+                            if (eventoEncontrado.id_organizador == Sesion.Organizador.id_organizador) {
+                                new PanelLiderEvento().Show();
+                            } else {
+                                Sesion.Comite = sigeaBD.Comite.AsNoTracking().Where(
+                                    comite => comite.id_organizador == Sesion.Organizador.id_organizador && 
+                                    comite.id_evento == eventoEncontrado.id_evento
+                                ).First();
+                                new PanelLiderComite().Show();
+                            }
+                            this.Close();
                         } else {
                             throw new Exception();
                         }
                     }
-                    new Actividades().Show();
-                    this.Close();
                 } catch (Exception ex) {
                     Console.WriteLine(ex);
                     MessageBox.Show("Error al seleccionar el evento.");

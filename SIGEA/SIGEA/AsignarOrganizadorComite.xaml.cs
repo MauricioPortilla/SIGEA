@@ -28,6 +28,14 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            new PanelLiderComite().Show();
+        }
+
+        /// <summary>
         /// Carga de la base de datos los comités y los muestra en su
         /// respectivo combo box.
         /// </summary>
@@ -97,10 +105,10 @@ namespace SIGEA {
         }
 
         /// <summary>
-        /// 
+        /// Asigna el organizador.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void AsignarButton_Click(object sender, RoutedEventArgs e) {
             if (!VerificarCampos()) {
                 MessageBox.Show("Faltan campos por completar.");

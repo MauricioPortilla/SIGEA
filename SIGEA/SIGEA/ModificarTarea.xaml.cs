@@ -20,12 +20,21 @@ namespace SIGEA {
     /// Lógica de interacción para ModificarTarea.xaml
     /// </summary>
     public partial class ModificarTarea : Window {
+        private readonly Tarea tarea;
 
-        public ModificarTarea () {
-
+        public ModificarTarea(Tarea tarea) {
             InitializeComponent();
-            tituloTextBox.Text = Sesion.Tarea.titulo;
-            descripcionTextBox.Text = Sesion.Tarea.descripcion;
+            this.tarea = tarea;
+            tituloTextBox.Text = tarea.titulo;
+            descripcionTextBox.Text = tarea.descripcion;
+        }
+
+        /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            new PanelLiderComite().Show();
         }
 
         /// <summary>
@@ -33,59 +42,47 @@ namespace SIGEA {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CancelarButton_Click (object sender, RoutedEventArgs e) {
-
-            Sesion.Tarea = null;
-            new Tareas().Show();
-            this.Close();
+        private void CancelarButton_Click(object sender, RoutedEventArgs e) {
+            Close();
         }
 
-        private void GuardarButton_Click (object sender, RoutedEventArgs e) {
-
+        /// <summary>
+        /// Guarda la tarea.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
+        private void GuardarButton_Click(object sender, RoutedEventArgs e) {
             if (VerificarCampos() && ValidarDatos() && VerificarExistencia()) {
-
                 try {
-
                     using (SigeaBD sigeaBD = new SigeaBD()) {
-
-                        var tareaSeleccionada = sigeaBD.Tarea.ToList().Find(
-                            tarea => tarea.titulo == Sesion.Tarea.titulo);
-
+                        var tareaSeleccionada = sigeaBD.Tarea.Where(
+                            tarea => tarea.titulo == this.tarea.titulo
+                        ).FirstOrDefault();
                         tareaSeleccionada.titulo = tituloTextBox.Text;
                         tareaSeleccionada.descripcion = descripcionTextBox.Text;
-
                         if (sigeaBD.SaveChanges() != 0) {
-
                             MessageBox.Show("Modificación de la tarea con éxito");
-                            Sesion.Tarea = null;
-                            new Tareas().Show();
-                            this.Close();
-
+                            Close();
                         } else {
-
-                            MessageBox.Show("No se guardo el cambio");
+                            MessageBox.Show("No se guardó el cambio");
                         }
                     }
-
-                } catch (Exception ex) {
-
+                } catch (Exception) {
                     MessageBox.Show("Lo sentimos inténtelo más tarde");
                 }
             }
         }
 
         /// <summary>
-        /// Metodo que vverifica que los campos no esten vacios
+        /// Metodo que verifica que los campos no esten vacios
         /// </summary>
-        public Boolean VerificarCampos () {
+        /// <returns>true si están completos; false si no</returns>
+        public Boolean VerificarCampos() {
 
             if (!string.IsNullOrWhiteSpace(tituloTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(descripcionTextBox.Text)) {
-
                 return true;
-
             } else {
-
                 MessageBox.Show("Por favor llenar todos los campos");
                 return false;
             }
@@ -94,43 +91,34 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que valida los datos introducidos
         /// </summary>
-        /// <returns></returns>
-        public Boolean ValidarDatos () {
-
+        /// <returns>true si son válidos; false si no</returns>
+        public Boolean ValidarDatos() {
             if (Regex.IsMatch(tituloTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(descripcionTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
-
                 return true;
-
             } else {
-
                 MessageBox.Show("Los datos proporcionados son incorrectos");
                 return false;
             }
         }
 
-        public Boolean VerificarExistencia () {
-
+        /// <summary>
+        /// Verifica si existe una tarea con el título ingresado.
+        /// </summary>
+        /// <returns>true si existe; false si no</returns>
+        public Boolean VerificarExistencia() {
             try {
-
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-
-                    var tareExistente = sigeaBD.Tarea.ToList().Find(
-                        tarea => tarea.titulo == Sesion.Tarea.titulo);
-
-                    if (tareExistente == null) {
-
+                    var tareaExistente = sigeaBD.Tarea.ToList().Find(
+                        tarea => tarea.titulo == this.tarea.titulo);
+                    if (tareaExistente == null) {
                         return true;
-
                     } else {
-
                         MessageBox.Show("Modificación no valida, tarea ya existente");
                         return false;
                     }
                 }
-
-            } catch (Exception e) {
-
+            } catch (Exception) {
                 MessageBox.Show("Lo sentimos inténtelo más tarde");
                 return false;
             }

@@ -24,6 +24,10 @@ namespace SIGEA {
 
         public PresentacionTabla PresentacionTabla;
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
+        /// <param name="presentacionTabla">Presentación a modificar</param>
         public ModificarPresentacion(PresentacionTabla presentacionTabla) {
             InitializeComponent();
             this.PresentacionTabla = presentacionTabla;
@@ -52,6 +56,11 @@ namespace SIGEA {
                 Regex.IsMatch(horaFinTextBox.Text, Herramientas.REGEX_HORA);
         }
 
+        /// <summary>
+        /// Modifica los datos de la presentación.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void ModificarButtton_Click(object sender, RoutedEventArgs e) {
             if (VerificarCamposCompletos() && VerificarDatosValidos()) {
                 if (PresentacionTabla.Presentacion != null) {

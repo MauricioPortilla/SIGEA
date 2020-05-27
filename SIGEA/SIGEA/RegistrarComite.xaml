@@ -6,22 +6,22 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Registrar Comité" Height="419.545" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Registrar Comité" Height="466.545" Width="861" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Label Content="Registro Comité" HorizontalAlignment="Left" Margin="260,8,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="324" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="336"/>
+        <TextBlock Text="Registro Comité" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" FontSize="20" Width="827" TextAlignment="Center"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="335" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="336"/>
         <Label Content="Datos del Comité" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" FontSize="20"/>
         <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="37" Margin="20,100,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="310" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         <Label Content="Responsabilidades" HorizontalAlignment="Left" Margin="20,142,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="100" Margin="361,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="87" Margin="361,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="476"/>
         <TextBlock HorizontalAlignment="Left" Margin="371,60,0,0" TextWrapping="Wrap" Text="Lider del Comité" VerticalAlignment="Top" FontSize="20" Width="170"/>
-        <ComboBox x:Name="organizadorComboBox" HorizontalAlignment="Left" Margin="371,99,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Organizador" Width="299" SelectionChanged="organizadorComboBox_SelectionChanged"/>
-        <Button x:Name="registrarButton" Content="Registrar Comité" HorizontalAlignment="Left" Margin="534,342,0,0" VerticalAlignment="Top" Width="150" Click="RegistrarButton_Click"/>
-        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="361,342,0,0" VerticalAlignment="Top" Width="151" Background="White" Foreground="#DD000000" BorderBrush="White" Click="CancelarButton_Click"/>
-        <TextBox x:Name="responsabilidadesTextBox" HorizontalAlignment="Left" Height="172" Margin="20,182,0,0" TextWrapping="WrapWithOverflow"  materialDesign:HintAssist.Hint="Responsabilidades" VerticalAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="310"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="173" Margin="361,157,0,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
-        <TextBlock HorizontalAlignment="Left" Margin="371,167,0,0" TextWrapping="Wrap" Text="Organizadores" VerticalAlignment="Top" FontSize="20" Width="170"/>
-        <ListView x:Name="organizadoresListView" ItemsSource="{Binding OrganizadoresLista}" Margin="371,199,24,73">
+        <ComboBox x:Name="organizadorComboBox" HorizontalAlignment="Left" Margin="371,89,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Organizador" Width="452" SelectionChanged="organizadorComboBox_SelectionChanged"/>
+        <Button x:Name="registrarButton" Content="Registrar Comité" HorizontalAlignment="Left" Margin="687,390,0,0" VerticalAlignment="Top" Width="150" Click="RegistrarButton_Click"/>
+        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="519,390,0,0" VerticalAlignment="Top" Width="151" Background="White" Foreground="#DD000000" BorderBrush="White" Click="CancelarButton_Click"/>
+        <TextBox x:Name="responsabilidadesTextBox" HorizontalAlignment="Left" Height="192" Margin="20,182,0,0" TextWrapping="WrapWithOverflow"  materialDesign:HintAssist.Hint="Responsabilidades" VerticalAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="310"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="243" Margin="361,142,0,0" Stroke="Black" VerticalAlignment="Top" Width="476"/>
+        <TextBlock HorizontalAlignment="Left" Margin="371,147,0,0" TextWrapping="Wrap" Text="Organizadores" VerticalAlignment="Top" FontSize="20" Width="170"/>
+        <ListView x:Name="organizadoresListView" ItemsSource="{Binding OrganizadoresLista}" Margin="371,179,24,58">
             <ListView.View>
                 <GridView>
                     <GridViewColumn

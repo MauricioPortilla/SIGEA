@@ -30,6 +30,14 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            new PanelLiderComite().Show();
+        }
+
+        /// <summary>
         /// Verifica que los campos estén completos.
         /// </summary>
         /// <returns>true si están completos; false si no</returns>

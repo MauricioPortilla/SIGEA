@@ -77,5 +77,13 @@ namespace SIGEABD {
                 throw;
             }
         }
+
+        /// <summary>
+        /// Retorna el nombre de la actividad.
+        /// </summary>
+        /// <returns>Nombre de la actividad</returns>
+        public override string ToString() {
+            return nombre;
+        }
     }
 }

@@ -10,12 +10,8 @@ namespace SIGEA {
 
         String nombreActividad;
 
-        /// <summary>
-        /// Se modifivo el constructor de la pantalla debido
-        /// a que se requiere una actividad para registrar
-        /// al magistral
-        /// </summary>
-        /// <param name="actividadSeleccionada"></param>
+        /// <summary>Crea una instancia</summary>
+        /// <param name="nombreActividad">Nombre de la actividad</param>
         public RegistrarMagistral (String nombreActividad) {
 
             this.nombreActividad = nombreActividad;
@@ -29,7 +25,7 @@ namespace SIGEA {
         /// <param name="e"></param>
         private void CancelarButton_Click (object sender, RoutedEventArgs e) {
 
-            Actividades ventanaActividades = new Actividades();
+            PanelLiderEvento ventanaActividades = new PanelLiderEvento();
             ventanaActividades.Show();
             this.Close();
         }
@@ -64,7 +60,7 @@ namespace SIGEA {
                         ) {
 
                             MessageBox.Show("Magistral registrado con exitó");
-                            new Actividades().Show();
+                            new PanelLiderEvento().Show();
                             this.Close();
 
                         } else {

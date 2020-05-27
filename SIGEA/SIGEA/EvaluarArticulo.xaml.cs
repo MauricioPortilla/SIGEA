@@ -169,6 +169,11 @@ namespace SIGEA {
             Close();
         }
 
+        /// <summary>
+        /// Muestra el artículo.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void VisualizarArticuloButton_Click(object sender, RoutedEventArgs e) {
             System.Diagnostics.Process.Start(App.ARTICULOS_DIRECTORIO + "/" + articulo.archivo);
         }

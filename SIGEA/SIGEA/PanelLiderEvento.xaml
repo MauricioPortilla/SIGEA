@@ -1,0 +1,44 @@
+﻿<Window x:Class="SIGEA.PanelLiderEvento"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        mc:Ignorable="d"
+        Title="Panel del líder de evento" Height="622" Width="1037.494" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock Text="Panel del líder de evento" HorizontalAlignment="Left" Margin="0,4,0,0" VerticalAlignment="Top" TextAlignment="Center" FontSize="20" Width="1029"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="328" Margin="15,213,0,0" Stroke="Black" VerticalAlignment="Top" Width="1004"/>
+        <ListView x:Name="actividadesListView" ItemsSource="{Binding ActividadesLista}" Margin="15,255,10,50">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Nombre}"
+                        Header="Nombre" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Tipo}"
+                        Header="Tipo" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Descripcion}"
+                        Header="Descripcion" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="regresarButton" Content="Regresar" HorizontalAlignment="Left" Margin="860,549,0,0" VerticalAlignment="Top" Width="159" Click="RegresarButton_Click"/>
+        <Button x:Name="registrarComiteButton" Content="Registrar Comité" HorizontalAlignment="Left" Margin="339,40,0,0" VerticalAlignment="Top" Width="141" Click="RegistrarComiteButton_Click"/>
+        <Button x:Name="registrarActividadButton" Content="Registrar Actividad" HorizontalAlignment="Left" Margin="179,40,0,0" VerticalAlignment="Top" Width="155" Click="RegistrarActividadButton_Click"/>
+        <Button x:Name="registrarTrackButton" Content="Registrar Track" HorizontalAlignment="Left" Margin="15,40,0,0" VerticalAlignment="Top" Width="159" Click="RegistrarTrackButton_Click"/>
+        <Button x:Name="generarReporteIngresosButton" Content="Generar reporte de ingresos de actividad" HorizontalAlignment="Left" Margin="15,176,0,0" VerticalAlignment="Top" Width="301" Click="GenerarReporteIngresosButton_Click"/>
+        <Button x:Name="asignarArticulosRevisorButton" Content="Asignar artículos a revisor" HorizontalAlignment="Left" Margin="554,82,0,0" VerticalAlignment="Top" Width="226" Click="AsignarArticulosRevisorButton_Click"/>
+        <Button x:Name="modificarActividadButton" Content="Modificar Actividad" HorizontalAlignment="Left" Margin="321,176,0,0" VerticalAlignment="Top" Width="162" Click="ModificarActividadButton_Click"/>
+        <Button x:Name="generarProgramaEventoButton" Content="Generar programa del evento" HorizontalAlignment="Left" Margin="554,40,0,0" VerticalAlignment="Top" Width="226" Click="GenerarProgramaEventoButton_Click"/>
+        <Button x:Name="generarConstanciasEventoButton" Content="Generar constancias del evento" HorizontalAlignment="Left" Margin="785,40,0,0" VerticalAlignment="Top" Width="234" Click="GenerarConstanciasEventoButton_Click"/>
+        <Button x:Name="consultarAsistentesEventoButton" Content="Consultar asistentes del evento" HorizontalAlignment="Left" Margin="785,82,0,0" VerticalAlignment="Top" Width="234" Click="ConsultarAsistentesEventoButton_Click"/>
+        <Button x:Name="consultarAsistentesActividadButton" Content="Consultar asistentes de la actividad" HorizontalAlignment="Left" Margin="488,176,0,0" VerticalAlignment="Top" Width="264" Click="ConsultarAsistentesActividadButton_Click"/>
+        <Button x:Name="generarConstanciasActividadButton" Content="Generar constancias de la actividad" HorizontalAlignment="Left" Margin="757,176,0,0" VerticalAlignment="Top" Width="262" Click="GenerarConstanciasActividadButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="25,223,0,0" VerticalAlignment="Top" FontSize="20" Width="121" Text="Actividades"/>
+        <Button x:Name="registrarGastoButton" Content="Registrar Gasto" HorizontalAlignment="Left" Margin="15,82,0,0" VerticalAlignment="Top" Width="226" Click="RegistrarGastoButton_Click"/>
+        <Button x:Name="registrarPagoAsistenteButton" Content="Registrar Pago de Asistente" HorizontalAlignment="Left" Margin="246,82,0,0" VerticalAlignment="Top" Width="234" Click="RegistrarPagoAsistenteButton_Click"/>
+        <Button x:Name="consultarGastosButton" Content="Consultar gastos" HorizontalAlignment="Left" Margin="554,123,0,0" VerticalAlignment="Top" Width="226" Click="ConsultarGastosButton_Click"/>
+    </Grid>
+</Window>

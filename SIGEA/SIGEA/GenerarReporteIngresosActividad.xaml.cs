@@ -38,6 +38,14 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            new PanelLiderEvento().Show();
+        }
+
+        /// <summary>
         /// Carga los pagos de la base de datos y los ingresa en la tabla.
         /// </summary>
         private void CargarPagos() {

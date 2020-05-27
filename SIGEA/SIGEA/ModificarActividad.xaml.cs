@@ -43,6 +43,14 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(CancelEventArgs e) {
+            new PanelLiderEvento().Show();
+        }
+
+        /// <summary>
         /// Carga la Actividad y sus Presentaciones de la base de datos y muestra sus datos.
         /// </summary>
         /// <param name="id_actividad">Identificador de la Actividad</param>

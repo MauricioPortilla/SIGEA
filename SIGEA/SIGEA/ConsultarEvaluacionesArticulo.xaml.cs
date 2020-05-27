@@ -25,6 +25,10 @@ namespace SIGEA {
             get => evaluacionesList;
         }
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
+        /// <param name="articulo">Artículo a consultar evaluaciones</param>
         public ConsultarEvaluacionesArticulo(Articulo articulo) {
             InitializeComponent();
             DataContext = this;
@@ -36,6 +40,9 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Carga las evaluaciones artículo del artículo.
+        /// </summary>
         private void CargarEvaluacionesArticulo() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -58,6 +65,12 @@ namespace SIGEA {
                 Close();
             }
         }
+
+        /// <summary>
+        /// Cambia el estado del artículo a Aceptado y guarda los cambios.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void AceptarArticuloButton_Click(object sender, RoutedEventArgs e) {
             articulo.estado = "Aceptado";
             try {
@@ -72,6 +85,11 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Cambia el estado del artículo a Requiere actualizarse y guarda los cambios.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RequerirActualizacionButton_Click(object sender, RoutedEventArgs e) {
             articulo.estado = "Requiere actualizarse";
             try {
@@ -86,6 +104,9 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Representa una evaluación artículo en una tabla.
+        /// </summary>
         public struct EvaluacionArticuloTabla {
             public string Fecha { get; set; }
             public string Revisor { get; set; }

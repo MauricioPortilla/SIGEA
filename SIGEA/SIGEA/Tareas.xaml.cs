@@ -22,23 +22,23 @@ namespace SIGEA {
         /// <param name="e"></param>
         private void ModificarButton_Click (object sender, RoutedEventArgs e) {
 
-            var tareaSeleccionada = (DataRowView) tareasDataGrid.SelectedItem;
+            //var tareaSeleccionada = (DataRowView) tareasDataGrid.SelectedItem;
 
-            if (tareaSeleccionada != null) {
+            //if (tareaSeleccionada != null) {
 
-                using (SigeaBD sigeaBD = new SigeaBD()) {
+            //    using (SigeaBD sigeaBD = new SigeaBD()) {
 
-                    Sesion.Tarea = sigeaBD.Tarea.ToList().Find(
-                        tarea => tarea.titulo == tareaSeleccionada[0].ToString());
-                }
+            //        Sesion.Tarea = sigeaBD.Tarea.ToList().Find(
+            //            tarea => tarea.titulo == tareaSeleccionada[0].ToString());
+            //    }
 
-                new ModificarTarea().Show();
-                this.Close();
+            //    new ModificarTarea().Show();
+            //    this.Close();
 
-            } else {
+            //} else {
 
-                MessageBox.Show("Selecciona una tarea");
-            }
+            //    MessageBox.Show("Selecciona una tarea");
+            //}
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace SIGEA {
                     }
                 }
 
-            } catch (Exception e) {
+            } catch (Exception) {
 
                 MessageBox.Show("Lo sentimos intentelo mas tarde");
             }

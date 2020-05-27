@@ -18,15 +18,34 @@ namespace SIGEA {
     /// Lógica de interacción para RegistrarTrack.xaml
     /// </summary>
     public partial class RegistrarTrack : Window {
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
         public RegistrarTrack() {
             InitializeComponent();
         }
 
-        private bool VerificarCampos() {
-            return string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
-                string.IsNullOrWhiteSpace(descripcionTextBox.Text);
+        /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            new PanelLiderEvento().Show();
         }
 
+        /// <summary>
+        /// Verifica que los campos estén completos.
+        /// </summary>
+        /// <returns>true si están completos; false si no</returns>
+        private bool VerificarCampos() {
+            return !string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
+                !string.IsNullOrWhiteSpace(descripcionTextBox.Text);
+        }
+
+        /// <summary>
+        /// Verifica si existe un track con el nombre ingresado.
+        /// </summary>
+        /// <returns>true si existe; false si no</returns>
         private bool VerificarExistencia() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -38,6 +57,11 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Registra el track.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegistrarButton_Click(object sender, RoutedEventArgs e) {
             if (!VerificarCampos()) {
                 MessageBox.Show("Faltan campos por completar.");
@@ -64,8 +88,13 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Cierra la ventana.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void CancelarButton_Click(object sender, RoutedEventArgs e) {
-
+            Close();
         }
     }
 }

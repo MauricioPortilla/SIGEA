@@ -42,8 +42,12 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
         protected override void OnClosing(CancelEventArgs e) {
-            new Actividades().Show();
+            new PanelLiderEvento().Show();
         }
 
         /// <summary>

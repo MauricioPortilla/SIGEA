@@ -83,8 +83,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Actividades.xaml.cs">
-      <DependentUpon>Actividades.xaml</DependentUpon>
+    <Compile Include="ConsultarAsistentesActividad.xaml.cs">
+      <DependentUpon>ConsultarAsistentesActividad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarGastos.xaml.cs">
+      <DependentUpon>ConsultarGastos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PanelLiderComite.xaml.cs">
+      <DependentUpon>PanelLiderComite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PanelLiderEvento.xaml.cs">
+      <DependentUpon>PanelLiderEvento.xaml</DependentUpon>
     </Compile>
     <Compile Include="ActualizarArticulo.xaml.cs">
       <DependentUpon>ActualizarArticulo.xaml</DependentUpon>
@@ -97,6 +106,12 @@
     </Compile>
     <Compile Include="AsignarOrganizadorComite.xaml.cs">
       <DependentUpon>AsignarOrganizadorComite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarArticulo.xaml.cs">
+      <DependentUpon>ConsultarArticulo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarArticulos.xaml.cs">
+      <DependentUpon>ConsultarArticulos.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConsultarEvaluacionesArticulo.xaml.cs">
       <DependentUpon>ConsultarEvaluacionesArticulo.xaml</DependentUpon>
@@ -148,8 +163,20 @@
     <Compile Include="RegistrarEvento.xaml.cs">
       <DependentUpon>RegistrarEvento.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarGasto.xaml.cs">
+      <DependentUpon>RegistrarGasto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarMagistral.xaml.cs">
       <DependentUpon>RegistrarMagistral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarPagoArticulo.xaml.cs">
+      <DependentUpon>RegistrarPagoArticulo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarPagoAsistente.xaml.cs">
+      <DependentUpon>RegistrarPagoAsistente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarTarea.xaml.cs">
+      <DependentUpon>RegistrarTarea.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegistrarTrack.xaml.cs">
       <DependentUpon>RegistrarTrack.xaml</DependentUpon>
@@ -158,7 +185,19 @@
     <Compile Include="Tareas.xaml.cs">
       <DependentUpon>Tareas.xaml</DependentUpon>
     </Compile>
-    <Page Include="Actividades.xaml">
+    <Page Include="ConsultarAsistentesActividad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsultarGastos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PanelLiderComite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PanelLiderEvento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,6 +214,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AsignarOrganizadorComite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsultarArticulo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsultarArticulos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,7 +301,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RegistrarGasto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RegistrarMagistral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarPagoArticulo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarPagoAsistente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrarTarea.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

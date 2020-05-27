@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         x:Class="SIGEA.GenerarProgramaEvento"
         mc:Ignorable="d"
-        Title="Generar programa del evento" Height="425.626" Width="688.438">
+        Title="Generar programa del evento" Height="425.626" Width="688.438" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="213,10,0,0" TextWrapping="Wrap" Text="Generar programa del evento" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" Margin="10,45,10,50" Stroke="Black"/>

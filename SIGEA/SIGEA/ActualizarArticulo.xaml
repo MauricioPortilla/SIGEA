@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SIGEA.ActualizarArticulo"
         mc:Ignorable="d"
-        Title="Actualizar Articulo" Height="698" Width="694" ResizeMode="NoResize">
+        Title="Actualizar Articulo" Height="698" Width="694" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="269,10,0,0" TextWrapping="Wrap" Text="Actualizar artículo" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" Margin="10,45,10,397" Stroke="Black"/>

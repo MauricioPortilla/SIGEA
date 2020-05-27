@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace SIGEABD {
     public partial class EvaluacionArticulo {
+        /// <summary>
+        /// Obtiene una evaluación artículo de la base de datos.
+        /// </summary>
+        /// <param name="id_articulo">Identificador del artículo</param>
+        /// <param name="id_revisor">Identificador del revisor</param>
+        /// <param name="callbackExitoso">Función que se ejecuta cuando se tiene éxito</param>
         public static void ObtenerEvaluacionArticulo(int id_articulo, int id_revisor, Action<EvaluacionArticulo> callbackExitoso) {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -33,6 +39,12 @@ namespace SIGEABD {
             }
         }
 
+        /// <summary>
+        /// Registrar la evaluación artículo en la base de datos.
+        /// </summary>
+        /// <param name="id_revisor">Identificador del revisor</param>
+        /// <param name="id_articulo">Identificador del artículo</param>
+        /// <returns>true si se registró con éxito; false si no</returns>
         public bool Registrar(int id_revisor, int id_articulo) {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -55,6 +67,10 @@ namespace SIGEABD {
             }
         }
 
+        /// <summary>
+        /// Actualiza la evaluación artículo en la base de datos.
+        /// </summary>
+        /// <returns>true si se actualizó con éxito; false si no</returns>
         public bool Actualizar() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {

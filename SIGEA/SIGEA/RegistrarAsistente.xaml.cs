@@ -33,6 +33,14 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            new PanelLiderComite().Show();
+        }
+
+        /// <summary>
         /// Metodo que carga la tabla de las actividades registradas para ese evento
         /// </summary>
         private void CargarTabla() {
@@ -102,7 +110,7 @@ namespace SIGEA {
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
         private void CancelarButton_Click (object sender, RoutedEventArgs e) {
-            new Actividades().Show();
+            new PanelLiderEvento().Show();
             this.Close();
         }
 

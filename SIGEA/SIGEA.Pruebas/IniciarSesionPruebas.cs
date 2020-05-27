@@ -11,7 +11,7 @@ namespace SIGEA.Pruebas {
         [TestMethod]
         public void IniciarSesionCuentaExistentePrueba() {
             string usuario = "Test";
-            string contrasenia = Herramientas.EncriptarConSHA512("1234");
+            string contrasenia = Herramientas.CifrarConSHA512("1234");
             Cuenta.IniciarSesion(usuario, contrasenia, (cuenta) => {
                 Assert.IsTrue(cuenta != null);
             });
@@ -23,7 +23,7 @@ namespace SIGEA.Pruebas {
         [TestMethod]
         public void IniciarSesionCuentaNoExistentePrueba() {
             string usuario = "Test2";
-            string contrasenia = Herramientas.EncriptarConSHA512("12345");
+            string contrasenia = Herramientas.CifrarConSHA512("12345");
             Cuenta.IniciarSesion(usuario, contrasenia, (cuenta) => {
                 Assert.IsFalse(cuenta != null);
             });

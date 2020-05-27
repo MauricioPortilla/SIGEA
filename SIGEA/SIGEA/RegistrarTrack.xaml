@@ -6,9 +6,8 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SIGEA.RegistrarTrack"
         mc:Ignorable="d"
-        Title="Registrar Track" Height="294.374" Width="351.875">
+        Title="Registrar Track" Height="294.374" Width="351.875" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-
         <Label Content="Registro Track" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="162" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="324"/>
         <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="37" Margin="25,70,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="295" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>

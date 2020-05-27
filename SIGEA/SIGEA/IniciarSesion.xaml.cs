@@ -39,7 +39,7 @@ namespace SIGEA {
                 return;
             }
             try {
-                string contraseniaCifrada = Herramientas.EncriptarConSHA512(contraseniaTextBox.Password);
+                string contraseniaCifrada = Herramientas.CifrarConSHA512(contraseniaTextBox.Password);
                 Cuenta.IniciarSesion(usuarioTextBox.Text, contraseniaCifrada, (cuentaEncontrada) => {
                     if (cuentaEncontrada != null) {
                         Sesion.Cuenta = cuentaEncontrada;

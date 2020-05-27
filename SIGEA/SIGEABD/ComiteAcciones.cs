@@ -7,8 +7,9 @@ namespace SIGEABD {
         public bool Registrar() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-                    sigeaBD.Evento.Attach(Evento);
-                    sigeaBD.Organizador.Attach(Organizador);
+                    foreach (var organizador in Organizadores) {
+                        sigeaBD.Organizador.Attach(organizador);
+                    }
                     sigeaBD.Comite.Add(this);
                     return sigeaBD.SaveChanges() != 0;
                 }

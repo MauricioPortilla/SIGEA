@@ -44,6 +44,14 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(CancelEventArgs e) {
+            new PanelLiderComite().Show();
+        }
+
+        /// <summary>
         /// Actualiza la tabla de autores en cuanto surjan cambios en la colección.
         /// </summary>
         /// <param name="sender">Colección</param>
@@ -52,6 +60,9 @@ namespace SIGEA {
             autoresDataGrid.Items.Refresh();
         }
 
+        /// <summary>
+        /// Carga los tracks del evento.
+        /// </summary>
         private void CargarTracks() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -64,10 +75,10 @@ namespace SIGEA {
                 }
             } catch (EntityException entityException) {
                 MessageBox.Show("Error al establecer una conexión.");
-                Console.WriteLine("EntityException@RegistrarArticulo->eventoComboBox_SelectionChanged() -> " + entityException.Message);
+                Console.WriteLine("EntityException@RegistrarArticulo->CargarTracks() -> " + entityException.Message);
             } catch (Exception exception) {
                 MessageBox.Show("Error al establecer una conexión.");
-                Console.WriteLine("Exception@RegistrarArticulo->eventoComboBox_SelectionChanged() -> " + exception.Message);
+                Console.WriteLine("Exception@RegistrarArticulo->CargarTracks() -> " + exception.Message);
             }
         }
 
@@ -176,7 +187,7 @@ namespace SIGEA {
                     fecha = DateTime.Now
                 });
             }
-            var nombreArchivoEncriptado = Herramientas.EncriptarConSHA512(
+            var nombreArchivoEncriptado = Herramientas.CifrarConSHA512(
                 nombreArchivoSeleccionado + DateTime.Now.ToUniversalTime()
             ) + ".pdf";
             try {
@@ -224,7 +235,7 @@ namespace SIGEA {
         /// </summary>
         /// <returns>true si son válidos; false si no</returns>
         private bool ValidarDatos() {
-            return Regex.IsMatch(añoCreacionTextBox.Text, @"^\d+$");
+            return Regex.IsMatch(añoCreacionTextBox.Text, Herramientas.REGEX_SOLO_NUMEROS);
         }
     }
 }

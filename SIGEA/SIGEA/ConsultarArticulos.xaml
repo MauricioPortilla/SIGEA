@@ -1,0 +1,29 @@
+﻿<Window x:Class="SIGEA.ConsultarArticulos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        mc:Ignorable="d"
+        Title="Consultar Articulos" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ListView x:Name="articulosListView" ItemsSource="{Binding ArticulosLista}" Margin="10,39,10,46">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Titulo}"
+                        Header="Título" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Autor}"
+                        Header="Autor" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Estado}"
+                        Header="Estado" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock HorizontalAlignment="Left" Margin="311,7,0,0" TextWrapping="Wrap" Text="Consultar artículos" VerticalAlignment="Top" FontSize="20"/>
+        <Button x:Name="consultarButton" Content="Consultar" HorizontalAlignment="Left" Margin="652,380,0,0" VerticalAlignment="Top" Width="132" Click="ConsultarButton_Click"/>
+        <Button x:Name="registrarPagoButton" Content="Registrar pago" HorizontalAlignment="Left" Margin="507,380,0,0" VerticalAlignment="Top" Width="132" Click="RegistrarPagoButton_Click"/>
+    </Grid>
+</Window>

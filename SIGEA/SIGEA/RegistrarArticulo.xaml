@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Registrar artículo" Height="824.188" Width="694" ResizeMode="NoResize">
+        Title="Registrar artículo" Height="824.188" Width="694" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="276,10,0,0" TextWrapping="Wrap" Text="Registrar artículo" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="225" Margin="10,45,0,0" Stroke="Black" VerticalAlignment="Top" Width="666"/>

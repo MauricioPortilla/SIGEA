@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Modificar Tarea" Height="400" Width="492.424" WindowStartupLocation="CenterScreen">
+        Title="Modificar Tarea" Height="400" Width="492.424" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Label Content="Modificar Tarea" HorizontalAlignment="Left" Margin="169,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="264" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="464"/>
         <TextBox x:Name="tituloTextBox" HorizontalAlignment="Left" Height="37" Margin="20,65,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Titulo" VerticalAlignment="Top" Width="440" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         <TextBox x:Name="descripcionTextBox" HorizontalAlignment="Left" Height="172" Margin="20,123,0,0" TextWrapping="WrapWithOverflow"  materialDesign:HintAssist.Hint="Descripción" VerticalAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="440"/>
-        <Button x:Name="guardarButton" Content="Guardar" HorizontalAlignment="Left" Margin="356,325,0,0" VerticalAlignment="Top" Width="104" Click="GuardarButton_Click"/>
-        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="230,325,0,0" VerticalAlignment="Top" Width="104" Foreground="#DD000000" BorderBrush="White" Background="White" Click="CancelarButton_Click"/>
+        <Button x:Name="guardarButton" Content="Guardar" HorizontalAlignment="Left" Margin="370,325,0,0" VerticalAlignment="Top" Width="104" Click="GuardarButton_Click"/>
+        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="248,325,0,0" VerticalAlignment="Top" Width="104" Foreground="#DD000000" BorderBrush="White" Background="White" Click="CancelarButton_Click"/>
     </Grid>
 </Window>

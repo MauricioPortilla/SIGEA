@@ -1,0 +1,20 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SIGEA.RegistrarGasto"
+        mc:Ignorable="d"
+        Title="Registrar Gasto" Height="342.188" Width="350.937" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Registro Gasto" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="203" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="324"/>
+        <TextBox x:Name="cantidadTextBox" HorizontalAlignment="Left" Height="37" Margin="25,62,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Cantidad" VerticalAlignment="Top" Width="109" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <DatePicker x:Name="fechaDatePicker" HorizontalAlignment="Left" Margin="144,62,0,0" VerticalAlignment="Top" Width="176" materialDesign:HintAssist.Hint="Fecha" FirstDayOfWeek="Monday" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+        <TextBox x:Name="motivoTextBox" HorizontalAlignment="Left" Height="83" Margin="25,113,0,0" TextWrapping="WrapWithOverflow"  materialDesign:HintAssist.Hint="Motivo" VerticalAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="295"/>
+        <ComboBox x:Name="magistralComboBox" HorizontalAlignment="Left" Margin="25,210,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Asignar a magistral (opcional)" Width="295"/>
+        <Button x:Name="registrarButton" Content="Registrar" HorizontalAlignment="Left" Margin="236,265,0,0" VerticalAlignment="Top" Width="98" Click="RegistrarButton_Click"/>
+        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="133,265,0,0" VerticalAlignment="Top" Width="98" Click="CancelarButton_Click"/>
+    </Grid>
+</Window>
