@@ -4,7 +4,7 @@ using SIGEABD;
 
 namespace SIGEA.Pruebas {
     [TestClass]
-    public class ModificarActtividadPruebas {
+    public class ModificarActividadPruebas {
         /// <summary>
         /// Prueba que verifica que una actividad puede ser actualizada.
         /// </summary>

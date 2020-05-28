@@ -52,7 +52,7 @@ namespace SIGEA {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
                     var asistentes = sigeaBD.Asistente.Where(
-                        asistente => asistente.Evento.First(
+                        asistente => asistente.Evento.FirstOrDefault(
                             evento => evento.id_evento == Sesion.Evento.id_evento
                         ) != null
                     );

@@ -38,6 +38,11 @@ namespace SIGEA {
         private void CerrarButton_Click(object sender, RoutedEventArgs e) {
             IniciarSesion inicioSesion = new IniciarSesion();
             inicioSesion.Show();
+            Sesion.Cuenta = null;
+            Sesion.Comite = null;
+            Sesion.Evento = null;
+            Sesion.Organizador = null;
+            Sesion.Revisor = null;
             this.Close();
         }
 

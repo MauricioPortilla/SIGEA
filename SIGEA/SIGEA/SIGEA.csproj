@@ -182,9 +182,6 @@
       <DependentUpon>RegistrarTrack.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sesion.cs" />
-    <Compile Include="Tareas.xaml.cs">
-      <DependentUpon>Tareas.xaml</DependentUpon>
-    </Compile>
     <Page Include="ConsultarAsistentesActividad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -322,10 +319,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegistrarTrack.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Tareas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

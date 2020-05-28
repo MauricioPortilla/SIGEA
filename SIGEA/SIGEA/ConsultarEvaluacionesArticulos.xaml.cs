@@ -34,6 +34,14 @@ namespace SIGEA {
         }
 
         /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            new PanelLiderEvento().Show();
+        }
+
+        /// <summary>
         /// Carga los artículos y los coloca en la tabla.
         /// </summary>
         private void CargarArticulos() {

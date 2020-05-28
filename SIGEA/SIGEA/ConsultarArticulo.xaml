@@ -55,7 +55,6 @@
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="consultarEvaluacionesButton" Content="Consultar evaluaciones" HorizontalAlignment="Left" Margin="284,541,0,0" VerticalAlignment="Top" Width="182" Click="ConsultarEvaluacionesButton_Click"/>
         <Button x:Name="actualizarButton" Content="Actualizar" HorizontalAlignment="Left" Margin="471,541,0,0" VerticalAlignment="Top" Width="101" Click="ActualizarButton_Click" IsEnabled="False"/>
         <Button x:Name="verButton" Content="Ver" HorizontalAlignment="Left" Margin="577,541,0,0" VerticalAlignment="Top" Width="101" Click="VerButton_Click"/>
     </Grid>

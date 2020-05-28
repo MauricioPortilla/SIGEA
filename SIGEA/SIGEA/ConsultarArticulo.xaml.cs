@@ -69,16 +69,6 @@ namespace SIGEA {
         }
 
         /// <summary>
-        /// Muestra una ventana Consultar evaluaciones artículo.
-        /// </summary>
-        /// <param name="sender">Botón</param>
-        /// <param name="e">Evento</param>
-        private void ConsultarEvaluacionesButton_Click(object sender, RoutedEventArgs e) {
-            new ConsultarEvaluacionesArticulo(articulo).Show();
-            // TODO: Revisar si debe ir aquí.
-        }
-
-        /// <summary>
         /// Muestra una ventana Actualizar artículo.
         /// </summary>
         /// <param name="sender">Botón</param>
