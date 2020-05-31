@@ -48,6 +48,9 @@
                         DisplayMemberBinding="{Binding Descripcion}"
                         Header="Descripción" />
                     <GridViewColumn
+                        DisplayMemberBinding="{Binding AsignadoA}"
+                        Header="Asignado a" />
+                    <GridViewColumn
                         DisplayMemberBinding="{Binding Actividad}"
                         Header="Actividad" />
                 </GridView>

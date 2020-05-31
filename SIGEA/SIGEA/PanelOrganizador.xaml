@@ -1,0 +1,35 @@
+﻿<Window x:Class="SIGEA.PanelOrganizador"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        mc:Ignorable="d"
+        Title="Panel del Organizador" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock Text="Panel del Organizador" HorizontalAlignment="Left" Margin="0,4,0,0" VerticalAlignment="Top" TextAlignment="Center" FontSize="20" Width="794"/>
+        <Button x:Name="registrarGastoButton" Content="Registrar Gasto" HorizontalAlignment="Left" Margin="25,49,0,0" VerticalAlignment="Top" Width="159" Click="RegistrarGastoButton_Click"/>
+        <Button x:Name="registrarPagoAsistenteButton" Content="Registrar Pago de Asistente" HorizontalAlignment="Left" Margin="566,49,0,0" VerticalAlignment="Top" Width="218" Click="RegistrarPagoAsistenteButton_Click"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="260" Margin="-2,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="796"/>
+        <ListView x:Name="tareasListView" ItemsSource="{Binding TareasLista}" Margin="-2,172,0,51">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Titulo}"
+                        Header="Título" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Descripcion}"
+                        Header="Descripción" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding AsignadoA}"
+                        Header="Asignado a" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Actividad}"
+                        Header="Actividad" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top" FontSize="20" Width="71" Text="Tareas"/>
+        <Button x:Name="regresarButton" Content="Regresar" HorizontalAlignment="Left" Margin="625,379,0,0" VerticalAlignment="Top" Width="159" Click="RegresarButton_Click"/>
+    </Grid>
+</Window>

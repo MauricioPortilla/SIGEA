@@ -30,6 +30,7 @@ namespace SIGEA {
             InitializeComponent();
             DataContext = this;
             CargarAsistentes();
+            CargarActividades();
         }
 
         /// <summary>
@@ -37,12 +38,13 @@ namespace SIGEA {
         /// </summary>
         /// <param name="e">Evento</param>
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
-            if (Sesion.Comite != null) {
+            if (Sesion.Comite != null && Sesion.Evento == null) {
                 new PanelLiderComite().Show();
-            } else {
+            } else if (Sesion.Evento != null && Sesion.Comite == null) {
                 new PanelLiderEvento().Show();
+            } else {
+                new PanelOrganizador().Show();
             }
-            // TODO: Agregar para panel de organizador.
         }
 
         /// <summary>
@@ -63,6 +65,23 @@ namespace SIGEA {
                             Paterno = asistente.paterno,
                             Materno = asistente.materno ?? ""
                         });
+                    }
+                }
+            } catch (Exception) {
+                MessageBox.Show("Error al establecer una conexión.");
+                Close();
+            }
+        }
+
+        /// <summary>
+        /// Carga las actividades pertenecientes al evento.
+        /// </summary>
+        private void CargarActividades() {
+            try {
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    var actividades = sigeaBD.Actividad.Where(actividad => actividad.id_evento == Sesion.Evento.id_evento);
+                    foreach (var actividad in actividades) {
+                        actividadComboBox.Items.Add(actividad);
                     }
                 }
             } catch (Exception) {

@@ -145,6 +145,12 @@
     <Compile Include="ModificarTarea.xaml.cs">
       <DependentUpon>ModificarTarea.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PanelOrganizador.xaml.cs">
+      <DependentUpon>PanelOrganizador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PanelRevisor.xaml.cs">
+      <DependentUpon>PanelRevisor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarActividad.xaml.cs">
       <DependentUpon>RegistrarActividad.xaml</DependentUpon>
     </Compile>
@@ -271,6 +277,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ModificarTarea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PanelOrganizador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PanelRevisor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

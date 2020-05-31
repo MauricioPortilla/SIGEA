@@ -17,25 +17,18 @@ using static SIGEA.ConsultarEvaluacionesArticulos;
 
 namespace SIGEA {
     /// <summary>
-    /// Lógica de interacción para ConsultarArticulos.xaml
+    /// Lógica de interacción para PanelRevisor.xaml
     /// </summary>
-    public partial class ConsultarArticulos : Window {
+    public partial class PanelRevisor : Window {
         public ObservableCollection<ArticuloTabla> ArticulosLista { get; } = new ObservableCollection<ArticuloTabla>();
 
         /// <summary>
         /// Crea una instancia.
         /// </summary>
-        public ConsultarArticulos() {
+        public PanelRevisor() {
             InitializeComponent();
+            DataContext = this;
             CargarArticulos();
-        }
-
-        /// <summary>
-        /// Muestra el panel principal al cerrarse.
-        /// </summary>
-        /// <param name="e">Evento</param>
-        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
-            new PanelLiderComite().Show();
         }
 
         /// <summary>
@@ -46,12 +39,11 @@ namespace SIGEA {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
                     var articulos = sigeaBD.Articulo.Where(articulo => articulo.Track.id_evento == Sesion.Evento.id_evento);
                     foreach (Articulo articulo in articulos) {
-                        var autor = articulo.AutorArticulo.First().Autor;
                         ArticulosLista.Add(new ArticuloTabla {
                             Articulo = articulo,
                             Titulo = articulo.titulo,
                             Estado = articulo.estado,
-                            Autor = autor.nombre + " " + autor.paterno + " " + autor.materno
+                            Track = articulo.Track
                         });
                     }
                 }
@@ -62,34 +54,34 @@ namespace SIGEA {
         }
 
         /// <summary>
-        /// Muestra una ventana Consultar Artículo con el artículo seleccionado.
+        /// Abre una ventana de Evaluar artículo para el artículo seleccionado.
         /// </summary>
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
-        private void ConsultarButton_Click(object sender, RoutedEventArgs e) {
+        private void EvaluarButton_Click(object sender, RoutedEventArgs e) {
             if (articulosListView.SelectedIndex != -1) {
-                new ConsultarArticulo(((ArticuloTabla) articulosListView.SelectedItem).Articulo).Show();
+                ArticuloTabla articuloSeleccionado = (ArticuloTabla) articulosListView.SelectedItem;
+                new EvaluarArticulo(articuloSeleccionado.Articulo.id_articulo).Show();
+                Close();
             } else {
                 MessageBox.Show("Debes seleccionar un artículo.");
             }
         }
 
         /// <summary>
-        /// Muestra una ventana Registrar Pago Artículo con el artículo seleccionado.
+        /// Cierra la ventana y vuelve a la de Iniciar sesión.
         /// </summary>
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
-        private void RegistrarPagoButton_Click(object sender, RoutedEventArgs e) {
-            if (articulosListView.SelectedIndex != -1) {
-                Articulo articuloSeleccionado = ((ArticuloTabla) articulosListView.SelectedItem).Articulo;
-                if (articuloSeleccionado.estado == "Aceptado") {
-                    new RegistrarPagoArticulo(articuloSeleccionado).Show();
-                } else {
-                    MessageBox.Show("Este artículo aún no ha sido aceptado.");
-                }
-            } else {
-                MessageBox.Show("Debes seleccionar un artículo.");
-            }
+        private void cerrarSesionButton_Click(object sender, RoutedEventArgs e) {
+            IniciarSesion inicioSesion = new IniciarSesion();
+            inicioSesion.Show();
+            Sesion.Cuenta = null;
+            Sesion.Comite = null;
+            Sesion.Evento = null;
+            Sesion.Organizador = null;
+            Sesion.Revisor = null;
+            Close();
         }
     }
 }

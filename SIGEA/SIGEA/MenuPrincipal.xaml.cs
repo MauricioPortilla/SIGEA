@@ -62,11 +62,11 @@ namespace SIGEA {
         /// </summary>
         public void CargarTabla() {
             using (SigeaBD sigeaBD = new SigeaBD()) {
-                var listaEventos = sigeaBD.Evento.AsNoTracking().Where(
+                var listaEventosComoLiderEvento = sigeaBD.Evento.AsNoTracking().Where(
                     evento => evento.id_organizador == Sesion.Organizador.id_organizador
                 );
 
-                foreach (Evento evento in listaEventos) {
+                foreach (Evento evento in listaEventosComoLiderEvento) {
                     EventosLista.Add(new EventoTabla {
                         Evento = evento,
                         Nombre = evento.nombre,
@@ -76,13 +76,31 @@ namespace SIGEA {
                     });
                 }
 
-                var listaEventos2 = sigeaBD.Evento.AsNoTracking().Where(evento =>
+                var listaEventosComoLiderComite = sigeaBD.Evento.AsNoTracking().Where(evento =>
                     evento.Comite.Where(comite =>
                         comite.id_organizador == Sesion.Organizador.id_organizador
                     ).Count() != 0
                 );
 
-                foreach (Evento evento in listaEventos2) {
+                foreach (Evento evento in listaEventosComoLiderComite) {
+                    EventosLista.Add(new EventoTabla {
+                        Evento = evento,
+                        Nombre = evento.nombre,
+                        Sede = evento.sede,
+                        FechaInicio = evento.fechaInicio.ToShortDateString(),
+                        FechaFin = evento.fechaFin.Date.ToShortDateString()
+                    });
+                }
+
+                var listaEventosComoOrganizador = sigeaBD.Evento.AsNoTracking().Where(
+                    evento => evento.Comite.Where(
+                        comite => comite.Organizadores.FirstOrDefault(
+                            organizador => organizador.id_organizador == Sesion.Organizador.id_organizador
+                        ) != null
+                    ).Count() > 0
+                );
+
+                foreach (Evento evento in listaEventosComoOrganizador) {
                     EventosLista.Add(new EventoTabla {
                         Evento = evento,
                         Nombre = evento.nombre,
@@ -115,10 +133,22 @@ namespace SIGEA {
                                 Sesion.Comite = sigeaBD.Comite.AsNoTracking().Where(
                                     comite => comite.id_organizador == Sesion.Organizador.id_organizador && 
                                     comite.id_evento == eventoEncontrado.id_evento
-                                ).First();
-                                new PanelLiderComite().Show();
+                                ).FirstOrDefault();
+                                if (Sesion.Comite != null) {
+                                    new PanelLiderComite().Show();
+                                } else {
+                                    Sesion.Comite = sigeaBD.Comite.AsNoTracking().Where(
+                                        comite => comite.Organizadores.FirstOrDefault(
+                                            organizador => organizador.id_organizador == Sesion.Organizador.id_organizador
+                                        ) != null
+                                    ).FirstOrDefault();
+                                    if (Sesion.Comite == null) {
+                                        throw new Exception();
+                                    }
+                                    new PanelOrganizador().Show();
+                                }
                             }
-                            this.Close();
+                            Close();
                         } else {
                             throw new Exception();
                         }

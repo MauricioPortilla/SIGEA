@@ -32,6 +32,9 @@ namespace SIGEA {
             DataContext = this;
             this.articulo = articulo;
             CargarArticulo();
+            if (articulo.estado == "Requiere actualizarse") {
+                actualizarButton.IsEnabled = true;
+            }
         }
 
         /// <summary>

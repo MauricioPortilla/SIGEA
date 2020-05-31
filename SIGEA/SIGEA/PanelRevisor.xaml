@@ -1,13 +1,12 @@
-﻿<Window x:Class="SIGEA.ConsultarArticulos"
+﻿<Window x:Class="SIGEA.PanelRevisor"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIGEA"
         mc:Ignorable="d"
-        Title="Consultar Articulos" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="PanelRevisor" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="311,7,0,0" TextWrapping="Wrap" Text="Consultar artículos" VerticalAlignment="Top" FontSize="20"/>
         <ListView x:Name="articulosListView" ItemsSource="{Binding ArticulosLista}" Margin="10,39,10,46">
             <ListView.View>
                 <GridView>
@@ -15,15 +14,16 @@
                         DisplayMemberBinding="{Binding Titulo}"
                         Header="Título" />
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding Autor}"
-                        Header="Autor" />
+                        DisplayMemberBinding="{Binding Track}"
+                        Header="Track" />
                     <GridViewColumn
                         DisplayMemberBinding="{Binding Estado}"
                         Header="Estado" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="consultarButton" Content="Consultar" HorizontalAlignment="Left" Margin="652,380,0,0" VerticalAlignment="Top" Width="132" Click="ConsultarButton_Click"/>
-        <Button x:Name="registrarPagoButton" Content="Registrar pago" HorizontalAlignment="Left" Margin="507,380,0,0" VerticalAlignment="Top" Width="132" Click="RegistrarPagoButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="311,7,0,0" TextWrapping="Wrap" Text="Consultar artículos" VerticalAlignment="Top" FontSize="20"/>
+        <Button x:Name="evaluarButton" Content="Evaluar" HorizontalAlignment="Left" Margin="652,380,0,0" VerticalAlignment="Top" Width="132" Click="EvaluarButton_Click"/>
+        <Button x:Name="cerrarSesionButton" Content="Cerrar sesión" HorizontalAlignment="Left" Margin="507,380,0,0" VerticalAlignment="Top" Width="132" Click="cerrarSesionButton_Click"/>
     </Grid>
 </Window>

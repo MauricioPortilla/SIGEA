@@ -42,9 +42,14 @@ namespace SIGEA {
             public Tarea Tarea;
             public string Titulo { get; set; }
             public string Descripcion { get; set; }
+            public string AsignadoA { get; set; }
             public Actividad Actividad { get; set; }
         }
 
+        // <summary>
+        /// Muestra el menú principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
         protected override void OnClosing(CancelEventArgs e) {
             if (mostrarMenuPrincipal) {
                 new MenuPrincipal().Show();
@@ -74,6 +79,9 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Carga las tareas del comité en la tabla.
+        /// </summary>
         private void CargarTablaTareas() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -85,6 +93,7 @@ namespace SIGEA {
                             Tarea = tarea,
                             Titulo = tarea.titulo,
                             Descripcion = tarea.descripcion,
+                            AsignadoA = tarea.asignadoA,
                             Actividad = tarea.Actividad.FirstOrDefault()
                         });
                     }
@@ -94,12 +103,22 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Abre una ventana para registrar un artículo.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegistrarArticuloButton_Click(object sender, RoutedEventArgs e) {
             mostrarMenuPrincipal = false;
             new RegistrarArticulo().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Abre una ventana para registrar un magistral.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegistrarMagistralButton_Click(object sender, RoutedEventArgs e) {
             if (actividadesListView.SelectedItem != null) {
                 mostrarMenuPrincipal = false;
@@ -111,30 +130,55 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Abre una ventana para registrar un asistente.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegistrarAsistenteButton_Click(object sender, RoutedEventArgs e) {
             mostrarMenuPrincipal = false;
             new RegistrarAsistente().Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Abre una ventana para consultar los artículos.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void ConsultarArticulosButton_Click(object sender, RoutedEventArgs e) {
             mostrarMenuPrincipal = false;
             new ConsultarArticulos().Show();
             Close();
         }
 
+        /// <summary>
+        /// Abre una ventana para registrar un autor.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegistrarAutorButton_Click(object sender, RoutedEventArgs e) {
             mostrarMenuPrincipal = false;
             new RegistrarAutor().Show();
             Close();
         }
 
+        /// <summary>
+        /// Abre una ventana para registrar una tarea.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegistrarTareaButton_Click(object sender, RoutedEventArgs e) {
             mostrarMenuPrincipal = false;
             new RegistrarTarea().Show();
             Close();
         }
 
+        /// <summary>
+        /// Abre una ventana para modificar la tarea seleccionada.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void ModificarTareasAsignadasButton_Click(object sender, RoutedEventArgs e) {
             if (tareasListView.SelectedIndex != -1) {
                 mostrarMenuPrincipal = false;
@@ -145,22 +189,42 @@ namespace SIGEA {
             }
         }
 
+        /// <summary>
+        /// Abre una ventana para registrar un gasto.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegistrarGastoButton_Click(object sender, RoutedEventArgs e) {
             mostrarMenuPrincipal = false;
             new RegistrarGasto().Show();
             Close();
         }
 
+        /// <summary>
+        /// Abre una ventana para asignar un organizador al comité
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void AsignarOrganizadorAComiteButton_Click(object sender, RoutedEventArgs e) {
             mostrarMenuPrincipal = false;
             new AsignarOrganizadorComite().Show();
             Close();
         }
 
+        /// <summary>
+        /// Cierra la ventana.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegresarButton_Click(object sender, RoutedEventArgs e) {
             Close();
         }
 
+        /// <summary>
+        /// Abre una ventana para registrar el pago de un asistente.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegistrarPagoAsistenteButton_Click(object sender, RoutedEventArgs e) {
             mostrarMenuPrincipal = false;
             new RegistrarPagoAsistente().Show();

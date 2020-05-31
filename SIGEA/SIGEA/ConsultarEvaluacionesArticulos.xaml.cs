@@ -81,6 +81,7 @@ namespace SIGEA {
             public string Titulo { get; set; }
             public Track Track { get; set; }
             public string Estado { get; set; }
+            public string Autor { get; set; }
         }
     }
 }

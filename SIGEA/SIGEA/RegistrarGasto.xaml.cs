@@ -34,12 +34,13 @@ namespace SIGEA {
         /// </summary>
         /// <param name="e">Evento</param>
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
-            if (Sesion.Comite != null) {
+            if (Sesion.Comite != null && Sesion.Evento == null) {
                 new PanelLiderComite().Show();
-            } else {
+            } else if (Sesion.Evento != null && Sesion.Comite == null) {
                 new PanelLiderEvento().Show();
+            } else {
+                new PanelOrganizador().Show();
             }
-            // TODO: Agregar para panel de organizador.
         }
 
         /// <summary>
