@@ -45,7 +45,11 @@ namespace SIGEA {
                         Sesion.Cuenta = cuentaEncontrada;
                         Sesion.Revisor = cuentaEncontrada.Revisor.Count > 0 ? cuentaEncontrada.Revisor.First() : null;
                         Sesion.Organizador = cuentaEncontrada.Organizador.ToList().First();
-                        new MenuPrincipal().Show();
+                        if (Sesion.Revisor == null) {
+                            new MenuPrincipal().Show();
+                        } else {
+                            new PanelRevisor().Show();
+                        }
                         Close();
                     } else {
                         MessageBox.Show("No existe una cuenta registrada con estos datos.");

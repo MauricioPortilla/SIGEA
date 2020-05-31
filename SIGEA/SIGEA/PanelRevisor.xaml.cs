@@ -37,7 +37,11 @@ namespace SIGEA {
         private void CargarArticulos() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-                    var articulos = sigeaBD.Articulo.Where(articulo => articulo.Track.id_evento == Sesion.Evento.id_evento);
+                    var articulos = sigeaBD.Articulo.Where(
+                        articulo => articulo.RevisorArticulo.Where(
+                            revisorArticulo => revisorArticulo.id_revisor == Sesion.Revisor.id_revisor
+                        ).Count() > 0
+                    );
                     foreach (Articulo articulo in articulos) {
                         ArticulosLista.Add(new ArticuloTabla {
                             Articulo = articulo,
