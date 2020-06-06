@@ -42,13 +42,13 @@ namespace SIGEA {
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
         private void RegistrarButton_Click(object sender, RoutedEventArgs e) {
-            if (VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
+            if(VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
                 try {
-                    using (SigeaBD sigeaBD = new SigeaBD()) {
+                    using(SigeaBD sigeaBD = new SigeaBD()) {
                         var actividadObtenida = sigeaBD.Actividad.AsNoTracking().FirstOrDefault(
                             actividad => actividad.nombre == this.nombreActividad &&
                             actividad.id_evento == Sesion.Evento.id_evento);
-                        if (new Magistral {
+                        if(new Magistral {
                             nombre = nombreTextBox.Text,
                             paterno = paternoTextBox.Text,
                             materno = maternoTextBox.Text,
@@ -64,9 +64,8 @@ namespace SIGEA {
                             MessageBox.Show("No se registró el magistral");
                         }
                     }
-                } catch (Exception exception) {
-                    MessageBox.Show("Error al registrar el magistral.");
-                    Console.WriteLine("Exception@RegistrarButton_Click -> " + exception.Message);
+                } catch(Exception) {
+                    MessageBox.Show("Lo sentimos inténtelo más tarde");
                 }
             }
         }
@@ -76,7 +75,7 @@ namespace SIGEA {
         /// </summary>
         /// <returns>true si están completos; false si no</returns>
         public Boolean VerificarCampos() {
-            if (!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
+            if(!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(paternoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(maternoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(correoTextBox.Text) &&
@@ -84,7 +83,7 @@ namespace SIGEA {
                 !string.IsNullOrWhiteSpace(lugarTextBox.Text)) {
                 return true;
             } else {
-                MessageBox.Show("Debe llenar todos los campos.");
+                MessageBox.Show("Por favor llenar todos los campos");
                 return false;
             }
         }
@@ -94,7 +93,7 @@ namespace SIGEA {
         /// </summary>
         /// <returns>true si son datos válidos; false si no</returns>
         private bool VerificarDatos() {
-            if (Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
+            if(Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(paternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(maternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(correoTextBox.Text, Herramientas.REGEX_CORREO) &&
@@ -102,7 +101,7 @@ namespace SIGEA {
                 Regex.IsMatch(lugarTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
                 return true;
             } else {
-                MessageBox.Show("Por favor revise los datos ingresados");
+                MessageBox.Show("Los datos son incorrectos verifíquelos");
                 return false;
             }
         }
@@ -113,21 +112,21 @@ namespace SIGEA {
         /// <returns>true si existe; false si no</returns>
         public bool VerificarExistencia() {
             try {
-                using (SigeaBD sigeaBD = new SigeaBD()) {
+                using(SigeaBD sigeaBD = new SigeaBD()) {
                     var magistralOptenido = sigeaBD.Magistral.AsNoTracking().FirstOrDefault(
                         magistral => magistral.nombre == nombreTextBox.Text &&
                         magistral.correo == correoTextBox.Text &&
                         magistral.Actividad.Evento.id_evento == Sesion.Evento.id_evento
                     );
-                    if (magistralOptenido == null) {
+                    if(magistralOptenido == null) {
                         return true;
                     } else {
-                        MessageBox.Show("El magistral ya existe");
+                        MessageBox.Show("El magistral ya existen en el evento");
                         return false;
                     }
                 }
-            } catch (Exception e) {
-                // TODO: Agregar mensaje de flujo de excepción.
+            } catch(Exception) {
+                MessageBox.Show("Lo sentimos inténtelo más tarde");
                 return false;
             }
         }

@@ -1,18 +1,8 @@
 ﻿using SIGEABD;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIGEA {
 
@@ -52,22 +42,22 @@ namespace SIGEA {
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
         private void GuardarButton_Click(object sender, RoutedEventArgs e) {
-            if (VerificarCampos() && ValidarDatos() && VerificarExistencia()) {
+            if(VerificarCampos() && ValidarDatos() && VerificarExistencia()) {
                 try {
-                    using (SigeaBD sigeaBD = new SigeaBD()) {
+                    using(SigeaBD sigeaBD = new SigeaBD()) {
                         var tareaSeleccionada = sigeaBD.Tarea.Where(
                             tarea => tarea.titulo == this.tarea.titulo
                         ).FirstOrDefault();
                         tareaSeleccionada.titulo = tituloTextBox.Text;
                         tareaSeleccionada.descripcion = descripcionTextBox.Text;
-                        if (sigeaBD.SaveChanges() != 0) {
+                        if(sigeaBD.SaveChanges() != 0) {
                             MessageBox.Show("Modificación de la tarea con éxito");
                             Close();
                         } else {
-                            MessageBox.Show("No se guardó el cambio");
+                            MessageBox.Show("No se guardó la modificación");
                         }
                     }
-                } catch (Exception) {
+                } catch(Exception) {
                     MessageBox.Show("Lo sentimos inténtelo más tarde");
                 }
             }
@@ -79,7 +69,7 @@ namespace SIGEA {
         /// <returns>true si están completos; false si no</returns>
         public Boolean VerificarCampos() {
 
-            if (!string.IsNullOrWhiteSpace(tituloTextBox.Text) &&
+            if(!string.IsNullOrWhiteSpace(tituloTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(descripcionTextBox.Text)) {
                 return true;
             } else {
@@ -93,7 +83,7 @@ namespace SIGEA {
         /// </summary>
         /// <returns>true si son válidos; false si no</returns>
         public Boolean ValidarDatos() {
-            if (Regex.IsMatch(tituloTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
+            if(Regex.IsMatch(tituloTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(descripcionTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
                 return true;
             } else {
@@ -108,17 +98,17 @@ namespace SIGEA {
         /// <returns>true si existe; false si no</returns>
         public Boolean VerificarExistencia() {
             try {
-                using (SigeaBD sigeaBD = new SigeaBD()) {
+                using(SigeaBD sigeaBD = new SigeaBD()) {
                     var tareaExistente = sigeaBD.Tarea.ToList().Find(
                         tarea => tarea.titulo == this.tarea.titulo);
-                    if (tareaExistente == null) {
+                    if(tareaExistente == null) {
                         return true;
                     } else {
                         MessageBox.Show("Modificación no valida, tarea ya existente");
                         return false;
                     }
                 }
-            } catch (Exception) {
+            } catch(Exception) {
                 MessageBox.Show("Lo sentimos inténtelo más tarde");
                 return false;
             }

@@ -1,0 +1,46 @@
+﻿<Window x:Class="SIGEA.AsignarArticulo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIGEA"
+        mc:Ignorable="d"
+        Title="Asignación de Articulos" Height="485" Width="680" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Asognación de Artículo" HorizontalAlignment="Left" Margin="218,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="350" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="300"/>
+        <Label Content="Artículo" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <ListView x:Name="articulosListView" ItemsSource="{Binding articulos}" HorizontalAlignment="Left" Height="295" Margin="17,100,0,0" VerticalAlignment="Top" Width="284">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Titulo}"
+                        Header="Título" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding KeyWord}"
+                        Header="KeyWords" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="350" Margin="330,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="335"/>
+        <Label Content="Revisor" HorizontalAlignment="Left" Margin="340,60,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <ListView x:Name="revisoresListView" ItemsSource="{Binding OrganizadoresLista}" HorizontalAlignment="Left" Height="295" Margin="340,100,0,0" VerticalAlignment="Top" Width="315">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Nombre}"
+                        Header="Nombre" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Paterno}"
+                        Header="Paterno" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding Materno}"
+                        Header="Materno" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="asignarButton" Content="Asignar" HorizontalAlignment="Left" Margin="534,410,0,0" VerticalAlignment="Top" Width="97" Click="AsignarButton_Click"/>
+        <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="409,410,0,0" VerticalAlignment="Top" Width="97" Foreground="#DD000000" BorderBrush="White" Background="White" Click="CancelarButton_Click"/>
+
+    </Grid>
+</Window>

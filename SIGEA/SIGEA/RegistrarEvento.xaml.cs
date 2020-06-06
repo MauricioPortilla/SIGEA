@@ -7,11 +7,11 @@ using System.Windows;
 namespace SIGEA {
 
     public partial class RegistrarEvento : Window {
+
         /// <summary>
         /// Crea una instancia.
         /// </summary>
-
-        public RegistrarEvento () {
+        public RegistrarEvento() {
             InitializeComponent();
         }
 
@@ -20,7 +20,7 @@ namespace SIGEA {
         /// </summary>
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
-        private void CancelarButton_Click (object sender, RoutedEventArgs e) {
+        private void CancelarButton_Click(object sender, RoutedEventArgs e) {
             MenuPrincipal menuPrincipal = new MenuPrincipal();
             menuPrincipal.Show();
             this.Close();
@@ -31,11 +31,11 @@ namespace SIGEA {
         /// </summary>
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
-        private void RegistrarButton_Click (object sender, RoutedEventArgs e) {
-            if (VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
+        private void RegistrarButton_Click(object sender, RoutedEventArgs e) {
+            if(VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
                 try {
-                    using (SigeaBD sigeaBD = new SigeaBD()) {
-                        if (new Evento {
+                    using(SigeaBD sigeaBD = new SigeaBD()) {
+                        if(new Evento {
                             nombre = nombreTextBox.Text,
                             sede = sedeTextBox.Text,
                             cuota = Double.Parse(cuotaTextBox.Text),
@@ -43,16 +43,15 @@ namespace SIGEA {
                             fechaFin = (DateTime) finDataPicker.SelectedDate,
                             id_organizador = Sesion.Organizador.id_organizador
                         }.Registrar()) {
-                            MessageBox.Show("Evento registrado con exitó");
+                            MessageBox.Show("Evento creado con éxito");
                             new MenuPrincipal().Show();
                             this.Close();
                         } else {
-                            MessageBox.Show("No se puede registrar el evento");
+                            MessageBox.Show("No se registró el evento");
                         }
                     }
-                } catch (Exception exception) {
-                    MessageBox.Show("Error al registrar el evento.");
-                    Console.WriteLine("Exception@RegistrarButton_Click -> " + exception.Message);
+                } catch(Exception) {
+                    MessageBox.Show("Lo sentimos inténtelo más tarde");
                 }
             }
         }
@@ -61,18 +60,18 @@ namespace SIGEA {
         /// Metodo que verifica que ningun campo este vacío
         /// </summary>
         /// <returns>true si ningun campo esta vacio, false si al menos uno esta vacio</returns>
-        public Boolean VerificarCampos () {
-            if (!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
+        public Boolean VerificarCampos() {
+            if(!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(sedeTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(cuotaTextBox.Text)) {
-                if (inicioDataPicker.SelectedDate != null &&
+                if(inicioDataPicker.SelectedDate != null &&
                     finDataPicker.SelectedDate != null) {
                     return true;
                 } else {
                     return false;
                 }
             } else {
-                MessageBox.Show("Debe llenar todos los campos.");
+                MessageBox.Show("Por favor llenar todos los campos");
                 return false;
             }
         }
@@ -81,13 +80,13 @@ namespace SIGEA {
         /// Metodo que Verficia que no existan caracteres raros
         /// </summary>
         /// <returns>true si todoe s correcto, false si llevan caracteres erroneos</returns>
-        private bool VerificarDatos () {
-            if (Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
+        private bool VerificarDatos() {
+            if(Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(sedeTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(cuotaTextBox.Text, Herramientas.REGEX_SOLO_NUMEROS)) {
                 return true;
             } else {
-                MessageBox.Show("Por favor revise los datos ingresados");
+                MessageBox.Show("Los datos proporcionados son incorrectos");
                 return false;
             }
         }
@@ -96,22 +95,22 @@ namespace SIGEA {
         /// Verifica que el evento no exista en el sistema
         /// </summary>
         /// <returns>true si existe; false si no</returns>
-        public Boolean VerificarExistencia () {
+        public Boolean VerificarExistencia() {
             try {
-                using (SigeaBD sigeaBD = new SigeaBD()) {
+                using(SigeaBD sigeaBD = new SigeaBD()) {
                     var eventoOptenido = sigeaBD.Evento.AsNoTracking().ToList().Find(
                         evento => evento.nombre == nombreTextBox.Text &&
                         evento.fechaInicio == inicioDataPicker.SelectedDate &&
                         evento.fechaFin == finDataPicker.SelectedDate);
-                    if (eventoOptenido == null) {
+                    if(eventoOptenido == null) {
                         return true;
                     } else {
-                        MessageBox.Show("Ya esta registrado el evento");
+                        MessageBox.Show("Este Evento ya está registrado en el sistema");
                         return false;
                     }
                 }
-            } catch (Exception) {
-                // TODO: Agregar mensaje de flujo de excepción.
+            } catch(Exception) {
+                MessageBox.Show("Lo sentimos inténtelo más tarde");
                 return false;
             }
         }

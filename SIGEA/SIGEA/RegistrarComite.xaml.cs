@@ -16,7 +16,7 @@ namespace SIGEA {
         /// <summary>
         /// Crea una instancia.
         /// </summary>
-        public RegistrarComite () {
+        public RegistrarComite() {
             InitializeComponent();
             DataContext = this;
             CargarOrganizadores();
@@ -46,14 +46,13 @@ namespace SIGEA {
         /// </summary>
         private void CargarOrganizadores() {
             try {
-                using (SigeaBD sigeaBD = new SigeaBD()) {
+                using(SigeaBD sigeaBD = new SigeaBD()) {
                     organizadores = sigeaBD.Organizador.AsNoTracking().Where(
                         organizador => organizador.id_organizador != Sesion.Organizador.id_organizador
                     ).ToList();
                 }
-            } catch (EntityException entityException) {
-                MessageBox.Show("Error al registrar el comité.");
-                Console.WriteLine("EntityException@RegistrarComite->CargarOrganizadores() -> " + entityException.Message);
+            } catch(Exception) {
+                MessageBox.Show("Lo sentimos inténtelo más tarde");
             }
         }
 
@@ -61,7 +60,7 @@ namespace SIGEA {
         /// Metodo que carga el combo con los organizadores
         /// </summary>
         private void CargarComboBox() {
-            foreach (Organizador organizador in organizadores) {
+            foreach(Organizador organizador in organizadores) {
                 organizadorComboBox.Items.Add(organizador);
             }
         }
@@ -74,8 +73,8 @@ namespace SIGEA {
         /// <param name="e">Evento</param>
         private void organizadorComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
             OrganizadoresLista.Clear();
-            foreach (var organizador in organizadores) {
-                if (organizador.id_organizador == (organizadorComboBox.SelectedItem as Organizador).id_organizador) {
+            foreach(var organizador in organizadores) {
+                if(organizador.id_organizador == (organizadorComboBox.SelectedItem as Organizador).id_organizador) {
                     continue;
                 }
                 OrganizadoresLista.Add(new OrganizadorTabla {
@@ -92,7 +91,7 @@ namespace SIGEA {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CancelarButton_Click (object sender, RoutedEventArgs e) {
+        private void CancelarButton_Click(object sender, RoutedEventArgs e) {
             new MenuPrincipal().Show();
             this.Close();
         }
@@ -102,31 +101,30 @@ namespace SIGEA {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RegistrarButton_Click (object sender, RoutedEventArgs e) {
-            if (VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
+        private void RegistrarButton_Click(object sender, RoutedEventArgs e) {
+            if(VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
                 Collection<Organizador> organizadoresSeleccionados = new Collection<Organizador>();
-                foreach (OrganizadorTabla organizadorTabla in organizadoresListView.SelectedItems) {
+                foreach(OrganizadorTabla organizadorTabla in organizadoresListView.SelectedItems) {
                     organizadoresSeleccionados.Add(organizadorTabla.Organizador);
                 }
                 try {
                     var organizador = (Organizador) organizadorComboBox.SelectedItem;
-                    using (SigeaBD sigeaBD = new SigeaBD()) {
-                        if (new Comite {
+                    using(SigeaBD sigeaBD = new SigeaBD()) {
+                        if(new Comite {
                             nombre = nombreTextBox.Text,
                             responsabilidades = responsabilidadesTextBox.Text,
                             id_evento = Sesion.Evento.id_evento,
                             id_organizador = organizador.id_organizador,
                             Organizadores = organizadoresSeleccionados
                         }.Registrar()) {
-                            MessageBox.Show("El Comite se registro correctamente");
+                            MessageBox.Show("Comité registrado con éxito");
                             Close();
                         } else {
-                            MessageBox.Show("El Comite no se pudo registrar");
+                            MessageBox.Show("No se regristró el comité");
                         }
                     }
-                } catch (Exception exception) {
-                    MessageBox.Show("Error al registrar el comite.");
-                    Console.WriteLine("Exception@RegistrarButton_Click -> " + exception.Message);
+                } catch(Exception) {
+                    MessageBox.Show("Lo sentimos inténtelo más tarde");
                 }
             }
         }
@@ -135,17 +133,17 @@ namespace SIGEA {
         /// Metodo que verifica que ningun campo este vacio
         /// </summary>
         /// <returns></returns>
-        public Boolean VerificarCampos () {
-            if (!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
+        public Boolean VerificarCampos() {
+            if(!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(responsabilidadesTextBox.Text)) {
-                if (organizadorComboBox.SelectedItem != null ) {
+                if(organizadorComboBox.SelectedItem != null) {
                     return true;
                 } else {
                     MessageBox.Show("Debe seleccionar al menos una actividad.");
                     return false;
                 }
             } else {
-                MessageBox.Show("Debe llenar todos los campos.");
+                MessageBox.Show("Por favor llenar todos los campos");
                 return false;
             }
         }
@@ -154,12 +152,12 @@ namespace SIGEA {
         /// Metodo que busca caracteres raros en los datos introducidos
         /// </summary>
         /// <returns></returns>
-        private bool VerificarDatos () {
-            if (Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
+        private bool VerificarDatos() {
+            if(Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(responsabilidadesTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
                 return true;
             } else {
-                MessageBox.Show("Por favor revise los datos ingresados");
+                MessageBox.Show("Los datos proporcionados son incorrectos");
                 return false;
             }
         }
@@ -168,22 +166,22 @@ namespace SIGEA {
         /// Metodo que verifica la existencia del comite
         /// </summary>
         /// <returns></returns>
-        public Boolean VerificarExistencia () {
+        public Boolean VerificarExistencia() {
             try {
-                using (SigeaBD sigeaBD = new SigeaBD()) {
+                using(SigeaBD sigeaBD = new SigeaBD()) {
                     var comiteOptenido = sigeaBD.Comite.ToList().Find(
                         comite => comite.nombre == nombreTextBox.Text &&
                         comite.Evento.id_evento == Sesion.Evento.id_evento
                     );
-                    if (comiteOptenido == null) {
+                    if(comiteOptenido == null) {
                         return true;
                     } else {
-                        MessageBox.Show("Ya está registrado el comité");
+                        MessageBox.Show("Este Comité ya está registrado en el evento");
                         return false;
                     }
                 }
-            } catch (Exception e) {
-                Console.WriteLine(e);
+            } catch(Exception) {
+                MessageBox.Show("Lo sentimos inténtelo más tarde");
                 return false;
             }
         }
