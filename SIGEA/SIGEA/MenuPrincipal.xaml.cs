@@ -101,6 +101,9 @@ namespace SIGEA {
                 );
 
                 foreach (Evento evento in listaEventosComoOrganizador) {
+                    if (EventosLista.Count(eventoTabla => eventoTabla.Evento.id_evento == evento.id_evento) > 0) {
+                        continue;
+                    }
                     EventosLista.Add(new EventoTabla {
                         Evento = evento,
                         Nombre = evento.nombre,

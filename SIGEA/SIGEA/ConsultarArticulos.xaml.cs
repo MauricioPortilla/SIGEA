@@ -27,6 +27,7 @@ namespace SIGEA {
         /// </summary>
         public ConsultarArticulos() {
             InitializeComponent();
+            DataContext = this;
             CargarArticulos();
         }
 

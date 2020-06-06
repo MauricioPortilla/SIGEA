@@ -11,8 +11,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="270,10,0,0" TextWrapping="Wrap" Text="Registrar actividad" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="225" Margin="10,45,0,0" Stroke="Black" VerticalAlignment="Top" Width="666"/>
         <TextBlock HorizontalAlignment="Left" Margin="23,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"><Run Text="Datos de"/><Run Text=" la actividad"/></TextBlock>
-        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="37" Margin="23,85,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="costoTextBox" HorizontalAlignment="Left" Height="37" Margin="329,85,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Costo" VerticalAlignment="Top" Width="121" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="42" Margin="23,80,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="costoTextBox" HorizontalAlignment="Left" Height="42" Margin="329,80,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Costo" VerticalAlignment="Top" Width="121" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         <ComboBox x:Name="tipoActividadComboBox" HorizontalAlignment="Left" Margin="23,127,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Tipo de actividad" Width="284"/>
         <TextBox x:Name="descripcionTextBox" HorizontalAlignment="Left" Height="97" Margin="23,160,0,0" TextWrapping="WrapWithOverflow" materialDesign:HintAssist.Hint="Descripción" VerticalAlignment="Top" Width="637" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         <TextBlock HorizontalAlignment="Left" Margin="23,292,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Presentaciones"/>

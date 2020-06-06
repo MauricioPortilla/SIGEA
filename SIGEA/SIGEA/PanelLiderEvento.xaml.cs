@@ -171,7 +171,7 @@ namespace SIGEA {
                 var actividad = (ActividadTabla) actividadesListView.SelectedItem;
                 mostrarMenuPrincipal = false;
                 new ConsultarAsistentesActividad(actividad.Actividad).Show();
-                this.Close();
+                Close();
             } else {
                 MessageBox.Show("Seleccione una actividad");
             }
@@ -192,7 +192,14 @@ namespace SIGEA {
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
         private void GenerarConstanciasActividadButton_Click(object sender, RoutedEventArgs e) {
-            mostrarMenuPrincipal = false;
+            if (actividadesListView.SelectedItem != null) {
+                var actividad = (ActividadTabla) actividadesListView.SelectedItem;
+                mostrarMenuPrincipal = false;
+                new GenerarConstanciasActividad(actividad.Actividad.id_actividad).Show();
+                Close();
+            } else {
+                MessageBox.Show("Seleccione una actividad");
+            }
         }
 
         /// <summary>

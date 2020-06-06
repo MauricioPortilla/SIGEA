@@ -22,7 +22,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBlock HorizontalAlignment="Left" Margin="311,7,0,0" TextWrapping="Wrap" Text="Consultar artículos" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,7,0,0" TextWrapping="Wrap" Text="Panel de Revisor" TextAlignment="Center" VerticalAlignment="Top" FontSize="20" Width="774"/>
         <Button x:Name="evaluarButton" Content="Evaluar" HorizontalAlignment="Left" Margin="652,380,0,0" VerticalAlignment="Top" Width="132" Click="EvaluarButton_Click"/>
         <Button x:Name="cerrarSesionButton" Content="Cerrar sesión" HorizontalAlignment="Left" Margin="507,380,0,0" VerticalAlignment="Top" Width="132" Click="cerrarSesionButton_Click"/>
     </Grid>

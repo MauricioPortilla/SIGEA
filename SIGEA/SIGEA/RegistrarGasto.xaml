@@ -10,8 +10,8 @@
     <Grid>
         <Label Content="Registro Gasto" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="203" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="324"/>
-        <TextBox x:Name="cantidadTextBox" HorizontalAlignment="Left" Height="37" Margin="25,62,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Cantidad" VerticalAlignment="Top" Width="109" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <DatePicker x:Name="fechaDatePicker" HorizontalAlignment="Left" Margin="144,62,0,0" VerticalAlignment="Top" Width="176" materialDesign:HintAssist.Hint="Fecha" FirstDayOfWeek="Monday" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+        <TextBox x:Name="cantidadTextBox" HorizontalAlignment="Left" Height="42" Margin="25,57,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Cantidad" VerticalAlignment="Top" Width="109" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <DatePicker x:Name="fechaDatePicker" HorizontalAlignment="Left" Margin="144,63,0,0" VerticalAlignment="Top" Width="176" materialDesign:HintAssist.Hint="Fecha" FirstDayOfWeek="Monday" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Height="36"/>
         <TextBox x:Name="motivoTextBox" HorizontalAlignment="Left" Height="83" Margin="25,113,0,0" TextWrapping="WrapWithOverflow"  materialDesign:HintAssist.Hint="Motivo" VerticalAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="295"/>
         <ComboBox x:Name="magistralComboBox" HorizontalAlignment="Left" Margin="25,210,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Asignar a magistral (opcional)" Width="295"/>
         <Button x:Name="registrarButton" Content="Registrar" HorizontalAlignment="Left" Margin="236,265,0,0" VerticalAlignment="Top" Width="98" Click="RegistrarButton_Click"/>

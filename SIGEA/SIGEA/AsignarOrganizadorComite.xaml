@@ -10,8 +10,8 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="149,6,0,0" TextWrapping="Wrap" Text="Asignar organizador a comité" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="105" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="528"/>
-        <ComboBox x:Name="comitesComboBox" HorizontalAlignment="Left" Height="37" Margin="23,71,0,0" materialDesign:HintAssist.Hint="Comité a asignar" VerticalAlignment="Top" Width="216" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="ComitesComboBox_SelectionChanged"/>
-        <ComboBox x:Name="organizadoresComboBox" HorizontalAlignment="Left" Height="37" Margin="289,71,0,0" materialDesign:HintAssist.Hint="Organizador a ser asignado" VerticalAlignment="Top" Width="236" Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEnabled="False"/>
+        <ComboBox x:Name="comitesComboBox" HorizontalAlignment="Left" Height="43" Margin="23,65,0,0" materialDesign:HintAssist.Hint="Comité a asignar" VerticalAlignment="Top" Width="216" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="ComitesComboBox_SelectionChanged"/>
+        <ComboBox x:Name="organizadoresComboBox" HorizontalAlignment="Left" Height="43" Margin="289,65,0,0" materialDesign:HintAssist.Hint="Organizador a ser asignado" VerticalAlignment="Top" Width="236" Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEnabled="False"/>
         <Button x:Name="asignarButton" Content="Asignar" HorizontalAlignment="Left" Margin="426,167,0,0" VerticalAlignment="Top" Width="112" Click="AsignarButton_Click"/>
         <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="297,167,0,0" VerticalAlignment="Top" Width="112" Click="CancelarButton_Click"/>
     </Grid>

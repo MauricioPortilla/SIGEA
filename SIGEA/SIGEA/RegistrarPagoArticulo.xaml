@@ -12,6 +12,6 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="104" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="324"/>
         <Button x:Name="registrarButton" Content="Registrar" HorizontalAlignment="Left" Margin="236,167,0,0" VerticalAlignment="Top" Width="98" Click="RegistrarButton_Click"/>
         <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="133,167,0,0" VerticalAlignment="Top" Width="98" Click="CancelarButton_Click"/>
-        <TextBox x:Name="cantidadTextBox" HorizontalAlignment="Left" Height="37" Margin="23,76,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Cantidad" VerticalAlignment="Top" Width="293" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="cantidadTextBox" HorizontalAlignment="Left" Height="44" Margin="23,69,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Cantidad" VerticalAlignment="Top" Width="293" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
     </Grid>
 </Window>

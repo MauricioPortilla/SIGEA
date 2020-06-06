@@ -27,7 +27,7 @@
             </ListView.View>
         </ListView>
 
-        <TextBox x:Name="cantidadTextBox" HorizontalAlignment="Left" Height="37" Margin="23,301,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Cantidad" VerticalAlignment="Top" Width="116" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="cantidadTextBox" HorizontalAlignment="Left" Height="45" Margin="23,293,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Cantidad" VerticalAlignment="Top" Width="116" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         <ComboBox x:Name="actividadComboBox" HorizontalAlignment="Left" Margin="185,310,0,0" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Asignar a actividad (opcional)" Width="219"/>
         <Button x:Name="registrarButton" Content="Registrar" HorizontalAlignment="Left" Margin="356,373,0,0" VerticalAlignment="Top" Width="116" Click="RegistrarButton_Click"/>
         <Button x:Name="cancelarButton" Content="Cancelar" HorizontalAlignment="Left" Margin="226,373,0,0" VerticalAlignment="Top" Width="116" Click="CancelarButton_Click"/>

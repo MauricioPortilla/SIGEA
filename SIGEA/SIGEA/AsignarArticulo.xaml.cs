@@ -20,140 +20,117 @@ namespace SIGEA {
     /// Lógica de interacción para AsignarArticulo.xaml
     /// </summary>
     public partial class AsignarArticulo : Window {
-
-        private List<Revisor> revisores = new List<Revisor>();
-        private List<Articulo> articulos = new List<Articulo>();
-
         public ObservableCollection<RevisorTabla> RevisoresLista { get; } = 
             new ObservableCollection<RevisorTabla>();
         public ObservableCollection<ArticuloTabla> ArticulosLista { get; } = 
             new ObservableCollection<ArticuloTabla>();
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
         public AsignarArticulo() {
-
             InitializeComponent();
             DataContext = this;
             CargarTabla();
         }
 
         /// <summary>
-        /// Metodo que cierra la ventana y vuelve a Panel Lider de Evento
+        /// Muestra el panel principal al cerrarse.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CancelarButton_Click(object sender, RoutedEventArgs e) {
-
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
             new PanelLiderEvento().Show();
-            this.Close();
         }
 
-        private void AsignarButton_Click(object sender, RoutedEventArgs e) {
-
+        /// <summary>
+        /// Carga ambas tablas con sus respectivos datos (articulos y organizadores)
+        /// </summary>
+        public void CargarTabla() {
             try {
-
-                using(SigeaBD sigeaBD = new SigeaBD()) {
-
-                    Collection<Revisor> revisorSeleccionado = new Collection<Revisor>();
-
-                    foreach(RevisorTabla revisorTabla in revisoresListView.SelectedItems) {
-
-                        revisorSeleccionado.Add(revisorTabla.Revisor);
+                using (SigeaBD sigeaBD = new SigeaBD()) {
+                    var revisores = sigeaBD.Revisor.ToList();
+                    foreach (var revisor in revisores) {
+                        RevisoresLista.Add(new RevisorTabla {
+                            Revisor = revisor,
+                            Nombre = revisor.nombre,
+                            Paterno = revisor.paterno,
+                            Materno = revisor.materno
+                        });
                     }
+                    var articulos = sigeaBD.Articulo.Where(
+                        articulo => articulo.Track.id_evento == Sesion.Evento.id_evento &&
+                        articulo.RevisorArticulo.Count == 0
+                    ).ToList();
+                    foreach (var articulo in articulos) {
+                        ArticulosLista.Add(new ArticuloTabla {
+                            Articulo = articulo,
+                            Titulo = articulo.titulo,
+                            Keywords = articulo.keywords
+                        });
+                    }
+                }
+            } catch (Exception) {
+                MessageBox.Show("Lo sentimos inténtelo más tarde");
+            }
+        }
 
-                    var articuloSeleccionado = (Articulo) articulosListView.SelectedItem;
-                    var articulo = sigeaBD.Articulo.Find(articuloSeleccionado.id_articulo);
-                    //articulo.RevisorArticulo;
+        /// <summary>
+        /// Metodo que cierra la ventana.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
+        private void CancelarButton_Click(object sender, RoutedEventArgs e) {
+            Close();
+        }
 
+        /// <summary>
+        /// Asigna el artículo seleccionado a los revisores seleccionados.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
+        private void AsignarButton_Click(object sender, RoutedEventArgs e) {
+            if (!RevisarSeleccion()) {
+                MessageBox.Show("Seleccione un artículo y un revisor");
+                return;
+            }
+            try {
+                using(SigeaBD sigeaBD = new SigeaBD()) {
+                    var articuloSeleccionado = (ArticuloTabla) articulosListView.SelectedItem;
+                    foreach(RevisorTabla revisorTabla in revisoresListView.SelectedItems) {
+                        sigeaBD.RevisorArticulo.Add(new RevisorArticulo {
+                            id_articulo = articuloSeleccionado.Articulo.id_articulo,
+                            id_revisor = revisorTabla.Revisor.id_revisor
+                        });
+                    }
                     if(sigeaBD.SaveChanges() != 0) {
-
                         MessageBox.Show("Artículo asignado con éxito");
-                        revisores.Clear();
-                        articulos.Clear();
                         RevisoresLista.Clear();
                         ArticulosLista.Clear();
                         CargarTabla();
-
                     } else {
-
-                        MessageBox.Show("No se asigno el artículo");
+                        MessageBox.Show("No se asignó el artículo");
                     }
                 }
             } catch(Exception) {
-
                 MessageBox.Show("Lo sentimos inténtelo más tarde");
             }
         }
 
         /// <summary>
-        /// Carga ambas tablas con sus respectivos datos (arrticulos y organizadores)
+        /// verifica que existan ambas selecciones.
         /// </summary>
-        public void CargarTabla() {
-
-            try {
-
-                using(SigeaBD sigeaBD = new SigeaBD()) {
-
-                    revisores = sigeaBD.Revisor.ToList();
-                }
-
-                using(SigeaBD sigeaBD = new SigeaBD()) {
-
-                    articulos = sigeaBD.Articulo.Where(
-                        articulo => articulo.Track.id_evento == Sesion.Evento.id_evento &&
-                        articulo.AutorArticulo.Count == 0).ToList();
-                }
-            } catch(Exception) {
-
-                MessageBox.Show("Lo sentimos inténtelo más tarde");
-            }
-
-            foreach(var revisor in revisores) {
-
-                RevisoresLista.Add(new RevisorTabla { 
-
-                    Nombre = revisor.nombre,
-                    Paterno = revisor.paterno,
-                    Materno = revisor.materno
-                });
-            }
-
-            foreach(var articulo in articulos) {
-
-                ArticulosLista.Add(new ArticuloTabla {
-
-                    Titulo = articulo.titulo,
-                    KeyWords = articulo.keywords
-                });
-            }
-        }
-
-        /// <summary>
-        /// verifica que existan ambas sleecciones
-        /// </summary>
-        /// <returns></returns>
-        public Boolean RevisarSeleccion() {
-
-            var revisor = (Revisor) revisoresListView.SelectedItem;
-            var articulo = (Articulo) articulosListView.SelectedItem;
-
-            if(revisor != null && articulo != null) {
-
-                return true;
-
-            } else {
-
-                MessageBox.Show("Seleccione un artículo y un revisor");
-                return false;
-            }
+        /// <returns>true si se seleccionaron revisores y un artículo; false si no</returns>
+        public bool RevisarSeleccion() {
+            var revisor = revisoresListView.SelectedItems;
+            var articulo = articulosListView.SelectedItem;
+            return revisor.Count > 0 && articulo != null;
         }
 
         /// <summary>
         /// Representa a un Revisor en la tabla
         /// </summary>
         public struct RevisorTabla {
-
             public Revisor Revisor;
-
             public string Nombre { get; set; }
             public string Paterno { get; set; }
             public string Materno { get; set; }
@@ -163,11 +140,9 @@ namespace SIGEA {
         /// Representa un Articulo en la tabla
         /// </summary>
         public struct ArticuloTabla {
-
             public Articulo Articulo;
-
             public string Titulo { get; set; }
-            public string KeyWords { get; set; }
+            public string Keywords { get; set; }
         }
     }
 }

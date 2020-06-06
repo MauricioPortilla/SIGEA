@@ -9,9 +9,9 @@
         Title="Modificar Presentacion" Height="211.692" Width="551.316" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="180,10,0,0" TextWrapping="Wrap" Text="Modificar presentación" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="fechaTextBox" HorizontalAlignment="Left" Height="37" Margin="22,67,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Fecha" VerticalAlignment="Top" Width="146" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="horaInicioTextBox" HorizontalAlignment="Left" Height="37" Margin="204,67,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Hora de inicio" VerticalAlignment="Top" Width="147" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="horaFinTextBox" HorizontalAlignment="Left" Height="37" Margin="376,67,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Hora de fin" VerticalAlignment="Top" Width="147" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="fechaTextBox" HorizontalAlignment="Left" Height="44" Margin="22,60,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Fecha" VerticalAlignment="Top" Width="146" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="horaInicioTextBox" HorizontalAlignment="Left" Height="44" Margin="204,60,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Hora de inicio" VerticalAlignment="Top" Width="147" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="horaFinTextBox" HorizontalAlignment="Left" Height="44" Margin="376,60,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Hora de fin" VerticalAlignment="Top" Width="147" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         <Button x:Name="modificarButtton" Content="Modificar" HorizontalAlignment="Left" Margin="217,139,0,0" VerticalAlignment="Top" Width="124" Click="ModificarButtton_Click"/>
     </Grid>
 </Window>

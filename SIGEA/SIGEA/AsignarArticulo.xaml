@@ -10,21 +10,21 @@
         <Label Content="Asognación de Artículo" HorizontalAlignment="Left" Margin="218,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="350" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="300"/>
         <Label Content="Artículo" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <ListView x:Name="articulosListView" ItemsSource="{Binding articulos}" HorizontalAlignment="Left" Height="295" Margin="17,100,0,0" VerticalAlignment="Top" Width="284">
+        <ListView x:Name="articulosListView" ItemsSource="{Binding ArticulosLista}" HorizontalAlignment="Left" Height="295" Margin="17,100,0,0" VerticalAlignment="Top" Width="284" SelectionMode="Single">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
                         DisplayMemberBinding="{Binding Titulo}"
                         Header="Título" />
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding KeyWord}"
-                        Header="KeyWords" />
+                        DisplayMemberBinding="{Binding Keywords}"
+                        Header="Keywords" />
                 </GridView>
             </ListView.View>
         </ListView>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="350" Margin="330,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="335"/>
         <Label Content="Revisor" HorizontalAlignment="Left" Margin="340,60,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <ListView x:Name="revisoresListView" ItemsSource="{Binding OrganizadoresLista}" HorizontalAlignment="Left" Height="295" Margin="340,100,0,0" VerticalAlignment="Top" Width="315">
+        <ListView x:Name="revisoresListView" ItemsSource="{Binding RevisoresLista}" HorizontalAlignment="Left" Height="295" Margin="340,100,0,0" VerticalAlignment="Top" Width="315">
             <ListView.View>
                 <GridView>
                     <GridViewColumn

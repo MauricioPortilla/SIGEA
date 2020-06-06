@@ -19,6 +19,7 @@ namespace SIGEA {
     /// Lógica de interacción para ConsultarEvaluacionesArticulos.xaml
     /// </summary>
     public partial class ConsultarEvaluacionesArticulos : Window {
+        private bool mostrarPanelPrincipal = true;
         private ObservableCollection<ArticuloTabla> articulosList = new ObservableCollection<ArticuloTabla>();
         public ObservableCollection<ArticuloTabla> ArticulosList {
             get => articulosList;
@@ -38,7 +39,9 @@ namespace SIGEA {
         /// </summary>
         /// <param name="e">Evento</param>
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
-            new PanelLiderEvento().Show();
+            if (mostrarPanelPrincipal) {
+                new PanelLiderEvento().Show();
+            }
         }
 
         /// <summary>
@@ -71,6 +74,8 @@ namespace SIGEA {
         /// <param name="e">Evento</param>
         private void ArticulosListView_SelectionChanged(object sender, RoutedEventArgs e) {
             new ConsultarEvaluacionesArticulo(((ArticuloTabla) articulosListView.SelectedItem).Articulo).Show();
+            mostrarPanelPrincipal = false;
+            Close();
         }
 
         /// <summary>

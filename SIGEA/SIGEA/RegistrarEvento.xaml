@@ -11,9 +11,9 @@
         <Label Content="Registro Evento" HorizontalAlignment="Left" Margin="210,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="286" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="315"/>
         <Label Content="Datos del Evento" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="37" Margin="23,104,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="sedeTextBox" HorizontalAlignment="Left" Height="37" Margin="23,184,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Lugar de sede" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-        <TextBox x:Name="cuotaTextBox" HorizontalAlignment="Left" Height="37" Margin="23,257,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Cuota del evento" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="46" Margin="23,95,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="sedeTextBox" HorizontalAlignment="Left" Height="46" Margin="23,175,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Lugar de sede" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="cuotaTextBox" HorizontalAlignment="Left" Height="44" Margin="23,250,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Cuota del evento" VerticalAlignment="Top" Width="284" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="199" Margin="340,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="243"/>
         <Label Content="Fecha de Inicio:" HorizontalAlignment="Left" Margin="355,75,0,0" VerticalAlignment="Top"/>
         <Label Content="Fecha de Fin:" HorizontalAlignment="Left" Margin="355,157,0,0" VerticalAlignment="Top"/>

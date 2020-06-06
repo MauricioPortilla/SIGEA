@@ -11,7 +11,7 @@
         <TextBlock Text="Registro Comité" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" FontSize="20" Width="827" TextAlignment="Center"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="335" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="336"/>
         <Label Content="Datos del Comité" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="37" Margin="20,100,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="310" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="nombreTextBox" HorizontalAlignment="Left" Height="42" Margin="20,95,0,0" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Nombre" VerticalAlignment="Top" Width="310" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         <Label Content="Responsabilidades" HorizontalAlignment="Left" Margin="20,142,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="87" Margin="361,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="476"/>
         <TextBlock HorizontalAlignment="Left" Margin="371,60,0,0" TextWrapping="Wrap" Text="Lider del Comité" VerticalAlignment="Top" FontSize="20" Width="170"/>

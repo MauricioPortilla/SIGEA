@@ -18,6 +18,10 @@ namespace SIGEA {
         public string DirectorioSeleccionado = string.Empty;
         private Actividad actividad;
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
+        /// <param name="id_actividad">Identificador de la actividad</param>
         public GenerarConstanciasActividad(int id_actividad) {
 
             InitializeComponent();
@@ -44,7 +48,7 @@ namespace SIGEA {
 
                 using(SigeaBD sigeaBD = new SigeaBD()) {
 
-                    actividad = sigeaBD.Actividad.Find(id_actividad);
+                    actividad = sigeaBD.Actividad.Include("Presentacion").FirstOrDefault(actividad => actividad.id_actividad == id_actividad);
                     var asistentes = sigeaBD.Asistente.Where(
                         asistente => asistente.Actividad.FirstOrDefault(
                             actividadLista => actividadLista.id_actividad == actividad.id_actividad
@@ -94,19 +98,14 @@ namespace SIGEA {
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
         private void GenerarSeleccionadoButton_Click(object sender, RoutedEventArgs e) {
-
             if(asistentesListView.SelectedItem == null) {
-
                 MessageBox.Show("Debes seleccionar un asistente");
                 return;
             }
 
             if(!SeleccionarDirectorio()) {
-
                 return;
-
             }
-
             GenerarConstancias(false);
             MessageBox.Show("Constancia generada con éxito");
         }
@@ -165,12 +164,14 @@ namespace SIGEA {
             spaceY += 70f;
             spaceX = (constancia.Width / 2) - (
                 g.MeasureString(
-                    "Del " + actividad.Evento.fechaInicio.ToShortDateString() + " al " + actividad.Evento.fechaFin.ToShortDateString(),
+                    "Del " + actividad.Presentacion.First().fechaPresentacion.ToShortDateString() + " al " + 
+                        actividad.Presentacion.Last().fechaPresentacion.ToShortDateString(),
                     fontSubtitulos
                 ).Width / 2
             );
             g.DrawString(
-                "Del " + actividad.Evento.fechaInicio.ToShortDateString() + " al " + actividad.Evento.fechaFin.ToShortDateString(),
+                "Del " + actividad.Presentacion.Min(presentacion => presentacion.fechaPresentacion).ToShortDateString() + " al " +
+                        actividad.Presentacion.Max(presentacion => presentacion.fechaPresentacion).ToShortDateString(),
                 fontSubtitulos, sb, spaceX, spaceY
             );
             constancia.Save(DirectorioSeleccionado + "/" + nombreAsistente + ".png", ImageFormat.Png);
