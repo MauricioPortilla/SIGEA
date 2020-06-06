@@ -164,5 +164,19 @@ namespace SIGEA {
                 MessageBox.Show("Selecciona un evento de la tabla.");
             }
         }
+
+        private void ConsultarButton_Click(object sender, RoutedEventArgs e) {
+            if (eventosListView.SelectedIndex != -1) {
+                var eventoSeleccionado = (EventoTabla) eventosListView.SelectedItem;
+                if (eventoSeleccionado.Evento.id_organizador != Sesion.Organizador.id_organizador) {
+                    MessageBox.Show("No eres líder de este evento.");
+                    return;
+                }
+                new ConsultarEvento(eventoSeleccionado.Evento.id_evento).Show();
+                Close();
+            } else {
+                MessageBox.Show("Selecciona un evento de la tabla.");
+            }
+        }
     }
 }

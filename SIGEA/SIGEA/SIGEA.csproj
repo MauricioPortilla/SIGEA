@@ -99,6 +99,9 @@
     <Compile Include="ConsultarAsistentesActividad.xaml.cs">
       <DependentUpon>ConsultarAsistentesActividad.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConsultarEvento.xaml.cs">
+      <DependentUpon>ConsultarEvento.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConsultarGastos.xaml.cs">
       <DependentUpon>ConsultarGastos.xaml</DependentUpon>
     </Compile>
@@ -209,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConsultarAsistentesActividad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsultarEvento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

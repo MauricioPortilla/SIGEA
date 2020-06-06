@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Consultar evaluaciones de artículo" Height="399.375" Width="722.188" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="314,10,0,0" TextWrapping="Wrap" Text="Evaluaciones" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="Evaluaciones" VerticalAlignment="Top" FontSize="20" Width="694"/>
         <Rectangle Fill="#FFF4F4F5" Margin="10,45,10,53" Stroke="Black"/>
         <TextBlock HorizontalAlignment="Left" Margin="23,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Evaluaciones"/>
         <ListView x:Name="evaluacionesListView" ItemsSource="{Binding EvaluacionesList}" Margin="23,85,22,66">

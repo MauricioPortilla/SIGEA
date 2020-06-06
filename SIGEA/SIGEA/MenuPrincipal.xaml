@@ -10,7 +10,7 @@
         <Label Content="SISTEMA GESTOR DE EVENTOS ACADEMICOS" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" FontSize="36"/>
         <Button x:Name="crearButton" Content="Crear Evento" HorizontalAlignment="Left" Margin="792,290,0,0" VerticalAlignment="Top" Width="130" Click="CrearButton_Click"/>
         <Button x:Name="cerrarSesionButton" Content="Cerrar Sesión" HorizontalAlignment="Left" Margin="792,357,0,0" VerticalAlignment="Top" Width="130" Foreground="#DD000000" BorderBrush="White" Background="White" Click="CerrarButton_Click"/>
-        <Button x:Name="administrarButton" Content="Administrar" HorizontalAlignment="Left" Margin="792,227,0,0" VerticalAlignment="Top" Width="130" Click="AdministrarButton_Click"/>
+        <Button x:Name="administrarButton" Content="Administrar" HorizontalAlignment="Left" Margin="792,174,0,0" VerticalAlignment="Top" Width="130" Click="AdministrarButton_Click"/>
         <ListView x:Name="eventosListView" ItemsSource="{Binding EventosLista}" Margin="10,90,175,10">
             <ListView.View>
                 <GridView>
@@ -29,5 +29,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="consultarButton" Content="Consultar" HorizontalAlignment="Left" Margin="792,231,0,0" VerticalAlignment="Top" Width="130" Click="ConsultarButton_Click"/>
     </Grid>
 </Window>

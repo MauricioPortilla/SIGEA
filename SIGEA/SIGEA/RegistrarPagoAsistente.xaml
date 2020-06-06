@@ -11,7 +11,7 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="66" Margin="10,293,0,0" Stroke="Black" VerticalAlignment="Top" Width="462"/>
 
         <TextBlock Text="Registrar pago de asistente" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" Width="462" TextAlignment="Center"/>
-        <ListView x:Name="asistentesListView" ItemsSource="{Binding AsistentesLista}" Margin="10,51,14,148">
+        <ListView x:Name="asistentesListView" ItemsSource="{Binding AsistentesLista}" Margin="10,51,14,148" SelectionMode="Single">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
