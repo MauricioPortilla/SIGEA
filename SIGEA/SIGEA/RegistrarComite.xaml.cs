@@ -153,7 +153,8 @@ namespace SIGEA {
         /// </summary>
         /// <returns></returns>
         private bool VerificarDatos() {
-            if(Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
+            if(Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
+                Regex.IsMatch(responsabilidadesTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
                 return true;
             } else {
                 MessageBox.Show("Los datos proporcionados son incorrectos");
