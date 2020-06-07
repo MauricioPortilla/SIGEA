@@ -121,6 +121,7 @@ namespace SIGEA {
         public bool VerificarCampos() {
             if(!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(paternoTextBox.Text) &&
+                !string.IsNullOrWhiteSpace(maternoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(correoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(dependenciaTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(direccionTextBox.Text) &&

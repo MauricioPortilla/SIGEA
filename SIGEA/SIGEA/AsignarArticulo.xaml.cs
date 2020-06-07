@@ -1,15 +1,25 @@
 ﻿using SIGEABD;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace SIGEA {
 
     /// <summary>
     /// Lógica de interacción para AsignarArticulo.xaml
     /// </summary>
-    public partial class AsignarArticuloRevisor : Window {
+    public partial class AsignarArticulo : Window {
         public ObservableCollection<RevisorTabla> RevisoresLista { get; } = 
             new ObservableCollection<RevisorTabla>();
         public ObservableCollection<ArticuloTabla> ArticulosLista { get; } = 
@@ -18,7 +28,7 @@ namespace SIGEA {
         /// <summary>
         /// Crea una instancia.
         /// </summary>
-        public AsignarArticuloRevisor() {
+        public AsignarArticulo() {
             InitializeComponent();
             DataContext = this;
             CargarTabla();

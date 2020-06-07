@@ -93,20 +93,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AsignarArticuloRevisor.xaml.cs">
-      <DependentUpon>AsignarArticuloRevisor.xaml</DependentUpon>
+    <Compile Include="AsignarArticulo.xaml.cs">
+      <DependentUpon>AsignarArticulo.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConsultarAsistentesActividad.xaml.cs">
       <DependentUpon>ConsultarAsistentesActividad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarEvento.xaml.cs">
+      <DependentUpon>ConsultarEvento.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConsultarGastos.xaml.cs">
       <DependentUpon>ConsultarGastos.xaml</DependentUpon>
     </Compile>
     <Compile Include="GenerarConstanciasActividad.xaml.cs">
       <DependentUpon>GenerarConstanciasActividad.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ListaAsistentesEvento.xaml.cs">
-      <DependentUpon>ListaAsistentesEvento.xaml</DependentUpon>
     </Compile>
     <Compile Include="PanelLiderComite.xaml.cs">
       <DependentUpon>PanelLiderComite.xaml</DependentUpon>
@@ -207,11 +207,15 @@
       <DependentUpon>RegistrarTrack.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sesion.cs" />
-    <Page Include="AsignarArticuloRevisor.xaml">
+    <Page Include="AsignarArticulo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConsultarAsistentesActividad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsultarEvento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,10 +224,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GenerarConstanciasActividad.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ListaAsistentesEvento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
