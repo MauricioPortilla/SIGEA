@@ -105,8 +105,8 @@
     <Compile Include="GenerarConstanciasActividad.xaml.cs">
       <DependentUpon>GenerarConstanciasActividad.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListaAsistentes.xaml.cs">
-      <DependentUpon>ListaAsistentes.xaml</DependentUpon>
+    <Compile Include="ListaAsistentesEvento.xaml.cs">
+      <DependentUpon>ListaAsistentesEvento.xaml</DependentUpon>
     </Compile>
     <Compile Include="PanelLiderComite.xaml.cs">
       <DependentUpon>PanelLiderComite.xaml</DependentUpon>
@@ -223,7 +223,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListaAsistentes.xaml">
+    <Page Include="ListaAsistentesEvento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
