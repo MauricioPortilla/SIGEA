@@ -134,7 +134,7 @@ namespace SIGEA {
         /// <param name="e">Evento</param>
         private void AsignarArticulosRevisorButton_Click(object sender, RoutedEventArgs e) {
             mostrarMenuPrincipal = false;
-            new AsignarArticulo().Show();
+            new AsignarArticuloRevisor().Show();
             this.Close();
         }
 
