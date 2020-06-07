@@ -58,8 +58,7 @@ namespace SIGEA {
                             id_actividad = actividadObtenida.id_actividad
                         }.Registrar()) {
                             MessageBox.Show("Magistral registrado con éxito");
-                            new PanelLiderEvento().Show();
-                            this.Close();
+                            Close();
                         } else {
                             MessageBox.Show("No se registró el magistral");
                         }
@@ -77,7 +76,6 @@ namespace SIGEA {
         public Boolean VerificarCampos() {
             if(!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(paternoTextBox.Text) &&
-                !string.IsNullOrWhiteSpace(maternoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(correoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(telefonoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(lugarTextBox.Text)) {
@@ -95,7 +93,6 @@ namespace SIGEA {
         private bool VerificarDatos() {
             if(Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(paternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
-                Regex.IsMatch(maternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(correoTextBox.Text, Herramientas.REGEX_CORREO) &&
                 Regex.IsMatch(telefonoTextBox.Text, Herramientas.REGEX_SOLO_NUMEROS) &&
                 Regex.IsMatch(lugarTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
@@ -121,7 +118,7 @@ namespace SIGEA {
                     if(magistralOptenido == null) {
                         return true;
                     } else {
-                        MessageBox.Show("El magistral ya existen en el evento");
+                        MessageBox.Show("El magistral ya existe en el evento");
                         return false;
                     }
                 }

@@ -19,7 +19,7 @@ namespace SIGEA {
     /// <summary>
     /// Lógica de interacción para AsignarArticulo.xaml
     /// </summary>
-    public partial class AsignarArticulo : Window {
+    public partial class AsignarArticuloRevisor : Window {
         public ObservableCollection<RevisorTabla> RevisoresLista { get; } = 
             new ObservableCollection<RevisorTabla>();
         public ObservableCollection<ArticuloTabla> ArticulosLista { get; } = 
@@ -28,7 +28,7 @@ namespace SIGEA {
         /// <summary>
         /// Crea una instancia.
         /// </summary>
-        public AsignarArticulo() {
+        public AsignarArticuloRevisor() {
             InitializeComponent();
             DataContext = this;
             CargarTabla();

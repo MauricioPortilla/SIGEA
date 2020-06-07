@@ -47,7 +47,7 @@ namespace SIGEA {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
                     var articulos = sigeaBD.Articulo.Where(articulo => articulo.Track.id_evento == Sesion.Evento.id_evento);
                     foreach (Articulo articulo in articulos) {
-                        var autor = articulo.AutorArticulo.First().Autor;
+                        var autor = articulo.AutorArticulo.FirstOrDefault().Autor;
                         ArticulosLista.Add(new ArticuloTabla {
                             Articulo = articulo,
                             Titulo = articulo.titulo,

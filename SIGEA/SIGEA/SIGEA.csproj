@@ -93,8 +93,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AsignarArticulo.xaml.cs">
-      <DependentUpon>AsignarArticulo.xaml</DependentUpon>
+    <Compile Include="AsignarArticuloRevisor.xaml.cs">
+      <DependentUpon>AsignarArticuloRevisor.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConsultarAsistentesActividad.xaml.cs">
       <DependentUpon>ConsultarAsistentesActividad.xaml</DependentUpon>
@@ -107,6 +107,9 @@
     </Compile>
     <Compile Include="GenerarConstanciasActividad.xaml.cs">
       <DependentUpon>GenerarConstanciasActividad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListaAsistentesEvento.xaml.cs">
+      <DependentUpon>ListaAsistentesEvento.xaml</DependentUpon>
     </Compile>
     <Compile Include="PanelLiderComite.xaml.cs">
       <DependentUpon>PanelLiderComite.xaml</DependentUpon>
@@ -207,7 +210,7 @@
       <DependentUpon>RegistrarTrack.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sesion.cs" />
-    <Page Include="AsignarArticulo.xaml">
+    <Page Include="AsignarArticuloRevisor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GenerarConstanciasActividad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListaAsistentesEvento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

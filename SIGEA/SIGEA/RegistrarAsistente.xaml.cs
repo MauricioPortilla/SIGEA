@@ -110,8 +110,7 @@ namespace SIGEA {
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
         private void CancelarButton_Click(object sender, RoutedEventArgs e) {
-            new PanelLiderEvento().Show();
-            this.Close();
+            Close();
         }
 
         /// <summary>
@@ -121,7 +120,6 @@ namespace SIGEA {
         public bool VerificarCampos() {
             if(!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(paternoTextBox.Text) &&
-                !string.IsNullOrWhiteSpace(maternoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(correoTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(dependenciaTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(direccionTextBox.Text) &&

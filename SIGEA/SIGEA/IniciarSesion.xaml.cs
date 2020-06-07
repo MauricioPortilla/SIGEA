@@ -43,8 +43,8 @@ namespace SIGEA {
                 Cuenta.IniciarSesion(usuarioTextBox.Text, contraseniaCifrada, (cuentaEncontrada) => {
                     if (cuentaEncontrada != null) {
                         Sesion.Cuenta = cuentaEncontrada;
-                        Sesion.Revisor = cuentaEncontrada.Revisor.Count > 0 ? cuentaEncontrada.Revisor.First() : null;
-                        Sesion.Organizador = cuentaEncontrada.Organizador.ToList().First();
+                        Sesion.Revisor = cuentaEncontrada.Revisor.Count > 0 ? cuentaEncontrada.Revisor.FirstOrDefault() : null;
+                        Sesion.Organizador = cuentaEncontrada.Organizador.ToList().FirstOrDefault();
                         if (Sesion.Revisor == null) {
                             new MenuPrincipal().Show();
                         } else {

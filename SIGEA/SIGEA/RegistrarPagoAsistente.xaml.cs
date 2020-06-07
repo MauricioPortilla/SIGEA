@@ -119,13 +119,13 @@ namespace SIGEA {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
                     Pago pagoBusqueda = null;
                     if (actividadComboBox.SelectedIndex == -1) {
-                        pagoBusqueda = sigeaBD.Pago.First(
+                        pagoBusqueda = sigeaBD.Pago.FirstOrDefault(
                             pago => pago.id_asistente == asistenteSeleccionado.id_asistente &&
                             pago.id_evento == Sesion.Evento.id_evento
                         );
                     } else {
                         Actividad actividadSeleccionada = actividadComboBox.SelectedItem as Actividad;
-                        pagoBusqueda = sigeaBD.Pago.First(
+                        pagoBusqueda = sigeaBD.Pago.FirstOrDefault(
                             pago => pago.id_asistente == asistenteSeleccionado.id_asistente &&
                             pago.id_actividad == actividadSeleccionada.id_actividad
                         );
@@ -134,7 +134,7 @@ namespace SIGEA {
                 }
             } catch (Exception) {
                 MessageBox.Show("Error al establecer una conexión");
-                return true;
+                throw;
             }
         }
 
@@ -150,8 +150,13 @@ namespace SIGEA {
             } else if (!ValidarCampos()) {
                 MessageBox.Show("Debes introducir datos válidos.");
                 return;
-            } else if (VerificarPagoExistente()) {
-                MessageBox.Show("Ya existe un pago de este asistente.");
+            }
+            try {
+                if (VerificarPagoExistente()) {
+                    MessageBox.Show("Ya existe un pago de este asistente.");
+                    return;
+                }
+            } catch (Exception) {
                 return;
             }
             try {

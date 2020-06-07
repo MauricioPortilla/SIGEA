@@ -127,7 +127,7 @@ namespace SIGEA {
                     using (SigeaBD sigeaBD = new SigeaBD()) {
                         var eventoEncontrado = sigeaBD.Evento.AsNoTracking().Where(
                             evento => evento.id_evento == eventoSeleccionado.Evento.id_evento
-                        ).First();
+                        ).FirstOrDefault();
                         if (eventoEncontrado != null) {
                             Sesion.Evento = eventoEncontrado;
                             if (eventoEncontrado.id_organizador == Sesion.Organizador.id_organizador) {

@@ -59,7 +59,6 @@ namespace SIGEA {
         private bool ValidarDatos() {
             return Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(paternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
-                Regex.IsMatch(maternoTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
                 Regex.IsMatch(telefonoTextBox.Text, Herramientas.REGEX_SOLO_NUMEROS) &&
                 Regex.IsMatch(correoTextBox.Text, Herramientas.REGEX_CORREO) &&
                 Regex.IsMatch(adscripcionNombreDependenciaTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&

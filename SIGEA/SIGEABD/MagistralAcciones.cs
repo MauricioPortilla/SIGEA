@@ -6,6 +6,10 @@ namespace SIGEABD {
 
     public partial class Magistral {
 
+        /// <summary>
+        /// Registra al magistral en la base de datos.
+        /// </summary>
+        /// <returns>true si se registró con éxito; false si no</returns>
         public bool Registrar () {
 
             try {
@@ -26,6 +30,14 @@ namespace SIGEABD {
                 Console.WriteLine("Exception@Magistral->Registrar() -> " + exception.Message);
                 throw;
             }
+        }
+
+        /// <summary>
+        /// Retorna el nombre completo del magistral.
+        /// </summary>
+        /// <returns>Nombre completo del magistral</returns>
+        public override string ToString() {
+            return nombre + " " + paterno + " " + (materno ?? "");
         }
     }
 }

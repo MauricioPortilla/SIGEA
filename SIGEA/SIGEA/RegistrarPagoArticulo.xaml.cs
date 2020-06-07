@@ -60,7 +60,7 @@ namespace SIGEA {
         private bool VerificarExistenciaPago() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-                    var pagoBusqueda = sigeaBD.Pago.First(pago => pago.id_articulo == articulo.id_articulo);
+                    var pagoBusqueda = sigeaBD.Pago.FirstOrDefault(pago => pago.id_articulo == articulo.id_articulo);
                     return pagoBusqueda != null;
                 }
             } catch (Exception) {

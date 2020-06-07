@@ -89,18 +89,17 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que cierra la ventana
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void CancelarButton_Click(object sender, RoutedEventArgs e) {
-            new MenuPrincipal().Show();
-            this.Close();
+            Close();
         }
 
         /// <summary>
         /// Metodo que registra el comite en el sistema
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void RegistrarButton_Click(object sender, RoutedEventArgs e) {
             if(VerificarCampos() && VerificarDatos() && VerificarExistencia()) {
                 Collection<Organizador> organizadoresSeleccionados = new Collection<Organizador>();
@@ -132,7 +131,7 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que verifica que ningun campo este vacio
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true si están completos; false si no</returns>
         public Boolean VerificarCampos() {
             if(!string.IsNullOrWhiteSpace(nombreTextBox.Text) &&
                 !string.IsNullOrWhiteSpace(responsabilidadesTextBox.Text)) {
@@ -151,10 +150,9 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que busca caracteres raros en los datos introducidos
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true si son válidos; false si no</returns>
         private bool VerificarDatos() {
-            if(Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
-                Regex.IsMatch(responsabilidadesTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
+            if(Regex.IsMatch(nombreTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
                 return true;
             } else {
                 MessageBox.Show("Los datos proporcionados son incorrectos");
@@ -165,7 +163,7 @@ namespace SIGEA {
         /// <summary>
         /// Metodo que verifica la existencia del comite
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true si existe; false si no</returns>
         public Boolean VerificarExistencia() {
             try {
                 using(SigeaBD sigeaBD = new SigeaBD()) {
