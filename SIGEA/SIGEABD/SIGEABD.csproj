@@ -110,6 +110,7 @@
     <Compile Include="Presentacion.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="PresentacionAcciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Revisor.cs">
       <DependentUpon>SigeaBD.tt</DependentUpon>
