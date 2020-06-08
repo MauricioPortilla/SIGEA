@@ -1,18 +1,8 @@
 ﻿using SIGEABD;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIGEA {
 
@@ -23,36 +13,48 @@ namespace SIGEA {
 
         public ObservableCollection<ArticuloTabla> ListaArticulos { get; } = 
             new ObservableCollection<ArticuloTabla>();
-        public ObservableCollection<Presentacion> ListaPresentaciones { get; } =
-            new ObservableCollection<Presentacion>();
-        public int actividad;
+        public int id_actividad;
 
+        /// <summary>
+        /// Crea una instancia.
+        /// </summary>
+        /// <param name="idActividad">Identificador de la Actividad</param>
         public AsignarArticuloActividad(int idActividad) {
             InitializeComponent();
             DataContext = this;
-            this.actividad = idActividad;
+            this.id_actividad = idActividad;
+            CargarDatos();
         }
 
         /// <summary>
         /// Metodo que cierra la ventana
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void CancelarButton_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
 
+        /// <summary>
+        /// Realiza la asignación.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
         private void AsignarButton_Click(object sender, RoutedEventArgs e) {
             if(VerificarSeleccion()) {
                 try {
                     using(SigeaBD sigeaBD = new SigeaBD()) {
                         var articuloSelec = (ArticuloTabla) articulosListView.SelectedItem;
                         var articuloObtenido = sigeaBD.Articulo.Find(articuloSelec.Articulo.id_articulo);
-                        articuloObtenido.Presentacion = new Collection<Presentacion>()
-                        { presentacionesComboBox.SelectedItem as Presentacion };
-                        sigeaBD.Presentacion.Attach(presentacionesComboBox.SelectedItem as Presentacion);
+                        var presentacion = sigeaBD.Presentacion.Find(
+                            (presentacionesComboBox.SelectedItem as Presentacion).id_presentacion
+                        );
+                        articuloObtenido.Presentacion = new Collection<Presentacion>() {
+                            presentacion
+                        };
                         if(sigeaBD.SaveChanges() != 0) {
                             MessageBox.Show("Asignación con éxito");
+                            Close();
                         } else {
                             MessageBox.Show("No se asignó el articulo");
                         }
@@ -60,6 +62,8 @@ namespace SIGEA {
                 } catch(Exception) {
                     MessageBox.Show("Lo sentimos inténtelo más tarde");
                 }
+            } else {
+                MessageBox.Show("Seleccione un artículo y una presentación");
             }
         }
 
@@ -71,12 +75,15 @@ namespace SIGEA {
             new PanelLiderEvento().Show();
         }
 
+        /// <summary>
+        /// Carga los artículos y las presentaciones de la base de datos.
+        /// </summary>
         public void CargarDatos() {
             try {
                 using(SigeaBD sigeaBD = new SigeaBD()) {
                     var articulos = sigeaBD.Articulo.Where(
                         articulo => articulo.Track.Evento.id_evento == Sesion.Evento.id_evento &&
-                        articulo.Presentacion == null).ToList();
+                        articulo.Presentacion.Count == 0);
                     foreach(Articulo articulo in articulos) {
                         ListaArticulos.Add(new ArticuloTabla {
                             Articulo = articulo,
@@ -85,17 +92,20 @@ namespace SIGEA {
                         });
                     }
                     var presentaciones = sigeaBD.Presentacion.Where(
-                        presentacion => presentacion.Actividad.id_actividad == actividad).ToList();
+                        presentacion => presentacion.Actividad.id_actividad == id_actividad);
                     foreach(Presentacion presentacion in presentaciones) {
-                        ListaPresentaciones.Add(presentacion);
+                        presentacionesComboBox.Items.Add(presentacion);
                     }
-                    presentacionesComboBox.ItemsSource = ListaPresentaciones;
                 }
-             } catch(Exception) {
+            } catch(Exception) {
                 MessageBox.Show("Lo sentimos inténtelo más tarde");
             }
         }
 
+        /// <summary>
+        /// Verifica si se ha seleccionado el artículo y la presentación.
+        /// </summary>
+        /// <returns>true si se seleccionaron; false si no</returns>
         public Boolean VerificarSeleccion() {
             if(articulosListView.SelectedItem != null &&
                 presentacionesComboBox.SelectedItem != null) {
@@ -106,7 +116,7 @@ namespace SIGEA {
         }
 
         /// <summary>
-        /// Estrucutra para llenar la Tabla
+        /// Estructura para llenar la Tabla
         /// </summary>
         public struct ArticuloTabla {
             public Articulo Articulo;

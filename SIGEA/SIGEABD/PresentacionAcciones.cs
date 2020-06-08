@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SIGEABD {
+﻿namespace SIGEABD {
 
     public partial class Presentacion {
+        /// <summary>
+        /// Retorna la fecha, la hora de inicio y la hora de fin.
+        /// </summary>
+        /// <returns>Fecha, hora de inicio y hora de fin</returns>
         public override string ToString() {
             return fechaPresentacion + ", "+ horaInicio + " - " + horaFin;
         }

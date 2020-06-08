@@ -41,5 +41,6 @@
         <Button x:Name="registrarPagoAsistenteButton" Content="Registrar Pago de Asistente" HorizontalAlignment="Left" Margin="246,82,0,0" VerticalAlignment="Top" Width="234" Click="RegistrarPagoAsistenteButton_Click"/>
         <Button x:Name="consultarGastosButton" Content="Consultar gastos" HorizontalAlignment="Left" Margin="554,82,0,0" VerticalAlignment="Top" Width="226" Click="ConsultarGastosButton_Click"/>
         <Button x:Name="consultarEvaluacionesArticuloButton" Content="Consultar evaluaciones de artículos" HorizontalAlignment="Left" Margin="554,123,0,0" VerticalAlignment="Top" Width="467" Click="ConsultarEvaluacionesArticuloButton_Click"/>
+        <Button x:Name="asignarArticuloActividadButton" Content="Asignar artículo a actividad" HorizontalAlignment="Left" Margin="246,123,0,0" VerticalAlignment="Top" Width="234" Click="AsignarArticuloActividadButton_Click"/>
     </Grid>
 </Window>

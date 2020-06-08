@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIGEA"
         mc:Ignorable="d"
-        Title="Artículos" Height="465" Width="687.5" WindowStartupLocation="CenterScreen">
+        Title="Asignar Artículo a Actividad" Height="465" Width="687.5" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Label Content="Asignación del Artículo" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="274" Margin="10,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="661"/>

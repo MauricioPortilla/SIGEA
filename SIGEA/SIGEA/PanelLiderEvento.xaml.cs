@@ -246,5 +246,21 @@ namespace SIGEA {
             new ConsultarEvaluacionesArticulos().Show();
             Close();
         }
+
+        /// <summary>
+        /// Muestra la ventana de Asignar Artículo a Actividad.
+        /// </summary>
+        /// <param name="sender">Botón</param>
+        /// <param name="e">Evento</param>
+        private void AsignarArticuloActividadButton_Click(object sender, RoutedEventArgs e) {
+            if (actividadesListView.SelectedItem != null) {
+                var actividad = (ActividadTabla) actividadesListView.SelectedItem;
+                mostrarMenuPrincipal = false;
+                new AsignarArticuloActividad(actividad.Actividad.id_actividad).Show();
+                Close();
+            } else {
+                MessageBox.Show("Seleccione una actividad");
+            }
+        }
     }
 }
