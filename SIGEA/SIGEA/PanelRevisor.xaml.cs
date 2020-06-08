@@ -1,18 +1,8 @@
 ﻿using SIGEABD;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static SIGEA.ConsultarEvaluacionesArticulos;
 
 namespace SIGEA {
@@ -65,8 +55,21 @@ namespace SIGEA {
         private void EvaluarButton_Click(object sender, RoutedEventArgs e) {
             if (articulosListView.SelectedIndex != -1) {
                 ArticuloTabla articuloSeleccionado = (ArticuloTabla) articulosListView.SelectedItem;
-                new EvaluarArticulo(articuloSeleccionado.Articulo.id_articulo).Show();
-                Close();
+                try {
+                    bool acceder = true;
+                    EvaluacionArticulo.ObtenerEvaluacionArticulo(articuloSeleccionado.Articulo.id_articulo, Sesion.Revisor.id_revisor, (evaluacionArticulo) => {
+                        if (evaluacionArticulo.estado == "Finalizada") {
+                            MessageBox.Show("Ya has emitido una evaluación para este artículo.");
+                            acceder = false;
+                        }
+                    });
+                    if (acceder) {
+                        new EvaluarArticulo(articuloSeleccionado.Articulo.id_articulo).Show();
+                        Close();
+                    }
+                } catch (Exception) {
+                    MessageBox.Show("Error al establecer una conexión.");
+                }
             } else {
                 MessageBox.Show("Debes seleccionar un artículo.");
             }
@@ -77,7 +80,7 @@ namespace SIGEA {
         /// </summary>
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
-        private void cerrarSesionButton_Click(object sender, RoutedEventArgs e) {
+        private void CerrarSesionButton_Click(object sender, RoutedEventArgs e) {
             IniciarSesion inicioSesion = new IniciarSesion();
             inicioSesion.Show();
             Sesion.Cuenta = null;

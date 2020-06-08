@@ -1,18 +1,8 @@
 ﻿using SIGEABD;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static SIGEA.ConsultarEvaluacionesArticulos;
 
 namespace SIGEA {
@@ -70,6 +60,7 @@ namespace SIGEA {
         private void ConsultarButton_Click(object sender, RoutedEventArgs e) {
             if (articulosListView.SelectedIndex != -1) {
                 new ConsultarArticulo(((ArticuloTabla) articulosListView.SelectedItem).Articulo).Show();
+                Close();
             } else {
                 MessageBox.Show("Debes seleccionar un artículo.");
             }
@@ -85,6 +76,7 @@ namespace SIGEA {
                 Articulo articuloSeleccionado = ((ArticuloTabla) articulosListView.SelectedItem).Articulo;
                 if (articuloSeleccionado.estado == "Aceptado") {
                     new RegistrarPagoArticulo(articuloSeleccionado).Show();
+                    Close();
                 } else {
                     MessageBox.Show("Este artículo aún no ha sido aceptado.");
                 }

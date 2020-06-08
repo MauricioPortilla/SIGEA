@@ -1,5 +1,4 @@
 ﻿using SIGEABD;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
@@ -184,6 +183,8 @@ namespace SIGEA {
         /// <param name="e">Evento</param>
         private void ConsultarAsistentesEventoButton_Click(object sender, RoutedEventArgs e) {
             mostrarMenuPrincipal = false;
+            new ListaAsistentesEvento().Show();
+            Close();
         }
 
         /// <summary>

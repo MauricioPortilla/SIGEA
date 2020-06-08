@@ -1,17 +1,7 @@
 ﻿using SIGEABD;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SIGEA {
     /// <summary>
@@ -22,6 +12,7 @@ namespace SIGEA {
         private EvaluacionArticulo evaluacionArticulo;
         private int id_articulo;
         private Articulo articulo;
+        private RevisorArticulo revisorArticulo;
 
         /// <summary>
         /// Crea una instancia.
@@ -33,6 +24,13 @@ namespace SIGEA {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
                     articulo = sigeaBD.Articulo.Find(id_articulo);
+                    revisorArticulo = sigeaBD.RevisorArticulo.FirstOrDefault(
+                        revisorArt => revisorArt.id_revisor == Sesion.Revisor.id_revisor && 
+                            revisorArt.id_articulo == articulo.id_articulo
+                    );
+                    if (revisorArticulo == null) {
+                        throw new Exception();
+                    }
                 }
             } catch (Exception) {
                 MessageBox.Show("Error al establecer una conexión.");
@@ -49,6 +47,14 @@ namespace SIGEA {
                 calificacionComboBox.Items.Add(calificacion);
             }
             VerificarExistenciaEvaluacionArticulo(id_articulo);
+        }
+
+        /// <summary>
+        /// Muestra el panel principal al cerrarse.
+        /// </summary>
+        /// <param name="e">Evento</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) {
+            new PanelRevisor().Show();
         }
 
         /// <summary>
@@ -94,27 +100,34 @@ namespace SIGEA {
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento del botón</param>
         private void GuardarButton_Click(object sender, RoutedEventArgs e) {
-            if (evaluacionArticulo == null) {
-                evaluacionArticulo = new EvaluacionArticulo {
-                    gradoExpertiz = gradoExpertizComboBox.SelectedIndex + 1,
-                    calificacion = calificacionComboBox.SelectedIndex != -1 ? int.Parse(calificacionComboBox.SelectedItem.ToString()) : -1,
-                    observaciones = observacionesTextBox.Text,
-                    fecha = DateTime.Now,
-                    estado = "En proceso"
-                };
-                if (!evaluacionArticulo.Registrar(Sesion.Revisor.id_revisor, id_articulo)) {
-                    MessageBox.Show("Error al establecer una conexión.");
-                    return;
+            try {
+                if (evaluacionArticulo == null) {
+                    evaluacionArticulo = new EvaluacionArticulo {
+                        gradoExpertiz = gradoExpertizComboBox.SelectedIndex + 1,
+                        calificacion = calificacionComboBox.SelectedIndex != -1 ? int.Parse(calificacionComboBox.SelectedItem.ToString()) : -1,
+                        observaciones = observacionesTextBox.Text,
+                        fecha = DateTime.Now,
+                        estado = "En proceso",
+                        id_revisorArticulo = revisorArticulo.id_revisorArticulo
+                    };
+                    if (!evaluacionArticulo.Registrar(Sesion.Revisor.id_revisor, id_articulo)) {
+                        MessageBox.Show("Error al establecer una conexión.");
+                        evaluacionArticulo = null;
+                        return;
+                    }
+                } else {
+                    evaluacionArticulo.gradoExpertiz = gradoExpertizComboBox.SelectedIndex + 1;
+                    evaluacionArticulo.calificacion = calificacionComboBox.SelectedIndex != -1 ? int.Parse(calificacionComboBox.SelectedItem.ToString()) : -1;
+                    evaluacionArticulo.observaciones = observacionesTextBox.Text;
+                    evaluacionArticulo.fecha = DateTime.Now;
+                    if (!evaluacionArticulo.Actualizar()) {
+                        MessageBox.Show("Error al establecer una conexión.");
+                        return;
+                    }
                 }
-            } else {
-                evaluacionArticulo.gradoExpertiz = gradoExpertizComboBox.SelectedIndex + 1;
-                evaluacionArticulo.calificacion = int.Parse(calificacionComboBox.SelectedItem.ToString());
-                evaluacionArticulo.observaciones = observacionesTextBox.Text;
-                evaluacionArticulo.fecha = DateTime.Now;
-                if (!evaluacionArticulo.Actualizar()) {
-                    MessageBox.Show("Error al establecer una conexión.");
-                    return;
-                }
+            } catch (Exception) {
+                MessageBox.Show("Error al establecer una conexión.");
+                return;
             }
             MessageBox.Show("Evaluación guardada.");
         }
@@ -142,28 +155,34 @@ namespace SIGEA {
                 MessageBox.Show("Faltan campos por completar.");
                 return;
             }
-            if (evaluacionArticulo == null) {
-                evaluacionArticulo = new EvaluacionArticulo {
-                    gradoExpertiz = gradoExpertizComboBox.SelectedIndex + 1,
-                    calificacion = int.Parse(calificacionComboBox.SelectedItem.ToString()),
-                    observaciones = observacionesTextBox.Text,
-                    fecha = DateTime.Now,
-                    estado = "Finalizada"
-                };
-                if (!evaluacionArticulo.Registrar(Sesion.Revisor.id_revisor, id_articulo)) {
-                    MessageBox.Show("Error al establecer una conexión.");
-                    return;
+            try {
+                if (evaluacionArticulo == null) {
+                    evaluacionArticulo = new EvaluacionArticulo {
+                        gradoExpertiz = gradoExpertizComboBox.SelectedIndex + 1,
+                        calificacion = calificacionComboBox.SelectedIndex != -1 ? int.Parse(calificacionComboBox.SelectedItem.ToString()) : -1,
+                        observaciones = observacionesTextBox.Text,
+                        fecha = DateTime.Now,
+                        estado = "Finalizada",
+                        id_revisorArticulo = revisorArticulo.id_revisorArticulo
+                    };
+                    if (!evaluacionArticulo.Registrar(Sesion.Revisor.id_revisor, id_articulo)) {
+                        MessageBox.Show("Error al establecer una conexión.");
+                        return;
+                    }
+                } else {
+                    evaluacionArticulo.gradoExpertiz = gradoExpertizComboBox.SelectedIndex + 1;
+                    evaluacionArticulo.calificacion = calificacionComboBox.SelectedIndex != -1 ? int.Parse(calificacionComboBox.SelectedItem.ToString()) : -1;
+                    evaluacionArticulo.observaciones = observacionesTextBox.Text;
+                    evaluacionArticulo.fecha = DateTime.Now;
+                    evaluacionArticulo.estado = "Finalizada";
+                    if (!evaluacionArticulo.Actualizar()) {
+                        MessageBox.Show("Error al establecer una conexión.");
+                        return;
+                    }
                 }
-            } else {
-                evaluacionArticulo.gradoExpertiz = gradoExpertizComboBox.SelectedIndex + 1;
-                evaluacionArticulo.calificacion = int.Parse(calificacionComboBox.SelectedItem.ToString());
-                evaluacionArticulo.observaciones = observacionesTextBox.Text;
-                evaluacionArticulo.fecha = DateTime.Now;
-                evaluacionArticulo.estado = "Finalizada";
-                if (!evaluacionArticulo.Actualizar()) {
-                    MessageBox.Show("Error al establecer una conexión.");
-                    return;
-                }
+            } catch (Exception) {
+                MessageBox.Show("Error al establecer una conexión.");
+                return;
             }
             MessageBox.Show("Se ha realizado la evaluación.");
             Close();

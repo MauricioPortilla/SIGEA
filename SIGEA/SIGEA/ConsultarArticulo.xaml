@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SIGEA"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SIGEA.ConsultarArticulo"
         mc:Ignorable="d"
-        Title="ConsultarArticulo" Height="612.5" Width="694" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Consultar Articulo" Height="612.5" Width="694" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="269,10,0,0" TextWrapping="Wrap" Text="Consultar artículo" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle Fill="#FFF4F4F5" Margin="10,45,10,308" Stroke="Black"/>

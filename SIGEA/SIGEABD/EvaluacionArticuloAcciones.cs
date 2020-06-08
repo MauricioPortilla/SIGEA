@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SIGEABD {
     public partial class EvaluacionArticulo {
@@ -48,12 +45,8 @@ namespace SIGEABD {
         public bool Registrar(int id_revisor, int id_articulo) {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-                    sigeaBD.RevisorArticulo.Add(new RevisorArticulo {
-                        id_revisor = id_revisor,
-                        id_articulo = id_articulo,
-                        EvaluacionArticulo = this
-                    });
-                    return sigeaBD.SaveChanges() > 0;
+                    sigeaBD.EvaluacionArticulo.Add(this);
+                    return sigeaBD.SaveChanges() != 0;
                 }
             } catch (DbUpdateException dbUpdateException) {
                 Console.WriteLine("DbUpdateException@EvaluacionArticulo->Registrar() -> " + dbUpdateException.Message);
@@ -83,7 +76,7 @@ namespace SIGEABD {
                     evaluacionArticulo.observaciones = observaciones;
                     evaluacionArticulo.fecha = fecha;
                     evaluacionArticulo.estado = estado;
-                    return sigeaBD.SaveChanges() > 0;
+                    return sigeaBD.SaveChanges() >= 0;
                 }
             } catch (DbUpdateException dbUpdateException) {
                 Console.WriteLine("DbUpdateException@EvaluacionArticulo->Registrar() -> " + dbUpdateException.Message);

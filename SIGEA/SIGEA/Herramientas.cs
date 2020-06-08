@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SIGEA {
     public class Herramientas {
 
         public static readonly string REGEX_SOLO_NUMEROS = "^[0-9]+$";
-        public static readonly string REGEX_SOLO_ENTEROS_Y_FLOTANTES = @"(\d+(\.\d+)?)";
+        public static readonly string REGEX_SOLO_ENTEROS_Y_FLOTANTES = @"^[-+]?\d*\.?\d{1,}$";
         public static readonly string REGEX_SOLO_LETRAS = "^[a-zA-Záéíóú ]+$";
         public static readonly string REGEX_CORREO = @"\w+@\w+\.\w+$";
         public static readonly string REGEX_FECHA = @"\d{1,2}\/\d{1,2}\/\d{4}$";

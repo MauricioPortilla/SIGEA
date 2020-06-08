@@ -114,7 +114,8 @@ CREATE TABLE GastoMagistral (
     id_gasto int UNIQUE NOT NULL,
     FOREIGN KEY (id_gasto) REFERENCES Gasto(id_gasto),
     id_magistral int NOT NULL,
-    FOREIGN KEY (id_magistral) REFERENCES Magistral(id_magistral)
+    FOREIGN KEY (id_magistral) REFERENCES Magistral(id_magistral),
+    PRIMARY KEY (id_gasto, id_magistral)
 );
 
 CREATE TABLE Adscripcion (
@@ -189,7 +190,8 @@ CREATE TABLE PresentacionArticulo (
     id_presentacion int UNIQUE NOT NULL,
     FOREIGN KEY (id_presentacion) REFERENCES Presentacion(id_presentacion),
     id_articulo int NOT NULL,
-    FOREIGN KEY (id_articulo) REFERENCES Articulo(id_articulo)
+    FOREIGN KEY (id_articulo) REFERENCES Articulo(id_articulo),
+    PRIMARY KEY (id_presentacion, id_articulo)
 );
 
 CREATE TABLE Autor (

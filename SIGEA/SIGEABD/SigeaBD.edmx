@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SIGEAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actividad">
           <Key>
             <PropertyRef Name="id_actividad" />
@@ -146,8 +146,6 @@
           <Property Name="motivo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="fecha" Type="date" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SIGEA2.dbo.GastoMagistral' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="GastoMagistral">
           <Key>
             <PropertyRef Name="id_gasto" />
@@ -203,8 +201,6 @@ advertencia 6002: La tabla o vista 'SIGEA2.dbo.GastoMagistral' no tiene definida
           <Property Name="horaInicio" Type="time" Precision="7" Nullable="false" />
           <Property Name="horaFin" Type="time" Precision="7" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SIGEA2.dbo.PresentacionArticulo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="PresentacionArticulo">
           <Key>
             <PropertyRef Name="id_presentacion" />
@@ -694,27 +690,17 @@ advertencia 6002: La tabla o vista 'SIGEA2.dbo.PresentacionArticulo' no tiene de
           <EntitySet Name="EvaluacionArticulo" EntityType="Self.EvaluacionArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gasto" EntityType="Self.Gasto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GastoMagistral" EntityType="Self.GastoMagistral" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Magistral" EntityType="Self.Magistral" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organizador" EntityType="Self.Organizador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Presentacion" EntityType="Self.Presentacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PresentacionArticulo" EntityType="Self.PresentacionArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Revisor" EntityType="Self.Revisor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RevisorArticulo" EntityType="Self.RevisorArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tarea" EntityType="Self.Tarea" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TareaActividad" EntityType="Self.TareaActividad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GastoMagistral" EntityType="Self.GastoMagistral" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [GastoMagistral].[id_gasto] AS [id_gasto], 
-    [GastoMagistral].[id_magistral] AS [id_magistral]
-    FROM [dbo].[GastoMagistral] AS [GastoMagistral]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="PresentacionArticulo" EntityType="Self.PresentacionArticulo" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [PresentacionArticulo].[id_presentacion] AS [id_presentacion], 
-    [PresentacionArticulo].[id_articulo] AS [id_articulo]
-    FROM [dbo].[PresentacionArticulo] AS [PresentacionArticulo]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__Actividad__id_ev__3A81B327" Association="Self.FK__Actividad__id_ev__3A81B327">
             <End Role="Evento" EntitySet="Evento" />
             <End Role="Actividad" EntitySet="Actividad" />
@@ -856,8 +842,7 @@ advertencia 6002: La tabla o vista 'SIGEA2.dbo.PresentacionArticulo' no tiene de
             <End Role="Track" EntitySet="Track" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIGEAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

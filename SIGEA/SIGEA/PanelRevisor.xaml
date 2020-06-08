@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIGEA"
         mc:Ignorable="d"
-        Title="PanelRevisor" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Panel de Revisor" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <ListView x:Name="articulosListView" ItemsSource="{Binding ArticulosLista}" Margin="10,39,10,46">
             <ListView.View>
@@ -24,6 +24,6 @@
         </ListView>
         <TextBlock HorizontalAlignment="Left" Margin="10,7,0,0" TextWrapping="Wrap" Text="Panel de Revisor" TextAlignment="Center" VerticalAlignment="Top" FontSize="20" Width="774"/>
         <Button x:Name="evaluarButton" Content="Evaluar" HorizontalAlignment="Left" Margin="652,380,0,0" VerticalAlignment="Top" Width="132" Click="EvaluarButton_Click"/>
-        <Button x:Name="cerrarSesionButton" Content="Cerrar sesión" HorizontalAlignment="Left" Margin="507,380,0,0" VerticalAlignment="Top" Width="132" Click="cerrarSesionButton_Click"/>
+        <Button x:Name="cerrarSesionButton" Content="Cerrar sesión" HorizontalAlignment="Left" Margin="507,380,0,0" VerticalAlignment="Top" Width="132" Click="CerrarSesionButton_Click"/>
     </Grid>
 </Window>

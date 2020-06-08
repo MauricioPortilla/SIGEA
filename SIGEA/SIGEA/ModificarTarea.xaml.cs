@@ -42,7 +42,7 @@ namespace SIGEA {
         /// <param name="sender">Botón</param>
         /// <param name="e">Evento</param>
         private void GuardarButton_Click(object sender, RoutedEventArgs e) {
-            if(VerificarCampos() && ValidarDatos() && VerificarExistencia()) {
+            if (VerificarCampos() && ValidarDatos() && VerificarExistencia()) {
                 try {
                     using(SigeaBD sigeaBD = new SigeaBD()) {
                         var tareaSeleccionada = sigeaBD.Tarea.Where(
@@ -83,8 +83,7 @@ namespace SIGEA {
         /// </summary>
         /// <returns>true si son válidos; false si no</returns>
         public Boolean ValidarDatos() {
-            if(Regex.IsMatch(tituloTextBox.Text, Herramientas.REGEX_SOLO_LETRAS) &&
-                Regex.IsMatch(descripcionTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
+            if(Regex.IsMatch(tituloTextBox.Text, Herramientas.REGEX_SOLO_LETRAS)) {
                 return true;
             } else {
                 MessageBox.Show("Los datos proporcionados son incorrectos");
@@ -95,12 +94,13 @@ namespace SIGEA {
         /// <summary>
         /// Verifica si existe una tarea con el título ingresado.
         /// </summary>
-        /// <returns>true si existe; false si no</returns>
+        /// <returns>true si no existe; false si existe</returns>
         public Boolean VerificarExistencia() {
             try {
                 using(SigeaBD sigeaBD = new SigeaBD()) {
                     var tareaExistente = sigeaBD.Tarea.ToList().Find(
-                        tarea => tarea.titulo == this.tarea.titulo);
+                        tarea => tarea.titulo == this.tarea.titulo && tarea.id_tarea != this.tarea.id_tarea
+                    );
                     if(tareaExistente == null) {
                         return true;
                     } else {
