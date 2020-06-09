@@ -4,6 +4,10 @@ using System.Data.Entity.Infrastructure;
 
 namespace SIGEABD {
     public partial class Comite {
+        /// <summary>
+        /// Registra el comité en la base de datos.
+        /// </summary>
+        /// <returns>true si se registró; false si no</returns>
         public bool Registrar() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
@@ -50,6 +54,10 @@ namespace SIGEABD {
             }
         }
 
+        /// <summary>
+        /// Retorna el nombre del comité.
+        /// </summary>
+        /// <returns>Nombre del comité</returns>
         public override string ToString() {
             return nombre;
         }

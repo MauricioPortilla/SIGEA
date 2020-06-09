@@ -39,10 +39,8 @@ namespace SIGEABD {
         /// <summary>
         /// Registrar la evaluación artículo en la base de datos.
         /// </summary>
-        /// <param name="id_revisor">Identificador del revisor</param>
-        /// <param name="id_articulo">Identificador del artículo</param>
         /// <returns>true si se registró con éxito; false si no</returns>
-        public bool Registrar(int id_revisor, int id_articulo) {
+        public bool Registrar() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
                     sigeaBD.EvaluacionArticulo.Add(this);

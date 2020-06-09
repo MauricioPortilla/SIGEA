@@ -4,6 +4,11 @@ using System.Data.Entity.Infrastructure;
 
 namespace SIGEABD {
     public partial class Adscripcion {
+
+        /// <summary>
+        /// Registra la adscripción en la base de datos.
+        /// </summary>
+        /// <returns>true si se registró; false si no</returns>
         public bool Registrar() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {

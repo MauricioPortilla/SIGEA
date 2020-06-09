@@ -31,7 +31,7 @@ namespace SIGEA.Pruebas {
                 fecha = DateTime.Now,
                 estado = "En proceso"
             };
-            Assert.IsTrue(evaluacionArticulo.Registrar(1, 1));
+            Assert.IsTrue(evaluacionArticulo.Registrar());
         }
 
         /// <summary>

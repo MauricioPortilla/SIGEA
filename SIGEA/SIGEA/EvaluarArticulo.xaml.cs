@@ -110,7 +110,7 @@ namespace SIGEA {
                         estado = "En proceso",
                         id_revisorArticulo = revisorArticulo.id_revisorArticulo
                     };
-                    if (!evaluacionArticulo.Registrar(Sesion.Revisor.id_revisor, id_articulo)) {
+                    if (!evaluacionArticulo.Registrar()) {
                         MessageBox.Show("Error al establecer una conexión.");
                         evaluacionArticulo = null;
                         return;
@@ -165,7 +165,7 @@ namespace SIGEA {
                         estado = "Finalizada",
                         id_revisorArticulo = revisorArticulo.id_revisorArticulo
                     };
-                    if (!evaluacionArticulo.Registrar(Sesion.Revisor.id_revisor, id_articulo)) {
+                    if (!evaluacionArticulo.Registrar()) {
                         MessageBox.Show("Error al establecer una conexión.");
                         return;
                     }

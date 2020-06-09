@@ -5,7 +5,11 @@ using System.Data.Entity.Infrastructure;
 
 namespace SIGEABD {
     public partial class Asistente {
-        public bool Registrar () {
+        /// <summary>
+        /// Registra el asistente en la base de datos.
+        /// </summary>
+        /// <returns>true si se registró; false si no</returns>
+        public bool Registrar() {
             try {
                 using (SigeaBD sigeaBD = new SigeaBD()) {
                     Collection<Actividad> actividades = new Collection<Actividad>();

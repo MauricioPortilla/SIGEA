@@ -10,16 +10,12 @@ namespace SIGEABD {
         /// Registra al magistral en la base de datos.
         /// </summary>
         /// <returns>true si se registró con éxito; false si no</returns>
-        public bool Registrar () {
-
+        public bool Registrar() {
             try {
-
                 using (SigeaBD sigeaBD = new SigeaBD()) {
-
                     sigeaBD.Magistral.Add(this);
                     return sigeaBD.SaveChanges() != 0;
                 }
-
             } catch (DbUpdateException dbUpdateException) {
                 Console.WriteLine("DbUpdateException@Magistral->Registrar() -> " + dbUpdateException.Message);
                 throw;
