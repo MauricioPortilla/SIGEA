@@ -60,7 +60,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsignarArticuloActividadPruebas.cs" />
+    <Compile Include="AsignarArticuloRevisorPruebas.cs" />
+    <Compile Include="ConsultarAsistentesEventoPruebas.cs" />
+    <Compile Include="GenerarConstanciasActividadPruebas.cs" />
     <Compile Include="IniciarSesionPruebas.cs" />
+    <Compile Include="ModificarTareasAsignadasPruebas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrarArticuloPruebas.cs" />
     <Compile Include="RegistrarAsistentePruebas.cs" />
